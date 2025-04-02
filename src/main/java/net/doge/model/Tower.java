@@ -45,4 +45,8 @@ public class Tower {
         this.visible = visible;
         this.optional = optional;
     }
+
+    public boolean isEmpty() {
+        return blocks[0][0] == null;
+    }
 }

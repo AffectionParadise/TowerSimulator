@@ -134,4 +134,9 @@ public enum IconKey {
     DB5_GIFT("db5Gift");
 
     private final String value;
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

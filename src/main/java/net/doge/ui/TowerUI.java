@@ -1,6 +1,9 @@
 package net.doge.ui;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONReader;
+import com.alibaba.fastjson2.JSONWriter;
 import net.doge.data.*;
 import net.doge.model.*;
 import net.doge.constant.*;
@@ -16,6 +19,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.regex.Matcher;
@@ -44,9 +48,6 @@ public class TowerUI extends JFrame {
     public void init() {
         loadData();
 
-        generateBlocks(TowerData.DELUXE_TOWER, true);
-        generateBlocks(TowerData.REGULAR_TOWER, true);
-        generateBlocks(TowerData.BASIC_TOWER, true);
         generateBlocks(TowerData.ADVANCED_TOWER, true);
 
         // 关闭时保存游戏数据
@@ -63,12 +64,7 @@ public class TowerUI extends JFrame {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() != KeyEvent.VK_ENTER) return;
-                CheatDialog cheatDialog = new CheatDialog(THIS);
-                String result = cheatDialog.getResult();
-                Pattern p = Pattern.compile("step \\d+");
-                Matcher m = p.matcher(result);
-                if (!m.matches()) return;
-                updateStepAmount(ItemData.ADVANCED_STEP, Integer.parseInt(result.split(" ")[1]));
+                new CheatDialog(THIS);
             }
         });
 
@@ -143,8 +139,8 @@ public class TowerUI extends JFrame {
             updateBonusStepLeft();
         } else bonusLabel.setText(tower.getTitle());
         mainPanel.removeAll();
-        // 新生成的地图
-        if (isNew) {
+        // 新生成地图
+        if (isNew || tower.isEmpty()) {
             currTower.x = currTower.y = 0;
             currTower.getBackpackStorage().clear();
             Sampler<Item> itemSampler = ItemData.getItemSampler(tower);
@@ -381,10 +377,18 @@ public class TowerUI extends JFrame {
     // 载入数据
     private void loadData() {
         JSONObject data = JsonUtil.read("data.json");
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            StorageKey k = StorageKey.find(entry.getKey());
-            int v = (int) entry.getValue();
-            DataStorage.add(k, v);
+        JSONObject dataStorageJson = data.getJSONObject("DataStorage");
+        if (JsonUtil.notEmpty(dataStorageJson)) {
+            for (Map.Entry<String, Object> entry : dataStorageJson.entrySet()) {
+                StorageKey k = StorageKey.find(entry.getKey());
+                int v = (int) entry.getValue();
+                DataStorage.add(k, v);
+            }
+        }
+        JSONArray giftRecordsJsonArray = data.getJSONArray("GiftRecords");
+        if (JsonUtil.notEmpty(giftRecordsJsonArray)) {
+            List<GiftRecord> records = giftRecordsJsonArray.toList(GiftRecord.class);
+            GiftRecordStorage.getStorage().addAll(records);
         }
 
         // 刷新数据显示
@@ -396,11 +400,10 @@ public class TowerUI extends JFrame {
     // 保存数据
     private void saveData() {
         JSONObject data = new JSONObject();
-        for (Map.Entry<StorageKey, Integer> entry : DataStorage.getStorage().entrySet()) {
-            StorageKey k = entry.getKey();
-            Integer v = entry.getValue();
-            data.put(k.getValue(), v);
-        }
+        JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
+        data.put("DataStorage", dataStorageJson);
+        JSONArray giftRecordsJsonArray = JSONArray.from(GiftRecordStorage.getStorage());
+        data.put("GiftRecords", giftRecordsJsonArray);
         JsonUtil.toFile(data, "data.json");
     }
 

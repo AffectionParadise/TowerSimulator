@@ -5,7 +5,6 @@ import net.doge.ui.TowerUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 public class GiftRecordDetailDialog extends GDialog<GiftResult> {
     private GiftRecord record;
@@ -30,7 +29,7 @@ public class GiftRecordDetailDialog extends GDialog<GiftResult> {
     }
 
     public void init() {
-        for (Map.Entry<Item, Integer> entry : record.getSubItems().entrySet()) listModel.addElement(new GiftResult(entry.getKey(), entry.getValue()));
+        for (GiftResult result : record.getResults()) listModel.addElement(result);
 
         setTitle("礼物记录");
 

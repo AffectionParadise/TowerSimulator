@@ -5,6 +5,7 @@ import net.doge.data.DataStorage;
 import net.doge.constant.Colors;
 import net.doge.constant.StorageKey;
 import net.doge.data.ItemData;
+import net.doge.model.GiftRecord;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
@@ -17,6 +18,8 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class CoinExchangeDialog extends GDialog<Item> {
@@ -26,7 +29,9 @@ public class CoinExchangeDialog extends GDialog<Item> {
     private GPanel totalCostPanel = new GPanel();
     private GLabel totalCostLabel = new GLabel("0");
     private GPanel controlPanel = new GPanel();
-    private NumTextField numTextField = new NumTextField();
+    private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
+    private NumTextField numTextField = new NumTextField("0");
+    private GButton plusBtn = new GButton("+", Colors.DEEP_GREEN);
     private GButton maxBtn = new GButton("最大", Colors.LIGHT_BLUE);
     private GButton exchangeBtn = new GButton("兑换", Colors.DEEP_GREEN);
 
@@ -55,6 +60,15 @@ public class CoinExchangeDialog extends GDialog<Item> {
             if (!item.isExchangeable()) continue;
             listModel.addElement(item);
         }
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Item item = list.getSelectedValue();
+                if (item == null) return;
+                numTextField.setText("0");
+            }
+        });
 
         numTextField.getDocument().addDocumentListener(new DocumentListener() {
             private void update() {
@@ -93,13 +107,30 @@ public class CoinExchangeDialog extends GDialog<Item> {
 
         totalCostLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
 
+        minusBtn.addActionListener(e -> {
+            Item item = list.getSelectedValue();
+            if (item == null) return;
+            String text = numTextField.getText();
+            if (text.isEmpty()) return;
+            int num = Integer.parseInt(text);
+            numTextField.setText(String.valueOf(num - 1));
+        });
+        plusBtn.addActionListener(e -> {
+            Item item = list.getSelectedValue();
+            if (item == null) return;
+            String text = numTextField.getText();
+            if (text.isEmpty()) return;
+            int num = Integer.parseInt(text);
+            int maxNum = DataStorage.get(currency.getStorageKey()) / item.getExchangeCost();
+            if (num >= maxNum) return;
+            numTextField.setText(String.valueOf(num + 1));
+        });
         maxBtn.addActionListener(e -> {
             Item item = list.getSelectedValue();
             if (item == null) return;
             int maxNum = DataStorage.get(currency.getStorageKey()) / item.getExchangeCost();
             numTextField.setText(String.valueOf(maxNum));
         });
-
         exchangeBtn.addActionListener(e -> {
             Item item = list.getSelectedValue();
             if (item == null) return;
@@ -116,12 +147,15 @@ public class CoinExchangeDialog extends GDialog<Item> {
             currencyLabel.setText(String.valueOf(nn));
             // 兑换物品增加
             DataStorage.add(item.getStorageKey(), num);
+            numTextField.setText("0");
         });
 
         totalCostPanel.add(totalCostLabel);
 
         controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        controlPanel.add(minusBtn);
         controlPanel.add(numTextField);
+        controlPanel.add(plusBtn);
         controlPanel.add(maxBtn);
         controlPanel.add(exchangeBtn);
 

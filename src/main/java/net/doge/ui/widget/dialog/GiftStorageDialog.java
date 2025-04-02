@@ -54,14 +54,12 @@ public class GiftStorageDialog extends GDialog<Item> {
             if (!text.isEmpty()) num = Integer.parseInt(text);
             numTextField.setText(String.valueOf(num - 1));
         });
-
         plusBtn.addActionListener(e -> {
             String text = numTextField.getText();
             int num = 0;
             if (!text.isEmpty()) num = Integer.parseInt(text);
             numTextField.setText(String.valueOf(num + 1));
         });
-
         presentBtn.addActionListener(e -> {
             Item selectedItem = list.getSelectedValue();
             if (selectedItem == null) return;

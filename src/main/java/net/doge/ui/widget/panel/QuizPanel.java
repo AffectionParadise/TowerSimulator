@@ -38,7 +38,7 @@ public class QuizPanel extends GPanel {
     private GButton oddBtn = new GButton("猜单数", Colors.DARK_RED);
     private GButton evenBtn = new GButton("猜双数", Colors.LIGHT_BLUE);
     private GButton raiseBtn = new GButton("加注", Colors.LIGHT_BLUE);
-    private GButton receiveBtn = new GButton("领取", Colors.ULTIMATE_QUALITY);
+    private GButton receiveBtn = new GButton("领取", Colors.DARK_ORANGE);
     private GButton nextTurnBtn = new GButton("下一轮", Colors.DARK_RED);
 
     public QuizPanel(TowerUI ui) {

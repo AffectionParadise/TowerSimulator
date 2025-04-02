@@ -18,8 +18,4 @@ public class GiftRecordStorage {
         storage.add(0, record);
         if (storage.size() > MAX_SIZE) storage.removeLast();
     }
-
-    public static void clear() {
-        storage.clear();
-    }
 }

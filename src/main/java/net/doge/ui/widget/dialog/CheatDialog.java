@@ -2,8 +2,12 @@ package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
 import net.doge.constant.Colors;
+import net.doge.constant.StorageKey;
+import net.doge.data.DataStorage;
+import net.doge.data.ItemData;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.panel.GPanel;
 import net.doge.ui.widget.textfield.GTextField;
 
 import javax.swing.*;
@@ -12,20 +16,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class CheatDialog extends GDialog {
-    private Box box = new Box(BoxLayout.X_AXIS);
+    private GPanel centerPanel = new GPanel();
+    private GPanel ctrlPanel = new GPanel();
     private GTextField tf = new GTextField();
     private GButton okBtn = new GButton("确定", Colors.DEEP_GREEN);
 
-    @Getter
-    private String result = "";
-
     public CheatDialog(TowerUI ui) {
         super(ui);
-        this.ui = ui;
         init();
     }
 
     public void init() {
+        tf.setPreferredSize(new Dimension(300, 30));
         tf.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -34,16 +36,35 @@ public class CheatDialog extends GDialog {
             }
         });
         okBtn.addActionListener(e -> {
-            result = tf.getText();
+            String text = tf.getText();
+            if (text.matches("bstep \\d+"))
+                ui.updateStepAmount(ItemData.BASIC_STEP, Integer.parseInt(text.split(" ")[1]));
+            else if (text.matches("rstep \\d+"))
+                ui.updateStepAmount(ItemData.REGULAR_STEP, Integer.parseInt(text.split(" ")[1]));
+            else if (text.matches("astep \\d+"))
+                ui.updateStepAmount(ItemData.ADVANCED_STEP, Integer.parseInt(text.split(" ")[1]));
+            else if (text.matches("dstep \\d+"))
+                ui.updateStepAmount(ItemData.DELUXE_STEP, Integer.parseInt(text.split(" ")[1]));
+            else if (text.matches("acoin \\d+"))
+                DataStorage.add(StorageKey.ADVANCED_COIN_NUM, Integer.parseInt(text.split(" ")[1]));
             dispose();
         });
 
-        box.add(tf);
-        box.add(okBtn);
+        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        ctrlPanel.add(tf);
+        ctrlPanel.add(okBtn);
+
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(ctrlPanel);
+        centerPanel.add(Box.createVerticalGlue());
 
         setTitle("神秘领域");
+        setSize(500, 200);
+        setLocationRelativeTo(null);
 
-        add(box, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
+        remove(scroller);
 
         setVisible(true);
     }

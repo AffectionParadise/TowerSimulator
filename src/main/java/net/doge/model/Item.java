@@ -1,5 +1,6 @@
 package net.doge.model;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import net.doge.constant.StorageKey;
@@ -24,6 +25,7 @@ public class Item {
     // 数据 key
     private StorageKey storageKey;
     // 高亮颜色
+    @JSONField(serialize = false)
     private Color highlightColor;
     // 礼物价值
     private int value;
@@ -35,6 +37,8 @@ public class Item {
     private int exchangeCost;
     // 是否可竞猜
     private boolean guessable;
+    // 是否属于盒子中的常见礼物
+    private boolean boxRegular;
 
     // 数量生成器
     private Sampler<Integer> numSampler;

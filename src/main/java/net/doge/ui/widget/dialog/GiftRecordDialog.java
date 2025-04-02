@@ -8,6 +8,7 @@ import net.doge.data.DataStorage;
 import net.doge.data.GiftRecordStorage;
 import net.doge.model.Account;
 import net.doge.model.GiftRecord;
+import net.doge.model.GiftResult;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
@@ -18,7 +19,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Map;
+import java.util.List;
 
 public class GiftRecordDialog extends GDialog<GiftRecord> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
@@ -53,12 +54,12 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         descLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         recordBox.add(descLabel);
         Item itemPresented = record.getItemPresented();
-        Map<Item, Integer> subItems = record.getSubItems();
-        if (subItems != null) {
-            if (subItems.size() == 1) {
-                subItems.entrySet().forEach(entry -> {
-                    descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), entry.getValue(), entry.getKey().getName()));
-                    descLabel.setIcon(IconUtil.getIcon(entry.getKey().getIconKey()));
+        List<GiftResult> results = record.getResults();
+        if (results != null) {
+            if (results.size() == 1) {
+                results.forEach(result -> {
+                    descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), result.getNum(), result.getItem().getName()));
+                    descLabel.setIcon(IconUtil.getIcon(result.getItem().getIconKey()));
                 });
             } else {
                 descLabel.setText(String.format("赠送了 %s 个%s", record.getNumPresented(), itemPresented.getName()));
@@ -115,8 +116,8 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
 
     private String formatValue(int value) {
         if (value < 10000) return String.valueOf(value);
-        else if (value < 1000000) return String.format("%.1fk", (double) value / 1000);
-        else if (value < 1000000000) return String.format("%.1fm", (double) value / 1000000);
-        return String.format("%.1fb", (double) value / 1000000000);
+        else if (value < 1000000) return String.format("%.1fK", (double) value / 1000);
+        else if (value < 1000000000) return String.format("%.1fM", (double) value / 1000000);
+        return String.format("%.1fB", (double) value / 1000000000);
     }
 }

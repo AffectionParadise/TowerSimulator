@@ -20,9 +20,9 @@ public class TransactionData {
 
     public static void initData() {
         // 一塔
-        transactions.add(new Transaction(IconKey.BASIC_STEP, ItemData.BASIC_STEP, 1, ItemData.ADVANCED_COIN, 128));
-        transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 100, ItemData.ADVANCED_COIN, 600));
-        transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 50, ItemData.ADVANCED_COIN, 348));
+        transactions.add(new Transaction(IconKey.BASIC_STEP, ItemData.BASIC_STEP, 1, ItemData.ADVANCED_COIN, 10));
+        transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 100, ItemData.ADVANCED_COIN, 698));
+        transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 50, ItemData.ADVANCED_COIN, 368));
         transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 20, ItemData.ADVANCED_COIN, 160));
         transactions.add(new Transaction(IconKey.BASIC_STEP_TRANSACTION, ItemData.BASIC_STEP, 10, ItemData.ADVANCED_COIN, 90));
 

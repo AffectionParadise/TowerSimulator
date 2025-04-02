@@ -24,6 +24,10 @@ public class GButton extends JButton implements MouseListener {
         this(text, Colors.LIGHT_BLUE);
     }
 
+    public GButton(Color color) {
+        this(null, color);
+    }
+
     public GButton(String text, Color color) {
         super(text);
         setOpaque(false);
