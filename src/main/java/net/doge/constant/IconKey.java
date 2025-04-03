@@ -99,6 +99,8 @@ public enum IconKey {
     DELUXE_GIFT_4("DeluxeGift4"),
     // 起源·应龙
     ULTIMATE_GIFT("UltimateGift"),
+    // 起源·黑洞
+    ULTIMATE_GIFT_2("UltimateGift2"),
     // 嘉年华孢子兑换券
     TICKET("Ticket"),
 

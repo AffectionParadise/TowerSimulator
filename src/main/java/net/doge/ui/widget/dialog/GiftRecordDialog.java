@@ -19,6 +19,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class GiftRecordDialog extends GDialog<GiftRecord> {
@@ -57,10 +59,9 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         List<GiftResult> results = record.getResults();
         if (results != null) {
             if (results.size() == 1) {
-                results.forEach(result -> {
-                    descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), result.getNum(), result.getItem().getName()));
-                    descLabel.setIcon(IconUtil.getIcon(result.getItem().getIconKey()));
-                });
+                GiftResult result = results.get(0);
+                descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), result.getNum(), result.getItem().getName()));
+                descLabel.setIcon(IconUtil.getIcon(result.getItem().getIconKey()));
             } else {
                 descLabel.setText(String.format("赠送了 %s 个%s", record.getNumPresented(), itemPresented.getName()));
                 descLabel.setIcon(IconUtil.getIcon(itemPresented.getIconKey()));

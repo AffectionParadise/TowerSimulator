@@ -104,6 +104,7 @@ public class CoinExchangeDialog extends GDialog<Item> {
         currencyLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
         topBox.add(Box.createHorizontalGlue());
         topBox.add(currencyLabel);
+        topBox.add(Box.createHorizontalStrut(20));
 
         totalCostLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
 
@@ -140,7 +141,10 @@ public class CoinExchangeDialog extends GDialog<Item> {
             int totalCost = num * item.getExchangeCost();
             StorageKey csk = currency.getStorageKey();
             // 货币不足
-            if (totalCost > DataStorage.get(csk)) return;
+            if (totalCost > DataStorage.get(csk)) {
+                new TipDialog(this, String.format("%s不足", currency.getName()));
+                return;
+            }
             // 扣除货币数量并回显
             DataStorage.add(csk, -totalCost);
             int nn = DataStorage.get(csk);

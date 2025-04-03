@@ -38,6 +38,7 @@ public class GDialog<E> extends JDialog {
         // 横向滚动时自适应高度
         list.setVisibleRowCount(0);
         list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        list.setEnabled(selectable);
         list.setCellRenderer(createCellRenderer());
         add(scroller, BorderLayout.CENTER);
 
@@ -74,7 +75,7 @@ public class GDialog<E> extends JDialog {
         bottomPanel.add(bottomLabel);
         cellPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        cellPanel.setBorder(selectable && isSelected ? BORDER_SELECTED : EMPTY_BORDER);
+        cellPanel.setBorder(isSelected ? BORDER_SELECTED : EMPTY_BORDER);
 
         return cellPanel;
     }

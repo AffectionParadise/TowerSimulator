@@ -11,6 +11,8 @@ import lombok.Getter;
 public enum TrickType {
     // 双胞胎
     SAME2("双胞胎"),
+    // 123
+    DISORDER_123(" 123 无序"),
     // 1234
     DISORDER_1234(" 1234 无序"),
     // 3 胞胎
@@ -25,8 +27,10 @@ public enum TrickType {
     OOE("全单或全双"),
     // 全十
     ALL10K("全十"),
+    // 爆 10K
+    EXTREME_10K("爆 10K"),
     // 爆大
-    EXTREME("爆大"),
+    EXTREME_100K("爆大"),
     // 3 不同
     DIFF3(" 3 不同"),
     // 3 不同 10K

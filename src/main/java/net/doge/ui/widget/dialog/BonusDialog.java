@@ -2,6 +2,7 @@ package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
 import net.doge.constant.Colors;
+import net.doge.constant.IconKey;
 import net.doge.data.BonusData;
 import net.doge.model.Bonus;
 import net.doge.ui.TowerUI;
@@ -30,13 +31,14 @@ public class BonusDialog extends GDialog<Bonus> {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 Bonus bonus = (Bonus) value;
-                return createCellPanel(String.format("%s~%s倍", bonus.getMinRate(), bonus.getMaxRate()), bonus.getIconKey(), String.format("每步消耗：%s", bonus.getStepCost()), isSelected);
+                return createCellPanel(String.format("%s~%s倍", bonus.getMinRate(), bonus.getMaxRate()), bonus.getIconKey(),
+                        String.format("每步消耗：%s", bonus.getStepCost()), bonus.getStepItem().getIconThumbKey(), isSelected);
             }
         };
     }
 
     public void init() {
-        for (Bonus bonus : BonusData.getBonuses()) listModel.addElement(bonus);
+        for (Bonus bonus : BonusData.bonuses) listModel.addElement(bonus);
 
         okBtn.addActionListener(e -> {
             Bonus bonus = list.getSelectedValue();

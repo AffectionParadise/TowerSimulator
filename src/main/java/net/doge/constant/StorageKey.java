@@ -56,8 +56,41 @@ public enum StorageKey {
     DELUXE_GIFT_4_NUM("DeluxeGift4Num"),
     // 起源·应龙数量
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
+    // 起源·黑洞数量
+    ULTIMATE_GIFT_2_NUM("UltimateGift2Num"),
     // 嘉年华孢子兑换券数量
-    TICKET("Ticket");
+    TICKET("Ticket"),
+
+    // 小盒子子物品数量
+    BB4_GIFT_NUM("BB4GiftNum"),
+    BB5_GIFT_NUM("BB5GiftNum"),
+    BB6_GIFT_NUM("BB6GiftNum"),
+    BB7_GIFT_NUM("BB7GiftNum"),
+    BB8_GIFT_NUM("BB8GiftNum"),
+    BB9_GIFT_NUM("BB9GiftNum"),
+
+    // 大盒子子物品数量
+    RB1_GIFT_NUM("RB1GiftNum"),
+    RB2_GIFT_NUM("RB2GiftNum"),
+    RB3_GIFT_NUM("RB3GiftNum"),
+    RB4_GIFT_NUM("RB4GiftNum"),
+    RB5_GIFT_NUM("RB5GiftNum"),
+    RB6_GIFT_NUM("RB6GiftNum"),
+    RB7_GIFT_NUM("RB7GiftNum"),
+    RB8_GIFT_NUM("RB8GiftNum"),
+
+    // 全屏子物品数量
+    AB1_GIFT_NUM("AB1GiftNum"),
+    AB2_GIFT_NUM("AB2GiftNum"),
+    AB3_GIFT_NUM("AB3GiftNum"),
+    AB5_GIFT_NUM("AB5GiftNum"),
+    AB6_GIFT_NUM("AB6GiftNum"),
+
+    // 辉煌子物品数量
+    DB1_GIFT_NUM("DB1GiftNum"),
+    DB2_GIFT_NUM("DB2GiftNum"),
+    DB4_GIFT_NUM("DB4GiftNum"),
+    DB5_GIFT_NUM("DB5GiftNum");
 
     private final String value;
 

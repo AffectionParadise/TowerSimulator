@@ -3,23 +3,25 @@ package net.doge.ui.widget.dialog;
 import net.doge.constant.StorageKey;
 import net.doge.data.DataStorage;
 import net.doge.data.GiftRecordStorage;
+import net.doge.data.GiftCensusStorage;
 import net.doge.data.TrickData;
 import net.doge.model.*;
 import net.doge.ui.TowerUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class GiftResultDialog extends GDialog<GiftResult> {
+    private GiftDialog d;
     private Item item;
     private int num;
 
-    public GiftResultDialog(TowerUI ui, Item item, int num) {
+    public GiftResultDialog(TowerUI ui, GiftDialog d, Item item, int num) {
         super(ui, false);
+        this.d = d;
         this.item = item;
         this.num = num;
         init();
@@ -49,20 +51,25 @@ public class GiftResultDialog extends GDialog<GiftResult> {
                 Item k = entry.getKey().getItem();
                 Integer v = entry.getValue();
 
-                results.add(new GiftResult(k, v));
+                GiftCensusStorage.add(k.getStorageKey(), v);
                 totalValue += v * k.getValue();
                 totalGiftPoints += v * k.getGiftPoints();
 
-                listModel.addElement(new GiftResult(k, v));
+                GiftResult result = new GiftResult(k, v);
+                results.add(result);
+                listModel.addElement(result);
+                d.addItemNonRepetitive(k);
             }
         } else {
+            GiftCensusStorage.add(item.getStorageKey(), num);
             totalValue += num * item.getValue();
             totalGiftPoints += num * item.getGiftPoints();
 
             listModel.addElement(new GiftResult(item, num));
+            d.addItemNonRepetitive(item);
         }
         // 增加礼物积分和总价值
-        ui.updateGiftPoints(totalGiftPoints);
+        d.updateGiftPoints(totalGiftPoints);
         DataStorage.add(StorageKey.TOTAL_VALUE, totalValue);
         // 礼物记录
         GiftRecord record = new GiftRecord(item, num, results, totalValue);

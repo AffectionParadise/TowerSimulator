@@ -9,7 +9,7 @@ import net.doge.model.Sampler;
  */
 public class EventData {
     // 事件生成器
-    private static Sampler<Event> eventSampler;
+    public static Sampler<Event> eventSampler = new Sampler<>();
 
     // 无
     public static final Event NOTHING = new Event();
@@ -26,15 +26,12 @@ public class EventData {
     // 蘑菇塔
     public static final Event MR_TREASURE = new Event(TowerData.MR_TREASURE);
 
-    public static Sampler<Event> getEventSampler() {
-        if (eventSampler == null) initData();
-        return eventSampler;
+    static {
+        initData();
     }
 
     private static void initData() {
-        eventSampler = new Sampler<>();
-
-        eventSampler.addModel(new SampleModel<>(NOTHING, 20000));
+        eventSampler.addModel(new SampleModel<>(NOTHING, 30000));
         eventSampler.addModel(new SampleModel<>(BONUS_TRIGGER, 60));
         eventSampler.addModel(new SampleModel<>(REGULAR_TREASURE, 30));
         eventSampler.addModel(new SampleModel<>(ADVANCED_TREASURE, 20));

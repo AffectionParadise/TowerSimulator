@@ -6,7 +6,7 @@ import net.doge.constant.StorageKey;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataStorage {
+public class GiftCensusStorage {
     @Getter
     private static Map<StorageKey, Integer> storage = new HashMap<>();
 

@@ -3,7 +3,6 @@ package net.doge.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import net.doge.constant.TrickType;
-import net.doge.data.TrickData;
 
 import java.util.*;
 
@@ -48,6 +47,9 @@ public class Trick {
             case SAME2:
                 accepted = isSameN(results, 2);
                 break;
+            case DISORDER_123:
+                accepted = isDisorder(results, Arrays.asList(1, 2, 3));
+                break;
             case DISORDER_1234:
                 accepted = isDisorder(results, Arrays.asList(1, 2, 3, 4));
                 break;
@@ -69,8 +71,11 @@ public class Trick {
             case ALL10K:
                 accepted = isAllValue(results, 10000);
                 break;
-            case EXTREME:
-                accepted = isExtreme(results);
+            case EXTREME_10K:
+                accepted = isExtreme(results, 10000);
+                break;
+            case EXTREME_100K:
+                accepted = isExtreme(results, 100000);
                 break;
             case DIFF3:
                 accepted = results.size() == 3;
@@ -149,10 +154,10 @@ public class Trick {
         return true;
     }
 
-    // 判断是否爆大
-    private boolean isExtreme(List<GiftResult> results) {
+    // 判断是否爆指定价值礼物
+    private boolean isExtreme(List<GiftResult> results, int value) {
         for (GiftResult result : results) {
-            if (result.getItem().getValue() == 100000) return true;
+            if (result.getItem().getValue() == value) return true;
         }
         return false;
     }

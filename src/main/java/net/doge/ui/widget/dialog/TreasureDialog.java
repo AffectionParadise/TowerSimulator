@@ -12,6 +12,7 @@ import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
+import net.doge.util.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +35,9 @@ public class TreasureDialog extends GDialog {
         tipLabel.setFont(FontData.TIP_FONT);
         tipLabel.setForeground(Colors.DARK_RED);
         tipLabel.setVerticalAlignment(SwingConstants.CENTER);
-        tipLabel.setText(ui.currEvent.getTower().getDesc());
+        Tower tower = ui.currEvent.getTower();
+        tipLabel.setText(tower.getDesc());
+        tipLabel.setIcon(IconUtil.getIcon(tower.getIconKey()));
         tipPanel.setLayout(new BorderLayout());
         tipPanel.add(tipLabel, BorderLayout.CENTER);
 

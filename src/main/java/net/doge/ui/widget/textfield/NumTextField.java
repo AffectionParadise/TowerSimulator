@@ -13,7 +13,6 @@ public class NumTextField extends GTextField {
     public NumTextField(String text) {
         super(text);
 
-        setFont(FontData.UI_FONT);
         ((AbstractDocument) getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
             public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {

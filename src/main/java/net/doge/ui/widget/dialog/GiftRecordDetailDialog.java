@@ -31,7 +31,7 @@ public class GiftRecordDetailDialog extends GDialog<GiftResult> {
     public void init() {
         for (GiftResult result : record.getResults()) listModel.addElement(result);
 
-        setTitle("礼物记录");
+        setTitle("礼物详情");
 
         setVisible(true);
     }

@@ -13,6 +13,8 @@ public class Bonus {
     private int maxRate;
     // 倍数生成器
     private Sampler<Integer> rateSampler;
+    // 步数物品
+    private Item stepItem;
     // 步数消耗
     private int stepCost;
     // 持续步数
@@ -20,11 +22,12 @@ public class Bonus {
     // 剩余步数
     private int stepLeft;
 
-    public Bonus(IconKey iconKey, int minRate, int maxRate, Sampler<Integer> rateSampler, int stepCost, int duration) {
+    public Bonus(IconKey iconKey, int minRate, int maxRate, Sampler<Integer> rateSampler, Item stepItem, int stepCost, int duration) {
         this.iconKey = iconKey;
         this.minRate = minRate;
         this.maxRate = maxRate;
         this.rateSampler = rateSampler;
+        this.stepItem = stepItem;
         this.stepCost = stepCost;
         this.duration = duration;
     }

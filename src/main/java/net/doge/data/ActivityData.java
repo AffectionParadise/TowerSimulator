@@ -28,5 +28,6 @@ public class ActivityData {
         rewards.add(new Reward(ItemData.ADVANCED_STEP, 168, gatheredItem, 3000));
         rewards.add(new Reward(ItemData.ADVANCED_STEP, 328, gatheredItem, 8000));
         rewards.add(new Reward(ItemData.ADVANCED_STEP, 648, gatheredItem, 20000));
+        rewards.add(new Reward(ItemData.ADVANCED_STEP, 1288, gatheredItem, 50000));
     }
 }

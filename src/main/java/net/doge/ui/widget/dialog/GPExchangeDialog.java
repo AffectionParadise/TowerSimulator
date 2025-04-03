@@ -17,8 +17,11 @@ import net.doge.util.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GPExchangeDialog extends GDialog<Transaction> {
+    private GiftDialog d;
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GLabel currencyLabel = new GLabel();
     private GPanel bottomPanel = new GPanel();
@@ -33,8 +36,9 @@ public class GPExchangeDialog extends GDialog<Transaction> {
 
     private Transaction transaction;
 
-    public GPExchangeDialog(TowerUI ui) {
+    public GPExchangeDialog(TowerUI ui, GiftDialog d) {
         super(ui, false);
+        this.d = d;
         this.ui = ui;
         init();
     }
@@ -64,6 +68,7 @@ public class GPExchangeDialog extends GDialog<Transaction> {
         currencyLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
         topBox.add(Box.createHorizontalGlue());
         topBox.add(currencyLabel);
+        topBox.add(Box.createHorizontalStrut(20));
 
         minusBtn.addActionListener(e -> numSlider.setValue(numSlider.getValue() - 1));
 
@@ -85,12 +90,15 @@ public class GPExchangeDialog extends GDialog<Transaction> {
             int totalCost = num * transaction.getCost();
             StorageKey csk = currency.getStorageKey();
             // 货币不足
-            if (totalCost > DataStorage.get(csk)) return;
+            if (totalCost > DataStorage.get(csk)) {
+                new TipDialog(this, String.format("%s不足", currency.getName()));
+                return;
+            }
             // 扣除货币数量并回显
             DataStorage.add(csk, -totalCost);
             int nt = DataStorage.get(csk);
             currencyLabel.setText(String.valueOf(nt));
-            ui.updateGiftPoints(0);
+            d.updateGiftPoints(0);
             numSlider.setMaximum(nt / transaction.getCost());
             // 兑换物品增加
             DataStorage.add(transaction.getItemReceived().getStorageKey(), num * transaction.getNumReceived());

@@ -12,7 +12,7 @@ public class Sampler<I> {
     @Getter
     private double weightSum;
 
-    private static final SecureRandom random = new SecureRandom();
+    private static final Random random = new Random();
 
     public void addModel(SampleModel<I> model) {
         models.add(model);

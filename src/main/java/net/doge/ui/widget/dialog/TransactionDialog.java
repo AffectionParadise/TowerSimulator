@@ -16,8 +16,6 @@ import net.doge.util.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
 
 public class TransactionDialog extends GDialog<Transaction> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
@@ -54,7 +52,10 @@ public class TransactionDialog extends GDialog<Transaction> {
             Item itemConsumed = transaction.getItemConsumed();
             StorageKey csk = itemConsumed.getStorageKey();
             // 货币不足
-            if (cost > DataStorage.get(csk)) return;
+            if (cost > DataStorage.get(csk)) {
+                new TipDialog(this, String.format("%s不足", transaction.getItemConsumed().getName()));
+                return;
+            }
             // 扣除货币数量并回显
             DataStorage.add(csk, -cost);
             int nn = DataStorage.get(csk);
@@ -68,6 +69,7 @@ public class TransactionDialog extends GDialog<Transaction> {
         currencyLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
         topBox.add(Box.createHorizontalGlue());
         topBox.add(currencyLabel);
+        topBox.add(Box.createHorizontalStrut(20));
 
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         bottomPanel.add(Box.createHorizontalGlue());

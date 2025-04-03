@@ -12,9 +12,12 @@ import net.doge.ui.widget.textfield.NumTextField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
-public class GiftStorageDialog extends GDialog<Item> {
+public class GiftPresentDialog extends GDialog<Item> {
+    private GiftDialog d;
     private GPanel bottomPanel = new GPanel();
     private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
     private NumTextField numTextField = new NumTextField("1");
@@ -23,8 +26,9 @@ public class GiftStorageDialog extends GDialog<Item> {
 
     private final int[] nums = {1314, 520, 99, 66, 33, 10, 1};
 
-    public GiftStorageDialog(TowerUI ui) {
+    public GiftPresentDialog(TowerUI ui, GiftDialog d) {
         super(ui);
+        this.d = d;
         init();
     }
 
@@ -75,7 +79,7 @@ public class GiftStorageDialog extends GDialog<Item> {
             int nn = DataStorage.get(sk);
             if (nn < 1) listModel.removeElement(selectedItem);
             else list.repaint();
-            new GiftResultDialog(ui, selectedItem, num);
+            new GiftResultDialog(ui, d,selectedItem, num);
         });
 
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -91,9 +95,10 @@ public class GiftStorageDialog extends GDialog<Item> {
         bottomPanel.add(plusBtn);
         bottomPanel.add(presentBtn);
 
-        setTitle("我的礼物");
+        setTitle("赠送礼物");
 
         add(bottomPanel, BorderLayout.SOUTH);
+
         setVisible(true);
     }
 }

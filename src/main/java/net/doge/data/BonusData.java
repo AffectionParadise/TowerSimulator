@@ -14,16 +14,13 @@ import java.util.List;
  */
 public class BonusData {
     // 翻倍生成器
-    private static List<Bonus> bonuses;
+    public static List<Bonus> bonuses= new LinkedList<>();
 
-    public static List<Bonus> getBonuses() {
-        if (bonuses == null) initData();
-        return bonuses;
+    static {
+        initData();
     }
 
     private static void initData() {
-        bonuses = new LinkedList<>();
-
         Sampler<Integer> sampler = new Sampler<>();
         sampler.addModel(new SampleModel<>(3, 2000));
         sampler.addModel(new SampleModel<>(4, 1800));
@@ -33,7 +30,7 @@ public class BonusData {
         sampler.addModel(new SampleModel<>(8, 150));
         sampler.addModel(new SampleModel<>(9, 75));
         sampler.addModel(new SampleModel<>(10, 10));
-        bonuses.add(new Bonus(IconKey.BONUS1, 3, 10, sampler, 5, 30));
+        bonuses.add(new Bonus(IconKey.BONUS1, 3, 10, sampler, ItemData.ADVANCED_STEP, 5, 30));
 
         sampler = new Sampler<>();
         sampler.addModel(new SampleModel<>(5, 2000));
@@ -48,7 +45,7 @@ public class BonusData {
         sampler.addModel(new SampleModel<>(14, 30));
         sampler.addModel(new SampleModel<>(15, 20));
         sampler.addModel(new SampleModel<>(100, 1));
-        bonuses.add(new Bonus(IconKey.BONUS2, 5, 100, sampler, 10, 30));
+        bonuses.add(new Bonus(IconKey.BONUS2, 5, 100, sampler, ItemData.ADVANCED_STEP, 10, 30));
 
         sampler = new Sampler<>();
         sampler.addModel(new SampleModel<>(1, 1000));
@@ -56,6 +53,6 @@ public class BonusData {
         sampler.addModel(new SampleModel<>(3, 400));
         sampler.addModel(new SampleModel<>(4, 80));
         sampler.addModel(new SampleModel<>(5, 20));
-        bonuses.add(new Bonus(IconKey.BONUS3, 1, 5, sampler, 2, 30));
+        bonuses.add(new Bonus(IconKey.BONUS3, 1, 5, sampler, ItemData.ADVANCED_STEP, 2, 30));
     }
 }

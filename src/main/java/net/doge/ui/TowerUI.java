@@ -40,10 +40,7 @@ public class TowerUI extends JFrame {
     private GLabel bonusLabel = new GLabel();
     private GButton activityBtn = new GButton("活动", Colors.DARK_RED);
     private GButton storeBtn = new GButton("宝藏商店", Colors.LIGHT_BLUE);
-    private GButton giftStorageBtn = new GButton("我的礼物", Colors.DEEP_GREEN);
-    private GLabel giftPointsLabel = new GLabel();
-    private GButton gpExchangeBtn = new GButton("积分兑换", Colors.DARK_RED);
-    private GButton giftRecordBtn = new GButton("礼物记录", Colors.DEEP_GREEN);
+    private GButton giftBtn = new GButton("礼物", Colors.DEEP_GREEN);
 
     public void init() {
         loadData();
@@ -86,10 +83,7 @@ public class TowerUI extends JFrame {
         bonusLabel.setForeground(Colors.DARK_RED);
         activityBtn.addActionListener(e -> new ActivityDialog(this));
         storeBtn.addActionListener(e -> new CoinExchangeDialog(this, ItemData.COIN));
-        giftStorageBtn.addActionListener(e -> new GiftStorageDialog(this));
-        giftPointsLabel.setIcon(IconUtil.getIcon(IconKey.GIFT_POINTS));
-        gpExchangeBtn.addActionListener(e -> new GPExchangeDialog(this));
-        giftRecordBtn.addActionListener(e -> new GiftRecordDialog(this));
+        giftBtn.addActionListener(e -> new GiftDialog(this));
 
         setTitle("走塔模拟器");
         setSize(800, 800);
@@ -114,13 +108,7 @@ public class TowerUI extends JFrame {
         topBox.add(Box.createHorizontalStrut(sw));
         topBox.add(storeBtn);
         topBox.add(Box.createHorizontalStrut(sw));
-        topBox.add(giftStorageBtn);
-        topBox.add(Box.createHorizontalStrut(sw));
-        topBox.add(giftPointsLabel);
-        topBox.add(Box.createHorizontalStrut(sw));
-        topBox.add(gpExchangeBtn);
-        topBox.add(Box.createHorizontalStrut(sw));
-        topBox.add(giftRecordBtn);
+        topBox.add(giftBtn);
         topBox.add(Box.createHorizontalStrut(sw));
         add(topBox, BorderLayout.NORTH);
 
@@ -194,19 +182,13 @@ public class TowerUI extends JFrame {
     public void updateStepAmount(Item stepItem, int amount) {
         StorageKey sk = stepItem.getStorageKey();
         DataStorage.add(sk, amount);
-        if (currTower.getStepItem() == stepItem) stepLabel.setText(String.valueOf(DataStorage.get(sk)));
+        if (currTower.getStepItem().equals(stepItem)) stepLabel.setText(String.valueOf(DataStorage.get(sk)));
     }
 
     // 更新积累步数
     private void updateGatheredStepAmount(int amount) {
         DataStorage.add(StorageKey.GATHERED_STEP_NUM, amount);
         gatheredLabel.setText(String.valueOf(DataStorage.get(StorageKey.GATHERED_STEP_NUM)));
-    }
-
-    // 更新礼物积分
-    public void updateGiftPoints(int amount) {
-        DataStorage.add(StorageKey.GIFT_POINTS, amount);
-        giftPointsLabel.setText(String.valueOf(DataStorage.get(StorageKey.GIFT_POINTS)));
     }
 
     // 更新礼物翻倍剩余步数
@@ -234,8 +216,10 @@ public class TowerUI extends JFrame {
         // 是否无效移动
         boolean invalidMovement = currTower.blocks[x2][y2].isEmpty();
         // 检查牌子数量是否充足
-        if (!invalidMovement && currTower.getStepCost() > DataStorage.get(currTower.getStepItem().getStorageKey()))
+        if (!invalidMovement && currTower.getStepCost() > DataStorage.get(currTower.getStepItem().getStorageKey())) {
+            new TipDialog(this, String.format("%s不足", currTower.getStepItem().getName()));
             return;
+        }
         // 还原起点
         activateBlock(x1, y1);
         // 占据目标点
@@ -244,6 +228,8 @@ public class TowerUI extends JFrame {
         updateVision(x2, y2);
         if (invalidMovement) return;
         if (currTower.blocks[x2][y2].isEnd()) {
+            // 显示本关获得物品
+            backpackBtn.doClick();
             // 判断竞猜
             if (TowerData.isAdvancedTower(currTower)) {
                 if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
@@ -255,7 +241,7 @@ public class TowerUI extends JFrame {
         }
         // 判断事件
         else if (TowerData.isAdvancedTower(currTower) && EventData.isNothing(currEvent)) {
-            Sampler<Event> eventSampler = EventData.getEventSampler();
+            Sampler<Event> eventSampler = EventData.eventSampler;
             Event event = eventSampler.lottery().getItem();
             // 无
             if (EventData.isNothing(event)) return;
@@ -297,7 +283,7 @@ public class TowerUI extends JFrame {
             int stepCost = currTower.getStepCost();
             updateStepAmount(stepItem, -stepCost);
             // 积累步数
-            if (stepItem == ItemData.ADVANCED_STEP) updateGatheredStepAmount(stepCost);
+            if (stepItem.equals(ItemData.ADVANCED_STEP)) updateGatheredStepAmount(stepCost);
             // 计算倍率
             int rate = 1;
             if (TowerData.isAdvancedTower(currTower) && EventData.isBonusTrigger(currEvent)) {
@@ -317,7 +303,7 @@ public class TowerUI extends JFrame {
             StorageKey key = blockItem.getStorageKey();
             DataStorage.add(key, num);
             currTower.getBackpackStorage().add(key, num);
-            if (blockItem == stepItem) updateStepAmount(stepItem, 0);
+            if (blockItem.equals(stepItem)) updateStepAmount(stepItem, 0);
         }
         block.setStatus(TowerBlockStatus.ME);
     }
@@ -385,6 +371,14 @@ public class TowerUI extends JFrame {
                 DataStorage.add(k, v);
             }
         }
+        JSONObject giftCensusJson = data.getJSONObject("GiftCensus");
+        if (JsonUtil.notEmpty(giftCensusJson)) {
+            for (Map.Entry<String, Object> entry : giftCensusJson.entrySet()) {
+                StorageKey k = StorageKey.find(entry.getKey());
+                int v = (int) entry.getValue();
+                GiftCensusStorage.add(k, v);
+            }
+        }
         JSONArray giftRecordsJsonArray = data.getJSONArray("GiftRecords");
         if (JsonUtil.notEmpty(giftRecordsJsonArray)) {
             List<GiftRecord> records = giftRecordsJsonArray.toList(GiftRecord.class);
@@ -394,7 +388,6 @@ public class TowerUI extends JFrame {
         // 刷新数据显示
         updateGatheredStepAmount(0);
         updateStepAmount(ItemData.ADVANCED_STEP, JsonUtil.isEmpty(data) ? 10000 : 0);
-        updateGiftPoints(0);
     }
 
     // 保存数据
@@ -402,6 +395,8 @@ public class TowerUI extends JFrame {
         JSONObject data = new JSONObject();
         JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
         data.put("DataStorage", dataStorageJson);
+        JSONObject giftCensusJson = JSONObject.from(GiftCensusStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
+        data.put("GiftCensus", giftCensusJson);
         JSONArray giftRecordsJsonArray = JSONArray.from(GiftRecordStorage.getStorage());
         data.put("GiftRecords", giftRecordsJsonArray);
         JsonUtil.toFile(data, "data.json");

@@ -14,5 +14,6 @@ public class GLabel extends JLabel {
         super(text);
         setFont(FontData.UI_FONT);
         setHorizontalAlignment(CENTER);
+        setIconTextGap(10);
     }
 }
