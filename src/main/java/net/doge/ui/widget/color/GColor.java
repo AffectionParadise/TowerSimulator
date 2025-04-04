@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class GColor {
     public static final GColor TRANSPARENT = new GColor(0, 0, 0, 0);
+    public static final GColor DEFAULT = new GColor(51, 51, 51);
 
     public static final GColor BLACK = new GColor(0, 0, 0);
     public static final GColor WHITE = new GColor(255, 255, 255);

@@ -21,7 +21,7 @@ public class Sampler<I> {
 
     public void addModelsLinearWeights(List<I> items, double maxWeight, double minWeight) {
         int n = items.size();
-        double step = (maxWeight - minWeight) / n, weight = maxWeight;
+        double step = (maxWeight - minWeight) / (n - 1), weight = maxWeight;
         // 计算权重(线性函数)
         for (int i = 0; i < n; i++) {
             addModel(new SampleModel<>(items.get(i), weight));

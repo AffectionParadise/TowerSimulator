@@ -39,9 +39,9 @@ public class TowerData {
     private static void initData() {
         towers = new LinkedList<>();
 
-        REGULAR_TREASURE.setDesc("2000% 超高倍率关卡开启！");
-        ADVANCED_TREASURE.setDesc("5000% 超高倍率关卡开启！");
-        DELUXE_TREASURE.setDesc("10000% 超高倍率关卡开启！");
+        REGULAR_TREASURE.setDesc("1000% 超高倍率关卡开启！");
+        ADVANCED_TREASURE.setDesc("2000% 超高倍率关卡开启！");
+        DELUXE_TREASURE.setDesc("5000% 超高倍率关卡开启！");
         ULTIMATE_TREASURE.setDesc("25000% 超高倍率关卡开启！");
         MR_TREASURE.setDesc("超多蘑菇的金库开启！");
 

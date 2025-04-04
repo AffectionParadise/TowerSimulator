@@ -2,10 +2,14 @@ package net.doge.model;
 
 import lombok.Data;
 import net.doge.constant.QuizStatus;
+import net.doge.data.ActivityData;
 import net.doge.data.ItemData;
 
 @Data
 public class Quiz {
+    // 竞猜物品生成器
+    private Sampler<Item> quizItemSampler = new Sampler<>();
+
     // 标题
     private String title;
     // 标题物品
@@ -24,12 +28,16 @@ public class Quiz {
     public Quiz(String title, Item chipItem) {
         this.title = title;
         this.chipItem = chipItem;
+        // 竞猜物品
+        for (Item item : ItemData.items) {
+            if (item.isGuessable()) quizItemSampler.addModel(new SampleModel<>(item, 200));
+        }
         setStatus(QuizStatus.SPARE);
     }
 
     public void setStatus(QuizStatus status) {
         this.status = status;
-        if (status == QuizStatus.SPARE) titleItem = ItemData.quizItemSampler.lottery().getItem();
+        if (status == QuizStatus.SPARE) titleItem = quizItemSampler.lottery().getItem();
     }
 
     public boolean isStatus(QuizStatus status) {

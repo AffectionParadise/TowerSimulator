@@ -50,7 +50,7 @@ public class CheatDialog extends GDialog {
             dispose();
         });
 
-        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         ctrlPanel.add(tf);
         ctrlPanel.add(okBtn);
 

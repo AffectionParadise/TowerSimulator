@@ -73,7 +73,7 @@ public class TowerDialog extends GDialog<Tower> {
             }
         });
 
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         bottomPanel.add(enterBtn);
         bottomPanel.add(quitBtn);
 

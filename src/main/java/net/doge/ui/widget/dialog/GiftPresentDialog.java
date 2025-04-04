@@ -47,8 +47,7 @@ public class GiftPresentDialog extends GDialog<Item> {
     }
 
     private void init() {
-        List<Item> items = ItemData.getItems();
-        for (Item item : items) {
+        for (Item item : ItemData.items) {
             if (!item.isPresent()) continue;
             int num = DataStorage.get(item.getStorageKey());
             if (num < 1) continue;
@@ -88,7 +87,7 @@ public class GiftPresentDialog extends GDialog<Item> {
             new GiftResultDialog(ui, d, selectedItem, num);
         });
 
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         for (int num : nums) {
             String nt = String.valueOf(num);
             GButton numBtn = new GButton(nt, GColor.LIGHT_BLUE);

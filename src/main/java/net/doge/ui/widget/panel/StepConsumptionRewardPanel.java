@@ -39,7 +39,7 @@ public class StepConsumptionRewardPanel extends GPanel {
         for (Reward reward : ActivityData.stepConsumptionRewards) {
             listModel.addElement(reward);
         }
-        titleLabel.setText(String.format("消耗%s，获得丰厚奖励！", ActivityData.stepConsumptionRewards.get(0).getItemReceived().getName()));
+        titleLabel.setText(String.format("消耗%s爬塔，获得丰厚奖励！", ActivityData.stepConsumptionRewards.get(0).getItemReceived().getName()));
         titlePanel.add(titleLabel);
 
         // 横向滚动时自适应高度

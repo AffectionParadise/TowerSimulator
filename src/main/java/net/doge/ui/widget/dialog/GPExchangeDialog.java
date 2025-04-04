@@ -107,7 +107,7 @@ public class GPExchangeDialog extends GDialog<Transaction> {
 
         totalReceivedPanel.add(totalReceivedLabel);
 
-        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         controlPanel.add(minusBtn);
         controlPanel.add(numSlider);
         controlPanel.add(plusBtn);

@@ -56,8 +56,7 @@ public class CoinExchangeDialog extends GDialog<Item> {
     }
 
     public void init() {
-        List<Item> items = ItemData.getItems();
-        for (Item item : items) {
+        for (Item item : ItemData.items) {
             if (!item.isExchangeable()) continue;
             listModel.addElement(item);
         }
@@ -157,7 +156,7 @@ public class CoinExchangeDialog extends GDialog<Item> {
 
         totalCostPanel.add(totalCostLabel);
 
-        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         controlPanel.add(minusBtn);
         controlPanel.add(numTextField);
         controlPanel.add(plusBtn);

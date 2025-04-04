@@ -83,7 +83,7 @@ public class TrickPanel extends GPanel {
         titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
         titlePanel.add(titleLabel);
 
-        choicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        choicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         tipLabel.setFont(FontData.TIP_FONT);
         tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
@@ -107,7 +107,7 @@ public class TrickPanel extends GPanel {
         costLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
         costLabel.setHorizontalTextPosition(SwingConstants.LEFT);
 
-        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         ctrlPanel.add(receiveBtn);
         ctrlPanel.add(refreshBtn);
         ctrlPanel.add(costLabel);

@@ -21,7 +21,7 @@ public class GiftDetailDialog extends GDialog<Item> {
     private GLabel itemLabel = new GLabel();
     private GPanel detailPanel = new GPanel();
     private GPanel tipPanel = new GPanel();
-    private GLabel tipLabel = new GLabel("开启该盲盒有机会送出以下礼物：");
+    private GLabel tipLabel = new GLabel();
     private GLabel valueLabel = new GLabel();
     private GLabel giftPointsLabel = new GLabel();
     private GLabel exchangeNumLabel = new GLabel();
@@ -58,6 +58,8 @@ public class GiftDetailDialog extends GDialog<Item> {
         if (item.isBox()) {
             item.getSubItemSampler().getModels().forEach(model -> listModel.addElement(model.getItem()));
 
+            tipLabel.setText("开启该盲盒有机会送出以下礼物：");
+
             tipPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             tipPanel.add(tipLabel);
 
@@ -66,14 +68,14 @@ public class GiftDetailDialog extends GDialog<Item> {
             detailPanel.add(Box.createVerticalStrut(sh));
             detailPanel.add(scroller);
             detailPanel.add(Box.createVerticalGlue());
-        } else {
+        } else if (item.isPresent()) {
             valueLabel.setText(String.valueOf(item.getValue()));
             valueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
 
             giftPointsLabel.setText(String.valueOf(item.getGiftPoints()));
             giftPointsLabel.setIcon(IconUtil.getIcon(IconKey.GIFT_POINTS));
 
-            exchangeNumLabel.setText(String.format("收到可兑换：%d", (int) (item.getGiftPoints() / 7.5)));
+            exchangeNumLabel.setText(String.format("送出可兑换：%d", (int) (item.getGiftPoints() / 7.5)));
             exchangeNumLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
             exchangeNumLabel.setHorizontalTextPosition(SwingConstants.LEFT);
 
@@ -83,6 +85,12 @@ public class GiftDetailDialog extends GDialog<Item> {
             detailPanel.add(giftPointsLabel);
             detailPanel.add(Box.createVerticalStrut(sh));
             detailPanel.add(exchangeNumLabel);
+            detailPanel.add(Box.createVerticalGlue());
+        } else {
+            tipLabel.setText("游戏内的一种货币");
+
+            detailPanel.add(Box.createVerticalGlue());
+            detailPanel.add(tipLabel);
             detailPanel.add(Box.createVerticalGlue());
         }
 

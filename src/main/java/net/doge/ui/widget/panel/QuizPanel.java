@@ -126,7 +126,7 @@ public class QuizPanel extends GPanel {
             updateQuizView();
         });
 
-        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        ctrlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         ctrlPanel.add(minus100Btn);
         ctrlPanel.add(minus10Btn);
         ctrlPanel.add(minusBtn);

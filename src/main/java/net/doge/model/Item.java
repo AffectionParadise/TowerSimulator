@@ -44,8 +44,6 @@ public class Item {
 
     // 数量生成器
     private Sampler<Integer> numSampler;
-    // 保底的子物品
-    private List<Item> fixedSubItems;
     // 子物品生成器
     private Sampler<Item> subItemSampler;
 
@@ -69,11 +67,6 @@ public class Item {
     // 是否有数量生成器，若无则默认数量为 1
     public boolean hasNumSampler() {
         return numSampler != null;
-    }
-
-    // 是否有子物品生成器
-    public boolean hasSubItemSampler() {
-        return subItemSampler != null;
     }
 
     @Override

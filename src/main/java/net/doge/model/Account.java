@@ -5,6 +5,8 @@ import lombok.Data;
 import net.doge.constant.IconKey;
 import net.doge.ui.widget.color.GColor;
 
+import javax.swing.*;
+
 @Data
 @AllArgsConstructor
 public class Account {
@@ -29,7 +31,7 @@ public class Account {
     }
 
     public GColor getHighlightColor() {
-        return vip == null ? GColor.BLACK : vip.getHighlightColor();
+        return vip == null ? GColor.DEFAULT : vip.getHighlightColor();
     }
 
     public void consumeVip() {

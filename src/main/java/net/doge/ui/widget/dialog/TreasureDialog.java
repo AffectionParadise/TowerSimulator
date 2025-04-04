@@ -47,7 +47,7 @@ public class TreasureDialog extends GDialog {
             dispose();
         });
 
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         bottomPanel.add(enterBtn);
 
         setTitle("特殊关卡开启");

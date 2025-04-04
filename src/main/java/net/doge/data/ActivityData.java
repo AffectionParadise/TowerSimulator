@@ -2,9 +2,7 @@ package net.doge.data;
 
 import net.doge.constant.ItemType;
 import net.doge.constant.StorageKey;
-import net.doge.model.Item;
-import net.doge.model.Quiz;
-import net.doge.model.Reward;
+import net.doge.model.*;
 
 import java.util.LinkedList;
 import java.util.List;

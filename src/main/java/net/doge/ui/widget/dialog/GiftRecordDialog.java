@@ -46,7 +46,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         Box recordBox = new Box(BoxLayout.X_AXIS);
         Account account = AccountData.account;
         GLabel accountLabel = new GLabel();
-        accountLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        accountLabel.setForeground(account.getHighlightColor().getAWTColor());
         accountLabel.setText(account.getName());
         accountLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
         recordBox.add(accountLabel);

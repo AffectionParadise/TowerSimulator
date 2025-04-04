@@ -70,7 +70,7 @@ public class TransactionDialog extends GDialog<Transaction> {
         topBox.add(currencyLabel);
         topBox.add(Box.createHorizontalStrut(20));
 
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         bottomPanel.add(Box.createHorizontalGlue());
         bottomPanel.add(buyBtn);
         bottomPanel.add(Box.createHorizontalGlue());

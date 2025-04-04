@@ -35,7 +35,7 @@ public class EventData {
         eventSampler.addModel(new SampleModel<>(BONUS_TRIGGER, 60));
         eventSampler.addModel(new SampleModel<>(REGULAR_TREASURE, 30));
         eventSampler.addModel(new SampleModel<>(ADVANCED_TREASURE, 20));
-        eventSampler.addModel(new SampleModel<>(DELUXE_TREASURE, 10));
+        eventSampler.addModel(new SampleModel<>(DELUXE_TREASURE, 10000));
         eventSampler.addModel(new SampleModel<>(ULTIMATE_TREASURE, 1));
         eventSampler.addModel(new SampleModel<>(MR_TREASURE, 80));
     }

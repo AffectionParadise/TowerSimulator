@@ -1,11 +1,8 @@
 package net.doge.model;
 
 import lombok.Data;
-import net.doge.constant.Colors;
 import net.doge.data.DataStorage;
 import net.doge.ui.widget.color.GColor;
-
-import java.awt.*;
 
 @Data
 public class Reward {

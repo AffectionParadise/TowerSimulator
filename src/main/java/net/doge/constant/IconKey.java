@@ -82,6 +82,14 @@ public enum IconKey {
     ADVANCED_COIN_THUMB("AdvancedCoinThumb"),
     // 雕像
     STATUE("Statue"),
+    // 小碎片
+    BASIC_SHARD("BasicShard"),
+    // 中碎片
+    REGULAR_SHARD("RegularShard"),
+    // 大碎片
+    ADVANCED_SHARD("AdvancedShard"),
+    // 通用碎片
+    COMMON_SHARD("CommonShard"),
     // 小盒子
     BASIC_BOX("BasicBox"),
     // 大盒子

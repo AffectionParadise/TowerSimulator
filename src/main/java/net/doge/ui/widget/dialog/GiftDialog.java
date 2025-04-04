@@ -57,8 +57,7 @@ public class GiftDialog extends GDialog<Item> {
     }
 
     private void init() {
-        List<Item> items = ItemData.getItems();
-        for (Item item : items) {
+        for (Item item : ItemData.items) {
             if (!item.isPresent()) continue;
             int num = GiftCensusStorage.get(item.getStorageKey());
             if (num < 1) continue;
@@ -70,7 +69,7 @@ public class GiftDialog extends GDialog<Item> {
         gpExchangeBtn.addActionListener(e -> new GPExchangeDialog(ui, this));
         giftRecordBtn.addActionListener(e -> new GiftRecordDialog(ui));
 
-        topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+        topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 10));
         topPanel.add(giftStorageBtn);
         topPanel.add(giftPointsLabel);
         topPanel.add(gpExchangeBtn);

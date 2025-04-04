@@ -32,8 +32,7 @@ public class BackpackDialog extends GDialog<Item> {
     }
 
     public void init() {
-        List<Item> items = ItemData.getItems();
-        for (Item item : items) {
+        for (Item item : ItemData.items) {
             int num = backpackStorage.get(item.getStorageKey());
             if (num < 1) continue;
             listModel.addElement(item);

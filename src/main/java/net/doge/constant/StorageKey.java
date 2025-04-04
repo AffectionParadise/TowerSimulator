@@ -36,6 +36,14 @@ public enum StorageKey {
     ADVANCED_COIN_NUM("AdvancedCoinNum"),
     // 雕像数量
     STATUE_NUM("StatueNum"),
+    // 小碎片数量
+    BASIC_SHARD_NUM("BasicShardNum"),
+    // 中碎片数量
+    REGULAR_SHARD_NUM("RegularShardNum"),
+    // 大碎片数量
+    ADVANCED_SHARD_NUM("AdvancedShardNum"),
+    // 通用碎片数量
+    COMMON_SHARD_NUM("CommonShardNum"),
     // 小盒子数量
     BASIC_BOX_NUM("basicBoxNum"),
     // 大盒子数量
