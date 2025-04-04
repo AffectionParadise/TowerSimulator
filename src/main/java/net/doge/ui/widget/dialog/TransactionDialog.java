@@ -3,13 +3,12 @@ package net.doge.ui.widget.dialog;
 import net.doge.data.DataStorage;
 import net.doge.constant.Colors;
 import net.doge.constant.StorageKey;
-import net.doge.constant.IconKey;
-import net.doge.data.ItemData;
 import net.doge.data.TransactionData;
 import net.doge.model.Item;
 import net.doge.model.Transaction;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
@@ -21,7 +20,7 @@ public class TransactionDialog extends GDialog<Transaction> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GLabel currencyLabel = new GLabel();
     private GPanel bottomPanel = new GPanel();
-    private GButton buyBtn = new GButton("购买", Colors.DEEP_GREEN);
+    private GButton buyBtn = new GButton("购买", GColor.DEEP_GREEN);
 
     public TransactionDialog(TowerUI ui) {
         super(ui);
@@ -61,7 +60,7 @@ public class TransactionDialog extends GDialog<Transaction> {
             int nn = DataStorage.get(csk);
             currencyLabel.setText(String.valueOf(nn));
             // 获得物品
-            ui.updateStepAmount(transaction.getItemReceived(), transaction.getNumReceived());
+            ui.updateItemAmountAndView(transaction.getItemReceived(), transaction.getNumReceived());
         });
 
         Item currency = TransactionData.transactions.get(0).getItemConsumed();

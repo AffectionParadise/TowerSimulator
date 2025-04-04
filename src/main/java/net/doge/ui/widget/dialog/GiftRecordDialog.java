@@ -12,6 +12,7 @@ import net.doge.model.GiftResult;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.util.IconUtil;
 
@@ -19,8 +20,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class GiftRecordDialog extends GDialog<GiftRecord> {
@@ -45,9 +44,9 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
 
     private Box createGiftRecordBox(GiftRecord record) {
         Box recordBox = new Box(BoxLayout.X_AXIS);
-        Account account = AccountData.ACCOUNT;
+        Account account = AccountData.account;
         GLabel accountLabel = new GLabel();
-        accountLabel.setForeground(Colors.DARK_RED);
+        accountLabel.setForeground(GColor.DARK_RED.getAWTColor());
         accountLabel.setText(account.getName());
         accountLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
         recordBox.add(accountLabel);
@@ -66,7 +65,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
                 descLabel.setText(String.format("赠送了 %s 个%s", record.getNumPresented(), itemPresented.getName()));
                 descLabel.setIcon(IconUtil.getIcon(itemPresented.getIconKey()));
                 recordBox.add(Box.createHorizontalStrut(20));
-                GButton detailBtn = new GButton("详情", Colors.DEEP_GREEN);
+                GButton detailBtn = new GButton("详情", GColor.DEEP_GREEN);
                 detailBtn.addActionListener(e -> new GiftRecordDetailDialog(ui, record));
                 recordBox.add(detailBtn);
             }

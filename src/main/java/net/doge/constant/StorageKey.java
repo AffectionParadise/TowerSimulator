@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum StorageKey {
+    // 礼物经验
+    GIFT_EXP("GiftExp"),
     // 总价值
     TOTAL_VALUE("TotalValue"),
     // 礼物积分
@@ -54,6 +56,10 @@ public enum StorageKey {
     DELUXE_GIFT_3_NUM("DeluxeGift3Num"),
     // 玫瑰跑车数量
     DELUXE_GIFT_4_NUM("DeluxeGift4Num"),
+    // 玫瑰跑车-神龙数量
+    DELUXE_GIFT_5_NUM("DeluxeGift5Num"),
+    // 玫瑰跑车-银河数量
+    DELUXE_GIFT_6_NUM("DeluxeGift6Num"),
     // 起源·应龙数量
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
     // 起源·黑洞数量

@@ -7,11 +7,14 @@ import net.doge.data.ItemData;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.ui.widget.textfield.NumTextField;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -19,10 +22,10 @@ import java.util.List;
 public class GiftPresentDialog extends GDialog<Item> {
     private GiftDialog d;
     private GPanel bottomPanel = new GPanel();
-    private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
+    private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private NumTextField numTextField = new NumTextField("1");
-    private GButton plusBtn = new GButton("+", Colors.DEEP_GREEN);
-    private GButton presentBtn = new GButton("赠送", Colors.DEEP_GREEN);
+    private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
+    private GButton presentBtn = new GButton("赠送", GColor.DEEP_GREEN);
 
     private final int[] nums = {1314, 520, 99, 66, 33, 10, 1};
 
@@ -73,19 +76,22 @@ public class GiftPresentDialog extends GDialog<Item> {
             if (num < 1) return;
             StorageKey sk = selectedItem.getStorageKey();
             // 礼物库存不足
-            if (num > DataStorage.get(sk)) return;
+            if (num > DataStorage.get(sk)) {
+                new TipDialog(this, String.format("%s不足", selectedItem.getName()));
+                return;
+            }
             // 扣除礼物数量并回显
             DataStorage.add(sk, -num);
             int nn = DataStorage.get(sk);
             if (nn < 1) listModel.removeElement(selectedItem);
             else list.repaint();
-            new GiftResultDialog(ui, d,selectedItem, num);
+            new GiftResultDialog(ui, d, selectedItem, num);
         });
 
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         for (int num : nums) {
             String nt = String.valueOf(num);
-            GButton numBtn = new GButton(nt, Colors.LIGHT_BLUE);
+            GButton numBtn = new GButton(nt, GColor.LIGHT_BLUE);
             numBtn.addActionListener(e -> numTextField.setText(nt));
             numBtn.setHorizontalAlignment(SwingConstants.CENTER);
             bottomPanel.add(numBtn);
@@ -98,6 +104,15 @@ public class GiftPresentDialog extends GDialog<Item> {
         setTitle("赠送礼物");
 
         add(bottomPanel, BorderLayout.SOUTH);
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Item item = list.getSelectedValue();
+                if (item == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, item);
+            }
+        });
 
         setVisible(true);
     }

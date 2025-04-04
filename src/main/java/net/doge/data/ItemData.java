@@ -3,6 +3,7 @@ package net.doge.data;
 import lombok.Getter;
 import net.doge.constant.*;
 import net.doge.model.*;
+import net.doge.ui.widget.color.GColor;
 import net.doge.util.ListUtil;
 
 import java.util.LinkedList;
@@ -13,40 +14,56 @@ import java.util.List;
  */
 public class ItemData {
     // 一塔物品生成器
-    public static Sampler<Item> basicTowerItemSampler= new Sampler<>();;
+    public static Sampler<Item> basicTowerItemSampler = new Sampler<>();
+    ;
     // 二塔物品生成器
-    public static Sampler<Item> regularTowerItemSampler= new Sampler<>();;
+    public static Sampler<Item> regularTowerItemSampler = new Sampler<>();
+    ;
     // 三塔物品生成器
-    public static Sampler<Item> advancedTowerItemSampler= new Sampler<>();;
+    public static Sampler<Item> advancedTowerItemSampler = new Sampler<>();
+    ;
     // 金塔物品生成器
-    public static Sampler<Item> deluxeTowerItemSampler= new Sampler<>();;
+    public static Sampler<Item> deluxeTowerItemSampler = new Sampler<>();
+    ;
     // 中级密藏物品生成器
-    public static Sampler<Item> regularItemSampler= new Sampler<>();;
+    public static Sampler<Item> regularItemSampler = new Sampler<>();
+    ;
     // 高级密藏物品生成器
-    public static Sampler<Item> advancedItemSampler= new Sampler<>();;
+    public static Sampler<Item> advancedItemSampler = new Sampler<>();
+    ;
     // 超级密藏物品生成器
-    public static Sampler<Item> deluxeItemSampler= new Sampler<>();;
+    public static Sampler<Item> deluxeItemSampler = new Sampler<>();
+    ;
     // 究级密藏物品生成器
-    public static Sampler<Item> ultimateItemSampler= new Sampler<>();;
+    public static Sampler<Item> ultimateItemSampler = new Sampler<>();
+    ;
     // 蘑菇金库物品生成器
-    public static Sampler<Item> mrItemSampler= new Sampler<>();;
+    public static Sampler<Item> mrItemSampler = new Sampler<>();
+    ;
     // 竞猜物品生成器
-    public static Sampler<Item> quizItemSampler= new Sampler<>();;
+    public static Sampler<Item> quizItemSampler = new Sampler<>();
+    ;
 
     // 小盒子子物品生成器
-    private static Sampler<Item> bbSubItemSampler= new Sampler<>();;
+    private static Sampler<Item> bbSubItemSampler = new Sampler<>();
+    ;
     // 大盒子子物品生成器
-    private static Sampler<Item> rbSubItemSampler= new Sampler<>();;
+    private static Sampler<Item> rbSubItemSampler = new Sampler<>();
+    ;
     // 全屏子物品生成器
-    private static Sampler<Item> abSubItemSampler= new Sampler<>();;
+    private static Sampler<Item> abSubItemSampler = new Sampler<>();
+    ;
     // 辉煌子物品生成器
-    private static Sampler<Item> dbSubItemSampler= new Sampler<>();;
+    private static Sampler<Item> dbSubItemSampler = new Sampler<>();
+    ;
     // 物品列表
     @Getter
     private static List<Item> items = new LinkedList<>();
 
     // 币
     public static Item COIN;
+    // 送花小狗
+    public static Item REGULAR_GIFT;
     // 金蘑菇
     public static Item ADVANCED_COIN;
     // 一塔牌子
@@ -65,6 +82,14 @@ public class ItemData {
     public static Item ADVANCED_BOX;
     // 辉煌
     public static Item DELUXE_BOX;
+    // 青花瓷跑车
+    public static Item DELUXE_GIFT_3;
+    // 玫瑰跑车
+    public static Item DELUXE_GIFT_4;
+    // 玫瑰跑车-神龙
+    public static Item DELUXE_GIFT_5;
+    // 玫瑰跑车-银河
+    public static Item DELUXE_GIFT_6;
 
     static {
         initData();
@@ -105,33 +130,33 @@ public class ItemData {
         Sampler<Integer> basicGiftNS = new Sampler<>();
         basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 10);
         Item basicGift = new Item("小情书", ItemType.GIFT, IconKey.BASIC_GIFT, StorageKey.BASIC_GIFT_NUM);
-        basicGift.setHighlightColor(Colors.BASIC_QUALITY);
+        basicGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         basicGift.setNumSampler(basicGiftNS);
         basicTowerItemSampler.addModel(new SampleModel<>(basicGift, 1000));
 
         Sampler<Integer> regularGiftNS = new Sampler<>();
         regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 2000, 10);
         Item regularGift = new Item("送花小狗", ItemType.GIFT, IconKey.REGULAR_GIFT, StorageKey.REGULAR_GIFT_NUM);
-        regularGift.setHighlightColor(Colors.BASIC_QUALITY);
+        regularGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularGift.setNumSampler(regularGiftNS);
         basicTowerItemSampler.addModel(new SampleModel<>(regularGift, 50));
 
         Sampler<Integer> regularCoinNS = new Sampler<>();
         regularCoinNS.addModelsLinearWeights(ListUtil.ofRange(10, 30), 2000, 10);
         Item regularCoin = new Item("赠送金蘑菇", ItemType.CURRENCY, IconKey.REGULAR_COIN, StorageKey.REGULAR_COIN_NUM);
-        regularCoin.setHighlightColor(Colors.BASIC_QUALITY);
+        regularCoin.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularCoin.setNumSampler(regularCoinNS);
         basicTowerItemSampler.addModel(new SampleModel<>(regularCoin, 2000));
 
         Item basicStep = new Item("一塔牌子", ItemType.CURRENCY, IconKey.BASIC_STEP, StorageKey.BASIC_STEP_NUM);
         BASIC_STEP = basicStep;
         basicStep.setIconThumbKey(IconKey.BASIC_STEP_THUMB);
-        basicStep.setHighlightColor(Colors.BASIC_QUALITY);
+        basicStep.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         items.add(basicStep);
         basicTowerItemSampler.addModel(new SampleModel<>(basicStep, 100));
 
         Item regularStep = new Item("二塔牌子", ItemType.CURRENCY, IconKey.REGULAR_STEP, StorageKey.REGULAR_STEP_NUM);
-        regularStep.setHighlightColor(Colors.REGULAR_QUALITY);
+        regularStep.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         basicTowerItemSampler.addModel(new SampleModel<>(regularStep, 10));
     }
 
@@ -140,48 +165,48 @@ public class ItemData {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModelsLinearWeights(ListUtil.ofRange(1, 10), 2000, 10);
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
-        coin.setHighlightColor(Colors.REGULAR_QUALITY);
+        coin.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         coin.setNumSampler(coinNS);
         regularTowerItemSampler.addModel(new SampleModel<>(coin, 1500));
 
         Sampler<Integer> basicGiftNS = new Sampler<>();
         basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
         Item basicGift = new Item("小情书", ItemType.GIFT, IconKey.BASIC_GIFT, StorageKey.BASIC_GIFT_NUM);
-        basicGift.setHighlightColor(Colors.BASIC_QUALITY);
+        basicGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         basicGift.setNumSampler(basicGiftNS);
         regularTowerItemSampler.addModel(new SampleModel<>(basicGift, 2000));
 
         Sampler<Integer> regularGiftNS = new Sampler<>();
         regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 10);
         Item regularGift = new Item("送花小狗", ItemType.GIFT, IconKey.REGULAR_GIFT, StorageKey.REGULAR_GIFT_NUM);
-        regularGift.setHighlightColor(Colors.BASIC_QUALITY);
+        regularGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularGift.setNumSampler(regularGiftNS);
         regularTowerItemSampler.addModel(new SampleModel<>(regularGift, 500));
 
         Sampler<Integer> regularCoinNS = new Sampler<>();
         regularCoinNS.addModelsLinearWeights(ListUtil.ofRange(30, 60), 2000, 10);
         Item regularCoin = new Item("赠送金蘑菇", ItemType.CURRENCY, IconKey.REGULAR_COIN, StorageKey.REGULAR_COIN_NUM);
-        regularCoin.setHighlightColor(Colors.BASIC_QUALITY);
+        regularCoin.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularCoin.setNumSampler(regularCoinNS);
         regularTowerItemSampler.addModel(new SampleModel<>(regularCoin, 2000));
 
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
         Item statue = new Item("初代塔坦王雕像", ItemType.CURRENCY, IconKey.STATUE, StorageKey.STATUE_NUM);
-        statue.setHighlightColor(Colors.ADVANCED_QUALITY);
+        statue.setHighlightColor(GColor.ADVANCED_QUALITY.getAWTColor());
         statue.setNumSampler(statueNS);
         regularTowerItemSampler.addModel(new SampleModel<>(statue, 1000));
 
         Item regularGift2 = new Item("居士汪", ItemType.GIFT, IconKey.REGULAR_GIFT_2, StorageKey.REGULAR_GIFT_2_NUM);
-        regularGift2.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularGift2.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularTowerItemSampler.addModel(new SampleModel<>(regularGift2, 50));
 
         Item deluxeStep = new Item("金塔牌子", ItemType.CURRENCY, IconKey.DELUXE_STEP, StorageKey.DELUXE_STEP_NUM);
-        deluxeStep.setHighlightColor(Colors.DELUXE_QUALITY);
+        deluxeStep.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularTowerItemSampler.addModel(new SampleModel<>(deluxeStep, 3));
 
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setSubItemSampler(abSubItemSampler);
         regularTowerItemSampler.addModel(new SampleModel<>(advancedBox, 2));
     }
@@ -190,13 +215,13 @@ public class ItemData {
     private static void initAdvancedTowerItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModelsLinearWeights(ListUtil.ofRange(10, 33), 1000, 10);
-        coinNS.addModel(new SampleModel<>(66, 10));
-        coinNS.addModel(new SampleModel<>(99, 5));
-        coinNS.addModel(new SampleModel<>(199, 2));
+        coinNS.addModel(new SampleModel<>(66, 50));
+        coinNS.addModel(new SampleModel<>(99, 20));
+        coinNS.addModel(new SampleModel<>(199, 5));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
         COIN = coin;
         coin.setIconThumbKey(IconKey.COIN_THUMB);
-        coin.setHighlightColor(Colors.REGULAR_QUALITY);
+        coin.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         coin.setGuessable(true);
         coin.setNumSampler(coinNS);
         items.add(coin);
@@ -205,7 +230,7 @@ public class ItemData {
         Sampler<Integer> basicGiftNS = new Sampler<>();
         basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 10), 1000, 10);
         Item basicGift = new Item("小情书", ItemType.GIFT, IconKey.BASIC_GIFT, StorageKey.BASIC_GIFT_NUM);
-        basicGift.setHighlightColor(Colors.BASIC_QUALITY);
+        basicGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         basicGift.setValue(30);
         basicGift.setExchangeable(true);
         basicGift.setExchangeCost(1);
@@ -217,7 +242,8 @@ public class ItemData {
         Sampler<Integer> regularGiftNS = new Sampler<>();
         regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 8), 1000, 10);
         Item regularGift = new Item("送花小狗", ItemType.GIFT, IconKey.REGULAR_GIFT, StorageKey.REGULAR_GIFT_NUM);
-        regularGift.setHighlightColor(Colors.BASIC_QUALITY);
+        REGULAR_GIFT = regularGift;
+        regularGift.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularGift.setValue(300);
         regularGift.setGiftPoints(48);
         regularGift.setExchangeable(true);
@@ -231,7 +257,7 @@ public class ItemData {
         regularCoinNS.addModel(new SampleModel<>(333, 60));
         regularCoinNS.addModel(new SampleModel<>(666, 40));
         Item regularCoin = new Item("赠送金蘑菇", ItemType.CURRENCY, IconKey.REGULAR_COIN, StorageKey.REGULAR_COIN_NUM);
-        regularCoin.setHighlightColor(Colors.BASIC_QUALITY);
+        regularCoin.setHighlightColor(GColor.BASIC_QUALITY.getAWTColor());
         regularCoin.setGuessable(true);
         regularCoin.setNumSampler(regularCoinNS);
         items.add(regularCoin);
@@ -240,7 +266,7 @@ public class ItemData {
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(2, 8), 1000, 10);
         Item statue = new Item("初代塔坦王雕像", ItemType.CURRENCY, IconKey.STATUE, StorageKey.STATUE_NUM);
-        statue.setHighlightColor(Colors.ADVANCED_QUALITY);
+        statue.setHighlightColor(GColor.ADVANCED_QUALITY.getAWTColor());
         statue.setGuessable(true);
         statue.setNumSampler(statueNS);
         items.add(statue);
@@ -249,7 +275,7 @@ public class ItemData {
         Item regularStep = new Item("二塔牌子", ItemType.CURRENCY, IconKey.REGULAR_STEP, StorageKey.REGULAR_STEP_NUM);
         REGULAR_STEP = regularStep;
         regularStep.setIconThumbKey(IconKey.REGULAR_STEP_THUMB);
-        regularStep.setHighlightColor(Colors.REGULAR_QUALITY);
+        regularStep.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         regularStep.setGuessable(true);
         items.add(regularStep);
         advancedTowerItemSampler.addModel(new SampleModel<>(regularStep, 350));
@@ -257,7 +283,7 @@ public class ItemData {
         Item advancedStep = new Item("三塔牌子", ItemType.CURRENCY, IconKey.ADVANCED_STEP, StorageKey.ADVANCED_STEP_NUM);
         ADVANCED_STEP = advancedStep;
         advancedStep.setIconThumbKey(IconKey.ADVANCED_STEP_THUMB);
-        advancedStep.setHighlightColor(Colors.ADVANCED_QUALITY);
+        advancedStep.setHighlightColor(GColor.ADVANCED_QUALITY.getAWTColor());
         advancedStep.setGuessable(true);
         items.add(advancedStep);
         advancedTowerItemSampler.addModel(new SampleModel<>(advancedStep, 150));
@@ -265,7 +291,7 @@ public class ItemData {
         Item deluxeStep = new Item("金塔牌子", ItemType.CURRENCY, IconKey.DELUXE_STEP, StorageKey.DELUXE_STEP_NUM);
         DELUXE_STEP = deluxeStep;
         deluxeStep.setIconThumbKey(IconKey.DELUXE_STEP_THUMB);
-        deluxeStep.setHighlightColor(Colors.DELUXE_QUALITY);
+        deluxeStep.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         items.add(deluxeStep);
         advancedTowerItemSampler.addModel(new SampleModel<>(deluxeStep, 30));
 
@@ -275,7 +301,7 @@ public class ItemData {
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
         ADVANCED_COIN = advancedCoin;
         advancedCoin.setIconThumbKey(IconKey.ADVANCED_COIN_THUMB);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         items.add(advancedCoin);
         advancedTowerItemSampler.addModel(new SampleModel<>(advancedCoin, 3));
@@ -284,10 +310,11 @@ public class ItemData {
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
         Item basicBox = new Item("小盒子", ItemType.BOX, IconKey.BASIC_BOX, StorageKey.BASIC_BOX_NUM);
         BASIC_BOX = basicBox;
-        basicBox.setHighlightColor(Colors.REGULAR_QUALITY);
+        basicBox.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         basicBox.setExchangeable(true);
         basicBox.setExchangeCost(15);
         basicBox.setGuessable(true);
+        basicBox.setGiftExp(60);
         basicBox.setNumSampler(basicBoxNS);
         basicBox.setSubItemSampler(bbSubItemSampler);
         items.add(basicBox);
@@ -301,10 +328,11 @@ public class ItemData {
         regularBoxNS.addModel(new SampleModel<>(5, 1));
         Item regularBox = new Item("大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
         REGULAR_BOX = regularBox;
-        regularBox.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularBox.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularBox.setExchangeable(true);
         regularBox.setExchangeCost(120);
         regularBox.setGuessable(true);
+        regularBox.setGiftExp(750);
         regularBox.setNumSampler(regularBoxNS);
         regularBox.setSubItemSampler(rbSubItemSampler);
         items.add(regularBox);
@@ -333,10 +361,11 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(3, 2));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
         ADVANCED_BOX = advancedBox;
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setExchangeable(true);
         advancedBox.setExchangeCost(1500);
         advancedBox.setGuessable(true);
+        advancedBox.setGiftExp(7500);
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox.setSubItemSampler(abSubItemSampler);
         items.add(advancedBox);
@@ -347,7 +376,7 @@ public class ItemData {
         deluxeBoxNS.addModel(new SampleModel<>(2, 20));
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
         DELUXE_BOX = deluxeBox;
-        deluxeBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         items.add(deluxeBox);
@@ -359,7 +388,7 @@ public class ItemData {
         Item advancedGift = new Item("无暇天使", ItemType.GIFT, IconKey.ADVANCED_GIFT, StorageKey.ADVANCED_GIFT_NUM);
         advancedGift.setValue(1000000);
         advancedGift.setGiftPoints(160000);
-        advancedGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift.setNumSampler(advancedGiftNS);
         items.add(advancedGift);
         advancedTowerItemSampler.addModel(new SampleModel<>(advancedGift, 5));
@@ -368,7 +397,7 @@ public class ItemData {
         advancedGift2NS.addModel(new SampleModel<>(1, 990));
         advancedGift2NS.addModel(new SampleModel<>(2, 10));
         Item advancedGift2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
-        advancedGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift2.setValue(500000);
         advancedGift2.setGiftPoints(80000);
         advancedGift2.setNumSampler(advancedGift2NS);
@@ -376,42 +405,55 @@ public class ItemData {
         advancedTowerItemSampler.addModel(new SampleModel<>(advancedGift2, 8));
 
         Item deluxeGift = new Item("情定爱琴海", ItemType.GIFT, IconKey.DELUXE_GIFT, StorageKey.DELUXE_GIFT_NUM);
-        deluxeGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeGift.setValue(1888888);
         deluxeGift.setGiftPoints(666666);
         items.add(deluxeGift);
         advancedTowerItemSampler.addModel(new SampleModel<>(deluxeGift, 2));
 
         Item deluxeGift2 = new Item("爱之天使号", ItemType.GIFT, IconKey.DELUXE_GIFT_2, StorageKey.DELUXE_GIFT_2_NUM);
-        deluxeGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeGift2.setValue(1888888);
         deluxeGift2.setGiftPoints(566666);
         items.add(deluxeGift2);
         advancedTowerItemSampler.addModel(new SampleModel<>(deluxeGift2, 2));
 
         Item deluxeGift4 = new Item("玫瑰跑车", ItemType.GIFT, IconKey.DELUXE_GIFT_4, StorageKey.DELUXE_GIFT_4_NUM);
-        deluxeGift4.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        DELUXE_GIFT_4 = deluxeGift4;
+        deluxeGift4.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeGift4.setValue(1888888);
         deluxeGift4.setGiftPoints(299999);
         items.add(deluxeGift4);
         advancedTowerItemSampler.addModel(new SampleModel<>(deluxeGift4, 2));
 
+        Item deluxeGift5 = new Item("玫瑰跑车-神龙", ItemType.GIFT, IconKey.DELUXE_GIFT_5, StorageKey.DELUXE_GIFT_5_NUM);
+        DELUXE_GIFT_5 = deluxeGift5;
+        deluxeGift5.setValue(1888888);
+        deluxeGift5.setGiftPoints(666666);
+        items.add(deluxeGift5);
+
+        Item deluxeGift6 = new Item("玫瑰跑车-银河", ItemType.GIFT, IconKey.DELUXE_GIFT_6, StorageKey.DELUXE_GIFT_6_NUM);
+        DELUXE_GIFT_6 = deluxeGift6;
+        deluxeGift6.setValue(5200000);
+        deluxeGift6.setGiftPoints(1688888);
+        items.add(deluxeGift6);
+
         Item ultimateGift = new Item("起源·应龙", ItemType.GIFT, IconKey.ULTIMATE_GIFT, StorageKey.ULTIMATE_GIFT_NUM);
-        ultimateGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        ultimateGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         ultimateGift.setValue(2888888);
         ultimateGift.setGiftPoints(888888);
         items.add(ultimateGift);
         advancedTowerItemSampler.addModel(new SampleModel<>(ultimateGift, 2));
 
         Item ultimateGift2 = new Item("起源·黑洞", ItemType.GIFT, IconKey.ULTIMATE_GIFT_2, StorageKey.ULTIMATE_GIFT_2_NUM);
-        ultimateGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        ultimateGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         ultimateGift2.setValue(2888888);
         ultimateGift2.setGiftPoints(888888);
         items.add(ultimateGift2);
         advancedTowerItemSampler.addModel(new SampleModel<>(ultimateGift2, 2));
 
         Item ticket = new Item("嘉年华孢子兑换券", ItemType.CURRENCY, IconKey.TICKET, StorageKey.TICKET);
-        ticket.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        ticket.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         items.add(ticket);
         advancedTowerItemSampler.addModel(new SampleModel<>(ticket, 1));
     }
@@ -424,28 +466,28 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(899, 250));
         coinNS.addModel(new SampleModel<>(999, 125));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
-        coin.setHighlightColor(Colors.REGULAR_QUALITY);
+        coin.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         coin.setNumSampler(coinNS);
         deluxeTowerItemSampler.addModel(new SampleModel<>(coin, 2000));
 
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(2, 16), 2000, 10);
         Item statue = new Item("初代塔坦王雕像", ItemType.CURRENCY, IconKey.STATUE, StorageKey.STATUE_NUM);
-        statue.setHighlightColor(Colors.ADVANCED_QUALITY);
+        statue.setHighlightColor(GColor.ADVANCED_QUALITY.getAWTColor());
         statue.setNumSampler(statueNS);
         deluxeTowerItemSampler.addModel(new SampleModel<>(statue, 1000));
 
         Sampler<Integer> basicBoxNS = new Sampler<>();
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
         Item basicBox = new Item("小盒子", ItemType.BOX, IconKey.BASIC_BOX, StorageKey.BASIC_BOX_NUM);
-        basicBox.setHighlightColor(Colors.REGULAR_QUALITY);
+        basicBox.setHighlightColor(GColor.REGULAR_QUALITY.getAWTColor());
         basicBox.setSubItemSampler(bbSubItemSampler);
         deluxeTowerItemSampler.addModel(new SampleModel<>(basicBox, 800));
 
         Sampler<Integer> regularGift2NS = new Sampler<>();
         regularGift2NS.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
         Item regularGift2 = new Item("居士汪", ItemType.GIFT, IconKey.REGULAR_GIFT_2, StorageKey.REGULAR_GIFT_2_NUM);
-        regularGift2.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularGift2.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularGift2.setValue(10000);
         regularGift2.setGiftPoints(1600);
         regularGift2.setExchangeable(true);
@@ -459,7 +501,7 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(2, 48));
         advancedBoxNS.addModel(new SampleModel<>(3, 2));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setSubItemSampler(abSubItemSampler);
         deluxeTowerItemSampler.addModel(new SampleModel<>(advancedBox, 20));
     }
@@ -471,7 +513,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(399, 10));
         coinNS.addModel(new SampleModel<>(699, 1));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
-        coin.setHighlightColor(Colors.DELUXE_QUALITY);
+        coin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         coin.setNumSampler(coinNS);
         regularItemSampler.addModel(new SampleModel<>(coin, 2000));
 
@@ -480,7 +522,7 @@ public class ItemData {
         regularBoxNS.addModel(new SampleModel<>(2, 80));
         regularBoxNS.addModel(new SampleModel<>(4, 5));
         Item regularBox = new Item("大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
-        regularBox.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularBox.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularBox.setNumSampler(regularBoxNS);
         regularBox.setSubItemSampler(rbSubItemSampler);
         regularItemSampler.addModel(new SampleModel<>(regularBox, 2000));
@@ -489,7 +531,7 @@ public class ItemData {
         advancedCoinNS.addModel(new SampleModel<>(1888, 990));
         advancedCoinNS.addModel(new SampleModel<>(6666, 10));
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         regularItemSampler.addModel(new SampleModel<>(advancedCoin, 30));
 
@@ -498,7 +540,7 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(2, 49));
         advancedBoxNS.addModel(new SampleModel<>(4, 1));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox.setSubItemSampler(abSubItemSampler);
         regularItemSampler.addModel(new SampleModel<>(advancedBox, 40));
@@ -507,7 +549,7 @@ public class ItemData {
         deluxeBoxNS.addModel(new SampleModel<>(1, 990));
         deluxeBoxNS.addModel(new SampleModel<>(2, 10));
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
-        deluxeBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         regularItemSampler.addModel(new SampleModel<>(deluxeBox, 10));
@@ -515,7 +557,7 @@ public class ItemData {
         Sampler<Integer> advancedGiftNS = new Sampler<>();
         advancedGiftNS.addModel(new SampleModel<>(1, 1));
         Item advancedGift = new Item("无暇天使", ItemType.GIFT, IconKey.ADVANCED_GIFT, StorageKey.ADVANCED_GIFT_NUM);
-        advancedGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift.setNumSampler(advancedGiftNS);
         regularItemSampler.addModel(new SampleModel<>(advancedGift, 3));
 
@@ -523,12 +565,13 @@ public class ItemData {
         advancedGift2NS.addModel(new SampleModel<>(1, 990));
         advancedGift2NS.addModel(new SampleModel<>(2, 10));
         Item advancedGift2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
-        advancedGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift2.setNumSampler(advancedGift2NS);
         regularItemSampler.addModel(new SampleModel<>(advancedGift2, 6));
 
         Item deluxeGift3 = new Item("玫瑰跑车-青花瓷", ItemType.GIFT, IconKey.DELUXE_GIFT_3, StorageKey.DELUXE_GIFT_3_NUM);
-        deluxeGift3.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        DELUXE_GIFT_3 = deluxeGift3;
+        deluxeGift3.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeGift3.setValue(1888888);
         deluxeGift3.setGiftPoints(666666);
         items.add(deluxeGift3);
@@ -542,7 +585,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(399, 200));
         coinNS.addModel(new SampleModel<>(699, 50));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
-        coin.setHighlightColor(Colors.DELUXE_QUALITY);
+        coin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         coin.setNumSampler(coinNS);
         advancedItemSampler.addModel(new SampleModel<>(coin, 2000));
 
@@ -551,7 +594,7 @@ public class ItemData {
         regularBoxNS.addModel(new SampleModel<>(4, 150));
         regularBoxNS.addModel(new SampleModel<>(8, 20));
         Item regularBox = new Item("大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
-        regularBox.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularBox.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularBox.setNumSampler(regularBoxNS);
         regularBox.setSubItemSampler(rbSubItemSampler);
         advancedItemSampler.addModel(new SampleModel<>(regularBox, 2000));
@@ -561,7 +604,7 @@ public class ItemData {
         advancedCoinNS.addModel(new SampleModel<>(6666, 45));
         advancedCoinNS.addModel(new SampleModel<>(9999, 5));
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         advancedItemSampler.addModel(new SampleModel<>(advancedCoin, 10));
 
@@ -570,7 +613,7 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(2, 90));
         advancedBoxNS.addModel(new SampleModel<>(4, 10));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox.setSubItemSampler(abSubItemSampler);
         advancedItemSampler.addModel(new SampleModel<>(advancedBox, 60));
@@ -579,7 +622,7 @@ public class ItemData {
         deluxeBoxNS.addModel(new SampleModel<>(1, 990));
         deluxeBoxNS.addModel(new SampleModel<>(2, 10));
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
-        deluxeBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         advancedItemSampler.addModel(new SampleModel<>(deluxeBox, 8));
@@ -587,7 +630,7 @@ public class ItemData {
         Sampler<Integer> advancedGiftNS = new Sampler<>();
         advancedGiftNS.addModel(new SampleModel<>(1, 1));
         Item advancedGift = new Item("无暇天使", ItemType.GIFT, IconKey.ADVANCED_GIFT, StorageKey.ADVANCED_GIFT_NUM);
-        advancedGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift.setNumSampler(advancedGiftNS);
         advancedItemSampler.addModel(new SampleModel<>(advancedGift, 2));
 
@@ -595,12 +638,12 @@ public class ItemData {
         advancedGift2NS.addModel(new SampleModel<>(1, 990));
         advancedGift2NS.addModel(new SampleModel<>(2, 10));
         Item advancedGift2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
-        advancedGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift2.setNumSampler(advancedGift2NS);
         advancedItemSampler.addModel(new SampleModel<>(advancedGift2, 4));
 
         Item deluxeGift3 = new Item("玫瑰跑车-青花瓷", ItemType.GIFT, IconKey.DELUXE_GIFT_3, StorageKey.DELUXE_GIFT_3_NUM);
-        deluxeGift3.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeGift3.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedItemSampler.addModel(new SampleModel<>(deluxeGift3, 2));
     }
 
@@ -611,7 +654,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(399, 200));
         coinNS.addModel(new SampleModel<>(699, 100));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
-        coin.setHighlightColor(Colors.DELUXE_QUALITY);
+        coin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         coin.setNumSampler(coinNS);
         deluxeItemSampler.addModel(new SampleModel<>(coin, 2000));
 
@@ -619,7 +662,7 @@ public class ItemData {
         regularBoxNS.addModel(new SampleModel<>(4, 200));
         regularBoxNS.addModel(new SampleModel<>(8, 100));
         Item regularBox = new Item("大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
-        regularBox.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularBox.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularBox.setNumSampler(regularBoxNS);
         regularBox.setSubItemSampler(rbSubItemSampler);
         deluxeItemSampler.addModel(new SampleModel<>(regularBox, 2000));
@@ -629,7 +672,7 @@ public class ItemData {
         advancedCoinNS.addModel(new SampleModel<>(6666, 90));
         advancedCoinNS.addModel(new SampleModel<>(9999, 10));
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         deluxeItemSampler.addModel(new SampleModel<>(advancedCoin, 50));
 
@@ -638,7 +681,7 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(2, 45));
         advancedBoxNS.addModel(new SampleModel<>(4, 5));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox.setSubItemSampler(abSubItemSampler);
         deluxeItemSampler.addModel(new SampleModel<>(advancedBox, 50));
@@ -647,7 +690,7 @@ public class ItemData {
         deluxeBoxNS.addModel(new SampleModel<>(1, 980));
         deluxeBoxNS.addModel(new SampleModel<>(2, 20));
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
-        deluxeBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         deluxeItemSampler.addModel(new SampleModel<>(deluxeBox, 10));
@@ -655,7 +698,7 @@ public class ItemData {
         Sampler<Integer> advancedGiftNS = new Sampler<>();
         advancedGiftNS.addModel(new SampleModel<>(1, 1));
         Item advancedGift = new Item("无暇天使", ItemType.GIFT, IconKey.ADVANCED_GIFT, StorageKey.ADVANCED_GIFT_NUM);
-        advancedGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift.setNumSampler(advancedGiftNS);
         deluxeItemSampler.addModel(new SampleModel<>(advancedGift, 3));
 
@@ -663,12 +706,12 @@ public class ItemData {
         advancedGift2NS.addModel(new SampleModel<>(1, 980));
         advancedGift2NS.addModel(new SampleModel<>(2, 20));
         Item advancedGift2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
-        advancedGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift2.setNumSampler(advancedGift2NS);
         deluxeItemSampler.addModel(new SampleModel<>(advancedGift2, 6));
 
         Item deluxeGift3 = new Item("玫瑰跑车-青花瓷", ItemType.GIFT, IconKey.DELUXE_GIFT_3, StorageKey.DELUXE_GIFT_3_NUM);
-        deluxeGift3.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeGift3.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeItemSampler.addModel(new SampleModel<>(deluxeGift3, 1));
     }
 
@@ -679,7 +722,7 @@ public class ItemData {
         regularBoxNS.addModel(new SampleModel<>(50, 100));
         regularBoxNS.addModel(new SampleModel<>(80, 40));
         Item regularBox = new Item("大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
-        regularBox.setHighlightColor(Colors.DELUXE_QUALITY);
+        regularBox.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         regularBox.setNumSampler(regularBoxNS);
         regularBox.setSubItemSampler(rbSubItemSampler);
         ultimateItemSampler.addModel(new SampleModel<>(regularBox, 2000));
@@ -688,7 +731,7 @@ public class ItemData {
         advancedCoinNS.addModel(new SampleModel<>(9999, 950));
         advancedCoinNS.addModel(new SampleModel<>(99999, 50));
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         ultimateItemSampler.addModel(new SampleModel<>(advancedCoin, 2000));
 
@@ -698,7 +741,7 @@ public class ItemData {
         advancedBoxNS.addModel(new SampleModel<>(8, 150));
         advancedBoxNS.addModel(new SampleModel<>(10, 100));
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
-        advancedBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox.setSubItemSampler(abSubItemSampler);
         ultimateItemSampler.addModel(new SampleModel<>(advancedBox, 2000));
@@ -708,7 +751,7 @@ public class ItemData {
         deluxeBoxNS.addModel(new SampleModel<>(2, 500));
         deluxeBoxNS.addModel(new SampleModel<>(3, 300));
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
-        deluxeBox.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         ultimateItemSampler.addModel(new SampleModel<>(deluxeBox, 200));
@@ -717,7 +760,7 @@ public class ItemData {
         advancedGiftNS.addModel(new SampleModel<>(1, 999));
         advancedGiftNS.addModel(new SampleModel<>(2, 1));
         Item advancedGift = new Item("无暇天使", ItemType.GIFT, IconKey.ADVANCED_GIFT, StorageKey.ADVANCED_GIFT_NUM);
-        advancedGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift.setNumSampler(advancedGiftNS);
         ultimateItemSampler.addModel(new SampleModel<>(advancedGift, 1000));
 
@@ -726,20 +769,20 @@ public class ItemData {
         advancedGift2NS.addModel(new SampleModel<>(2, 100));
         advancedGift2NS.addModel(new SampleModel<>(3, 10));
         Item advancedGift2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
-        advancedGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        advancedGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         advancedGift2.setNumSampler(advancedGift2NS);
         ultimateItemSampler.addModel(new SampleModel<>(advancedGift2, 2000));
 
         Item deluxeGift3 = new Item("玫瑰跑车-青花瓷", ItemType.GIFT, IconKey.DELUXE_GIFT_3, StorageKey.DELUXE_GIFT_3_NUM);
-        deluxeGift3.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        deluxeGift3.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         ultimateItemSampler.addModel(new SampleModel<>(deluxeGift3, 500));
 
         Item ultimateGift = new Item("起源·应龙", ItemType.GIFT, IconKey.ULTIMATE_GIFT, StorageKey.ULTIMATE_GIFT_NUM);
-        ultimateGift.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        ultimateGift.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         ultimateItemSampler.addModel(new SampleModel<>(ultimateGift, 50));
 
         Item ultimateGift2 = new Item("起源·黑洞", ItemType.GIFT, IconKey.ULTIMATE_GIFT_2, StorageKey.ULTIMATE_GIFT_2_NUM);
-        ultimateGift2.setHighlightColor(Colors.ULTIMATE_QUALITY);
+        ultimateGift2.setHighlightColor(GColor.ULTIMATE_QUALITY.getAWTColor());
         ultimateItemSampler.addModel(new SampleModel<>(ultimateGift2, 50));
     }
 
@@ -752,7 +795,7 @@ public class ItemData {
         advancedCoinNS.addModel(new SampleModel<>(9999, 30));
         advancedCoinNS.addModel(new SampleModel<>(99999, 2));
         Item advancedCoin = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
-        advancedCoin.setHighlightColor(Colors.DELUXE_QUALITY);
+        advancedCoin.setHighlightColor(GColor.DELUXE_QUALITY.getAWTColor());
         advancedCoin.setNumSampler(advancedCoinNS);
         mrItemSampler.addModel(new SampleModel<>(advancedCoin, 2000));
     }

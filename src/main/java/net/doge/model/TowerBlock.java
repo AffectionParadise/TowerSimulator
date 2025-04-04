@@ -25,18 +25,21 @@ public class TowerBlock {
         switch (status) {
             case ME:
                 item = null;
+                label.setForeground(AccountData.account.getHighlightColor().getAWTColor());
                 label.setBackground(null);
-                label.setText(AccountData.ACCOUNT.getName());
-                label.setIcon(IconUtil.getIcon(AccountData.ACCOUNT.getAvatar()));
+                label.setText(AccountData.account.getName());
+                label.setIcon(IconUtil.getIcon(AccountData.account.getAvatar()));
                 break;
             case ACTIVATED:
                 if (end) return;
                 boolean empty = isEmpty();
+                label.setForeground(null);
                 label.setBackground(empty ? null : item.getHighlightColor());
                 label.setText(empty || num <= 1 ? " " : String.valueOf(num));
                 label.setIcon(empty ? null : IconUtil.getIcon(item.getIconKey()));
                 break;
             case INVISIBLE:
+                label.setForeground(null);
                 label.setBackground(null);
                 label.setText(" ");
                 label.setIcon(IconUtil.getIcon(IconKey.INVISIBLE));

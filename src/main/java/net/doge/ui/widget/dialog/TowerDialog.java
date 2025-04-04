@@ -9,6 +9,7 @@ import net.doge.model.Item;
 import net.doge.model.Tower;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.panel.GPanel;
 
 import javax.swing.*;
@@ -19,8 +20,8 @@ import java.awt.event.MouseEvent;
 public class TowerDialog extends GDialog<Tower> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GPanel bottomPanel = new GPanel();
-    private GButton enterBtn = new GButton("进入", Colors.DEEP_GREEN);
-    private GButton quitBtn = new GButton("放弃", Colors.DARK_RED);
+    private GButton enterBtn = new GButton("进入", GColor.DEEP_GREEN);
+    private GButton quitBtn = new GButton("放弃", GColor.DARK_RED);
 
     @Getter
     private boolean confirmed;

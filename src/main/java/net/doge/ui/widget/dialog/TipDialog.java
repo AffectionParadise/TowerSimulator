@@ -1,8 +1,7 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.constant.Colors;
 import net.doge.data.FontData;
-import net.doge.ui.TowerUI;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 
@@ -57,13 +56,13 @@ public class TipDialog extends JDialog {
     private void init() {
         setUndecorated(true);
         // Dialog 背景透明
-        setBackground(Colors.TRANSPARENT);
+        setBackground(GColor.TRANSPARENT.getAWTColor());
 
-        messageLabel.setForeground(Color.WHITE);
+        messageLabel.setForeground(GColor.WHITE.getAWTColor());
         messageLabel.setText(message);
         globalPanel.setLayout(new BorderLayout());
         globalPanel.setOpaque(false);
-        globalPanel.setBgColor(Colors.DARK_RED);
+        globalPanel.setBgColor(GColor.DARK_RED.getAWTColor());
         globalPanel.add(messageLabel, BorderLayout.CENTER);
 
         setContentPane(globalPanel);

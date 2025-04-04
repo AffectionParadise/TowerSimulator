@@ -2,13 +2,13 @@ package net.doge.ui;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
 import net.doge.data.*;
 import net.doge.model.*;
 import net.doge.constant.*;
 import net.doge.model.Event;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.dialog.*;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
@@ -22,8 +22,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TowerUI extends JFrame {
     public Tower currTower = TowerData.ADVANCED_TOWER;
@@ -32,15 +30,15 @@ public class TowerUI extends JFrame {
     private Quiz quiz = ActivityData.quiz;
 
     private GPanel mainPanel = new GPanel();
-    private GButton towerBtn = new GButton("塔群", Colors.DARK_ORANGE);
+    private GButton towerBtn = new GButton("塔群", GColor.DARK_ORANGE);
     private GLabel gatheredLabel = new GLabel();
     private GLabel stepLabel = new GLabel();
-    private GButton stepPlusBtn = new GButton("+", Colors.DEEP_GREEN);
-    private GButton backpackBtn = new GButton("探险背包", Colors.LIGHT_BLUE);
+    private GButton stepPlusBtn = new GButton("+", GColor.DEEP_GREEN);
+    private GButton backpackBtn = new GButton("探险背包", GColor.LIGHT_BLUE);
     private GLabel bonusLabel = new GLabel();
-    private GButton activityBtn = new GButton("活动", Colors.DARK_RED);
-    private GButton storeBtn = new GButton("宝藏商店", Colors.LIGHT_BLUE);
-    private GButton giftBtn = new GButton("礼物", Colors.DEEP_GREEN);
+    private GButton activityBtn = new GButton("活动", GColor.DARK_RED);
+    private GButton storeBtn = new GButton("宝藏商店", GColor.LIGHT_BLUE);
+    private GButton giftBtn = new GButton("礼物", GColor.DEEP_GREEN);
 
     public void init() {
         loadData();
@@ -72,7 +70,7 @@ public class TowerUI extends JFrame {
             currTower = towerDialog.getSelectedTower();
             Item stepItem = currTower.getStepItem();
             stepLabel.setIcon(IconUtil.getIcon(stepItem.getIconThumbKey()));
-            updateStepAmount(stepItem, 0);
+            updateItemAmountAndView(stepItem, 0);
             generateBlocks(currTower, false);
         });
 
@@ -80,7 +78,7 @@ public class TowerUI extends JFrame {
         stepLabel.setIcon(IconUtil.getIcon(currTower.getStepItem().getIconThumbKey()));
         stepPlusBtn.addActionListener(e -> new TransactionDialog(this));
         backpackBtn.addActionListener(e -> new BackpackDialog(this));
-        bonusLabel.setForeground(Colors.DARK_RED);
+        bonusLabel.setForeground(GColor.DARK_RED.getAWTColor());
         activityBtn.addActionListener(e -> new ActivityDialog(this));
         storeBtn.addActionListener(e -> new CoinExchangeDialog(this, ItemData.COIN));
         giftBtn.addActionListener(e -> new GiftDialog(this));
@@ -178,8 +176,8 @@ public class TowerUI extends JFrame {
         move(currTower.x, currTower.y, currTower.x, currTower.y);
     }
 
-    // 更新牌子数量
-    public void updateStepAmount(Item stepItem, int amount) {
+    // 更新物品数量并回显
+    public void updateItemAmountAndView(Item stepItem, int amount) {
         StorageKey sk = stepItem.getStorageKey();
         DataStorage.add(sk, amount);
         if (currTower.getStepItem().equals(stepItem)) stepLabel.setText(String.valueOf(DataStorage.get(sk)));
@@ -281,7 +279,7 @@ public class TowerUI extends JFrame {
             // 牌子减少
             Item stepItem = currTower.getStepItem();
             int stepCost = currTower.getStepCost();
-            updateStepAmount(stepItem, -stepCost);
+            updateItemAmountAndView(stepItem, -stepCost);
             // 积累步数
             if (stepItem.equals(ItemData.ADVANCED_STEP)) updateGatheredStepAmount(stepCost);
             // 计算倍率
@@ -300,10 +298,25 @@ public class TowerUI extends JFrame {
             // 获得目标数量的礼物
             int num = rate * block.getNum();
             Item blockItem = block.getItem();
+            // 会员转化礼物
+            Account account = AccountData.account;
+            if (account.isVip()) {
+                Vip vip = account.getVip();
+                Item sourceItem = vip.getSourceItem();
+                if (blockItem.equals(sourceItem)) {
+                    blockItem = vip.getTargetItem();
+                    new ConversionDialog(this);
+                }
+            }
             StorageKey key = blockItem.getStorageKey();
             DataStorage.add(key, num);
             currTower.getBackpackStorage().add(key, num);
-            if (blockItem.equals(stepItem)) updateStepAmount(stepItem, 0);
+            if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
+            // 会员消耗
+            account.consumeVip();
+            if (account.getVipStepLeft() <= 0) {
+                account.setVip(null);
+            }
         }
         block.setStatus(TowerBlockStatus.ME);
     }
@@ -363,6 +376,8 @@ public class TowerUI extends JFrame {
     // 载入数据
     private void loadData() {
         JSONObject data = JsonUtil.read("data.json");
+        JSONObject accountJson = data.getJSONObject("Account");
+        if (JsonUtil.notEmpty(accountJson)) AccountData.account = accountJson.to(Account.class);
         JSONObject dataStorageJson = data.getJSONObject("DataStorage");
         if (JsonUtil.notEmpty(dataStorageJson)) {
             for (Map.Entry<String, Object> entry : dataStorageJson.entrySet()) {
@@ -387,12 +402,14 @@ public class TowerUI extends JFrame {
 
         // 刷新数据显示
         updateGatheredStepAmount(0);
-        updateStepAmount(ItemData.ADVANCED_STEP, JsonUtil.isEmpty(data) ? 10000 : 0);
+        updateItemAmountAndView(ItemData.ADVANCED_STEP, JsonUtil.isEmpty(data) ? 10000 : 0);
     }
 
     // 保存数据
     private void saveData() {
         JSONObject data = new JSONObject();
+        JSONObject accountJson = JSONObject.from(AccountData.account, JSONWriter.Feature.FieldBased);
+        data.put("Account", accountJson);
         JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
         data.put("DataStorage", dataStorageJson);
         JSONObject giftCensusJson = JSONObject.from(GiftCensusStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);

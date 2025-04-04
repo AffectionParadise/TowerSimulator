@@ -8,6 +8,13 @@ import lombok.Getter;
 public enum IconKey {
     // 头像
     AVATAR("Avatar"),
+    // 青花瓷会员
+    VIP1("Vip1"),
+    // 神龙会员
+    VIP2("Vip2"),
+    // 银河会员
+    VIP3("Vip3"),
+
     // 终点
     DESTINATION("Destination"),
     // 一塔
@@ -97,6 +104,10 @@ public enum IconKey {
     DELUXE_GIFT_3("DeluxeGift3"),
     // 玫瑰跑车
     DELUXE_GIFT_4("DeluxeGift4"),
+    // 玫瑰跑车-神龙
+    DELUXE_GIFT_5("DeluxeGift5"),
+    // 玫瑰跑车-银河
+    DELUXE_GIFT_6("DeluxeGift6"),
     // 起源·应龙
     ULTIMATE_GIFT("UltimateGift"),
     // 起源·黑洞

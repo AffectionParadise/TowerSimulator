@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.doge.constant.Colors;
 import net.doge.constant.IconKey;
 import net.doge.ui.TowerUI;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.list.GList;
 import net.doge.ui.widget.panel.GPanel;
@@ -15,7 +16,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class GDialog<E> extends JDialog {
-    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(Colors.DEEP_GREEN, 5, true);
+    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAWTColor(), 5, true);
     protected final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
     protected TowerUI ui;
@@ -33,7 +34,6 @@ public class GDialog<E> extends JDialog {
     public GDialog(TowerUI ui, boolean selectable) {
         super(ui, true);
         this.ui = ui;
-        this.selectable = selectable;
 
         // 横向滚动时自适应高度
         list.setVisibleRowCount(0);

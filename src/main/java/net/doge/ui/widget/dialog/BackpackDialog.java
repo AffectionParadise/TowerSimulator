@@ -7,13 +7,15 @@ import net.doge.ui.TowerUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class BackpackDialog extends GDialog<Item> {
     private BackpackStorage backpackStorage;
 
     public BackpackDialog(TowerUI ui) {
-        super(ui, false);
+        super(ui);
         backpackStorage = ui.currTower.getBackpackStorage();
         init();
     }
@@ -36,6 +38,15 @@ public class BackpackDialog extends GDialog<Item> {
             if (num < 1) continue;
             listModel.addElement(item);
         }
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Item item = list.getSelectedValue();
+                if (item == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, item);
+            }
+        });
 
         setTitle("探险背包");
 

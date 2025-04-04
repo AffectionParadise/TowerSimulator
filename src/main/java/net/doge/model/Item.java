@@ -39,6 +39,8 @@ public class Item {
     private boolean guessable;
     // 是否属于盒子中的常见礼物
     private boolean boxRegular;
+    // 礼物经验
+    private int giftExp;
 
     // 数量生成器
     private Sampler<Integer> numSampler;

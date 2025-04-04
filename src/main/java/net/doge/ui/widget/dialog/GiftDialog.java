@@ -6,26 +6,30 @@ import net.doge.constant.StorageKey;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.data.GiftCensusStorage;
+import net.doge.model.GiftRecord;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class GiftDialog extends GDialog<Item> {
     private GPanel topPanel = new GPanel();
-    private GButton giftStorageBtn = new GButton("赠送礼物", Colors.DARK_RED);
+    private GButton giftStorageBtn = new GButton("赠送礼物", GColor.DARK_RED);
     private GLabel giftPointsLabel = new GLabel();
-    private GButton gpExchangeBtn = new GButton("积分兑换", Colors.DEEP_GREEN);
-    private GButton giftRecordBtn = new GButton("礼物记录", Colors.DEEP_GREEN);
+    private GButton gpExchangeBtn = new GButton("积分兑换", GColor.DEEP_GREEN);
+    private GButton giftRecordBtn = new GButton("礼物记录", GColor.DEEP_GREEN);
 
     public GiftDialog(TowerUI ui) {
-        super(ui, false);
+        super(ui);
         init();
     }
 
@@ -73,6 +77,15 @@ public class GiftDialog extends GDialog<Item> {
         topPanel.add(giftRecordBtn);
 
         updateGiftPoints(0);
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Item item = list.getSelectedValue();
+                if (item == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, item);
+            }
+        });
 
         setTitle("礼物");
 

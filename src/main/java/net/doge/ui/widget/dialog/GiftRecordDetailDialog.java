@@ -5,12 +5,14 @@ import net.doge.ui.TowerUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GiftRecordDetailDialog extends GDialog<GiftResult> {
     private GiftRecord record;
 
     public GiftRecordDetailDialog(TowerUI ui, GiftRecord record) {
-        super(ui, false);
+        super(ui);
         this.record = record;
         init();
     }
@@ -31,7 +33,16 @@ public class GiftRecordDetailDialog extends GDialog<GiftResult> {
     public void init() {
         for (GiftResult result : record.getResults()) listModel.addElement(result);
 
-        setTitle("礼物详情");
+        setTitle("礼物记录详情");
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                GiftResult result = list.getSelectedValue();
+                if (result == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, result.getItem());
+            }
+        });
 
         setVisible(true);
     }

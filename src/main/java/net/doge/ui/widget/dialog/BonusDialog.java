@@ -7,6 +7,7 @@ import net.doge.data.BonusData;
 import net.doge.model.Bonus;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.panel.GPanel;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import java.awt.*;
 public class BonusDialog extends GDialog<Bonus> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GPanel bottomPanel = new GPanel();
-    private GButton okBtn = new GButton("确认", Colors.DEEP_GREEN);
+    private GButton okBtn = new GButton("确认", GColor.DEEP_GREEN);
 
     @Getter
     private boolean confirmed;

@@ -13,8 +13,8 @@ import java.util.List;
  * 翻倍数据
  */
 public class BonusData {
-    // 翻倍生成器
-    public static List<Bonus> bonuses= new LinkedList<>();
+    // 翻倍
+    public static List<Bonus> bonuses = new LinkedList<>();
 
     static {
         initData();

@@ -9,6 +9,7 @@ import net.doge.model.SampleModel;
 import net.doge.model.Trick;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.util.IconUtil;
 
@@ -29,8 +30,8 @@ public class TrickPanel extends GPanel {
     private GLabel tipLabel = new GLabel();
     // 开始
     private GPanel ctrlPanel = new GPanel();
-    private GButton receiveBtn = new GButton(Colors.DARK_ORANGE);
-    private GButton refreshBtn = new GButton("刷新", Colors.DEEP_GREEN);
+    private GButton receiveBtn = new GButton(GColor.DARK_ORANGE);
+    private GButton refreshBtn = new GButton("刷新", GColor.DEEP_GREEN);
     private GLabel costLabel = new GLabel();
 
     public TrickPanel(TowerUI ui) {
@@ -58,7 +59,7 @@ public class TrickPanel extends GPanel {
                     for (SampleModel<Item> model : models) {
                         Item item = model.getItem();
                         if (!item.isBoxRegular()) continue;
-                        GButton btn = new GButton(item.getName(), Colors.LIGHT_BLUE);
+                        GButton btn = new GButton(item.getName(), GColor.LIGHT_BLUE);
                         btn.addActionListener(e -> {
                             trick.setItemChosen(item);
                             tipLabel.setText(String.format("我的选择：%s，选中后可获得奖励：%s", item.getName(), trick.getNumRewarded()));
@@ -79,19 +80,19 @@ public class TrickPanel extends GPanel {
 
     private void init() {
         titleLabel.setFont(FontData.TIP_FONT);
-        titleLabel.setForeground(Colors.DEEP_GREEN);
+        titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
         titlePanel.add(titleLabel);
 
         choicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(Colors.DARK_RED);
+        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
         tipLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         tipPanel.add(tipLabel);
 
         receiveBtn.addActionListener(e -> {
             Trick trick = TrickData.currTrick;
-            ui.updateStepAmount(trick.getItemRewarded(), trick.getNumRewarded());
+            ui.updateItemAmountAndView(trick.getItemRewarded(), trick.getNumRewarded());
             TrickData.refresh();
             updateTrickView();
         });

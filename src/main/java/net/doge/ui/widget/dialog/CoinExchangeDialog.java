@@ -9,6 +9,7 @@ import net.doge.model.GiftRecord;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.ui.widget.textfield.NumTextField;
@@ -29,11 +30,11 @@ public class CoinExchangeDialog extends GDialog<Item> {
     private GPanel totalCostPanel = new GPanel();
     private GLabel totalCostLabel = new GLabel("0");
     private GPanel controlPanel = new GPanel();
-    private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
+    private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private NumTextField numTextField = new NumTextField("0");
-    private GButton plusBtn = new GButton("+", Colors.DEEP_GREEN);
-    private GButton maxBtn = new GButton("最大", Colors.LIGHT_BLUE);
-    private GButton exchangeBtn = new GButton("兑换", Colors.DEEP_GREEN);
+    private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
+    private GButton maxBtn = new GButton("最大", GColor.LIGHT_BLUE);
+    private GButton exchangeBtn = new GButton("兑换", GColor.DEEP_GREEN);
 
     private Item currency;
 
@@ -171,6 +172,15 @@ public class CoinExchangeDialog extends GDialog<Item> {
 
         add(topBox, BorderLayout.NORTH);
         add(bottomPanel, BorderLayout.SOUTH);
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Item item = list.getSelectedValue();
+                if (item == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, item);
+            }
+        });
 
         setVisible(true);
     }

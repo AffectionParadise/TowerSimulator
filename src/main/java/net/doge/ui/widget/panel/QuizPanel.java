@@ -6,9 +6,13 @@ import net.doge.data.ActivityData;
 import net.doge.data.DataStorage;
 import net.doge.data.FontData;
 import net.doge.data.ItemData;
+import net.doge.model.Item;
 import net.doge.model.Quiz;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
+import net.doge.ui.widget.dialog.ActivityDialog;
+import net.doge.ui.widget.dialog.TipDialog;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.textfield.NumTextField;
 import net.doge.util.IconUtil;
@@ -17,10 +21,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class QuizPanel extends GPanel {
+    private ActivityDialog d;
     private TowerUI ui;
     private Quiz quiz = ActivityData.quiz;
 
     // 标题
+    private Box topBox = new Box(BoxLayout.X_AXIS);
+    private GLabel currencyLabel = new GLabel();
     private GPanel titlePanel = new GPanel();
     private GLabel titleLabel = new GLabel();
     // 提示
@@ -28,21 +35,22 @@ public class QuizPanel extends GPanel {
     private GLabel tipLabel = new GLabel();
     // 开始
     private GPanel ctrlPanel = new GPanel();
-    private GButton minus100Btn = new GButton("-100", Colors.DEEP_GREEN);
-    private GButton minus10Btn = new GButton("-10", Colors.DEEP_GREEN);
-    private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
+    private GButton minus100Btn = new GButton("-100", GColor.DEEP_GREEN);
+    private GButton minus10Btn = new GButton("-10", GColor.DEEP_GREEN);
+    private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private NumTextField numTextField = new NumTextField("0");
-    private GButton plusBtn = new GButton("+", Colors.DEEP_GREEN);
-    private GButton plus10Btn = new GButton("+10", Colors.DEEP_GREEN);
-    private GButton plus100Btn = new GButton("+100", Colors.DEEP_GREEN);
-    private GButton oddBtn = new GButton("猜单数", Colors.DARK_RED);
-    private GButton evenBtn = new GButton("猜双数", Colors.LIGHT_BLUE);
-    private GButton raiseBtn = new GButton("加注", Colors.LIGHT_BLUE);
-    private GButton receiveBtn = new GButton("领取", Colors.DARK_ORANGE);
-    private GButton nextTurnBtn = new GButton("下一轮", Colors.DARK_RED);
+    private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
+    private GButton plus10Btn = new GButton("+10", GColor.DEEP_GREEN);
+    private GButton plus100Btn = new GButton("+100", GColor.DEEP_GREEN);
+    private GButton oddBtn = new GButton("猜单数", GColor.DARK_RED);
+    private GButton evenBtn = new GButton("猜双数", GColor.LIGHT_BLUE);
+    private GButton raiseBtn = new GButton("加注", GColor.LIGHT_BLUE);
+    private GButton receiveBtn = new GButton("领取", GColor.DARK_ORANGE);
+    private GButton nextTurnBtn = new GButton("下一轮", GColor.DARK_RED);
 
-    public QuizPanel(TowerUI ui) {
+    public QuizPanel(TowerUI ui, ActivityDialog d) {
         this.ui = ui;
+        this.d = d;
         init();
     }
 
@@ -82,12 +90,19 @@ public class QuizPanel extends GPanel {
     }
 
     private void init() {
+        Item chipItem = quiz.getChipItem();
+        currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
+        currencyLabel.setIcon(IconUtil.getIcon(chipItem.getIconThumbKey()));
+        topBox.add(Box.createHorizontalGlue());
+        topBox.add(currencyLabel);
+        topBox.add(Box.createHorizontalStrut(20));
+
         titleLabel.setFont(FontData.TIP_FONT);
-        titleLabel.setForeground(Colors.DEEP_GREEN);
+        titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
         titlePanel.add(titleLabel);
 
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(Colors.DARK_RED);
+        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
         tipLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         tipPanel.add(tipLabel);
 
@@ -101,7 +116,8 @@ public class QuizPanel extends GPanel {
         evenBtn.addActionListener(e -> bet(0));
         raiseBtn.addActionListener(e -> raise());
         receiveBtn.addActionListener(e -> {
-            ui.updateStepAmount(ItemData.ADVANCED_STEP, quiz.getSuccessStakeNum());
+            ui.updateItemAmountAndView(chipItem, quiz.getSuccessStakeNum());
+            currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
             quiz.setStatus(QuizStatus.SPARE);
             updateQuizView();
         });
@@ -125,6 +141,7 @@ public class QuizPanel extends GPanel {
         ctrlPanel.add(nextTurnBtn);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(topBox);
         add(Box.createVerticalGlue());
         add(titlePanel);
         add(Box.createVerticalGlue());
@@ -139,16 +156,25 @@ public class QuizPanel extends GPanel {
     private void updateAmount(int amount) {
         String text = numTextField.getText();
         if (text.isEmpty()) return;
-        int num = Integer.parseInt(text);
-        numTextField.setText(String.valueOf(num + amount));
+        int nn = Integer.parseInt(text) + amount;
+        if (nn < 1 || nn > DataStorage.get(quiz.getChipItem().getStorageKey())) return;
+        numTextField.setText(String.valueOf(nn));
     }
 
     // 下注
     private void bet(int expectedNum) {
         String text = numTextField.getText();
         int stepNum = Integer.parseInt(text);
-        if (stepNum < 1 || stepNum > DataStorage.get(quiz.getChipItem().getStorageKey())) return;
-        ui.updateStepAmount(ItemData.ADVANCED_STEP, -stepNum);
+        Item chipItem = quiz.getChipItem();
+        if (stepNum < 1) {
+            new TipDialog(d, "不满足最低下注数量要求");
+            return;
+        } else if (stepNum > DataStorage.get(chipItem.getStorageKey())) {
+            new TipDialog(d, String.format("%s不足", chipItem.getName()));
+            return;
+        }
+        ui.updateItemAmountAndView(chipItem, -stepNum);
+        currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
         quiz.setExpectedNum(expectedNum);
         quiz.setStakeNum(stepNum);
         quiz.setStatus(QuizStatus.WAITING);
@@ -159,8 +185,16 @@ public class QuizPanel extends GPanel {
     private void raise() {
         String text = numTextField.getText();
         int stepNum = Integer.parseInt(text);
-        if (stepNum < 1 || stepNum > DataStorage.get(quiz.getChipItem().getStorageKey())) return;
-        ui.updateStepAmount(ItemData.ADVANCED_STEP, -stepNum);
+        Item chipItem = quiz.getChipItem();
+        if (stepNum < 1) {
+            new TipDialog(d, "不满足最低加注数量要求");
+            return;
+        } else if (stepNum > DataStorage.get(chipItem.getStorageKey())) {
+            new TipDialog(d, String.format("%s不足", chipItem.getName()));
+            return;
+        }
+        ui.updateItemAmountAndView(chipItem, -stepNum);
+        currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
         quiz.raise(stepNum);
         updateQuizView();
     }

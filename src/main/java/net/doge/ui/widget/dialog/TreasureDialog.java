@@ -10,6 +10,7 @@ import net.doge.model.Event;
 import net.doge.model.Tower;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
@@ -21,7 +22,7 @@ public class TreasureDialog extends GDialog {
     private GPanel tipPanel = new GPanel();
     private GLabel tipLabel = new GLabel();
     private GPanel bottomPanel = new GPanel();
-    private GButton enterBtn = new GButton("进入", Colors.DEEP_GREEN);
+    private GButton enterBtn = new GButton("进入", GColor.DEEP_GREEN);
 
     @Getter
     private boolean confirmed;
@@ -33,7 +34,7 @@ public class TreasureDialog extends GDialog {
 
     public void init() {
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(Colors.DARK_RED);
+        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
         tipLabel.setVerticalAlignment(SwingConstants.CENTER);
         Tower tower = ui.currEvent.getTower();
         tipLabel.setText(tower.getDesc());

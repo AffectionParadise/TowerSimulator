@@ -10,6 +10,7 @@ import net.doge.model.Item;
 import net.doge.model.Transaction;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.ui.widget.slider.GSlider;
@@ -28,11 +29,11 @@ public class GPExchangeDialog extends GDialog<Transaction> {
     private GPanel totalReceivedPanel = new GPanel();
     private GLabel totalReceivedLabel = new GLabel("0");
     private GPanel controlPanel = new GPanel();
-    private GButton minusBtn = new GButton("-", Colors.DEEP_GREEN);
+    private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private GSlider numSlider = new GSlider();
-    private GButton plusBtn = new GButton("+", Colors.DEEP_GREEN);
-    private GButton maxBtn = new GButton("最大", Colors.LIGHT_BLUE);
-    private GButton exchangeBtn = new GButton("兑换", Colors.DEEP_GREEN);
+    private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
+    private GButton maxBtn = new GButton("最大", GColor.LIGHT_BLUE);
+    private GButton exchangeBtn = new GButton("兑换", GColor.DEEP_GREEN);
 
     private Transaction transaction;
 

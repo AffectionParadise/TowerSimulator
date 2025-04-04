@@ -10,6 +10,8 @@ import net.doge.ui.TowerUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -68,9 +70,10 @@ public class GiftResultDialog extends GDialog<GiftResult> {
             listModel.addElement(new GiftResult(item, num));
             d.addItemNonRepetitive(item);
         }
-        // 增加礼物积分和总价值
+        // 增加礼物积分 总价值 礼物经验
         d.updateGiftPoints(totalGiftPoints);
         DataStorage.add(StorageKey.TOTAL_VALUE, totalValue);
+        DataStorage.add(StorageKey.GIFT_EXP, num * item.getGiftExp());
         // 礼物记录
         GiftRecord record = new GiftRecord(item, num, results, totalValue);
         GiftRecordStorage.add(record);
@@ -78,6 +81,15 @@ public class GiftResultDialog extends GDialog<GiftResult> {
         TrickData.currTrick.accept(record);
 
         setTitle("恭喜你，送出以下礼物");
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                GiftResult result = list.getSelectedValue();
+                if (result == null || e.getClickCount() != 2) return;
+                new GiftDetailDialog(ui, result.getItem());
+            }
+        });
 
         setVisible(true);
     }

@@ -3,6 +3,7 @@ package net.doge.model;
 import lombok.Data;
 import net.doge.constant.Colors;
 import net.doge.data.DataStorage;
+import net.doge.ui.widget.color.GColor;
 
 import java.awt.*;
 
@@ -34,7 +35,7 @@ public class Reward {
         return received ? "已领取" : isSatisfied() ? "可领取" : "未达成";
     }
 
-    public Color getStatusColor() {
-        return isReceived() ? Colors.DEEP_GREEN : isSatisfied() ? Colors.DARK_ORANGE : Colors.DARK_RED;
+    public GColor getStatusColor() {
+        return isReceived() ? GColor.DEEP_GREEN : isSatisfied() ? GColor.DARK_ORANGE : GColor.DARK_RED;
     }
 }

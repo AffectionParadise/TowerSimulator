@@ -1,7 +1,7 @@
 package net.doge.ui.widget.button;
 
-import net.doge.constant.Colors;
 import net.doge.data.FontData;
+import net.doge.ui.widget.color.GColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,20 +15,20 @@ import java.awt.event.MouseListener;
  */
 public class GButton extends JButton implements MouseListener {
     // 绘制时使用的颜色
-    private Color backgroundColor;
-    private Color disabledColor;
+    private GColor backgroundColor;
+    private GColor disabledColor;
 
-    private Color originBgColor;
+    private GColor originBgColor;
 
     public GButton(String text) {
-        this(text, Colors.LIGHT_BLUE);
+        this(text, GColor.LIGHT_BLUE);
     }
 
-    public GButton(Color color) {
+    public GButton(GColor color) {
         this(null, color);
     }
 
-    public GButton(String text, Color color) {
+    public GButton(String text, GColor color) {
         super(text);
         setOpaque(false);
         setContentAreaFilled(false);
@@ -38,7 +38,7 @@ public class GButton extends JButton implements MouseListener {
         setForeground(Color.WHITE);
         setFont(FontData.UI_FONT);
         originBgColor = color;
-        disabledColor = Color.LIGHT_GRAY;
+        disabledColor = GColor.LIGHT_GRAY;
         addMouseListener(this);
     }
 
@@ -49,7 +49,7 @@ public class GButton extends JButton implements MouseListener {
         // 画背景
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (backgroundColor == null) backgroundColor = originBgColor;
-        g2d.setColor(isEnabled() ? backgroundColor : disabledColor);
+        g2d.setColor(isEnabled() ? backgroundColor.getAWTColor() : disabledColor.getAWTColor());
         g2d.fillRoundRect(0, 0, w, h, 10, 10);
 
         super.paintComponent(g);
@@ -61,18 +61,18 @@ public class GButton extends JButton implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        backgroundColor = originBgColor.darker();
+        backgroundColor = GColor.of(originBgColor.getAWTColor().darker());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (getVisibleRect().contains(e.getPoint())) backgroundColor = originBgColor.brighter();
+        if (getVisibleRect().contains(e.getPoint())) backgroundColor = GColor.of(originBgColor.getAWTColor().brighter());
         else backgroundColor = originBgColor;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        backgroundColor = originBgColor.brighter();
+        backgroundColor = GColor.of(originBgColor.getAWTColor().brighter());
     }
 
     @Override
