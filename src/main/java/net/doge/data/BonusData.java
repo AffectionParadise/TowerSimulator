@@ -2,7 +2,6 @@ package net.doge.data;
 
 import net.doge.constant.IconKey;
 import net.doge.model.Bonus;
-import net.doge.model.Event;
 import net.doge.model.SampleModel;
 import net.doge.model.Sampler;
 import net.doge.util.ListUtil;

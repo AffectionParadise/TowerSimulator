@@ -41,7 +41,7 @@ public class TransactionDialog extends GDialog<Transaction> {
 
     private void init() {
         for (Transaction transaction : TransactionData.transactions) {
-            if (transaction.getItemReceived() == ui.currTower.getStepItem()) listModel.addElement(transaction);
+            if (transaction.getItemReceived().equals(ui.currTower.getStepItem())) listModel.addElement(transaction);
         }
 
         buyBtn.addActionListener(e -> {

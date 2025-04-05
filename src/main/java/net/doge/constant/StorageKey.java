@@ -8,6 +8,12 @@ import lombok.Getter;
 public enum StorageKey {
     // 礼物经验
     GIFT_EXP("GiftExp"),
+    // 三塔牌子经验
+    ADVANCED_STEP_EXP("AdvancedStepExp"),
+    // 三塔通关次数
+    ADVANCED_TOWER_CLEARED("AdvancedTowerCleared"),
+    // 金塔通关次数
+    DELUXE_TOWER_CLEARED("DeluxeTowerCleared"),
     // 总价值
     TOTAL_VALUE("TotalValue"),
     // 礼物积分
@@ -74,6 +80,14 @@ public enum StorageKey {
     ULTIMATE_GIFT_2_NUM("UltimateGift2Num"),
     // 嘉年华孢子兑换券数量
     TICKET("Ticket"),
+    // 好吃的骨头数量
+    SKIN1_NUM("Skin1Num"),
+    // 丘比特数量
+    SKIN2_NUM("Skin2Num"),
+    // 王子数量
+    SKIN3_NUM("Skin3Num"),
+    // 公主数量
+    SKIN4_NUM("Skin4Num"),
 
     // 小盒子子物品数量
     BB4_GIFT_NUM("BB4GiftNum"),

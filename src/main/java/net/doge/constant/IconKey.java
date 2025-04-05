@@ -122,6 +122,14 @@ public enum IconKey {
     ULTIMATE_GIFT_2("UltimateGift2"),
     // 嘉年华孢子兑换券
     TICKET("Ticket"),
+    // 好吃的骨头
+    SKIN1("Skin1"),
+    // 丘比特
+    SKIN2("Skin2"),
+    // 王子
+    SKIN3("Skin3"),
+    // 公主
+    SKIN4("Skin4"),
 
     // 大盒子子物品
     BB4_GIFT("bb4Gift"),

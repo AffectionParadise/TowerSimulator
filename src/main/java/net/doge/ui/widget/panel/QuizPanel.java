@@ -1,11 +1,9 @@
 package net.doge.ui.widget.panel;
 
-import net.doge.constant.Colors;
 import net.doge.constant.QuizStatus;
 import net.doge.data.ActivityData;
 import net.doge.data.DataStorage;
 import net.doge.data.FontData;
-import net.doge.data.ItemData;
 import net.doge.model.Item;
 import net.doge.model.Quiz;
 import net.doge.ui.TowerUI;
@@ -33,6 +31,8 @@ public class QuizPanel extends GPanel {
     // 提示
     private GPanel tipPanel = new GPanel();
     private GLabel tipLabel = new GLabel();
+    private GPanel limitPanel = new GPanel();
+    private GLabel limitLabel = new GLabel();
     // 开始
     private GPanel ctrlPanel = new GPanel();
     private GButton minus100Btn = new GButton("-100", GColor.DEEP_GREEN);
@@ -75,6 +75,7 @@ public class QuizPanel extends GPanel {
                 } else tipLabel.setText("竞猜失败，请再接再厉");
                 break;
         }
+        limitPanel.setVisible(!quiz.isStatus(QuizStatus.OVER));
         minus100Btn.setVisible(!quiz.isStatus(QuizStatus.OVER));
         minus10Btn.setVisible(!quiz.isStatus(QuizStatus.OVER));
         minusBtn.setVisible(!quiz.isStatus(QuizStatus.OVER));
@@ -106,23 +107,27 @@ public class QuizPanel extends GPanel {
         tipLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         tipPanel.add(tipLabel);
 
+        limitLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        limitLabel.setText(String.format("下注上限：%s", quiz.getMaxStakeNum()));
+        limitPanel.add(limitLabel);
+
         minus100Btn.addActionListener(e_ -> updateAmount(-100));
         minus10Btn.addActionListener(e_ -> updateAmount(-10));
         minusBtn.addActionListener(e_ -> updateAmount(-1));
         plusBtn.addActionListener(e_ -> updateAmount(1));
         plus10Btn.addActionListener(e_ -> updateAmount(10));
         plus100Btn.addActionListener(e_ -> updateAmount(100));
-        oddBtn.addActionListener(e -> bet(1));
-        evenBtn.addActionListener(e -> bet(0));
-        raiseBtn.addActionListener(e -> raise());
+        oddBtn.addActionListener(e -> bet(1, false));
+        evenBtn.addActionListener(e -> bet(0, false));
+        raiseBtn.addActionListener(e -> bet(quiz.getExpectedNum(), true));
         receiveBtn.addActionListener(e -> {
             ui.updateItemAmountAndView(chipItem, quiz.getSuccessStakeNum());
             currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
-            quiz.setStatus(QuizStatus.SPARE);
+            quiz.refresh();
             updateQuizView();
         });
         nextTurnBtn.addActionListener(e -> {
-            quiz.setStatus(QuizStatus.SPARE);
+            quiz.refresh();
             updateQuizView();
         });
 
@@ -147,55 +152,47 @@ public class QuizPanel extends GPanel {
         add(Box.createVerticalGlue());
         add(tipPanel);
         add(Box.createVerticalGlue());
+        add(limitPanel);
+        add(Box.createVerticalGlue());
         add(ctrlPanel);
         add(Box.createVerticalGlue());
 
         updateQuizView();
     }
 
+    // 更新数量
     private void updateAmount(int amount) {
         String text = numTextField.getText();
         if (text.isEmpty()) return;
         int nn = Integer.parseInt(text) + amount;
-        if (nn < 1 || nn > DataStorage.get(quiz.getChipItem().getStorageKey())) return;
-        numTextField.setText(String.valueOf(nn));
+        int maxNum = DataStorage.get(quiz.getChipItem().getStorageKey());
+        numTextField.setText(String.valueOf(Math.max(Math.min(Math.min(nn, maxNum), quiz.getMaxStakeNum() - quiz.getStakeNum()), 0)));
     }
 
     // 下注
-    private void bet(int expectedNum) {
+    private void bet(int expectedNum, boolean raise) {
         String text = numTextField.getText();
         int stepNum = Integer.parseInt(text);
         Item chipItem = quiz.getChipItem();
-        if (stepNum < 1) {
+        if (stepNum > DataStorage.get(chipItem.getStorageKey())) {
+            new TipDialog(d, String.format("%s不足", chipItem.getName()));
+            return;
+        } else if (stepNum < 1) {
             new TipDialog(d, "不满足最低下注数量要求");
             return;
-        } else if (stepNum > DataStorage.get(chipItem.getStorageKey())) {
-            new TipDialog(d, String.format("%s不足", chipItem.getName()));
+        } else if (stepNum > quiz.getMaxStakeNum() - quiz.getStakeNum()) {
+            new TipDialog(d, "超出下注上限");
             return;
         }
         ui.updateItemAmountAndView(chipItem, -stepNum);
         currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
-        quiz.setExpectedNum(expectedNum);
-        quiz.setStakeNum(stepNum);
-        quiz.setStatus(QuizStatus.WAITING);
-        updateQuizView();
-    }
-
-    // 加注
-    private void raise() {
-        String text = numTextField.getText();
-        int stepNum = Integer.parseInt(text);
-        Item chipItem = quiz.getChipItem();
-        if (stepNum < 1) {
-            new TipDialog(d, "不满足最低加注数量要求");
-            return;
-        } else if (stepNum > DataStorage.get(chipItem.getStorageKey())) {
-            new TipDialog(d, String.format("%s不足", chipItem.getName()));
-            return;
+        if (raise) {
+            quiz.raise(stepNum);
+        } else {
+            quiz.setExpectedNum(expectedNum);
+            quiz.setStakeNum(stepNum);
+            quiz.setStatus(QuizStatus.WAITING);
         }
-        ui.updateItemAmountAndView(chipItem, -stepNum);
-        currencyLabel.setText(String.valueOf(DataStorage.get(chipItem.getStorageKey())));
-        quiz.raise(stepNum);
         updateQuizView();
     }
 }

@@ -228,10 +228,14 @@ public class TowerUI extends JFrame {
         if (currTower.blocks[x2][y2].isEnd()) {
             // 显示本关获得物品
             backpackBtn.doClick();
-            // 判断竞猜
             if (TowerData.isAdvancedTower(currTower)) {
+                // 通关次数增加
+                DataStorage.add(StorageKey.ADVANCED_TOWER_CLEARED, 1);
+                // 判断竞猜
                 if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
                 else if (quiz.isStatus(QuizStatus.PROGRESSING)) quiz.setStatus(QuizStatus.OVER);
+            } else if (TowerData.isDeluxeTower(currTower)) {
+                DataStorage.add(StorageKey.DELUXE_TOWER_CLEARED, 1);
             }
             // 密藏结束
             if (TowerData.isTreasure(currTower)) finishTreasure(currTower);
@@ -280,8 +284,12 @@ public class TowerUI extends JFrame {
             Item stepItem = currTower.getStepItem();
             int stepCost = currTower.getStepCost();
             updateItemAmountAndView(stepItem, -stepCost);
-            // 积累步数
-            if (stepItem.equals(ItemData.ADVANCED_STEP)) updateGatheredStepAmount(stepCost);
+            if (stepItem.equals(ItemData.ADVANCED_STEP)) {
+                // 积累步数
+                updateGatheredStepAmount(stepCost);
+                // 三塔牌子经验
+                DataStorage.add(StorageKey.ADVANCED_STEP_EXP, stepCost * ActivityData.ADVANCED_STEP_EXP);
+            }
             // 计算倍率
             int rate = 1;
             if (TowerData.isAdvancedTower(currTower) && EventData.isBonusTrigger(currEvent)) {
@@ -416,6 +424,24 @@ public class TowerUI extends JFrame {
             for (int i = 0, s = rewards.size(); i < s; i++)
                 ActivityData.giftExpRewards.get(i).setReceived(rewards.get(i).isReceived());
         }
+        JSONArray advancedStepExpRewardsJsonArray = data.getJSONArray("AdvancedStepExpRewards");
+        if (JsonUtil.notEmpty(advancedStepExpRewardsJsonArray)) {
+            List<Reward> rewards = advancedStepExpRewardsJsonArray.toList(Reward.class);
+            for (int i = 0, s = rewards.size(); i < s; i++)
+                ActivityData.advancedStepExpRewards.get(i).setReceived(rewards.get(i).isReceived());
+        }
+        JSONArray advancedTowerClearRewardsJsonArray = data.getJSONArray("AdvancedTowerClearRewards");
+        if (JsonUtil.notEmpty(advancedTowerClearRewardsJsonArray)) {
+            List<Reward> rewards = advancedTowerClearRewardsJsonArray.toList(Reward.class);
+            for (int i = 0, s = rewards.size(); i < s; i++)
+                ActivityData.advancedTowerClearRewards.get(i).setReceived(rewards.get(i).isReceived());
+        }
+        JSONArray deluxeTowerClearRewardsJsonArray = data.getJSONArray("DeluxeTowerClearRewards");
+        if (JsonUtil.notEmpty(deluxeTowerClearRewardsJsonArray)) {
+            List<Reward> rewards = deluxeTowerClearRewardsJsonArray.toList(Reward.class);
+            for (int i = 0, s = rewards.size(); i < s; i++)
+                ActivityData.deluxeTowerClearRewards.get(i).setReceived(rewards.get(i).isReceived());
+        }
 
         // 刷新数据显示
         updateGatheredStepAmount(0);
@@ -442,6 +468,12 @@ public class TowerUI extends JFrame {
         data.put("StepConsumptionRewards", stepConsumptionRewardsJsonArray);
         JSONArray giftExpRewardsJsonArray = JSONArray.from(ActivityData.giftExpRewards);
         data.put("GiftExpRewards", giftExpRewardsJsonArray);
+        JSONArray advancedStepExpRewardsJsonArray = JSONArray.from(ActivityData.advancedStepExpRewards);
+        data.put("AdvancedStepExpRewards", advancedStepExpRewardsJsonArray);
+        JSONArray advancedTowerClearRewardsJsonArray = JSONArray.from(ActivityData.advancedTowerClearRewards);
+        data.put("AdvancedTowerClearRewards", advancedTowerClearRewardsJsonArray);
+        JSONArray deluxeTowerClearRewardsJsonArray = JSONArray.from(ActivityData.deluxeTowerClearRewards);
+        data.put("DeluxeTowerClearRewards", deluxeTowerClearRewardsJsonArray);
         JsonUtil.toFile(data, "data.json");
     }
 

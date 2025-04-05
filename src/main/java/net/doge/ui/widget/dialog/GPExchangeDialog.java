@@ -25,9 +25,16 @@ public class GPExchangeDialog extends GDialog<Transaction> {
     private GiftDialog d;
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GLabel currencyLabel = new GLabel();
+    // 物品
+    private GPanel centerPanel = new GPanel();
+    private GPanel itemPanel = new GPanel();
+    private GLabel itemLabel = new GLabel();
+    private GPanel costPanel = new GPanel();
+    private GLabel costLabel = new GLabel();
+    // 底部
     private GPanel bottomPanel = new GPanel();
     private GPanel totalReceivedPanel = new GPanel();
-    private GLabel totalReceivedLabel = new GLabel("0");
+    private GLabel totalReceivedLabel = new GLabel("兑换 0 次，获得 0");
     private GPanel controlPanel = new GPanel();
     private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private GSlider numSlider = new GSlider();
@@ -44,24 +51,10 @@ public class GPExchangeDialog extends GDialog<Transaction> {
         init();
     }
 
-    @Override
-    protected DefaultListCellRenderer createCellRenderer() {
-        return new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                Transaction transaction = (Transaction) value;
-                return createCellPanel(String.valueOf(transaction.getNumReceived()), transaction.getIconKey(), String.format("花费：%s", transaction.getCost()),
-                        transaction.getItemConsumed().getIconThumbKey(), isSelected);
-            }
-        };
-    }
-
     public void init() {
         Item giftPoints = new Item("礼物积分", ItemType.CURRENCY, null, StorageKey.GIFT_POINTS);
         giftPoints.setIconThumbKey(IconKey.GIFT_POINTS);
         transaction = new Transaction(IconKey.ADVANCED_COIN, ItemData.ADVANCED_COIN, 200, giftPoints, 1500);
-
-        listModel.addElement(transaction);
 
         Item currency = transaction.getItemConsumed();
         int total = DataStorage.get(currency.getStorageKey());
@@ -70,6 +63,17 @@ public class GPExchangeDialog extends GDialog<Transaction> {
         topBox.add(Box.createHorizontalGlue());
         topBox.add(currencyLabel);
         topBox.add(Box.createHorizontalStrut(20));
+
+        itemLabel.setText(String.valueOf(transaction.getNumReceived()));
+        itemLabel.setIcon(IconUtil.getIcon(transaction.getIconKey()));
+        itemLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+        itemLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        itemPanel.add(itemLabel);
+
+        costLabel.setText(String.format("花费：%s", transaction.getCost()));
+        costLabel.setIcon(IconUtil.getIcon(transaction.getItemConsumed().getIconThumbKey()));
+        costLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        costPanel.add(costLabel);
 
         minusBtn.addActionListener(e -> numSlider.setValue(numSlider.getValue() - 1));
 
@@ -107,6 +111,12 @@ public class GPExchangeDialog extends GDialog<Transaction> {
 
         totalReceivedPanel.add(totalReceivedLabel);
 
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(itemPanel);
+        centerPanel.add(costPanel);
+        centerPanel.add(Box.createVerticalGlue());
+
         controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         controlPanel.add(minusBtn);
         controlPanel.add(numSlider);
@@ -121,6 +131,7 @@ public class GPExchangeDialog extends GDialog<Transaction> {
         setTitle("积分兑换");
 
         add(topBox, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
 
         setVisible(true);

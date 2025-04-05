@@ -2,7 +2,6 @@ package net.doge.model;
 
 import lombok.Data;
 import net.doge.constant.QuizStatus;
-import net.doge.data.ActivityData;
 import net.doge.data.ItemData;
 
 @Data
@@ -24,20 +23,24 @@ public class Quiz {
     private int actualNum;
     // 投入数量
     private int stakeNum;
+    // 下注上限
+    private int maxStakeNum;
 
-    public Quiz(String title, Item chipItem) {
+    public Quiz(String title, Item chipItem, int maxStakeNum) {
         this.title = title;
         this.chipItem = chipItem;
+        this.maxStakeNum = maxStakeNum;
         // 竞猜物品
         for (Item item : ItemData.items) {
             if (item.isGuessable()) quizItemSampler.addModel(new SampleModel<>(item, 200));
         }
-        setStatus(QuizStatus.SPARE);
+        refresh();
     }
 
-    public void setStatus(QuizStatus status) {
-        this.status = status;
-        if (status == QuizStatus.SPARE) titleItem = quizItemSampler.lottery().getItem();
+    public void refresh() {
+        status = QuizStatus.SPARE;
+        titleItem = quizItemSampler.lottery().getItem();
+        stakeNum = 0;
     }
 
     public boolean isStatus(QuizStatus status) {

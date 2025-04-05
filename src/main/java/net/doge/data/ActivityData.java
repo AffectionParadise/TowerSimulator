@@ -8,16 +8,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ActivityData {
-    public static Quiz quiz = new Quiz("%s%s的生成数量：%s", ItemData.ADVANCED_STEP);
+    public static int ADVANCED_STEP_EXP = 100;
+    public static Quiz quiz = new Quiz("%s%s的生成数量：%s", ItemData.ADVANCED_STEP, 2000);
     public static List<Reward> stepConsumptionRewards = new LinkedList<>();
     public static List<Reward> giftExpRewards = new LinkedList<>();
+    public static List<Reward> advancedStepExpRewards = new LinkedList<>();
+    public static List<Reward> advancedTowerClearRewards = new LinkedList<>();
+    public static List<Reward> deluxeTowerClearRewards = new LinkedList<>();
 
     static {
         initData();
     }
 
     public static void initData() {
-        Item gatheredItem = new Item("", ItemType.CURRENCY, null, StorageKey.GATHERED_STEP_NUM);
+        Item gatheredItem = new Item("三塔牌子消耗", ItemType.CURRENCY, null, StorageKey.GATHERED_STEP_NUM);
         stepConsumptionRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, gatheredItem, 10));
         stepConsumptionRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, gatheredItem, 30));
         stepConsumptionRewards.add(new Reward(ItemData.ADVANCED_STEP, 5, gatheredItem, 80));
@@ -29,7 +33,7 @@ public class ActivityData {
         stepConsumptionRewards.add(new Reward(ItemData.ADVANCED_STEP, 648, gatheredItem, 20000));
         stepConsumptionRewards.add(new Reward(ItemData.ADVANCED_STEP, 1288, gatheredItem, 50000));
 
-        Item giftExpItem = new Item("", ItemType.CURRENCY, null, StorageKey.GIFT_EXP);
+        Item giftExpItem = new Item("送礼经验", ItemType.CURRENCY, null, StorageKey.GIFT_EXP);
         giftExpRewards.add(new Reward(ItemData.DELUXE_STEP, 1, giftExpItem, 400));
         giftExpRewards.add(new Reward(ItemData.REGULAR_GIFT, 3, giftExpItem, 800));
         giftExpRewards.add(new Reward(ItemData.REGULAR_GIFT, 4, giftExpItem, 1600));
@@ -55,5 +59,54 @@ public class ActivityData {
         giftExpRewards.add(new Reward(ItemData.REGULAR_BOX, 2, giftExpItem, 159400));
         giftExpRewards.add(new Reward(ItemData.REGULAR_BOX, 4, giftExpItem, 168400));
         giftExpRewards.add(new Reward(ItemData.REGULAR_BOX, 3, giftExpItem, 177400));
+
+        Item advancedStepExpItem = new Item("三塔牌子经验", ItemType.CURRENCY, null, StorageKey.ADVANCED_STEP_EXP);
+        advancedStepExpRewards.add(new Reward(ItemData.DELUXE_STEP, 1, advancedStepExpItem, 500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 1000));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 1500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 2000));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 2500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 3000));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 3500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 4000));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 1, advancedStepExpItem, 4500));
+        advancedStepExpRewards.add(new Reward(ItemData.DELUXE_STEP, 1, advancedStepExpItem, 5500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, advancedStepExpItem, 6500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, advancedStepExpItem, 7500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, advancedStepExpItem, 8500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, advancedStepExpItem, 9500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 2, advancedStepExpItem, 11500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 3, advancedStepExpItem, 13500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 3, advancedStepExpItem, 15500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 3, advancedStepExpItem, 17500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_STEP, 3, advancedStepExpItem, 19500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_BOX, 1, advancedStepExpItem, 23500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 4, advancedStepExpItem, 27500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 4, advancedStepExpItem, 31500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 4, advancedStepExpItem, 35500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 4, advancedStepExpItem, 39500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_BOX, 1, advancedStepExpItem, 47500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 5, advancedStepExpItem, 55500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 5, advancedStepExpItem, 63500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 5, advancedStepExpItem, 71500));
+        advancedStepExpRewards.add(new Reward(ItemData.REGULAR_BOX, 5, advancedStepExpItem, 79500));
+        advancedStepExpRewards.add(new Reward(ItemData.ADVANCED_BOX, 1, advancedStepExpItem, 87500));
+
+        Item advancedTowerClearItem = new Item("三塔通关次数", ItemType.CURRENCY, null, StorageKey.ADVANCED_TOWER_CLEARED);
+        advancedTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 1, advancedTowerClearItem, 1));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 3));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 7));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 13));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 21));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 31));
+        advancedTowerClearRewards.add(new Reward(ItemData.ADVANCED_STEP, 12, advancedTowerClearItem, 43));
+        advancedTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 2, advancedTowerClearItem, 57));
+
+        Item deluxeTowerClearItem = new Item("金塔通关次数", ItemType.CURRENCY, null, StorageKey.DELUXE_TOWER_CLEARED);
+        deluxeTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 1, deluxeTowerClearItem, 1));
+        deluxeTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 2, deluxeTowerClearItem, 4));
+        deluxeTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 5, deluxeTowerClearItem, 10));
+        deluxeTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 10, deluxeTowerClearItem, 19));
+        deluxeTowerClearRewards.add(new Reward(ItemData.DELUXE_STEP, 18, deluxeTowerClearItem, 31));
     }
 }

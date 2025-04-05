@@ -17,7 +17,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class StepConsumptionRewardPanel extends GPanel {
+public class DeluxeTowerClearRewardPanel extends GPanel {
     private TowerUI ui;
 
     protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAWTColor(), 5, true);
@@ -30,16 +30,16 @@ public class StepConsumptionRewardPanel extends GPanel {
     private GPanel titlePanel = new GPanel();
     private GLabel titleLabel = new GLabel();
 
-    public StepConsumptionRewardPanel(TowerUI ui) {
+    public DeluxeTowerClearRewardPanel(TowerUI ui) {
         this.ui = ui;
         init();
     }
 
     private void init() {
-        for (Reward reward : ActivityData.stepConsumptionRewards) {
+        for (Reward reward : ActivityData.deluxeTowerClearRewards) {
             listModel.addElement(reward);
         }
-        titleLabel.setText(String.format("消耗%s走塔，获得大量返利！", ActivityData.stepConsumptionRewards.get(0).getItemReceived().getName()));
+        titleLabel.setText("积累金塔通关次数，送金塔步数！");
         titlePanel.add(titleLabel);
 
         // 横向滚动时自适应高度

@@ -49,12 +49,12 @@ public class TrickPanel extends GPanel {
             receiveBtn.setText("领取");
             receiveBtn.setEnabled(true);
         } else {
-            choicePanel.removeAll();
             if (trick.isChoice()) {
                 if (trick.isItemChosen())
                     tipLabel.setText(String.format("我的选择：%s，选中后可获得奖励：%s", trick.getItemChosen().getName(), trick.getNumRewarded()));
                 else {
                     tipLabel.setText(String.format("完成后可获得奖励：%s", trick.getNumRewarded()));
+                    choicePanel.removeAll();
                     List<SampleModel<Item>> models = trick.getItemExpected().getSubItemSampler().getModels();
                     for (SampleModel<Item> model : models) {
                         Item item = model.getItem();

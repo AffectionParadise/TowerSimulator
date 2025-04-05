@@ -60,6 +60,10 @@ public class TowerData {
         return tower == ADVANCED_TOWER;
     }
 
+    public static boolean isDeluxeTower(Tower tower) {
+        return tower == DELUXE_TOWER;
+    }
+
     // 是否为密藏
     public static boolean isTreasure(Tower tower) {
         return tower == REGULAR_TREASURE

@@ -1,6 +1,7 @@
 package net.doge.model;
 
 import lombok.Getter;
+import org.apache.commons.math3.random.MersenneTwister;
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -12,7 +13,7 @@ public class Sampler<I> {
     @Getter
     private double weightSum;
 
-    private static final Random random = new Random();
+    private static final MersenneTwister random = new MersenneTwister();
 
     public void addModel(SampleModel<I> model) {
         models.add(model);
