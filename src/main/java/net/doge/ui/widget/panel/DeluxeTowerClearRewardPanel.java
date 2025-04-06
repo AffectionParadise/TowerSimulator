@@ -6,6 +6,6 @@ import net.doge.ui.TowerUI;
 public class DeluxeTowerClearRewardPanel extends RewardPanel {
 
     public DeluxeTowerClearRewardPanel(TowerUI ui) {
-        super(ui, ActivityData.deluxeTowerClearRewards, "积累金塔通关次数，送金塔步数！");
+        super(ui, ActivityData.deluxeTowerClearRewards, "积累金塔通关次数，送金塔步数和丰富礼物！");
     }
 }

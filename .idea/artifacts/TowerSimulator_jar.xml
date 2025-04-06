@@ -3,7 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TowerSimulator_jar</output-path>
     <root id="archive" name="TowerSimulator.jar">
       <element id="module-output" name="TowerSimulator" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson2/fastjson2/2.0.43/fastjson2-2.0.43.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/cn/hutool/hutool-core/5.8.22/hutool-core-5.8.22.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
