@@ -5,8 +5,6 @@ import lombok.Data;
 import net.doge.constant.IconKey;
 import net.doge.ui.widget.color.GColor;
 
-import javax.swing.*;
-
 @Data
 @AllArgsConstructor
 public class Account {
@@ -24,10 +22,8 @@ public class Account {
         this.avatar = avatar;
     }
 
-    public void setVip(Vip vip) {
-        this.vip = vip;
-        boolean noVip = vip == null;
-        vipStepLeft = noVip ? 0 : vipStepLeft + vip.getDuration();
+    public void addVipStepLeft(int amount) {
+        vipStepLeft += amount;
     }
 
     public GColor getHighlightColor() {

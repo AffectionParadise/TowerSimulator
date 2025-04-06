@@ -40,6 +40,7 @@ public class Quiz {
     public void refresh() {
         status = QuizStatus.SPARE;
         titleItem = quizItemSampler.lottery().getItem();
+        actualNum = 0;
         stakeNum = 0;
     }
 
@@ -65,6 +66,10 @@ public class Quiz {
 
     public int getSuccessStakeNum() {
         return stakeNum * 2;
+    }
+
+    public void addActualNum(int amount) {
+        this.actualNum += amount;
     }
 
     public boolean isSuccess() {

@@ -10,4 +10,8 @@ public class SampleModel<I> {
     private I item;
     // 权重
     private double weight;
+
+    public void addWeight(double amount) {
+        weight += amount;
+    }
 }

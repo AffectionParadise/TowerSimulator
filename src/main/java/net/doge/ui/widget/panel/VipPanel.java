@@ -2,7 +2,10 @@ package net.doge.ui.widget.panel;
 
 import net.doge.constant.StorageKey;
 import net.doge.constant.TowerBlockStatus;
-import net.doge.data.*;
+import net.doge.data.AccountData;
+import net.doge.data.DataStorage;
+import net.doge.data.ItemData;
+import net.doge.data.VipData;
 import net.doge.model.Account;
 import net.doge.model.Item;
 import net.doge.model.Tower;
@@ -54,6 +57,12 @@ public class VipPanel extends GPanel {
         stepLabel.setText(String.format("%s 步", vip.getDuration()));
         stepPanel.add(stepLabel);
 
+        GPanel weightPanel = new GPanel();
+        GLabel weightLabel = new GLabel();
+        weightLabel.setForeground(vip.getHighlightColor().getAWTColor());
+        weightLabel.setText(String.format("%s%s的概率", vip.getWeightDesc(), vip.getSourceItem().getName()));
+        weightPanel.add(weightLabel);
+
         GPanel effectPanel = new GPanel();
         GLabel effectLabel = new GLabel();
         effectLabel.setForeground(vip.getHighlightColor().getAWTColor());
@@ -87,10 +96,16 @@ public class VipPanel extends GPanel {
             DataStorage.add(csk, -cost);
             int nn = DataStorage.get(csk);
             currencyLabel.setText(String.valueOf(nn));
-            // 获得会员
-            account.setVip(vip);
-            Tower tower = ui.currTower;
-            tower.blocks[tower.x][tower.y].setStatus(TowerBlockStatus.ME);
+            if (!account.isVip()) {
+                // 获得会员
+                account.setVip(vip);
+                // 增加物品权重
+                ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
+                Tower tower = ui.currTower;
+                tower.blocks[tower.x][tower.y].setStatus(TowerBlockStatus.ME);
+            }
+            // 剩余步数增加
+            account.addVipStepLeft(vip.getDuration());
             updateVipView();
         });
         buyPanel.add(buyBtn);
@@ -100,6 +115,8 @@ public class VipPanel extends GPanel {
         vipPanel.add(itemPanel);
         vipPanel.add(Box.createVerticalGlue());
         vipPanel.add(stepPanel);
+        vipPanel.add(Box.createVerticalGlue());
+        vipPanel.add(weightPanel);
         vipPanel.add(Box.createVerticalGlue());
         vipPanel.add(effectPanel);
         vipPanel.add(Box.createVerticalGlue());

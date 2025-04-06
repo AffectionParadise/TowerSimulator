@@ -129,13 +129,9 @@ public class TowerUI extends JFrame {
         if (isNew || tower.isEmpty()) {
             currTower.x = currTower.y = 0;
             currTower.getBackpackStorage().clear();
-            Sampler<Item> itemSampler = ItemData.getItemSampler(tower);
             for (int i = 0; i < currTower.r; i++) {
                 for (int j = 0; j < currTower.c; j++) {
                     TowerBlock block = new TowerBlock();
-
-                    Item item = itemSampler.lottery().getItem();
-                    block.setItem(item);
 
                     GLabel label = new GLabel();
                     label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -162,9 +158,6 @@ public class TowerUI extends JFrame {
             }
             currTower.blocks[0][0].setStatus(TowerBlockStatus.ME);
             currTower.blocks[currTower.r - 1][currTower.c - 1].setEnd(true);
-
-            if (TowerData.isAdvancedTower(currTower) && quiz.isStatus(QuizStatus.PROGRESSING))
-                quiz.setActualNum(getTargetNum());
         }
         // 延用旧地图(从密藏出来)
         else {
@@ -316,14 +309,21 @@ public class TowerUI extends JFrame {
                     new ConversionDialog(this);
                 }
             }
+            // 礼物库存增加
             StorageKey key = blockItem.getStorageKey();
             DataStorage.add(key, num);
             currTower.getBackpackStorage().add(key, num);
             if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
             // 会员消耗
-            account.consumeVip();
-            if (account.getVipStepLeft() <= 0) {
-                account.setVip(null);
+            if (TowerData.isAdvancedTower(currTower) && account.isVip()) {
+                account.consumeVip();
+                if (account.getVipStepLeft() <= 0) {
+                    Vip vip = account.getVip();
+                    // 恢复物品概率
+                    ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
+                    account.setVip(null);
+                    account.setVipStepLeft(0);
+                }
             }
         }
         block.setStatus(TowerBlockStatus.ME);
@@ -332,7 +332,17 @@ public class TowerUI extends JFrame {
     // 激活某点
     private void activateBlock(int x, int y) {
         if (x < 0 || x >= currTower.r || y < 0 || y >= currTower.c) return;
-        currTower.blocks[x][y].setStatus(TowerBlockStatus.ACTIVATED);
+        Sampler<Item> itemSampler = ItemData.getItemSampler(currTower);
+        TowerBlock block = currTower.blocks[x][y];
+        // 从不可见变为激活时生成物品
+        if (!block.isVisible()) {
+            Item item = itemSampler.lottery().getItem();
+            block.setItem(item);
+            if (quiz.isStatus(QuizStatus.PROGRESSING) && quiz.getTitleItem().equals(item)) {
+                quiz.addActualNum(block.getNum());
+            }
+        }
+        block.setStatus(TowerBlockStatus.ACTIVATED);
     }
 
     // 判断两点是否可达
@@ -367,18 +377,6 @@ public class TowerUI extends JFrame {
             }
         }
         return false;
-    }
-
-    // 获取竞猜目标数量
-    private int getTargetNum() {
-        int res = 0;
-        for (int i = 0; i < currTower.r; i++) {
-            for (int j = 0; j < currTower.c; j++) {
-                if (quiz.getTitleItem() != currTower.blocks[i][j].getItem()) continue;
-                res += currTower.blocks[i][j].getNum();
-            }
-        }
-        return res;
     }
 
     // 载入数据

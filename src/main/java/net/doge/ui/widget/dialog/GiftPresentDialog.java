@@ -1,7 +1,6 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.data.DataStorage;
-import net.doge.constant.Colors;
 import net.doge.constant.StorageKey;
 import net.doge.data.ItemData;
 import net.doge.model.Item;
@@ -15,9 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.List;
 
 public class GiftPresentDialog extends GDialog<Item> {
     private GiftDialog d;
@@ -109,7 +105,7 @@ public class GiftPresentDialog extends GDialog<Item> {
             public void mouseReleased(MouseEvent e) {
                 Item item = list.getSelectedValue();
                 if (item == null || e.getClickCount() != 2) return;
-                new GiftDetailDialog(ui, item);
+                new ItemDetailDialog(ui, item);
             }
         });
 

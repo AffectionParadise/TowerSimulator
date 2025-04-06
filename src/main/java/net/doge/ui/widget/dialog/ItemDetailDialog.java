@@ -1,10 +1,7 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.constant.IconKey;
-import net.doge.data.AccountData;
-import net.doge.data.DataStorage;
 import net.doge.model.Item;
-import net.doge.model.Vip;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
@@ -15,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class GiftDetailDialog extends GDialog<Item> {
+public class ItemDetailDialog extends GDialog<Item> {
     private GPanel centerPanel = new GPanel();
     private GPanel itemPanel = new GPanel();
     private GLabel itemLabel = new GLabel();
@@ -28,7 +25,7 @@ public class GiftDetailDialog extends GDialog<Item> {
 
     private Item item;
 
-    public GiftDetailDialog(TowerUI ui, Item item) {
+    public ItemDetailDialog(TowerUI ui, Item item) {
         super(ui);
         this.item = item;
         init();
@@ -107,11 +104,11 @@ public class GiftDetailDialog extends GDialog<Item> {
             public void mouseReleased(MouseEvent e) {
                 Item item = list.getSelectedValue();
                 if (item == null || e.getClickCount() != 2) return;
-                new GiftDetailDialog(ui, item);
+                new ItemDetailDialog(ui, item);
             }
         });
 
-        setTitle("礼物详情");
+        setTitle("物品详情");
 
         setVisible(true);
     }

@@ -87,7 +87,7 @@ public class GiftResultDialog extends GDialog<GiftResult> {
             public void mouseReleased(MouseEvent e) {
                 GiftResult result = list.getSelectedValue();
                 if (result == null || e.getClickCount() != 2) return;
-                new GiftDetailDialog(ui, result.getItem());
+                new ItemDetailDialog(ui, result.getItem());
             }
         });
 

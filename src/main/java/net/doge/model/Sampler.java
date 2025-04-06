@@ -3,7 +3,6 @@ package net.doge.model;
 import lombok.Getter;
 import org.apache.commons.math3.random.MersenneTwister;
 
-import java.security.SecureRandom;
 import java.util.*;
 
 public class Sampler<I> {
@@ -17,7 +16,13 @@ public class Sampler<I> {
 
     public void addModel(SampleModel<I> model) {
         models.add(model);
-        weightPrefixSum.add(weightSum += model.getWeight());
+        updateWeightSum();
+    }
+
+    public void updateWeightSum() {
+        weightPrefixSum.clear();
+        weightSum = 0;
+        for (SampleModel<I> model : models) weightPrefixSum.add(weightSum += model.getWeight());
     }
 
     public void addModelsLinearWeights(List<I> items, double maxWeight, double minWeight) {
@@ -54,5 +59,13 @@ public class Sampler<I> {
         Map<SampleModel<I>, Integer> resMap = new HashMap<>();
         res.forEach(m -> resMap.put(m, resMap.getOrDefault(m, 0) + 1));
         return resMap;
+    }
+
+    // 叠加物品权重
+    public void addWeight(I item, double amount) {
+        for (SampleModel<I> model : models) {
+            if (model.getItem().equals(item)) model.addWeight(amount);
+        }
+        updateWeightSum();
     }
 }

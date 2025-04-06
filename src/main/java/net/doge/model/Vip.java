@@ -22,6 +22,10 @@ public class Vip {
     private Item sourceItem;
     // 目标物品
     private Item targetItem;
+    // 叠加的权重
+    private double weightIncrement;
+    // 概率描述
+    private String weightDesc;
     // 消耗物品
     private Item itemConsumed;
     // 消耗数量
