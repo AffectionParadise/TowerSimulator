@@ -4,7 +4,7 @@ import lombok.Data;
 import net.doge.constant.IconKey;
 import net.doge.constant.TowerBlockStatus;
 import net.doge.data.AccountData;
-import net.doge.ui.widget.label.GLabel;
+import net.doge.ui.widget.label.GPLabel;
 import net.doge.util.IconUtil;
 
 @Data
@@ -18,31 +18,41 @@ public class TowerBlock {
     // 是否为终点
     private boolean end;
     // 对应的标签组件
-    private GLabel label;
+    private GPLabel label;
 
     public void setStatus(TowerBlockStatus status) {
         this.status = status;
         switch (status) {
             case ME:
                 item = null;
-                label.setForeground(AccountData.account.getHighlightColor().getAWTColor());
-                label.setBackground(null);
+                label.setC1(null);
+                label.setForeground(AccountData.account.getTextColor().getAWTColor());
                 label.setText(AccountData.account.getName());
                 label.setIcon(IconUtil.getIcon(AccountData.account.getAvatar()));
                 break;
             case ACTIVATED:
                 if (end) return;
                 boolean empty = isEmpty();
+                label.setC1(empty ? AccountData.account.getBrightColor() : item.getHighlightColor());
+                label.setUseGradientPaint(false);
                 label.setForeground(null);
-                label.setBackground(empty ? null : item.getHighlightColor());
                 label.setText(empty || num <= 1 ? " " : String.valueOf(num));
                 label.setIcon(empty ? null : IconUtil.getIcon(item.getIconKey()));
                 break;
             case INVISIBLE:
+                if (end) return;
+                label.setC1(AccountData.account.getBrightColor());
+                label.setC2(AccountData.account.getHighlightColor());
+                label.setUseGradientPaint(true);
                 label.setForeground(null);
-                label.setBackground(null);
                 label.setText(" ");
-                label.setIcon(IconUtil.getIcon(IconKey.INVISIBLE));
+                label.setIcon(null);
+                break;
+            case DISABLED:
+                label.setC1(null);
+                label.setForeground(null);
+                label.setText(" ");
+                label.setIcon(null);
                 break;
         }
     }
@@ -50,7 +60,7 @@ public class TowerBlock {
     public void setEnd(boolean end) {
         this.end = end;
         if (!end) return;
-        label.setBackground(null);
+        label.setC1(null);
         label.setText("终点");
         label.setIcon(IconUtil.getIcon(IconKey.DESTINATION));
     }
@@ -65,9 +75,14 @@ public class TowerBlock {
         return status == TowerBlockStatus.ACTIVATED;
     }
 
-    // 是否可见
-    public boolean isVisible() {
-        return status != TowerBlockStatus.INVISIBLE;
+    // 是否不可见
+    public boolean isInvisible() {
+        return status == TowerBlockStatus.INVISIBLE;
+    }
+
+    // 是否禁用
+    public boolean isDisabled() {
+        return status == TowerBlockStatus.DISABLED;
     }
 
     public boolean isEmpty() {

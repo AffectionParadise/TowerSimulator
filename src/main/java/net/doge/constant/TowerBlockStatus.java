@@ -6,5 +6,7 @@ public enum TowerBlockStatus {
     // 已激活
     ACTIVATED,
     // 不可见
-    INVISIBLE
+    INVISIBLE,
+    // 禁用
+    DISABLED
 }

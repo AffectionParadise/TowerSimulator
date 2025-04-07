@@ -1,14 +1,12 @@
 package net.doge.model;
 
-import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import net.doge.constant.StorageKey;
 import net.doge.constant.IconKey;
 import net.doge.constant.ItemType;
+import net.doge.constant.StorageKey;
+import net.doge.ui.widget.color.GColor;
 
-import java.awt.*;
-import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -25,8 +23,7 @@ public class Item {
     // 数据 key
     private StorageKey storageKey;
     // 高亮颜色
-    @JSONField(serialize = false)
-    private Color highlightColor;
+    private GColor highlightColor;
     // 礼物价值
     private int value;
     // 礼物积分

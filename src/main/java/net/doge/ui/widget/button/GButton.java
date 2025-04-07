@@ -35,7 +35,7 @@ public class GButton extends JButton implements MouseListener {
         setFocusPainted(false);
         setBorderPainted(false);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        setForeground(Color.WHITE);
+        setForeground(GColor.WHITE.getAWTColor());
         setFont(FontData.UI_FONT);
         originBgColor = color;
         disabledColor = GColor.LIGHT_GRAY;

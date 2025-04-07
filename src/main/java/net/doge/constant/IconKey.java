@@ -44,8 +44,6 @@ public enum IconKey {
 
     // 币总数
     COIN_NUM("CoinNum"),
-    // 不可见区域
-    INVISIBLE("Invisible"),
     // 币
     COIN("Coin"),
     // 币(缩略图)

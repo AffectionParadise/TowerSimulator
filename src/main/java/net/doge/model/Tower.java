@@ -34,6 +34,10 @@ public class Tower {
     // 坐标
     public int x;
     public int y;
+    // 最小障碍数量
+    public int minObstacles = 5;
+    // 最大障碍数量
+    public int maxObstacles = 30;
 
     public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, boolean purchasable, boolean visible, boolean optional) {
         this.name = name;

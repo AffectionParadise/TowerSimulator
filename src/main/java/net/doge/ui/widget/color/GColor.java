@@ -6,14 +6,23 @@ public class GColor {
     public static final GColor TRANSPARENT = new GColor(0, 0, 0, 0);
     public static final GColor DEFAULT = new GColor(51, 51, 51);
 
-    public static final GColor BLACK = new GColor(0, 0, 0);
+    public static final GColor BLACK = new GColor(0,0,0);
     public static final GColor WHITE = new GColor(255, 255, 255);
     public static final GColor LIGHT_GRAY = new GColor(192, 192, 192);
     public static final GColor LIGHT_BLUE = new GColor(18, 150, 219);
+    public static final GColor LIGHT_GREEN = new GColor(221, 255, 207);
+    public static final GColor BORDER_GREEN = new GColor(95, 109, 10);
     public static final GColor DEEP_GREEN = new GColor(34, 139, 34);
     public static final GColor DARK_RED = new GColor(224, 58, 60);
     public static final GColor DARK_ORANGE = new GColor(240, 163, 35);
     public static final GColor DARK_PURPLE = new GColor(143, 18, 253);
+
+    public static final GColor VIP1_BRIGHT = new GColor(161, 198, 218);
+    public static final GColor VIP1_HIGHLIGHT = new GColor(18, 150, 219);
+    public static final GColor VIP2_BRIGHT = new GColor(238, 212, 169);
+    public static final GColor VIP2_HIGHLIGHT = new GColor(240, 163, 35);
+    public static final GColor VIP3_BRIGHT = new GColor(211, 168, 248);
+    public static final GColor VIP3_HIGHLIGHT = new GColor(143, 18, 253);
 
     public static final GColor BASIC_QUALITY = new GColor(133, 236, 105);
     public static final GColor REGULAR_QUALITY = new GColor(117, 211, 222);

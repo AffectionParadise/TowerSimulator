@@ -1,6 +1,5 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.constant.Colors;
 import net.doge.constant.IconKey;
 import net.doge.constant.StorageKey;
 import net.doge.data.AccountData;
@@ -46,7 +45,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         Box recordBox = new Box(BoxLayout.X_AXIS);
         Account account = AccountData.account;
         GLabel accountLabel = new GLabel();
-        accountLabel.setForeground(account.getHighlightColor().getAWTColor());
+        accountLabel.setForeground(account.getTextColor().getAWTColor());
         accountLabel.setText(account.getName());
         accountLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
         recordBox.add(accountLabel);

@@ -1,7 +1,7 @@
 package net.doge.model;
 
 import lombok.Getter;
-import org.apache.commons.math3.random.MersenneTwister;
+import net.doge.util.RandomUtil;
 
 import java.util.*;
 
@@ -11,8 +11,6 @@ public class Sampler<I> {
     private List<Double> weightPrefixSum = new ArrayList<>();
     @Getter
     private double weightSum;
-
-    private static final MersenneTwister random = new MersenneTwister();
 
     public void addModel(SampleModel<I> model) {
         models.add(model);
@@ -37,7 +35,7 @@ public class Sampler<I> {
 
     // 抽取一次，返回奖品
     public SampleModel<I> lottery() {
-        double n = random.nextDouble() * weightSum;
+        double n = RandomUtil.nextDouble() * weightSum;
         SampleModel<I> res = models.isEmpty() ? null : models.get(0);
         for (int i = 0, s = weightPrefixSum.size(); i < s; i++) {
             if (n >= weightPrefixSum.get(i)) res = models.get(i + 1);

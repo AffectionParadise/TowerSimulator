@@ -1,26 +1,26 @@
 package net.doge.ui;
 
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONWriter;
+import net.doge.constant.IconKey;
+import net.doge.constant.QuizStatus;
+import net.doge.constant.StorageKey;
+import net.doge.constant.TowerBlockStatus;
 import net.doge.data.*;
 import net.doge.model.*;
-import net.doge.constant.*;
 import net.doge.model.Event;
 import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.dialog.*;
 import net.doge.ui.widget.label.GLabel;
+import net.doge.ui.widget.label.GPLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
-import net.doge.util.JsonUtil;
+import net.doge.util.RandomUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 
 public class TowerUI extends JFrame {
@@ -29,19 +29,22 @@ public class TowerUI extends JFrame {
     private Bonus currBonus;
     private Quiz quiz = ActivityData.quiz;
 
+    private Timer autoMoveTimer;
+
     private GPanel mainPanel = new GPanel();
     private GButton towerBtn = new GButton("塔群", GColor.DARK_ORANGE);
     private GLabel gatheredLabel = new GLabel();
     private GLabel stepLabel = new GLabel();
     private GButton stepPlusBtn = new GButton("+", GColor.DEEP_GREEN);
     private GButton backpackBtn = new GButton("探险背包", GColor.LIGHT_BLUE);
+    private GButton autoBtn = new GButton("自动探索", GColor.DARK_RED);
     private GLabel bonusLabel = new GLabel();
     private GButton activityBtn = new GButton("活动", GColor.DARK_RED);
     private GButton storeBtn = new GButton("宝藏商店", GColor.LIGHT_BLUE);
     private GButton giftBtn = new GButton("礼物", GColor.DEEP_GREEN);
 
     public void init() {
-        loadData();
+        DataManager.loadData(this);
 
         generateBlocks(TowerData.ADVANCED_TOWER, true);
 
@@ -49,7 +52,24 @@ public class TowerUI extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                saveData();
+                DataManager.saveData();
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                if (autoMoveTimer.isRunning()) autoBtn.doClick();
+            }
+        });
+
+        // 自动探索
+        autoMoveTimer = new Timer(300, e -> {
+            for (int i = 0; i < currTower.r; i++) {
+                for (int j = 0; j < currTower.c; j++) {
+                    TowerBlock block = currTower.blocks[i][j];
+                    if (!block.isActive() || block.isEmpty()) continue;
+                    move(currTower.x, currTower.y, i, j);
+                    return;
+                }
             }
         });
 
@@ -78,6 +98,15 @@ public class TowerUI extends JFrame {
         stepLabel.setIcon(IconUtil.getIcon(currTower.getStepItem().getIconThumbKey()));
         stepPlusBtn.addActionListener(e -> new TransactionDialog(this));
         backpackBtn.addActionListener(e -> new BackpackDialog(this));
+        autoBtn.addActionListener(e -> {
+            if (autoMoveTimer.isRunning()) {
+                autoMoveTimer.stop();
+                autoBtn.setText("自动探索");
+            } else {
+                autoMoveTimer.start();
+                autoBtn.setText("取消");
+            }
+        });
         bonusLabel.setForeground(GColor.DARK_RED.getAWTColor());
         activityBtn.addActionListener(e -> new ActivityDialog(this));
         storeBtn.addActionListener(e -> new CoinExchangeDialog(this, ItemData.COIN));
@@ -99,6 +128,8 @@ public class TowerUI extends JFrame {
         topBox.add(stepPlusBtn);
         topBox.add(Box.createHorizontalStrut(sw));
         topBox.add(backpackBtn);
+        topBox.add(Box.createHorizontalStrut(sw));
+        topBox.add(autoBtn);
         topBox.add(Box.createHorizontalStrut(sw));
         topBox.add(bonusLabel);
         topBox.add(Box.createHorizontalGlue());
@@ -129,16 +160,15 @@ public class TowerUI extends JFrame {
         if (isNew || tower.isEmpty()) {
             currTower.x = currTower.y = 0;
             currTower.getBackpackStorage().clear();
-            for (int i = 0; i < currTower.r; i++) {
-                for (int j = 0; j < currTower.c; j++) {
+            for (int i = 0, r = currTower.r; i < r; i++) {
+                for (int j = 0, c = currTower.c; j < c; j++) {
                     TowerBlock block = new TowerBlock();
 
-                    GLabel label = new GLabel();
+                    GPLabel label = new GPLabel();
                     label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    label.setBorder(BorderFactory.createLineBorder(GColor.BORDER_GREEN.getAWTColor()));
                     label.setHorizontalTextPosition(SwingConstants.CENTER);
                     label.setVerticalTextPosition(SwingConstants.BOTTOM);
-                    label.setOpaque(true);
                     block.setLabel(label);
 
                     block.setStatus(TowerBlockStatus.INVISIBLE);
@@ -148,6 +178,8 @@ public class TowerUI extends JFrame {
                     label.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseReleased(MouseEvent e) {
+                            // 自动探索时不可同时操作
+                            if (autoMoveTimer.isRunning()) return;
                             move(currTower.x, currTower.y, dx, dy);
                         }
                     });
@@ -156,6 +188,8 @@ public class TowerUI extends JFrame {
                     currTower.blocks[i][j] = block;
                 }
             }
+            // 生成障碍物
+            generateObstacles(0, 0, currTower.r - 1, currTower.c - 1);
             currTower.blocks[0][0].setStatus(TowerBlockStatus.ME);
             currTower.blocks[currTower.r - 1][currTower.c - 1].setEnd(true);
         }
@@ -177,7 +211,7 @@ public class TowerUI extends JFrame {
     }
 
     // 更新积累步数
-    private void updateGatheredStepAmount(int amount) {
+    public void updateGatheredStepAmount(int amount) {
         DataStorage.add(StorageKey.GATHERED_STEP_NUM, amount);
         gatheredLabel.setText(String.valueOf(DataStorage.get(StorageKey.GATHERED_STEP_NUM)));
     }
@@ -323,6 +357,12 @@ public class TowerUI extends JFrame {
                     ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
                     account.setVip(null);
                     account.setVipStepLeft(0);
+                    for (int i = 0, r = currTower.r; i < r; i++) {
+                        for (int j = 0, c = currTower.c; j < c; j++) {
+                            TowerBlock b = currTower.blocks[i][j];
+                            b.setStatus(b.getStatus());
+                        }
+                    }
                 }
             }
         }
@@ -331,11 +371,11 @@ public class TowerUI extends JFrame {
 
     // 激活某点
     private void activateBlock(int x, int y) {
-        if (x < 0 || x >= currTower.r || y < 0 || y >= currTower.c) return;
+        if (x < 0 || x >= currTower.r || y < 0 || y >= currTower.c || currTower.blocks[x][y].isDisabled()) return;
         Sampler<Item> itemSampler = ItemData.getItemSampler(currTower);
         TowerBlock block = currTower.blocks[x][y];
         // 从不可见变为激活时生成物品
-        if (!block.isVisible()) {
+        if (block.isInvisible()) {
             Item item = itemSampler.lottery().getItem();
             block.setItem(item);
             if (quiz.isStatus(QuizStatus.PROGRESSING) && quiz.getTitleItem().equals(item)) {
@@ -368,7 +408,8 @@ public class TowerUI extends JFrame {
                 int nx = current[0] + dir[0];
                 int ny = current[1] + dir[1];
                 // 检查新坐标是否合法且未被访问
-                if (nx >= 0 && nx < currTower.r && ny >= 0 && ny < currTower.c && !visited[nx][ny] && currTower.blocks[nx][ny].isVisible()) {
+                if (nx >= 0 && nx < currTower.r && ny >= 0 && ny < currTower.c && !visited[nx][ny]
+                        && !currTower.blocks[nx][ny].isInvisible() && !currTower.blocks[nx][ny].isDisabled()) {
                     // 检查是否到达终点
                     if (nx == x2 && ny == y2) return true;
                     visited[nx][ny] = true;
@@ -379,100 +420,70 @@ public class TowerUI extends JFrame {
         return false;
     }
 
-    // 载入数据
-    private void loadData() {
-        JSONObject data = JsonUtil.read("data.json");
-        // 账号
-        JSONObject accountJson = data.getJSONObject("Account");
-        if (JsonUtil.notEmpty(accountJson)) AccountData.account = accountJson.to(Account.class);
-        // 礼物库存
-        JSONObject dataStorageJson = data.getJSONObject("DataStorage");
-        if (JsonUtil.notEmpty(dataStorageJson)) {
-            for (Map.Entry<String, Object> entry : dataStorageJson.entrySet()) {
-                StorageKey k = StorageKey.find(entry.getKey());
-                int v = (int) entry.getValue();
-                DataStorage.add(k, v);
+    // 生成障碍物
+    public void generateObstacles(int sx, int sy, int dx, int dy) {
+        List<int[]> available = new LinkedList<>();
+        for (int i = 0, r = currTower.r; i < r; i++) {
+            for (int j = 0, c = currTower.c; j < c; j++) {
+                if (i == sx && j == sy || i == dx && j == dy) continue;
+                available.add(new int[]{i, j});
             }
         }
-        // 礼物统计
-        JSONObject giftCensusJson = data.getJSONObject("GiftCensus");
-        if (JsonUtil.notEmpty(giftCensusJson)) {
-            for (Map.Entry<String, Object> entry : giftCensusJson.entrySet()) {
-                StorageKey k = StorageKey.find(entry.getKey());
-                int v = (int) entry.getValue();
-                GiftCensusStorage.add(k, v);
+        int obstaclesPlaced = 0, numObstacles = RandomUtil.nextInt(currTower.minObstacles, currTower.maxObstacles + 1);
+        while (obstaclesPlaced < numObstacles && !available.isEmpty()) {
+            int randomIndex = RandomUtil.nextInt(0, available.size());
+            int[] pos = available.get(randomIndex);
+            int x = pos[0], y = pos[1];
+
+            // 交换到末尾以便 O(1) 删除
+            int[] lastPos = available.get(available.size() - 1);
+            available.set(randomIndex, lastPos);
+            available.remove(available.size() - 1);
+
+            TowerBlock block = currTower.blocks[x][y];
+            TowerBlockStatus os = block.getStatus();
+            block.setStatus(TowerBlockStatus.DISABLED); // 暂时设置为障碍物
+            int expected = currTower.r * currTower.c - (obstaclesPlaced + 1);
+            int actual = bfs(sx, sy, dx, dy);
+
+            if (actual == expected) obstaclesPlaced++;
+            else {
+                currTower.blocks[x][y].setStatus(os); // 恢复
+                available.add(pos); // 重新加入候选列表
             }
-        }
-        // 送礼记录
-        JSONArray giftRecordsJsonArray = data.getJSONArray("GiftRecords");
-        if (JsonUtil.notEmpty(giftRecordsJsonArray)) {
-            List<GiftRecord> records = giftRecordsJsonArray.toList(GiftRecord.class);
-            GiftRecordStorage.getStorage().addAll(records);
-        }
-        // 奖励
-        JSONArray stepConsumptionRewardsJsonArray = data.getJSONArray("StepConsumptionRewards");
-        if (JsonUtil.notEmpty(stepConsumptionRewardsJsonArray)) {
-            List<Reward> rewards = stepConsumptionRewardsJsonArray.toList(Reward.class);
-            for (int i = 0, s = rewards.size(); i < s; i++)
-                ActivityData.stepConsumptionRewards.get(i).setReceived(rewards.get(i).isReceived());
-        }
-        JSONArray giftExpRewardsJsonArray = data.getJSONArray("GiftExpRewards");
-        if (JsonUtil.notEmpty(giftExpRewardsJsonArray)) {
-            List<Reward> rewards = giftExpRewardsJsonArray.toList(Reward.class);
-            for (int i = 0, s = rewards.size(); i < s; i++)
-                ActivityData.giftExpRewards.get(i).setReceived(rewards.get(i).isReceived());
-        }
-        JSONArray advancedStepExpRewardsJsonArray = data.getJSONArray("AdvancedStepExpRewards");
-        if (JsonUtil.notEmpty(advancedStepExpRewardsJsonArray)) {
-            List<Reward> rewards = advancedStepExpRewardsJsonArray.toList(Reward.class);
-            for (int i = 0, s = rewards.size(); i < s; i++)
-                ActivityData.advancedStepExpRewards.get(i).setReceived(rewards.get(i).isReceived());
-        }
-        JSONArray advancedTowerClearRewardsJsonArray = data.getJSONArray("AdvancedTowerClearRewards");
-        if (JsonUtil.notEmpty(advancedTowerClearRewardsJsonArray)) {
-            List<Reward> rewards = advancedTowerClearRewardsJsonArray.toList(Reward.class);
-            for (int i = 0, s = rewards.size(); i < s; i++)
-                ActivityData.advancedTowerClearRewards.get(i).setReceived(rewards.get(i).isReceived());
-        }
-        JSONArray deluxeTowerClearRewardsJsonArray = data.getJSONArray("DeluxeTowerClearRewards");
-        if (JsonUtil.notEmpty(deluxeTowerClearRewardsJsonArray)) {
-            List<Reward> rewards = deluxeTowerClearRewardsJsonArray.toList(Reward.class);
-            for (int i = 0, s = rewards.size(); i < s; i++)
-                ActivityData.deluxeTowerClearRewards.get(i).setReceived(rewards.get(i).isReceived());
         }
 
-        // 刷新数据显示
-        updateGatheredStepAmount(0);
-        updateItemAmountAndView(ItemData.ADVANCED_STEP, JsonUtil.isEmpty(data) ? 10000 : 0);
+        if (obstaclesPlaced < numObstacles) {
+            throw new RuntimeException("Could not place the required number of obstacles without breaking connectivity.");
+        }
     }
 
-    // 保存数据
-    private void saveData() {
-        JSONObject data = new JSONObject();
-        // 账号
-        JSONObject accountJson = JSONObject.from(AccountData.account, JSONWriter.Feature.FieldBased);
-        data.put("Account", accountJson);
-        // 礼物库存
-        JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
-        data.put("DataStorage", dataStorageJson);
-        // 礼物统计
-        JSONObject giftCensusJson = JSONObject.from(GiftCensusStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
-        data.put("GiftCensus", giftCensusJson);
-        // 送礼记录
-        JSONArray giftRecordsJsonArray = JSONArray.from(GiftRecordStorage.getStorage());
-        data.put("GiftRecords", giftRecordsJsonArray);
-        // 奖励
-        JSONArray stepConsumptionRewardsJsonArray = JSONArray.from(ActivityData.stepConsumptionRewards);
-        data.put("StepConsumptionRewards", stepConsumptionRewardsJsonArray);
-        JSONArray giftExpRewardsJsonArray = JSONArray.from(ActivityData.giftExpRewards);
-        data.put("GiftExpRewards", giftExpRewardsJsonArray);
-        JSONArray advancedStepExpRewardsJsonArray = JSONArray.from(ActivityData.advancedStepExpRewards);
-        data.put("AdvancedStepExpRewards", advancedStepExpRewardsJsonArray);
-        JSONArray advancedTowerClearRewardsJsonArray = JSONArray.from(ActivityData.advancedTowerClearRewards);
-        data.put("AdvancedTowerClearRewards", advancedTowerClearRewardsJsonArray);
-        JSONArray deluxeTowerClearRewardsJsonArray = JSONArray.from(ActivityData.deluxeTowerClearRewards);
-        data.put("DeluxeTowerClearRewards", deluxeTowerClearRewardsJsonArray);
-        JsonUtil.toFile(data, "data.json");
+    private int bfs(int sx, int sy, int dx, int dy) {
+        boolean[][] visited = new boolean[currTower.r][currTower.c];
+        Queue<int[]> queue = new LinkedList<>();
+        if (currTower.blocks[sx][sy].isInvisible()) {
+            queue.add(new int[]{sx, sy});
+            visited[sx][sy] = true;
+        }
+        int count = 0;
+        // 四个移动方向：上下左右
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            count++;
+            // 排除掉终点后续连接点，因为终点不可通过
+            if (current[0] == dx && current[1] == dy) continue;
+            for (int[] dir : directions) {
+                int nx = current[0] + dir[0];
+                int ny = current[1] + dir[1];
+                if (nx >= 0 && nx < currTower.r && ny >= 0 && ny < currTower.c
+                        && !visited[nx][ny] && currTower.blocks[nx][ny].isInvisible()) {
+                    visited[nx][ny] = true;
+                    queue.add(new int[]{nx, ny});
+                }
+            }
+        }
+        return count;
     }
 
     // 全局字体抗锯齿，必须在初始化 UIManager 之前调用！

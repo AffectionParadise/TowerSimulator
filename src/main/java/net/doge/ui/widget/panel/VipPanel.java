@@ -6,10 +6,7 @@ import net.doge.data.AccountData;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.data.VipData;
-import net.doge.model.Account;
-import net.doge.model.Item;
-import net.doge.model.Tower;
-import net.doge.model.Vip;
+import net.doge.model.*;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.color.GColor;
@@ -102,6 +99,12 @@ public class VipPanel extends GPanel {
                 // 增加物品权重
                 ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
                 Tower tower = ui.currTower;
+                for (int i = 0, r = tower.r; i < r; i++) {
+                    for (int j = 0, c = tower.c; j < c; j++) {
+                        TowerBlock block = tower.blocks[i][j];
+                        block.setStatus(block.getStatus());
+                    }
+                }
                 tower.blocks[tower.x][tower.y].setStatus(TowerBlockStatus.ME);
             }
             // 剩余步数增加

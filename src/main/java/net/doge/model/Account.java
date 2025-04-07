@@ -26,8 +26,16 @@ public class Account {
         vipStepLeft += amount;
     }
 
-    public GColor getHighlightColor() {
+    public GColor getTextColor() {
         return vip == null ? GColor.DEFAULT : vip.getHighlightColor();
+    }
+
+    public GColor getBrightColor() {
+        return vip == null ? GColor.LIGHT_GREEN : vip.getBrightColor();
+    }
+
+    public GColor getHighlightColor() {
+        return vip == null ? GColor.DEEP_GREEN : vip.getHighlightColor();
     }
 
     public void consumeVip() {

@@ -14,8 +14,10 @@ public class Vip {
     private String name;
     // 图标 key
     private IconKey iconKey;
-    // 名字颜色
+    // 强调颜色
     private GColor highlightColor;
+    // 浅颜色
+    private GColor brightColor;
     // 描述
     private String desc;
     // 源物品
