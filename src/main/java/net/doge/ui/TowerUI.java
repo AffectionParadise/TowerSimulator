@@ -242,6 +242,7 @@ public class TowerUI extends JFrame {
         boolean invalidMovement = currTower.blocks[x2][y2].isEmpty();
         // 检查牌子数量是否充足
         if (!invalidMovement && currTower.getStepCost() > DataStorage.get(currTower.getStepItem().getStorageKey())) {
+            if (autoMoveTimer.isRunning()) autoBtn.doClick();
             new TipDialog(this, String.format("%s不足", currTower.getStepItem().getName()));
             return;
         }
