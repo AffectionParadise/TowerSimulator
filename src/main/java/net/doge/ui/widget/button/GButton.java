@@ -35,7 +35,7 @@ public class GButton extends JButton implements MouseListener {
         setFocusPainted(false);
         setBorderPainted(false);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        setForeground(GColor.WHITE.getAWTColor());
+        setForeground(GColor.WHITE.getAwtColor());
         setFont(FontData.UI_FONT);
         originBgColor = color;
         disabledColor = GColor.LIGHT_GRAY;
@@ -49,7 +49,7 @@ public class GButton extends JButton implements MouseListener {
         // 画背景
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (backgroundColor == null) backgroundColor = originBgColor;
-        g2d.setColor(isEnabled() ? backgroundColor.getAWTColor() : disabledColor.getAWTColor());
+        g2d.setColor(isEnabled() ? backgroundColor.getAwtColor() : disabledColor.getAwtColor());
         g2d.fillRoundRect(0, 0, w, h, 10, 10);
 
         super.paintComponent(g);
@@ -61,18 +61,18 @@ public class GButton extends JButton implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        backgroundColor = GColor.of(originBgColor.getAWTColor().darker());
+        backgroundColor = GColor.of(originBgColor.getAwtColor().darker());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (getVisibleRect().contains(e.getPoint())) backgroundColor = GColor.of(originBgColor.getAWTColor().brighter());
+        if (getVisibleRect().contains(e.getPoint())) backgroundColor = GColor.of(originBgColor.getAwtColor().brighter());
         else backgroundColor = originBgColor;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        backgroundColor = GColor.of(originBgColor.getAWTColor().brighter());
+        backgroundColor = GColor.of(originBgColor.getAwtColor().brighter());
     }
 
     @Override

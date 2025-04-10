@@ -1,8 +1,6 @@
 package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
-import net.doge.constant.Colors;
-import net.doge.constant.IconKey;
 import net.doge.data.BonusData;
 import net.doge.model.Bonus;
 import net.doge.ui.TowerUI;

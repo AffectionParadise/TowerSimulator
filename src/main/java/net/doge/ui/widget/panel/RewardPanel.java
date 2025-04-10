@@ -20,7 +20,7 @@ import java.util.List;
 public class RewardPanel extends GPanel {
     private TowerUI ui;
 
-    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAWTColor(), 5, true);
+    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAwtColor(), 5, true);
     protected final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
     protected DefaultListModel<Reward> listModel = new DefaultListModel<>();
@@ -86,14 +86,14 @@ public class RewardPanel extends GPanel {
                 GLabel censusLabel = new GLabel();
                 int sn = DataStorage.get(itemRequired.getStorageKey());
                 int numRequired = reward.getNumRequired();
-                censusLabel.setForeground(reward.getStatusColor().getAWTColor());
+                censusLabel.setForeground(reward.getStatusColor().getAwtColor());
                 censusLabel.setText(String.format("%s / %s", Math.min(sn, numRequired), numRequired));
                 censusPanel.add(censusLabel);
                 cellPanel.add(censusPanel);
 
                 GPanel bottomPanel = new GPanel();
                 GLabel bottomLabel = new GLabel();
-                bottomLabel.setForeground(reward.getStatusColor().getAWTColor());
+                bottomLabel.setForeground(reward.getStatusColor().getAwtColor());
                 bottomLabel.setText(reward.getStatusText());
                 bottomPanel.add(bottomLabel);
                 cellPanel.add(bottomPanel);

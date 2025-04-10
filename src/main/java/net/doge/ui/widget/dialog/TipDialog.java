@@ -56,13 +56,13 @@ public class TipDialog extends JDialog {
     private void init() {
         setUndecorated(true);
         // Dialog 背景透明
-        setBackground(GColor.TRANSPARENT.getAWTColor());
+        setBackground(GColor.TRANSPARENT.getAwtColor());
 
-        messageLabel.setForeground(GColor.WHITE.getAWTColor());
+        messageLabel.setForeground(GColor.WHITE.getAwtColor());
         messageLabel.setText(message);
         globalPanel.setLayout(new BorderLayout());
         globalPanel.setOpaque(false);
-        globalPanel.setBgColor(GColor.DARK_RED.getAWTColor());
+        globalPanel.setBgColor(GColor.DARK_RED.getAwtColor());
         globalPanel.add(messageLabel, BorderLayout.CENTER);
 
         setContentPane(globalPanel);

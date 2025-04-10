@@ -24,7 +24,7 @@ public class GPLabel extends GLabel {
         if (c1 != null) {
             int w = getWidth(), h = getHeight();
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setPaint(useGradientPaint ? new GradientPaint(0, 0, c1.getAWTColor(), w, h, c2.getAWTColor()) : c1.getAWTColor());
+            g2d.setPaint(useGradientPaint ? new GradientPaint(0, 0, c1.getAwtColor(), w, h, c2.getAwtColor()) : c1.getAwtColor());
             g2d.fillRect(0, 0, w, h);
         }
         super.paintComponent(g);

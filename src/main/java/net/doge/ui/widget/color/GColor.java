@@ -1,12 +1,16 @@
 package net.doge.ui.widget.color;
 
+import com.alibaba.fastjson2.annotation.JSONField;
+import lombok.Data;
+
 import java.awt.*;
 
+@Data
 public class GColor {
     public static final GColor TRANSPARENT = new GColor(0, 0, 0, 0);
     public static final GColor DEFAULT = new GColor(51, 51, 51);
 
-    public static final GColor BLACK = new GColor(0,0,0);
+    public static final GColor BLACK = new GColor(0, 0, 0);
     public static final GColor WHITE = new GColor(255, 255, 255);
     public static final GColor LIGHT_GRAY = new GColor(192, 192, 192);
     public static final GColor LIGHT_BLUE = new GColor(18, 150, 219);
@@ -17,10 +21,19 @@ public class GColor {
     public static final GColor DARK_ORANGE = new GColor(240, 163, 35);
     public static final GColor DARK_PURPLE = new GColor(143, 18, 253);
 
+    // 塔
+    public static final GColor REGULAR_TOWER_BRIGHT = new GColor(177, 220, 198);
+    public static final GColor REGULAR_TOWER_HIGHLIGHT = new GColor(66,156,150);
+    public static final GColor ADVANCED_TOWER_BRIGHT = new GColor(221, 255, 207);
+    public static final GColor ADVANCED_TOWER_HIGHLIGHT = new GColor(34, 139, 34);
+    public static final GColor TREASURE_TOWER_BRIGHT = new GColor(238, 238, 0);
+    public static final GColor TREASURE_TOWER_HIGHLIGHT = new GColor(240, 163, 35);
+
+    // vip
     public static final GColor VIP1_BRIGHT = new GColor(161, 198, 218);
     public static final GColor VIP1_HIGHLIGHT = new GColor(18, 150, 219);
-    public static final GColor VIP2_BRIGHT = new GColor(238, 212, 169);
-    public static final GColor VIP2_HIGHLIGHT = new GColor(240, 163, 35);
+    public static final GColor VIP2_BRIGHT = new GColor(205, 157, 151);
+    public static final GColor VIP2_HIGHLIGHT = new GColor(196, 39, 11);
     public static final GColor VIP3_BRIGHT = new GColor(211, 168, 248);
     public static final GColor VIP3_HIGHLIGHT = new GColor(143, 18, 253);
 
@@ -30,17 +43,26 @@ public class GColor {
     public static final GColor DELUXE_QUALITY = new GColor(247, 228, 44);
     public static final GColor ULTIMATE_QUALITY = new GColor(240, 163, 35);
 
+    private int r;
+    private int g;
+    private int b;
+    private int a;
+    @JSONField(serialize = false)
     private Color awtColor;
 
     public GColor(int r, int g, int b) {
         this(r, g, b, 255);
     }
 
-    public GColor(int r, int g, int b, int alpha) {
-        awtColor = new Color(r, g, b, alpha);
+    public GColor(int r, int g, int b, int a) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.a = a;
     }
 
-    public Color getAWTColor() {
+    public Color getAwtColor() {
+        if (awtColor == null) awtColor = new Color(r, g, b, a);
         return awtColor;
     }
 

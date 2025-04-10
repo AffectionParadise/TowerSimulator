@@ -1,7 +1,6 @@
 package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
-import net.doge.constant.Colors;
 import net.doge.constant.IconKey;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.color.GColor;
@@ -16,7 +15,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class GDialog<E> extends JDialog {
-    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAWTColor(), 5, true);
+    protected final Border BORDER_SELECTED = BorderFactory.createLineBorder(GColor.DEEP_GREEN.getAwtColor(), 5, true);
     protected final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
     protected TowerUI ui;

@@ -248,7 +248,7 @@ public class ItemData {
         advancedTowerItemSampler.addModel(new SampleModel<>(coin, 2000));
 
         Sampler<Integer> basicGiftNS = new Sampler<>();
-        basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 6), 2000, 1000);
+        basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
         basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 100, 10);
         Item basicGift = new Item("小情书", ItemType.GIFT, IconKey.BASIC_GIFT, StorageKey.BASIC_GIFT_NUM);
         basicGift.setHighlightColor(GColor.BASIC_QUALITY);
@@ -505,8 +505,8 @@ public class ItemData {
         deluxeTowerItemSampler.addModel(new SampleModel<>(advancedShard, 800));
 
         Sampler<Integer> commonShardNS = new Sampler<>();
-        commonShardNS.addModelsLinearWeights(ListUtil.ofRange(100, 160), 2000, 1000);
-        commonShardNS.addModelsLinearWeights(ListUtil.ofRange(161, 200), 100, 10);
+        commonShardNS.addModelsLinearWeights(ListUtil.ofRange(30, 100), 2000, 1000);
+        commonShardNS.addModelsLinearWeights(ListUtil.ofRange(101, 200), 100, 10);
         Item commonShard = new Item("神圣星核", ItemType.CURRENCY, IconKey.COMMON_SHARD, StorageKey.COMMON_SHARD_NUM);
         commonShard.setHighlightColor(GColor.BASIC_QUALITY);
         commonShard.setNumSampler(commonShardNS);
@@ -650,7 +650,7 @@ public class ItemData {
     // 高级密藏物品
     private static void initAdvancedItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
-        coinNS.addModel(new SampleModel<>(199, 10));
+        coinNS.addModel(new SampleModel<>(199, 20));
         coinNS.addModel(new SampleModel<>(399, 200));
         coinNS.addModel(new SampleModel<>(699, 50));
         Item coin = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);

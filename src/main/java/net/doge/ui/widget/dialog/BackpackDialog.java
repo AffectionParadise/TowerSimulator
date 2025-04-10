@@ -1,7 +1,8 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.model.BackpackStorage;
 import net.doge.data.ItemData;
+import net.doge.data.TowerData;
+import net.doge.model.BackpackStorage;
 import net.doge.model.Item;
 import net.doge.ui.TowerUI;
 
@@ -15,7 +16,7 @@ public class BackpackDialog extends GDialog<Item> {
 
     public BackpackDialog(TowerUI ui) {
         super(ui);
-        backpackStorage = ui.currTower.getBackpackStorage();
+        backpackStorage = TowerData.currTower.getBackpackStorage();
         init();
     }
 

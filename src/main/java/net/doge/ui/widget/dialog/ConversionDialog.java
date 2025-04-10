@@ -30,7 +30,7 @@ public class ConversionDialog extends GDialog {
         Vip vip = AccountData.account.getVip();
 
         descLabel.setFont(FontData.TIP_FONT);
-        descLabel.setForeground(vip.getHighlightColor().getAWTColor());
+        descLabel.setForeground(vip.getHighlightColor().getAwtColor());
         descLabel.setText(vip.getDesc());
         descLabel.setIcon(IconUtil.getIcon(vip.getIconKey()));
         descPanel.add(descLabel);
@@ -42,7 +42,7 @@ public class ConversionDialog extends GDialog {
         sourceItemLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
 
         conversionLabel.setFont(FontData.TIP_FONT);
-        conversionLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        conversionLabel.setForeground(GColor.DARK_RED.getAwtColor());
 
         Item targetItem = vip.getTargetItem();
         targetItemLabel.setText(targetItem.getName());

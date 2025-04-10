@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONWriter;
-import net.doge.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +14,12 @@ import java.io.IOException;
  * @Date 2020/12/15
  */
 public class JsonUtil {
+
+    static {
+        JSON.config(JSONWriter.Feature.FieldBased);
+        JSON.config(JSONWriter.Feature.WriteEnumUsingToString);
+    }
+
     /**
      * 判断 Json 对象是否为 null 或 {}
      *

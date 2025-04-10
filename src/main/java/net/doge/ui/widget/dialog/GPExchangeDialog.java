@@ -1,9 +1,8 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.constant.Colors;
-import net.doge.constant.StorageKey;
 import net.doge.constant.IconKey;
 import net.doge.constant.ItemType;
+import net.doge.constant.StorageKey;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.model.Item;
@@ -18,8 +17,6 @@ import net.doge.util.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class GPExchangeDialog extends GDialog<Transaction> {
     private GiftDialog d;

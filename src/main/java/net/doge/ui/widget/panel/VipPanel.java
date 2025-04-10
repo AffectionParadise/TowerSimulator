@@ -1,12 +1,13 @@
 package net.doge.ui.widget.panel;
 
 import net.doge.constant.StorageKey;
-import net.doge.constant.TowerBlockStatus;
 import net.doge.data.AccountData;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.data.VipData;
-import net.doge.model.*;
+import net.doge.model.Account;
+import net.doge.model.Item;
+import net.doge.model.Vip;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.color.GColor;
@@ -56,13 +57,13 @@ public class VipPanel extends GPanel {
 
         GPanel weightPanel = new GPanel();
         GLabel weightLabel = new GLabel();
-        weightLabel.setForeground(vip.getHighlightColor().getAWTColor());
+        weightLabel.setForeground(vip.getHighlightColor().getAwtColor());
         weightLabel.setText(String.format("%s%s的概率", vip.getWeightDesc(), vip.getSourceItem().getName()));
         weightPanel.add(weightLabel);
 
         GPanel effectPanel = new GPanel();
         GLabel effectLabel = new GLabel();
-        effectLabel.setForeground(vip.getHighlightColor().getAWTColor());
+        effectLabel.setForeground(vip.getHighlightColor().getAwtColor());
         effectLabel.setText(String.format("%s可转化为%s", vip.getSourceItem().getName(), vip.getTargetItem().getName()));
         effectPanel.add(effectLabel);
 
@@ -98,14 +99,7 @@ public class VipPanel extends GPanel {
                 account.setVip(vip);
                 // 增加物品权重
                 ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
-                Tower tower = ui.currTower;
-                for (int i = 0, r = tower.r; i < r; i++) {
-                    for (int j = 0, c = tower.c; j < c; j++) {
-                        TowerBlock block = tower.blocks[i][j];
-                        block.setStatus(block.getStatus());
-                    }
-                }
-                tower.blocks[tower.x][tower.y].setStatus(TowerBlockStatus.ME);
+                ui.updateBlockStyle();
             }
             // 剩余步数增加
             account.addVipStepLeft(vip.getDuration());
@@ -139,16 +133,16 @@ public class VipPanel extends GPanel {
             vipLabel.setForeground(null);
         } else {
             vipLabel.setText(String.format("我的特权：%s，剩余步数：%s", vip.getName(), account.getVipStepLeft()));
-            vipLabel.setForeground(vip.getHighlightColor().getAWTColor());
+            vipLabel.setForeground(vip.getHighlightColor().getAwtColor());
         }
     }
 
     private void init() {
-        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        tipLabel.setForeground(GColor.DARK_RED.getAwtColor());
         tipLabel.setText("以上只能同时选择一项购买(可续费)，请慎重考虑");
         tipPanel.add(tipLabel);
 
-        titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
+        titleLabel.setForeground(GColor.DEEP_GREEN.getAwtColor());
         titlePanel.add(titleLabel);
 
         for (Vip vip : VipData.vips) choicePanel.add(createVipPanel(vip));

@@ -2,6 +2,7 @@ package net.doge.model;
 
 import lombok.Data;
 import net.doge.constant.IconKey;
+import net.doge.ui.widget.color.GColor;
 
 @Data
 public class Tower {
@@ -38,8 +39,12 @@ public class Tower {
     public int minObstacles = 5;
     // 最大障碍数量
     public int maxObstacles = 30;
+    // 强调颜色
+    private GColor highlightColor;
+    // 浅颜色
+    private GColor brightColor;
 
-    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, boolean purchasable, boolean visible, boolean optional) {
+    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, boolean purchasable, boolean visible, boolean optional, GColor highlightColor, GColor brightColor) {
         this.name = name;
         this.title = title;
         this.iconKey = iconKey;
@@ -48,6 +53,8 @@ public class Tower {
         this.purchasable = purchasable;
         this.visible = visible;
         this.optional = optional;
+        this.highlightColor = highlightColor;
+        this.brightColor = brightColor;
     }
 
     public boolean isEmpty() {

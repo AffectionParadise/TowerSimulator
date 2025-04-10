@@ -1,10 +1,8 @@
 package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
-import net.doge.constant.Colors;
 import net.doge.data.DataStorage;
 import net.doge.data.TowerData;
-import net.doge.model.GiftRecord;
 import net.doge.model.Item;
 import net.doge.model.Tower;
 import net.doge.ui.TowerUI;

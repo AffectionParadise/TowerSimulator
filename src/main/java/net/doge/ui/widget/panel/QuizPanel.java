@@ -99,15 +99,15 @@ public class QuizPanel extends GPanel {
         topBox.add(Box.createHorizontalStrut(20));
 
         titleLabel.setFont(FontData.TIP_FONT);
-        titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
+        titleLabel.setForeground(GColor.DEEP_GREEN.getAwtColor());
         titlePanel.add(titleLabel);
 
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        tipLabel.setForeground(GColor.DARK_RED.getAwtColor());
         tipLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         tipPanel.add(tipLabel);
 
-        limitLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        limitLabel.setForeground(GColor.DARK_RED.getAwtColor());
         limitLabel.setText(String.format("下注上限：%s", quiz.getMaxStakeNum()));
         limitPanel.add(limitLabel);
 

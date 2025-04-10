@@ -2,7 +2,6 @@ package net.doge.data;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONWriter;
 import net.doge.constant.StorageKey;
 import net.doge.model.Account;
 import net.doge.model.GiftRecord;
@@ -85,13 +84,13 @@ public class DataManager {
     public static void saveData() {
         JSONObject data = new JSONObject();
         // 账号
-        JSONObject accountJson = JSONObject.from(AccountData.account, JSONWriter.Feature.FieldBased);
+        JSONObject accountJson = JSONObject.from(AccountData.account);
         data.put("Account", accountJson);
         // 礼物库存
-        JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
+        JSONObject dataStorageJson = JSONObject.from(DataStorage.getStorage());
         data.put("DataStorage", dataStorageJson);
         // 礼物统计
-        JSONObject giftCensusJson = JSONObject.from(GiftCensusStorage.getStorage(), JSONWriter.Feature.WriteEnumUsingToString);
+        JSONObject giftCensusJson = JSONObject.from(GiftCensusStorage.getStorage());
         data.put("GiftCensus", giftCensusJson);
         // 送礼记录
         JSONArray giftRecordsJsonArray = JSONArray.from(GiftRecordStorage.getStorage());

@@ -1,8 +1,8 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.data.DataStorage;
-import net.doge.constant.Colors;
 import net.doge.constant.StorageKey;
+import net.doge.data.DataStorage;
+import net.doge.data.TowerData;
 import net.doge.data.TransactionData;
 import net.doge.model.Item;
 import net.doge.model.Transaction;
@@ -41,7 +41,7 @@ public class TransactionDialog extends GDialog<Transaction> {
 
     private void init() {
         for (Transaction transaction : TransactionData.transactions) {
-            if (transaction.getItemReceived().equals(ui.currTower.getStepItem())) listModel.addElement(transaction);
+            if (transaction.getItemReceived().equals(TowerData.currTower.getStepItem())) listModel.addElement(transaction);
         }
 
         buyBtn.addActionListener(e -> {

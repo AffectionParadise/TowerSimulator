@@ -31,11 +31,11 @@ public class Account {
     }
 
     public GColor getBrightColor() {
-        return vip == null ? GColor.LIGHT_GREEN : vip.getBrightColor();
+        return vip == null ? null : vip.getBrightColor();
     }
 
     public GColor getHighlightColor() {
-        return vip == null ? GColor.DEEP_GREEN : vip.getHighlightColor();
+        return vip == null ? null : vip.getHighlightColor();
     }
 
     public void consumeVip() {

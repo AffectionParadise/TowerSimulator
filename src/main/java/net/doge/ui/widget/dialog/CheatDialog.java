@@ -1,6 +1,5 @@
 package net.doge.ui.widget.dialog;
 
-import net.doge.constant.Colors;
 import net.doge.constant.StorageKey;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;

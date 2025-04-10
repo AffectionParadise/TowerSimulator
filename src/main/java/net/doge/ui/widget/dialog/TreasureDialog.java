@@ -1,12 +1,7 @@
 package net.doge.ui.widget.dialog;
 
 import lombok.Getter;
-import net.doge.constant.Colors;
-import net.doge.data.EventData;
 import net.doge.data.FontData;
-import net.doge.data.TowerData;
-import net.doge.model.Bonus;
-import net.doge.model.Event;
 import net.doge.model.Tower;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
@@ -34,7 +29,7 @@ public class TreasureDialog extends GDialog {
 
     public void init() {
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        tipLabel.setForeground(GColor.DARK_RED.getAwtColor());
         tipLabel.setVerticalAlignment(SwingConstants.CENTER);
         Tower tower = ui.currEvent.getTower();
         tipLabel.setText(tower.getDesc());

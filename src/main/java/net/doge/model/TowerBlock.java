@@ -4,8 +4,12 @@ import lombok.Data;
 import net.doge.constant.IconKey;
 import net.doge.constant.TowerBlockStatus;
 import net.doge.data.AccountData;
+import net.doge.data.TowerData;
+import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GPLabel;
 import net.doge.util.IconUtil;
+
+import javax.swing.*;
 
 @Data
 public class TowerBlock {
@@ -22,18 +26,25 @@ public class TowerBlock {
 
     public void setStatus(TowerBlockStatus status) {
         this.status = status;
+        Account account = AccountData.account;
+        Tower tower = TowerData.currTower;
         switch (status) {
             case ME:
                 item = null;
                 label.setC1(null);
-                label.setForeground(AccountData.account.getTextColor().getAWTColor());
-                label.setText(AccountData.account.getName());
-                label.setIcon(IconUtil.getIcon(AccountData.account.getAvatar()));
+                label.setForeground(account.getTextColor().getAwtColor());
+                label.setText(account.getName());
+                label.setIcon(IconUtil.getIcon(account.getAvatar()));
                 break;
             case ACTIVATED:
                 if (end) return;
                 boolean empty = isEmpty();
-                label.setC1(empty ? AccountData.account.getBrightColor() : item.getHighlightColor());
+                GColor c1;
+                if (empty) {
+                    if (TowerData.isAdvancedTower(tower) && account.isVip()) c1 = account.getBrightColor();
+                    else c1 = tower.getBrightColor();
+                } else c1 = item.getHighlightColor();
+                label.setC1(c1);
                 label.setUseGradientPaint(false);
                 label.setForeground(null);
                 label.setText(empty || num <= 1 ? " " : String.valueOf(num));
@@ -41,9 +52,18 @@ public class TowerBlock {
                 break;
             case INVISIBLE:
                 if (end) return;
-                label.setC1(AccountData.account.getBrightColor());
-                label.setC2(AccountData.account.getHighlightColor());
+                GColor c2, bc;
+                if (TowerData.isAdvancedTower(tower) && account.isVip()) {
+                    c1 = account.getBrightColor();
+                    c2 = bc = account.getHighlightColor();
+                } else {
+                    c1 = tower.getBrightColor();
+                    c2 = bc = tower.getHighlightColor();
+                }
+                label.setC1(c1);
+                label.setC2(c2);
                 label.setUseGradientPaint(true);
+                label.setBorder(BorderFactory.createLineBorder(bc.getAwtColor()));
                 label.setForeground(null);
                 label.setText(" ");
                 label.setIcon(null);

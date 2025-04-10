@@ -1,9 +1,10 @@
 package net.doge.ui.widget.panel;
 
-import net.doge.constant.Colors;
 import net.doge.constant.IconKey;
 import net.doge.constant.StorageKey;
-import net.doge.data.*;
+import net.doge.data.DataStorage;
+import net.doge.data.FontData;
+import net.doge.data.TrickData;
 import net.doge.model.Item;
 import net.doge.model.SampleModel;
 import net.doge.model.Trick;
@@ -80,13 +81,13 @@ public class TrickPanel extends GPanel {
 
     private void init() {
         titleLabel.setFont(FontData.TIP_FONT);
-        titleLabel.setForeground(GColor.DEEP_GREEN.getAWTColor());
+        titleLabel.setForeground(GColor.DEEP_GREEN.getAwtColor());
         titlePanel.add(titleLabel);
 
         choicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         tipLabel.setFont(FontData.TIP_FONT);
-        tipLabel.setForeground(GColor.DARK_RED.getAWTColor());
+        tipLabel.setForeground(GColor.DARK_RED.getAwtColor());
         tipLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         tipPanel.add(tipLabel);
 
