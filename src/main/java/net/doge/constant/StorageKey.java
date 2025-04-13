@@ -6,6 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum StorageKey {
+    // SHOW 经验
+    SHOW_EXP("ShowExp"),
+    // 金蘑菇消耗数量
+    ADVANCED_COIN_CONSUMED("AdvancedCoinConsumed"),
     // 礼物经验
     GIFT_EXP("GiftExp"),
     // 三塔牌子经验

@@ -58,6 +58,6 @@ public class Tower {
     }
 
     public boolean isEmpty() {
-        return blocks[0][0] == null;
+        return blocks[0][0] == null || blocks[r - 1][c - 1].isMe();
     }
 }

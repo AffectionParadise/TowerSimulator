@@ -8,6 +8,17 @@ import lombok.Getter;
 public enum IconKey {
     // 头像
     AVATAR("Avatar"),
+    // show 经验
+    SHOW_EXP("ShowExp"),
+    SHOW_EXP_THUMB("ShowExpThumb"),
+    // 贵族
+    NOBLE1("Noble1"),
+    NOBLE2("Noble2"),
+    NOBLE3("Noble3"),
+    NOBLE4("Noble4"),
+    NOBLE5("Noble5"),
+    NOBLE6("Noble6"),
+    NOBLE7("Noble7"),
     // 青花瓷会员
     VIP1("Vip1"),
     // 神龙会员
@@ -74,6 +85,8 @@ public enum IconKey {
     DELUXE_STEP_THUMB("DeluxeStepThumb"),
     // 赠送金蘑菇
     REGULAR_COIN("RegularCoin"),
+    // 赠送金蘑菇(缩略图)
+    REGULAR_COIN_THUMB("RegularCoinThumb"),
     // 金蘑菇
     ADVANCED_COIN("AdvancedCoin"),
     // 金蘑菇(缩略图)

@@ -94,6 +94,10 @@ public class TowerBlock {
         num = item.hasNumSampler() ? item.getNumSampler().lottery().getItem() : 1;
     }
 
+    public boolean isMe() {
+        return status == TowerBlockStatus.ME;
+    }
+
     // 是否为激活状态
     public boolean isActive() {
         return status == TowerBlockStatus.ACTIVATED;

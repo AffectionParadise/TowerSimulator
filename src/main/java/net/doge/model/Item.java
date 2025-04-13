@@ -24,6 +24,8 @@ public class Item {
     private StorageKey storageKey;
     // 高亮颜色
     private GColor highlightColor;
+    // show 经验
+    private int showExp;
     // 礼物价值
     private int value;
     // 礼物积分
@@ -59,6 +61,11 @@ public class Item {
     // 是否为盲盒礼物
     public boolean isBox() {
         return type == ItemType.BOX;
+    }
+
+    // 是否为皮肤
+    public boolean isSkin() {
+        return type == ItemType.SKIN;
     }
 
     // 是否有数量生成器，若无则默认数量为 1

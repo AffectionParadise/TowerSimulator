@@ -10,6 +10,8 @@ public enum ItemType {
     GIFT,
     // 盒子
     BOX,
+    // 皮肤
+    SKIN,
     // 礼物组
     GROUP
 }

@@ -52,6 +52,8 @@ public class ItemData {
     public static Item COIN;
     // 送花小狗
     public static Item REGULAR_GIFT;
+    // 赠送金蘑菇
+    public static Item REGULAR_COIN;
     // 金蘑菇
     public static Item ADVANCED_COIN;
     // 一塔牌子
@@ -100,11 +102,11 @@ public class ItemData {
         initDeluxeTowerItemSampler();
         initRegularTowerItemSampler();
         initBasicTowerItemSampler();
-        initRegularItemSampler();
-        initAdvancedItemSampler();
-        initDeluxeItemSampler();
-        initUltimateItemSampler();
-        initMRItemSampler();
+        initRegularTreasureItemSampler();
+        initAdvancedTreasureItemSampler();
+        initDeluxeTreasureItemSampler();
+        initUltimateTreasureItemSampler();
+        initMRTreasureItemSampler();
 
         initBBSubItemSampler();
         initRBSubItemSampler();
@@ -280,6 +282,8 @@ public class ItemData {
         regularCoinNS.addModel(new SampleModel<>(333, 60));
         regularCoinNS.addModel(new SampleModel<>(666, 40));
         Item regularCoin = new Item("赠送金蘑菇", ItemType.CURRENCY, IconKey.REGULAR_COIN, StorageKey.REGULAR_COIN_NUM);
+        REGULAR_COIN = regularCoin;
+        regularCoin.setIconThumbKey(IconKey.REGULAR_COIN_THUMB);
         regularCoin.setHighlightColor(GColor.BASIC_QUALITY);
         regularCoin.setGuessable(true);
         regularCoin.setNumSampler(regularCoinNS);
@@ -377,14 +381,14 @@ public class ItemData {
 
         Sampler<Integer> deluxeBoxNS = new Sampler<>();
         deluxeBoxNS.addModel(new SampleModel<>(1, 2000));
-        deluxeBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 5), 15, 1);
+        deluxeBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 15, 1);
         Item deluxeBox = new Item("辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
         DELUXE_BOX = deluxeBox;
         deluxeBox.setHighlightColor(GColor.ULTIMATE_QUALITY);
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox.setSubItemSampler(dbSubItemSampler);
         items.add(deluxeBox);
-        advancedTowerItemSampler.addModel(new SampleModel<>(deluxeBox, 15));
+        advancedTowerItemSampler.addModel(new SampleModel<>(deluxeBox, 20));
 
         Sampler<Integer> advancedGiftNS = new Sampler<>();
         advancedGiftNS.addModel(new SampleModel<>(1, 2000));
@@ -450,28 +454,33 @@ public class ItemData {
         items.add(ultimateGift2);
         advancedTowerItemSampler.addModel(new SampleModel<>(ultimateGift2, 2));
 
-        Item ticket = new Item("嘉年华孢子兑换券", ItemType.CURRENCY, IconKey.TICKET, StorageKey.TICKET);
+        Item ticket = new Item("嘉年华孢子兑换券", ItemType.SKIN, IconKey.TICKET, StorageKey.TICKET);
         ticket.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ticket.setShowExp(16888);
         items.add(ticket);
         advancedTowerItemSampler.addModel(new SampleModel<>(ticket, 1));
 
-        Item skin1 = new Item("好吃的骨头", ItemType.CURRENCY, IconKey.SKIN1, StorageKey.SKIN1_NUM);
+        Item skin1 = new Item("好吃的骨头", ItemType.SKIN, IconKey.SKIN1, StorageKey.SKIN1_NUM);
         skin1.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        skin1.setShowExp(6666);
         items.add(skin1);
         advancedTowerItemSampler.addModel(new SampleModel<>(skin1, 1));
 
-        Item skin2 = new Item("丘比特", ItemType.CURRENCY, IconKey.SKIN2, StorageKey.SKIN2_NUM);
+        Item skin2 = new Item("丘比特", ItemType.SKIN, IconKey.SKIN2, StorageKey.SKIN2_NUM);
         skin2.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        skin2.setShowExp(8888);
         items.add(skin2);
         advancedTowerItemSampler.addModel(new SampleModel<>(skin2, 1));
 
-        Item skin3 = new Item("王子", ItemType.CURRENCY, IconKey.SKIN3, StorageKey.SKIN3_NUM);
+        Item skin3 = new Item("王子", ItemType.SKIN, IconKey.SKIN3, StorageKey.SKIN3_NUM);
         skin3.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        skin3.setShowExp(3333);
         items.add(skin3);
         advancedTowerItemSampler.addModel(new SampleModel<>(skin3, 1));
 
-        Item skin4 = new Item("公主", ItemType.CURRENCY, IconKey.SKIN4, StorageKey.SKIN4_NUM);
+        Item skin4 = new Item("公主", ItemType.SKIN, IconKey.SKIN4, StorageKey.SKIN4_NUM);
         skin4.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        skin4.setShowExp(3333);
         items.add(skin4);
         advancedTowerItemSampler.addModel(new SampleModel<>(skin4, 1));
     }
@@ -581,7 +590,7 @@ public class ItemData {
     }
 
     // 中级密藏物品
-    private static void initRegularItemSampler() {
+    private static void initRegularTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModel(new SampleModel<>(199, 200));
         coinNS.addModel(new SampleModel<>(399, 20));
@@ -649,7 +658,7 @@ public class ItemData {
     }
 
     // 高级密藏物品
-    private static void initAdvancedItemSampler() {
+    private static void initAdvancedTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModel(new SampleModel<>(199, 20));
         coinNS.addModel(new SampleModel<>(399, 200));
@@ -718,7 +727,7 @@ public class ItemData {
     }
 
     // 超级密藏物品
-    private static void initDeluxeItemSampler() {
+    private static void initDeluxeTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModel(new SampleModel<>(199, 20));
         coinNS.addModel(new SampleModel<>(399, 200));
@@ -786,7 +795,7 @@ public class ItemData {
     }
 
     // 究级密藏物品
-    private static void initUltimateItemSampler() {
+    private static void initUltimateTreasureItemSampler() {
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModel(new SampleModel<>(30, 60));
         regularBoxNS.addModel(new SampleModel<>(50, 100));
@@ -869,7 +878,7 @@ public class ItemData {
     }
 
     // 蘑菇金库物品
-    private static void initMRItemSampler() {
+    private static void initMRTreasureItemSampler() {
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModelsLinearWeights(ListUtil.ofRange(98, 398), 200, 100);
         advancedCoinNS.addModel(new SampleModel<>(1888, 180));
@@ -1042,7 +1051,7 @@ public class ItemData {
         db1Gift.setValue(500000);
         db1Gift.setGiftPoints(80000);
         items.add(db1Gift);
-        dbSubItemSampler.addModel(new SampleModel<>(db1Gift, 100));
+        dbSubItemSampler.addModel(new SampleModel<>(db1Gift, 200));
 
         Item db2Gift = new Item("嘉年星港", ItemType.GIFT, IconKey.DB2_GIFT, StorageKey.DB2_GIFT_NUM);
         db2Gift.setValue(300000);
@@ -1054,7 +1063,7 @@ public class ItemData {
         Item db3Gift = new Item("战争女王", ItemType.GIFT, IconKey.AB5_GIFT, StorageKey.AB5_GIFT_NUM);
         db3Gift.setValue(300000);
         db3Gift.setGiftPoints(48000);
-        dbSubItemSampler.addModel(new SampleModel<>(db3Gift, 500));
+        dbSubItemSampler.addModel(new SampleModel<>(db3Gift, 600));
 
         Item db4Gift = new Item("锦绣山河", ItemType.GIFT, IconKey.DB4_GIFT, StorageKey.DB4_GIFT_NUM);
         db4Gift.setValue(300000);
@@ -1067,6 +1076,6 @@ public class ItemData {
         db5Gift.setValue(188888);
         db5Gift.setGiftPoints(30000);
         items.add(db5Gift);
-        dbSubItemSampler.addModel(new SampleModel<>(db5Gift, 500));
+        dbSubItemSampler.addModel(new SampleModel<>(db5Gift, 600));
     }
 }

@@ -31,6 +31,7 @@ public class TowerUI extends JFrame {
     public Timer autoMoveTimer;
 
     private GPanel mainPanel = new GPanel();
+    private GButton accountBtn = new GButton("账号", GColor.DARK_PURPLE);
     private GButton towerBtn = new GButton("塔群", GColor.DARK_ORANGE);
     private GLabel gatheredLabel = new GLabel();
     private GLabel stepLabel = new GLabel();
@@ -39,6 +40,7 @@ public class TowerUI extends JFrame {
     private GButton autoBtn = new GButton("自动探索", GColor.DARK_RED);
     private GLabel bonusLabel = new GLabel();
     private GButton activityBtn = new GButton("活动", GColor.DARK_RED);
+    private GButton magicBtn = new GButton("魔法屋", GColor.DEEP_GREEN);
     private GButton storeBtn = new GButton("宝藏商店", GColor.LIGHT_BLUE);
     private GButton giftBtn = new GButton("礼物", GColor.DEEP_GREEN);
 
@@ -83,16 +85,16 @@ public class TowerUI extends JFrame {
         });
 
         Box topBox = new Box(BoxLayout.X_AXIS);
+        accountBtn.addActionListener(e -> new AccountDetailDialog(this));
         towerBtn.addActionListener(e -> {
             TowerDialog towerDialog = new TowerDialog(this);
             if (!towerDialog.isConfirmed()) return;
-            TowerData.currTower = towerDialog.getSelectedTower();
-            Item stepItem = TowerData.currTower.getStepItem();
+            Tower tower = towerDialog.getSelectedTower();
+            Item stepItem = tower.getStepItem();
             stepLabel.setIcon(IconUtil.getIcon(stepItem.getIconThumbKey()));
             updateItemAmountAndView(stepItem, 0);
-            generateBlocks(TowerData.currTower, false);
+            generateBlocks(tower, false);
         });
-
         gatheredLabel.setIcon(IconUtil.getIcon(IconKey.GATHERED_STEP_THUMB));
         stepLabel.setIcon(IconUtil.getIcon(TowerData.currTower.getStepItem().getIconThumbKey()));
         stepPlusBtn.addActionListener(e -> new TransactionDialog(this));
@@ -108,6 +110,7 @@ public class TowerUI extends JFrame {
         });
         bonusLabel.setForeground(GColor.DARK_RED.getAwtColor());
         activityBtn.addActionListener(e -> new ActivityDialog(this));
+        magicBtn.addActionListener(e -> new ShowExchangeDialog(this));
         storeBtn.addActionListener(e -> new CoinExchangeDialog(this, ItemData.COIN));
         giftBtn.addActionListener(e -> new GiftDialog(this));
 
@@ -117,6 +120,8 @@ public class TowerUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         int sw = 20;
+        topBox.add(Box.createHorizontalStrut(sw));
+        topBox.add(accountBtn);
         topBox.add(Box.createHorizontalStrut(sw));
         topBox.add(towerBtn);
         topBox.add(Box.createHorizontalStrut(sw));
@@ -133,6 +138,8 @@ public class TowerUI extends JFrame {
         topBox.add(bonusLabel);
         topBox.add(Box.createHorizontalGlue());
         topBox.add(activityBtn);
+        topBox.add(Box.createHorizontalStrut(sw));
+        topBox.add(magicBtn);
         topBox.add(Box.createHorizontalStrut(sw));
         topBox.add(storeBtn);
         topBox.add(Box.createHorizontalStrut(sw));
@@ -351,6 +358,8 @@ public class TowerUI extends JFrame {
             // 礼物库存增加
             StorageKey key = blockItem.getStorageKey();
             DataStorage.add(key, num);
+            // 皮肤 show 增加
+            if (blockItem.isSkin()) DataStorage.add(StorageKey.SHOW_EXP, num * blockItem.getShowExp());
             tower.getBackpackStorage().add(key, num);
             if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
             // 会员消耗

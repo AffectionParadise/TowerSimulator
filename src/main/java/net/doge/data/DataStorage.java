@@ -17,5 +17,7 @@ public class DataStorage {
     public static void add(StorageKey key, int value) {
         // 溢出后重置为 0
         storage.put(key, Math.max(0, storage.getOrDefault(key, 0) + value));
+        // 消耗金蘑菇
+        if (key == StorageKey.ADVANCED_COIN_NUM && value < 0) add(StorageKey.ADVANCED_COIN_CONSUMED, -value);
     }
 }
