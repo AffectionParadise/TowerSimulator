@@ -1,6 +1,7 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
+import net.doge.data.AccountData;
 import net.doge.data.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.ui.TowerUI;
@@ -36,16 +37,33 @@ public class CheatDialog extends GDialog {
         });
         okBtn.addActionListener(e -> {
             String text = tf.getText();
-            if (text.matches("bstep \\d+"))
-                ui.updateItemAmountAndView(ItemData.BASIC_STEP, Integer.parseInt(text.split(" ")[1]));
-            else if (text.matches("rstep \\d+"))
-                ui.updateItemAmountAndView(ItemData.REGULAR_STEP, Integer.parseInt(text.split(" ")[1]));
-            else if (text.matches("astep \\d+"))
-                ui.updateItemAmountAndView(ItemData.ADVANCED_STEP, Integer.parseInt(text.split(" ")[1]));
-            else if (text.matches("dstep \\d+"))
-                ui.updateItemAmountAndView(ItemData.DELUXE_STEP, Integer.parseInt(text.split(" ")[1]));
-            else if (text.matches("acoin \\d+"))
-                DataStorage.add(StorageKey.ADVANCED_COIN_NUM, Integer.parseInt(text.split(" ")[1]));
+            if (!text.matches("\\w+ \\d+")) return;
+            String[] sp = text.split(" ");
+            String keyword = sp[0].toLowerCase();
+            int num = Integer.parseInt(sp[1]);
+            switch (keyword) {
+                case "bstep":
+                    ui.updateItemAmountAndView(ItemData.BASIC_STEP, num);
+                    break;
+                case "rstep":
+                    ui.updateItemAmountAndView(ItemData.REGULAR_STEP, num);
+                    break;
+                case "astep":
+                    ui.updateItemAmountAndView(ItemData.ADVANCED_STEP, num);
+                    break;
+                case "dstep":
+                    ui.updateItemAmountAndView(ItemData.DELUXE_STEP, num);
+                    break;
+                case "acoin":
+                    DataStorage.add(StorageKey.ADVANCED_COIN_NUM, num);
+                    break;
+                case "amti":
+                    ui.autoMoveTimer.setDelay(num);
+                    break;
+                case "vstep":
+                    AccountData.account.addVipStepLeft(num);
+                    break;
+            }
             dispose();
         });
 

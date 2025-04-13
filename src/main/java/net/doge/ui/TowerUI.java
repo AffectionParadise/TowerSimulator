@@ -28,7 +28,7 @@ public class TowerUI extends JFrame {
     private Bonus currBonus;
     private Quiz quiz = ActivityData.quiz;
 
-    private Timer autoMoveTimer;
+    public Timer autoMoveTimer;
 
     private GPanel mainPanel = new GPanel();
     private GButton towerBtn = new GButton("塔群", GColor.DARK_ORANGE);
@@ -149,18 +149,18 @@ public class TowerUI extends JFrame {
 
     private void generateBlocks(Tower tower, boolean isNew) {
         TowerData.currTower = tower;
-        stepPlusBtn.setVisible(TowerData.currTower.isPurchasable());
+        stepPlusBtn.setVisible(tower.isPurchasable());
         // 保持翻倍事件
-        if (EventData.isBonusTrigger(currEvent) && TowerData.isAdvancedTower(TowerData.currTower)) {
+        if (EventData.isBonusTrigger(currEvent) && TowerData.isAdvancedTower(tower)) {
             updateBonusStepLeft();
         } else bonusLabel.setText(tower.getTitle());
         mainPanel.removeAll();
         // 新生成地图
         if (isNew || tower.isEmpty()) {
-            TowerData.currTower.x = TowerData.currTower.y = 0;
-            TowerData.currTower.getBackpackStorage().clear();
-            for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
-                for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
+            tower.x = tower.y = 0;
+            tower.getBackpackStorage().clear();
+            for (int i = 0, r = tower.r; i < r; i++) {
+                for (int j = 0, c = tower.c; j < c; j++) {
                     TowerBlock block = new TowerBlock();
 
                     GPLabel label = new GPLabel();
@@ -178,31 +178,31 @@ public class TowerUI extends JFrame {
                         public void mouseReleased(MouseEvent e) {
                             // 自动探索时不可同时操作
                             if (autoMoveTimer.isRunning()) return;
-                            move(TowerData.currTower.x, TowerData.currTower.y, dx, dy);
+                            move(tower.x, tower.y, dx, dy);
                         }
                     });
                     mainPanel.add(label);
 
-                    TowerData.currTower.blocks[i][j] = block;
+                    tower.blocks[i][j] = block;
                 }
             }
             // 生成障碍物
-            generateObstacles(0, 0, TowerData.currTower.r - 1, TowerData.currTower.c - 1);
-            TowerData.currTower.blocks[0][0].setStatus(TowerBlockStatus.ME);
-            TowerData.currTower.blocks[TowerData.currTower.r - 1][TowerData.currTower.c - 1].setEnd(true);
+            generateObstacles(0, 0, tower.r - 1, tower.c - 1);
+            tower.blocks[0][0].setStatus(TowerBlockStatus.ME);
+            tower.blocks[tower.r - 1][tower.c - 1].setEnd(true);
         }
         // 延用旧地图(从密藏出来)
         else {
-            for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
-                for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
-                    TowerBlock block = TowerData.currTower.blocks[i][j];
+            for (int i = 0, r = tower.r; i < r; i++) {
+                for (int j = 0, c = tower.c; j < c; j++) {
+                    TowerBlock block = tower.blocks[i][j];
                     block.setStatus(block.getStatus());
                     mainPanel.add(block.getLabel());
                 }
             }
         }
         mainPanel.repaint();
-        move(TowerData.currTower.x, TowerData.currTower.y, TowerData.currTower.x, TowerData.currTower.y);
+        move(tower.x, tower.y, tower.x, tower.y);
     }
 
     // 更新物品数量并回显
@@ -240,12 +240,13 @@ public class TowerUI extends JFrame {
     // 移动函数
     private void move(int x1, int y1, int x2, int y2) {
         if (!isReachable(x1, y1, x2, y2)) return;
+        Tower tower = TowerData.currTower;
         // 是否无效移动
-        boolean invalidMovement = TowerData.currTower.blocks[x2][y2].isEmpty();
+        boolean invalidMovement = tower.blocks[x2][y2].isEmpty();
         // 检查牌子数量是否充足
-        if (!invalidMovement && TowerData.currTower.getStepCost() > DataStorage.get(TowerData.currTower.getStepItem().getStorageKey())) {
+        if (!invalidMovement && tower.getStepCost() > DataStorage.get(tower.getStepItem().getStorageKey())) {
             if (autoMoveTimer.isRunning()) autoBtn.doClick();
-            new TipDialog(this, String.format("%s不足", TowerData.currTower.getStepItem().getName()));
+            new TipDialog(this, String.format("%s不足", tower.getStepItem().getName()));
             return;
         }
         // 还原起点
@@ -255,24 +256,24 @@ public class TowerUI extends JFrame {
         // 更新终点的视野
         updateVision(x2, y2);
         if (invalidMovement) return;
-        if (TowerData.currTower.blocks[x2][y2].isEnd()) {
+        if (tower.blocks[x2][y2].isEnd()) {
             // 显示本关获得物品
             backpackBtn.doClick();
-            if (TowerData.isAdvancedTower(TowerData.currTower)) {
+            if (TowerData.isAdvancedTower(tower)) {
                 // 通关次数增加
                 DataStorage.add(StorageKey.ADVANCED_TOWER_CLEARED, 1);
                 // 判断竞猜
                 if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
                 else if (quiz.isStatus(QuizStatus.PROGRESSING)) quiz.setStatus(QuizStatus.OVER);
-            } else if (TowerData.isDeluxeTower(TowerData.currTower)) {
+            } else if (TowerData.isDeluxeTower(tower)) {
                 DataStorage.add(StorageKey.DELUXE_TOWER_CLEARED, 1);
             }
             // 密藏结束
-            if (TowerData.isTreasure(TowerData.currTower)) finishTreasure(TowerData.currTower);
-            else generateBlocks(TowerData.currTower, true);
+            if (TowerData.isTreasure(tower)) finishTreasure(tower);
+            else generateBlocks(tower, true);
         }
         // 判断事件
-        else if (TowerData.isAdvancedTower(TowerData.currTower) && EventData.isNothing(currEvent)) {
+        else if (TowerData.isAdvancedTower(tower) && EventData.isNothing(currEvent)) {
             Sampler<Event> eventSampler = EventData.eventSampler;
             Event event = eventSampler.lottery().getItem();
             // 无
@@ -281,10 +282,10 @@ public class TowerUI extends JFrame {
             if (EventData.isTreasure(event)) {
                 currEvent = event;
                 TreasureDialog treasureDialog = new TreasureDialog(this);
-                Tower tower = event.getTower();
-                tower.setVisible(true);
+                Tower t = event.getTower();
+                t.setVisible(true);
                 if (!treasureDialog.isConfirmed()) return;
-                generateBlocks(tower, true);
+                generateBlocks(t, true);
             }
             // 触发礼物翻倍
             else if (EventData.isBonusTrigger(event)) {
@@ -293,7 +294,7 @@ public class TowerUI extends JFrame {
                 currBonus = bonusDialog.getSelectedBonus();
                 currBonus.reset();
                 updateBonusStepLeft();
-                TowerData.currTower.setStepCost(currBonus.getStepCost());
+                tower.setStepCost(currBonus.getStepCost());
                 currEvent = EventData.BONUS_TRIGGER;
             }
         }
@@ -308,11 +309,12 @@ public class TowerUI extends JFrame {
 
     // 占据某点
     private void occupyBlock(int x, int y) {
-        TowerBlock block = TowerData.currTower.blocks[TowerData.currTower.x = x][TowerData.currTower.y = y];
+        Tower tower = TowerData.currTower;
+        TowerBlock block = tower.blocks[tower.x = x][tower.y = y];
         if (!block.isEmpty()) {
             // 牌子减少
-            Item stepItem = TowerData.currTower.getStepItem();
-            int stepCost = TowerData.currTower.getStepCost();
+            Item stepItem = tower.getStepItem();
+            int stepCost = tower.getStepCost();
             updateItemAmountAndView(stepItem, -stepCost);
             if (stepItem.equals(ItemData.ADVANCED_STEP)) {
                 // 积累步数
@@ -322,12 +324,12 @@ public class TowerUI extends JFrame {
             }
             // 计算倍率
             int rate = 1;
-            if (TowerData.isAdvancedTower(TowerData.currTower) && EventData.isBonusTrigger(currEvent)) {
+            if (TowerData.isAdvancedTower(tower) && EventData.isBonusTrigger(currEvent)) {
                 rate = currBonus.getRateSampler().lottery().getItem();
                 currBonus.consume();
                 updateBonusStepLeft(block, rate);
                 if (currBonus.getStepLeft() <= 0) {
-                    TowerData.currTower.setStepCost(1);
+                    tower.setStepCost(1);
                     currEvent = EventData.NOTHING;
                     currBonus = null;
                     bonusLabel.setText(null);
@@ -349,10 +351,10 @@ public class TowerUI extends JFrame {
             // 礼物库存增加
             StorageKey key = blockItem.getStorageKey();
             DataStorage.add(key, num);
-            TowerData.currTower.getBackpackStorage().add(key, num);
+            tower.getBackpackStorage().add(key, num);
             if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
             // 会员消耗
-            if (TowerData.isAdvancedTower(TowerData.currTower) && account.isVip()) {
+            if (TowerData.isAdvancedTower(tower) && account.isVip()) {
                 account.consumeVip();
                 if (account.getVipStepLeft() <= 0) {
                     Vip vip = account.getVip();
@@ -369,10 +371,11 @@ public class TowerUI extends JFrame {
 
     // 激活某点
     private void activateBlock(int x, int y) {
-        if (x < 0 || x >= TowerData.currTower.r || y < 0 || y >= TowerData.currTower.c || TowerData.currTower.blocks[x][y].isDisabled())
+        Tower tower = TowerData.currTower;
+        if (x < 0 || x >= tower.r || y < 0 || y >= tower.c || tower.blocks[x][y].isDisabled())
             return;
-        Sampler<Item> itemSampler = ItemData.getItemSampler(TowerData.currTower);
-        TowerBlock block = TowerData.currTower.blocks[x][y];
+        Sampler<Item> itemSampler = ItemData.getItemSampler(tower);
+        TowerBlock block = tower.blocks[x][y];
         // 从不可见变为激活时生成物品
         if (block.isInvisible()) {
             Item item = itemSampler.lottery().getItem();
@@ -386,14 +389,15 @@ public class TowerUI extends JFrame {
 
     // 判断两点是否可达
     private boolean isReachable(int x1, int y1, int x2, int y2) {
+        Tower tower = TowerData.currTower;
         // 越界
-        if (x1 < 0 || x1 >= TowerData.currTower.r || y1 < 0 || y1 >= TowerData.currTower.c) return false;
-        if (x2 < 0 || x2 >= TowerData.currTower.r || y2 < 0 || y2 >= TowerData.currTower.c) return false;
+        if (x1 < 0 || x1 >= tower.r || y1 < 0 || y1 >= tower.c) return false;
+        if (x2 < 0 || x2 >= tower.r || y2 < 0 || y2 >= tower.c) return false;
 
         // 起点和终点相同
         if (x1 == x2 && y1 == y2) return true;
 
-        boolean[][] visited = new boolean[TowerData.currTower.r][TowerData.currTower.c];
+        boolean[][] visited = new boolean[tower.r][tower.c];
         Queue<int[]> queue = new LinkedList<>();
         queue.offer(new int[]{x1, y1});
         visited[x1][y1] = true;
@@ -407,8 +411,8 @@ public class TowerUI extends JFrame {
                 int nx = current[0] + dir[0];
                 int ny = current[1] + dir[1];
                 // 检查新坐标是否合法且未被访问
-                if (nx >= 0 && nx < TowerData.currTower.r && ny >= 0 && ny < TowerData.currTower.c && !visited[nx][ny]
-                        && !TowerData.currTower.blocks[nx][ny].isInvisible() && !TowerData.currTower.blocks[nx][ny].isDisabled()) {
+                if (nx >= 0 && nx < tower.r && ny >= 0 && ny < tower.c && !visited[nx][ny]
+                        && !tower.blocks[nx][ny].isInvisible() && !tower.blocks[nx][ny].isDisabled()) {
                     // 检查是否到达终点
                     if (nx == x2 && ny == y2) return true;
                     visited[nx][ny] = true;
@@ -422,13 +426,14 @@ public class TowerUI extends JFrame {
     // 生成障碍物
     public void generateObstacles(int sx, int sy, int dx, int dy) {
         List<int[]> available = new LinkedList<>();
-        for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
-            for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
+        Tower tower = TowerData.currTower;
+        for (int i = 0, r = tower.r; i < r; i++) {
+            for (int j = 0, c = tower.c; j < c; j++) {
                 if (i == sx && j == sy || i == dx && j == dy) continue;
                 available.add(new int[]{i, j});
             }
         }
-        int obstaclesPlaced = 0, numObstacles = RandomUtil.nextInt(TowerData.currTower.minObstacles, TowerData.currTower.maxObstacles + 1);
+        int obstaclesPlaced = 0, numObstacles = RandomUtil.nextInt(tower.minObstacles, tower.maxObstacles + 1);
         while (obstaclesPlaced < numObstacles && !available.isEmpty()) {
             int randomIndex = RandomUtil.nextInt(0, available.size());
             int[] pos = available.get(randomIndex);
@@ -439,15 +444,15 @@ public class TowerUI extends JFrame {
             available.set(randomIndex, lastPos);
             available.remove(available.size() - 1);
 
-            TowerBlock block = TowerData.currTower.blocks[x][y];
+            TowerBlock block = tower.blocks[x][y];
             TowerBlockStatus os = block.getStatus();
             block.setStatus(TowerBlockStatus.DISABLED); // 暂时设置为障碍物
-            int expected = TowerData.currTower.r * TowerData.currTower.c - (obstaclesPlaced + 1);
+            int expected = tower.r * tower.c - (obstaclesPlaced + 1);
             int actual = bfs(sx, sy, dx, dy);
 
             if (actual == expected) obstaclesPlaced++;
             else {
-                TowerData.currTower.blocks[x][y].setStatus(os); // 恢复
+                tower.blocks[x][y].setStatus(os); // 恢复
                 available.add(pos); // 重新加入候选列表
             }
         }
@@ -458,9 +463,10 @@ public class TowerUI extends JFrame {
     }
 
     private int bfs(int sx, int sy, int dx, int dy) {
-        boolean[][] visited = new boolean[TowerData.currTower.r][TowerData.currTower.c];
+        Tower tower = TowerData.currTower;
+        boolean[][] visited = new boolean[tower.r][tower.c];
         Queue<int[]> queue = new LinkedList<>();
-        if (TowerData.currTower.blocks[sx][sy].isInvisible()) {
+        if (tower.blocks[sx][sy].isInvisible()) {
             queue.add(new int[]{sx, sy});
             visited[sx][sy] = true;
         }
@@ -475,8 +481,7 @@ public class TowerUI extends JFrame {
             for (int[] dir : directions) {
                 int nx = current[0] + dir[0];
                 int ny = current[1] + dir[1];
-                if (nx >= 0 && nx < TowerData.currTower.r && ny >= 0 && ny < TowerData.currTower.c
-                        && !visited[nx][ny] && TowerData.currTower.blocks[nx][ny].isInvisible()) {
+                if (nx >= 0 && nx < tower.r && ny >= 0 && ny < tower.c && !visited[nx][ny] && TowerData.currTower.blocks[nx][ny].isInvisible()) {
                     visited[nx][ny] = true;
                     queue.add(new int[]{nx, ny});
                 }
@@ -487,9 +492,10 @@ public class TowerUI extends JFrame {
 
     // 更新地图样式
     public void updateBlockStyle() {
-        for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
-            for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
-                TowerBlock block = TowerData.currTower.blocks[i][j];
+        Tower tower = TowerData.currTower;
+        for (int i = 0, r = tower.r; i < r; i++) {
+            for (int j = 0, c = tower.c; j < c; j++) {
+                TowerBlock block = tower.blocks[i][j];
                 block.setStatus(block.getStatus());
             }
         }

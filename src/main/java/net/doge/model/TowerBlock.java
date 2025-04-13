@@ -28,6 +28,7 @@ public class TowerBlock {
         this.status = status;
         Account account = AccountData.account;
         Tower tower = TowerData.currTower;
+        GColor c1, c2, bc;
         switch (status) {
             case ME:
                 item = null;
@@ -39,20 +40,23 @@ public class TowerBlock {
             case ACTIVATED:
                 if (end) return;
                 boolean empty = isEmpty();
-                GColor c1;
-                if (empty) {
-                    if (TowerData.isAdvancedTower(tower) && account.isVip()) c1 = account.getBrightColor();
-                    else c1 = tower.getBrightColor();
-                } else c1 = item.getHighlightColor();
+                if (TowerData.isAdvancedTower(tower) && account.isVip()) {
+                    c1 = account.getBrightColor();
+                    bc = account.getHighlightColor();
+                } else {
+                    c1 = tower.getBrightColor();
+                    bc = tower.getHighlightColor();
+                }
+                if (!empty) c1 = item.getHighlightColor();
                 label.setC1(c1);
                 label.setUseGradientPaint(false);
+                label.setBorder(BorderFactory.createLineBorder(bc.getAwtColor()));
                 label.setForeground(null);
                 label.setText(empty || num <= 1 ? " " : String.valueOf(num));
                 label.setIcon(empty ? null : IconUtil.getIcon(item.getIconKey()));
                 break;
             case INVISIBLE:
                 if (end) return;
-                GColor c2, bc;
                 if (TowerData.isAdvancedTower(tower) && account.isVip()) {
                     c1 = account.getBrightColor();
                     c2 = bc = account.getHighlightColor();

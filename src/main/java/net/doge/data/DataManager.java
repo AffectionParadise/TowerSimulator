@@ -6,6 +6,7 @@ import net.doge.constant.StorageKey;
 import net.doge.model.Account;
 import net.doge.model.GiftRecord;
 import net.doge.model.Reward;
+import net.doge.model.Vip;
 import net.doge.ui.TowerUI;
 import net.doge.util.JsonUtil;
 
@@ -19,6 +20,12 @@ public class DataManager {
         // 账号
         JSONObject accountJson = data.getJSONObject("Account");
         if (JsonUtil.notEmpty(accountJson)) AccountData.account = accountJson.to(Account.class);
+        // 增加物品权重
+        if (AccountData.account.isVip()) {
+            Vip vip = AccountData.account.getVip();
+            // 增加物品权重
+            ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
+        }
         // 礼物库存
         JSONObject dataStorageJson = data.getJSONObject("DataStorage");
         if (JsonUtil.notEmpty(dataStorageJson)) {

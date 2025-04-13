@@ -26,7 +26,7 @@ public class GColor {
     public static final GColor REGULAR_TOWER_HIGHLIGHT = new GColor(66,156,150);
     public static final GColor ADVANCED_TOWER_BRIGHT = new GColor(221, 255, 207);
     public static final GColor ADVANCED_TOWER_HIGHLIGHT = new GColor(34, 139, 34);
-    public static final GColor TREASURE_TOWER_BRIGHT = new GColor(238, 238, 0);
+    public static final GColor TREASURE_TOWER_BRIGHT = new GColor(234, 218, 171);
     public static final GColor TREASURE_TOWER_HIGHLIGHT = new GColor(240, 163, 35);
 
     // vip
