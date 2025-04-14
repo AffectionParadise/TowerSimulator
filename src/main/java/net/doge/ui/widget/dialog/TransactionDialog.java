@@ -1,7 +1,7 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.TowerData;
 import net.doge.data.TransactionData;
 import net.doge.model.Item;

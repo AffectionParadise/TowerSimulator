@@ -1,13 +1,9 @@
-package net.doge.data;
+package net.doge.data.storage;
 
 import lombok.Getter;
-import net.doge.constant.StorageKey;
 import net.doge.model.GiftRecord;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class GiftRecordStorage {
     private static final int MAX_SIZE = 50;

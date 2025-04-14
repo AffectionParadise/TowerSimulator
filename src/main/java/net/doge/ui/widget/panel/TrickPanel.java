@@ -2,7 +2,7 @@ package net.doge.ui.widget.panel;
 
 import net.doge.constant.IconKey;
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.FontData;
 import net.doge.data.TrickData;
 import net.doge.model.Item;

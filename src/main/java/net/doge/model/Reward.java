@@ -1,7 +1,7 @@
 package net.doge.model;
 
 import lombok.Data;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.ui.widget.color.GColor;
 
 @Data

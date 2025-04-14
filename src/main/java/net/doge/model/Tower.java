@@ -2,6 +2,7 @@ package net.doge.model;
 
 import lombok.Data;
 import net.doge.constant.IconKey;
+import net.doge.data.storage.BackpackStorage;
 import net.doge.ui.widget.color.GColor;
 
 @Data

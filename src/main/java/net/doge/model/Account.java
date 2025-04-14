@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import net.doge.constant.IconKey;
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.NobleData;
 import net.doge.data.ShowData;
 import net.doge.ui.widget.color.GColor;
@@ -12,6 +12,8 @@ import net.doge.ui.widget.color.GColor;
 @Data
 @AllArgsConstructor
 public class Account {
+    // id
+    private String id;
     // 名称
     private String name;
     // 头像
@@ -29,7 +31,8 @@ public class Account {
     // 会员
     private Vip vip;
 
-    public Account(String name, IconKey avatar) {
+    public Account(String id, String name, IconKey avatar) {
+        this.id = id;
         this.name = name;
         this.avatar = avatar;
     }
@@ -41,7 +44,7 @@ public class Account {
     public void updateShowLevel() {
         int totalShowExp = DataStorage.get(StorageKey.SHOW_EXP);
         int d = ShowData.EXP_INCREMENT, max = ShowData.MAX_LEVEL;
-        for (int i = 1; i < max; i++) {
+        for (int i = 1; i <= max; i++) {
             if (totalShowExp >= i * (i - 1) * d / 2) showLevel = i;
             else break;
         }

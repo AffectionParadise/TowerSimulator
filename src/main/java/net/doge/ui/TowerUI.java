@@ -5,6 +5,8 @@ import net.doge.constant.QuizStatus;
 import net.doge.constant.StorageKey;
 import net.doge.constant.TowerBlockStatus;
 import net.doge.data.*;
+import net.doge.data.manager.DataManager;
+import net.doge.data.storage.DataStorage;
 import net.doge.model.*;
 import net.doge.model.Event;
 import net.doge.ui.widget.button.GButton;
@@ -24,6 +26,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class TowerUI extends JFrame {
+    public boolean silent;
     public Event currEvent = EventData.NOTHING;
     private Bonus currBonus;
     private Quiz quiz = ActivityData.quiz;
@@ -265,7 +268,7 @@ public class TowerUI extends JFrame {
         if (invalidMovement) return;
         if (tower.blocks[x2][y2].isEnd()) {
             // 显示本关获得物品
-            backpackBtn.doClick();
+            if (!silent) backpackBtn.doClick();
             if (TowerData.isAdvancedTower(tower)) {
                 // 通关次数增加
                 DataStorage.add(StorageKey.ADVANCED_TOWER_CLEARED, 1);
@@ -288,10 +291,12 @@ public class TowerUI extends JFrame {
             // 触发密藏
             if (EventData.isTreasure(event)) {
                 currEvent = event;
-                TreasureDialog treasureDialog = new TreasureDialog(this);
                 Tower t = event.getTower();
                 t.setVisible(true);
-                if (!treasureDialog.isConfirmed()) return;
+                if (!silent) {
+                    TreasureDialog treasureDialog = new TreasureDialog(this);
+                    if (!treasureDialog.isConfirmed()) return;
+                }
                 generateBlocks(t, true);
             }
             // 触发礼物翻倍
@@ -352,7 +357,7 @@ public class TowerUI extends JFrame {
                 Item sourceItem = vip.getSourceItem();
                 if (blockItem.equals(sourceItem)) {
                     blockItem = vip.getTargetItem();
-                    new ConversionDialog(this);
+                    if (!silent) new ConversionDialog(this);
                 }
             }
             // 礼物库存增加

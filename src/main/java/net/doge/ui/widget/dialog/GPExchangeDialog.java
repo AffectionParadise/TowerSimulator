@@ -3,7 +3,7 @@ package net.doge.ui.widget.dialog;
 import net.doge.constant.IconKey;
 import net.doge.constant.ItemType;
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.model.Item;
 import net.doge.model.Transaction;

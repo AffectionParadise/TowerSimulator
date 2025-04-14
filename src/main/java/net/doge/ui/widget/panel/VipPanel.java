@@ -2,7 +2,7 @@ package net.doge.ui.widget.panel;
 
 import net.doge.constant.StorageKey;
 import net.doge.data.AccountData;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.data.VipData;
 import net.doge.model.Account;

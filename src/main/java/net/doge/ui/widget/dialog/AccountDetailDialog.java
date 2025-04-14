@@ -2,7 +2,7 @@ package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
 import net.doge.data.AccountData;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.NobleData;
 import net.doge.model.Account;
 import net.doge.model.Noble;
@@ -17,8 +17,11 @@ import java.awt.*;
 
 public class AccountDetailDialog extends GDialog {
     private GPanel centerPanel = new GPanel();
+    private GPanel infoPanel = new GPanel();
     private GPanel headPanel = new GPanel();
     private GLabel headLabel = new GLabel();
+    private GPanel idPanel = new GPanel();
+    private GLabel idLabel = new GLabel();
     private GPanel detailPanel = new GPanel();
     private GLabel showLabel = new GLabel();
     private GProgressBar showProgress = new GProgressBar();
@@ -36,9 +39,18 @@ public class AccountDetailDialog extends GDialog {
         headLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
         headLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         headLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        headPanel.setLayout(new GridLayout(1, 1));
+        headPanel.add(headLabel);
 
-        headPanel.setLayout(new BorderLayout());
-        headPanel.add(headLabel, BorderLayout.CENTER);
+        idLabel.setText(String.format("账号：%s", account.getId()));
+        idPanel.add(idLabel);
+
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+        infoPanel.add(Box.createVerticalGlue());
+        infoPanel.add(headPanel);
+        infoPanel.add(Box.createVerticalStrut(20));
+        infoPanel.add(idPanel);
+        infoPanel.add(Box.createVerticalGlue());
 
         account.updateShowLevel();
         int showLevel = account.getShowLevel();
@@ -105,7 +117,7 @@ public class AccountDetailDialog extends GDialog {
         detailPanel.setLayout(new BoxLayout(detailPanel, BoxLayout.Y_AXIS));
 
         centerPanel.setLayout(new GridLayout(1, 2));
-        centerPanel.add(headPanel);
+        centerPanel.add(infoPanel);
         centerPanel.add(detailPanel);
 
         add(centerPanel, BorderLayout.CENTER);

@@ -2,7 +2,7 @@ package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
 import net.doge.data.AccountData;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
@@ -62,6 +62,9 @@ public class CheatDialog extends GDialog {
                     break;
                 case "vstep":
                     AccountData.account.addVipStepLeft(num);
+                    break;
+                case "sil":
+                    ui.silent = num != 0;
                     break;
             }
             dispose();

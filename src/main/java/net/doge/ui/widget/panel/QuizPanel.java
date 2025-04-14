@@ -2,7 +2,7 @@ package net.doge.ui.widget.panel;
 
 import net.doge.constant.QuizStatus;
 import net.doge.data.ActivityData;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.FontData;
 import net.doge.model.Item;
 import net.doge.model.Quiz;

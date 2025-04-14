@@ -1037,7 +1037,7 @@ public class ItemData {
         ab5Gift.setValue(300000);
         ab5Gift.setGiftPoints(48000);
         items.add(ab5Gift);
-        abSubItemSampler.addModel(new SampleModel<>(ab5Gift, 50));
+        abSubItemSampler.addModel(new SampleModel<>(ab5Gift, 100));
 
         Item ab6Gift = new Item("招福舞狮", ItemType.GIFT, IconKey.AB6_GIFT, StorageKey.AB6_GIFT_NUM);
         ab6Gift.setValue(50000);

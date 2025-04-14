@@ -3,7 +3,7 @@ package net.doge.ui.widget.dialog;
 import net.doge.constant.IconKey;
 import net.doge.constant.ItemType;
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.data.ItemData;
 import net.doge.model.Item;
 import net.doge.model.Transaction;
@@ -49,7 +49,7 @@ public class ShowExchangeDialog extends GDialog<Transaction> {
     public void init() {
         Item showExp = new Item("SHOW经验", ItemType.CURRENCY, null, StorageKey.SHOW_EXP);
         showExp.setIconThumbKey(IconKey.SHOW_EXP_THUMB);
-        transaction = new Transaction(IconKey.SHOW_EXP, showExp, 300, ItemData.REGULAR_COIN, 860);
+        transaction = new Transaction(IconKey.SHOW_EXP, showExp, 500, ItemData.REGULAR_COIN, 860);
 
         Item currency = transaction.getItemConsumed();
         int total = DataStorage.get(currency.getStorageKey());

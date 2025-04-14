@@ -1,4 +1,4 @@
-package net.doge.model;
+package net.doge.data.storage;
 
 import lombok.Getter;
 import net.doge.constant.StorageKey;
@@ -6,8 +6,8 @@ import net.doge.constant.StorageKey;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class BackpackStorage {
-    @Getter
     private Map<StorageKey, Integer> storage = new HashMap<>();
 
     public int get(StorageKey key) {

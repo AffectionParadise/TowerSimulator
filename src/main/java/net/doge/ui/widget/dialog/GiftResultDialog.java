@@ -1,9 +1,9 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
-import net.doge.data.DataStorage;
-import net.doge.data.GiftRecordStorage;
-import net.doge.data.GiftCensusStorage;
+import net.doge.data.storage.DataStorage;
+import net.doge.data.storage.GiftRecordStorage;
+import net.doge.data.storage.GiftCensusStorage;
 import net.doge.data.TrickData;
 import net.doge.model.*;
 import net.doge.ui.TowerUI;
@@ -22,7 +22,7 @@ public class GiftResultDialog extends GDialog<GiftResult> {
     private int num;
 
     public GiftResultDialog(TowerUI ui, GiftDialog d, Item item, int num) {
-        super(ui, false);
+        super(ui);
         this.d = d;
         this.item = item;
         this.num = num;

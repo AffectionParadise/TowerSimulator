@@ -1,8 +1,14 @@
-package net.doge.data;
+package net.doge.data.manager;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import net.doge.constant.StorageKey;
+import net.doge.data.AccountData;
+import net.doge.data.ActivityData;
+import net.doge.data.ItemData;
+import net.doge.data.storage.DataStorage;
+import net.doge.data.storage.GiftCensusStorage;
+import net.doge.data.storage.GiftRecordStorage;
 import net.doge.model.Account;
 import net.doge.model.GiftRecord;
 import net.doge.model.Reward;

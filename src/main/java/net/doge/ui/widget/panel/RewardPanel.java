@@ -1,6 +1,6 @@
 package net.doge.ui.widget.panel;
 
-import net.doge.data.DataStorage;
+import net.doge.data.storage.DataStorage;
 import net.doge.model.Item;
 import net.doge.model.Reward;
 import net.doge.ui.TowerUI;
