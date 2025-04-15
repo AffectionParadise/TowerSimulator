@@ -15,7 +15,8 @@ public class DataStorage {
     }
 
     public static void add(StorageKey key, int value) {
-        storage.put(key, get(key) + value);
+        int nv = get(key) + value;
+        storage.put(key, nv < 0 ? Integer.MAX_VALUE + nv + 1 : nv);
         // 消耗金蘑菇
         if (key == StorageKey.ADVANCED_COIN_NUM && value < 0) add(StorageKey.ADVANCED_COIN_CONSUMED, -value);
     }

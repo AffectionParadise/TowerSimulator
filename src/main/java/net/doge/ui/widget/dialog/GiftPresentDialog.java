@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 public class GiftPresentDialog extends GDialog<Item> {
     private GiftDialog d;
     private GPanel bottomPanel = new GPanel();
+    private GButton maxBtn = new GButton("最大", GColor.DARK_RED);
     private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
     private NumTextField numTextField = new NumTextField("1");
     private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
@@ -50,6 +51,11 @@ public class GiftPresentDialog extends GDialog<Item> {
             listModel.addElement(item);
         }
 
+        maxBtn.addActionListener(e -> {
+            Item selectedItem = list.getSelectedValue();
+            if (selectedItem == null) return;
+            numTextField.setText(String.valueOf(DataStorage.get(selectedItem.getStorageKey())));
+        });
         minusBtn.addActionListener(e -> {
             String text = numTextField.getText();
             int num = 2;
@@ -84,6 +90,7 @@ public class GiftPresentDialog extends GDialog<Item> {
         });
 
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        bottomPanel.add(maxBtn);
         for (int num : nums) {
             String nt = String.valueOf(num);
             GButton numBtn = new GButton(nt, GColor.LIGHT_BLUE);

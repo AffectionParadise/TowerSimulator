@@ -95,8 +95,8 @@ public class TowerUI extends JFrame {
             Tower tower = towerDialog.getSelectedTower();
             Item stepItem = tower.getStepItem();
             stepLabel.setIcon(IconUtil.getIcon(stepItem.getIconThumbKey()));
-            updateItemAmountAndView(stepItem, 0);
             generateBlocks(tower, false);
+            updateItemAmountAndView(stepItem, 0);
         });
         gatheredLabel.setIcon(IconUtil.getIcon(IconKey.GATHERED_STEP_THUMB));
         stepLabel.setIcon(IconUtil.getIcon(TowerData.currTower.getStepItem().getIconThumbKey()));

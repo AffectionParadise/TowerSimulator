@@ -15,6 +15,7 @@ public class GiftCensusStorage {
     }
 
     public static void add(StorageKey key, int value) {
-        storage.put(key, get(key) + value);
+        int nv = get(key) + value;
+        storage.put(key, nv < 0 ? Integer.MAX_VALUE + nv + 1 : nv);
     }
 }

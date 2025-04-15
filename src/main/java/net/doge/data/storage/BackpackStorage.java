@@ -15,7 +15,8 @@ public class BackpackStorage {
     }
 
     public void add(StorageKey key, int value) {
-        storage.put(key, storage.getOrDefault(key, 0) + value);
+        int nv = get(key) + value;
+        storage.put(key, nv < 0 ? Integer.MAX_VALUE + nv + 1 : nv);
     }
 
     public void clear() {

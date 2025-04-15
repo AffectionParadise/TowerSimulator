@@ -221,11 +221,11 @@ public class ItemData {
 
         Item regularGift2 = new Item("居士汪", ItemType.GIFT, IconKey.REGULAR_GIFT_2, StorageKey.REGULAR_GIFT_2_NUM);
         regularGift2.setHighlightColor(GColor.DELUXE_QUALITY);
-        regularTowerItemSampler.addModel(new SampleModel<>(regularGift2, 50));
+        regularTowerItemSampler.addModel(new SampleModel<>(regularGift2, 100));
 
         Item deluxeStep = new Item("金塔牌子", ItemType.CURRENCY, IconKey.DELUXE_STEP, StorageKey.DELUXE_STEP_NUM);
         deluxeStep.setHighlightColor(GColor.DELUXE_QUALITY);
-        regularTowerItemSampler.addModel(new SampleModel<>(deluxeStep, 3));
+        regularTowerItemSampler.addModel(new SampleModel<>(deluxeStep, 10));
 
         Item advancedBox = new Item("全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
         advancedBox.setHighlightColor(GColor.ULTIMATE_QUALITY);
