@@ -35,8 +35,12 @@ public class AccountDetailDialog extends GDialog {
 
     public void init() {
         Account account = AccountData.account;
+        account.updateNoble();
+        Noble noble = account.getNoble();
+
         headLabel.setText(account.getName());
         headLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
+        nobleLabel.setForeground(noble.getHighlightColor().getAwtColor());
         headLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         headLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
         headPanel.setLayout(new GridLayout(1, 1));
@@ -72,10 +76,8 @@ public class AccountDetailDialog extends GDialog {
         showProgress.setPreferredSize(d);
         showProgress.setMaximumSize(d);
 
-        account.updateNoble();
         int numConsumed = DataStorage.get(StorageKey.ADVANCED_COIN_CONSUMED);
         if (account.isNoble()) {
-            Noble noble = account.getNoble();
             if (NobleData.isLast(noble)) {
                 nobleLabel.setText(String.format("当前贵族：%s，已是最大等级", noble.getName()));
                 nobleLabel.setIcon(IconUtil.getIcon(noble.getIconKey()));

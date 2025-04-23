@@ -34,6 +34,7 @@ public enum IconKey {
     REGULAR_TOWER("RegularTower"),
     // 三塔
     ADVANCED_TOWER("AdvancedTower"),
+    ADVANCED_TOWER_2("AdvancedTower2"),
     // 金塔
     DELUXE_TOWER("DeluxeTower"),
     // 密藏
@@ -103,18 +104,24 @@ public enum IconKey {
     COMMON_SHARD("CommonShard"),
     // 小盒子
     BASIC_BOX("BasicBox"),
+    BASIC_BOX_2("BasicBox2"),
     // 大盒子
     REGULAR_BOX("RegularBox"),
+    REGULAR_BOX_2("RegularBox2"),
     // 大礼物宝盒
     RANDOM_GIFT_GROUP("RandomGiftGroup"),
     // 全屏
     ADVANCED_BOX("AdvancedBox"),
+    ADVANCED_BOX_2("AdvancedBox2"),
     // 辉煌
     DELUXE_BOX("DeluxeBox"),
+    DELUXE_BOX_2("DeluxeBox2"),
     // 1m
     ADVANCED_GIFT("AdvancedGift"),
+    ADVANCED_GIFT_21("AdvancedGift21"),
     // 500k
     ADVANCED_GIFT_2("AdvancedGift2"),
+    ADVANCED_GIFT_22("AdvancedGift22"),
     // 情定爱琴海
     DELUXE_GIFT("DeluxeGift"),
     // 爱之天使号
@@ -152,19 +159,25 @@ public enum IconKey {
 
     // 大盒子子物品
     RB1_GIFT("rb1Gift"),
+    RB21_GIFT("rb21Gift"),
     RB2_GIFT("rb2Gift"),
+    RB22_GIFT("rb22Gift"),
     RB3_GIFT("rb3Gift"),
+    RB23_GIFT("rb23Gift"),
     RB4_GIFT("rb4Gift"),
+    RB24_GIFT("rb24Gift"),
     RB5_GIFT("rb5Gift"),
     RB6_GIFT("rb6Gift"),
     RB7_GIFT("rb7Gift"),
     RB8_GIFT("rb8Gift"),
+    RB28_GIFT("rb28Gift"),
 
     // 全屏子物品
     AB1_GIFT("ab1Gift"),
     AB2_GIFT("ab2Gift"),
     AB3_GIFT("ab3Gift"),
     AB5_GIFT("ab5Gift"),
+    AB25_GIFT("ab25Gift"),
     AB6_GIFT("ab6Gift"),
 
     // 辉煌子物品

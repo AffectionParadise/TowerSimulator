@@ -56,16 +56,22 @@ public enum StorageKey {
     COMMON_SHARD_NUM("CommonShardNum"),
     // 小盒子数量
     BASIC_BOX_NUM("basicBoxNum"),
+    BASIC_BOX_2_NUM("basicBox2Num"),
     // 大盒子数量
     REGULAR_BOX_NUM("RegularBoxNum"),
+    REGULAR_BOX_2_NUM("RegularBox2Num"),
     // 全屏数量
     ADVANCED_BOX_NUM("AdvancedBoxNum"),
+    ADVANCED_BOX_2_NUM("AdvancedBox2Num"),
     // 辉煌数量
     DELUXE_BOX_NUM("DeluxeBoxNum"),
+    DELUXE_BOX_2_NUM("DeluxeBox2Num"),
     // 1m 数量
     ADVANCED_GIFT_NUM("AdvancedGiftNum"),
+    ADVANCED_GIFT_21_NUM("AdvancedGift21Num"),
     // 500k 数量
     ADVANCED_GIFT_2_NUM("AdvancedGift2Num"),
+    ADVANCED_GIFT_22_NUM("AdvancedGift22Num"),
     // 情定爱琴海数量
     DELUXE_GIFT_NUM("DeluxeGiftNum"),
     // 爱之天使号数量
@@ -103,19 +109,25 @@ public enum StorageKey {
 
     // 大盒子子物品数量
     RB1_GIFT_NUM("RB1GiftNum"),
+    RB21_GIFT_NUM("RB21GiftNum"),
     RB2_GIFT_NUM("RB2GiftNum"),
+    RB22_GIFT_NUM("RB22GiftNum"),
     RB3_GIFT_NUM("RB3GiftNum"),
+    RB23_GIFT_NUM("RB23GiftNum"),
     RB4_GIFT_NUM("RB4GiftNum"),
+    RB24_GIFT_NUM("RB24GiftNum"),
     RB5_GIFT_NUM("RB5GiftNum"),
     RB6_GIFT_NUM("RB6GiftNum"),
     RB7_GIFT_NUM("RB7GiftNum"),
     RB8_GIFT_NUM("RB8GiftNum"),
+    RB28_GIFT_NUM("RB28GiftNum"),
 
     // 全屏子物品数量
     AB1_GIFT_NUM("AB1GiftNum"),
     AB2_GIFT_NUM("AB2GiftNum"),
     AB3_GIFT_NUM("AB3GiftNum"),
     AB5_GIFT_NUM("AB5GiftNum"),
+    AB25_GIFT_NUM("AB25GiftNum"),
     AB6_GIFT_NUM("AB6GiftNum"),
 
     // 辉煌子物品数量

@@ -17,6 +17,10 @@ public class Tower {
     private Item stepItem;
     // 每步消耗
     private int stepCost;
+    // 物品生成器
+    private Sampler<Item> itemSampler;
+    // 事件生成器
+    private Sampler<Event> eventSampler;
     // 是否可购买步数物品
     private boolean purchasable;
     // 是否可见
@@ -45,12 +49,14 @@ public class Tower {
     // 浅颜色
     private GColor brightColor;
 
-    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, boolean purchasable, boolean visible, boolean optional, GColor highlightColor, GColor brightColor) {
+    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, Sampler<Item> itemSampler,
+                 boolean purchasable, boolean visible, boolean optional, GColor highlightColor, GColor brightColor) {
         this.name = name;
         this.title = title;
         this.iconKey = iconKey;
         this.stepItem = stepItem;
         this.stepCost = stepCost;
+        this.itemSampler = itemSampler;
         this.purchasable = purchasable;
         this.visible = visible;
         this.optional = optional;

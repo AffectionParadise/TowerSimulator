@@ -59,15 +59,19 @@ public class TowerDialog extends GDialog<Tower> {
             if (tower == null) return;
             listModel.removeElement(tower);
             ui.finishTreasure(tower);
+            quitBtn.setVisible(false);
         });
         quitBtn.setVisible(false);
 
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                Tower tower = list.getSelectedValue();
-                if (tower == null) return;
-                quitBtn.setVisible(tower.isOptional());
+                if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) enterBtn.doClick();
+                else {
+                    Tower tower = list.getSelectedValue();
+                    if (tower == null) return;
+                    quitBtn.setVisible(tower.isOptional());
+                }
             }
         });
 

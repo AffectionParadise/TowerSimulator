@@ -29,6 +29,7 @@ public class TowerUI extends JFrame {
     public boolean silent;
     public Event currEvent = EventData.NOTHING;
     private Bonus currBonus;
+    private Tower lastAdvancedTower;
     private Quiz quiz = ActivityData.quiz;
 
     public Timer autoMoveTimer;
@@ -244,7 +245,7 @@ public class TowerUI extends JFrame {
         currEvent = EventData.NOTHING;
         tower.setVisible(false);
         if (TowerData.currTower != tower) return;
-        generateBlocks(TowerData.ADVANCED_TOWER, false);
+        generateBlocks(lastAdvancedTower, false);
     }
 
     // 移动函数
@@ -284,12 +285,13 @@ public class TowerUI extends JFrame {
         }
         // 判断事件
         else if (TowerData.isAdvancedTower(tower) && EventData.isNothing(currEvent)) {
-            Sampler<Event> eventSampler = EventData.eventSampler;
+            Sampler<Event> eventSampler = tower.getEventSampler();
             Event event = eventSampler.lottery().getItem();
             // 无
             if (EventData.isNothing(event)) return;
             // 触发密藏
             if (EventData.isTreasure(event)) {
+                lastAdvancedTower = tower;
                 currEvent = event;
                 Tower t = event.getTower();
                 t.setVisible(true);
@@ -301,6 +303,7 @@ public class TowerUI extends JFrame {
             }
             // 触发礼物翻倍
             else if (EventData.isBonusTrigger(event)) {
+                if (silent) return;
                 BonusDialog bonusDialog = new BonusDialog(this);
                 if (!bonusDialog.isConfirmed()) return;
                 currBonus = bonusDialog.getSelectedBonus();
@@ -388,7 +391,7 @@ public class TowerUI extends JFrame {
         Tower tower = TowerData.currTower;
         if (x < 0 || x >= tower.r || y < 0 || y >= tower.c || tower.blocks[x][y].isDisabled())
             return;
-        Sampler<Item> itemSampler = ItemData.getItemSampler(tower);
+        Sampler<Item> itemSampler = tower.getItemSampler();
         TowerBlock block = tower.blocks[x][y];
         // 从不可见变为激活时生成物品
         if (block.isInvisible()) {
