@@ -36,8 +36,10 @@ public enum StorageKey {
     COIN_NUM("CoinNum"),
     // 30 礼物数量
     BASIC_GIFT_NUM("BasicGiftNum"),
+    BASIC_GIFT_2_NUM("BasicGift2Num"),
     // 300 礼物数量
     REGULAR_GIFT_NUM("RegularGiftNum"),
+    REGULAR_GIFT_21_NUM("RegularGift21Num"),
     // 10k 礼物数量
     REGULAR_GIFT_2_NUM("RegularGift2Num"),
     // 赠送金蘑菇数量
@@ -117,10 +119,14 @@ public enum StorageKey {
     RB4_GIFT_NUM("RB4GiftNum"),
     RB24_GIFT_NUM("RB24GiftNum"),
     RB5_GIFT_NUM("RB5GiftNum"),
+    RB25_GIFT_NUM("RB25GiftNum"),
     RB6_GIFT_NUM("RB6GiftNum"),
+    RB26_GIFT_NUM("RB26GiftNum"),
     RB7_GIFT_NUM("RB7GiftNum"),
+    RB27_GIFT_NUM("RB27GiftNum"),
     RB8_GIFT_NUM("RB8GiftNum"),
     RB28_GIFT_NUM("RB28GiftNum"),
+    RB29_GIFT_NUM("RB29GiftNum"),
 
     // 全屏子物品数量
     AB1_GIFT_NUM("AB1GiftNum"),
@@ -129,6 +135,8 @@ public enum StorageKey {
     AB5_GIFT_NUM("AB5GiftNum"),
     AB25_GIFT_NUM("AB25GiftNum"),
     AB6_GIFT_NUM("AB6GiftNum"),
+    AB26_GIFT_NUM("AB26GiftNum"),
+    AB27_GIFT_NUM("AB27GiftNum"),
 
     // 辉煌子物品数量
     DB1_GIFT_NUM("DB1GiftNum"),

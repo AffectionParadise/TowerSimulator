@@ -75,4 +75,12 @@ public class Quiz {
     public boolean isSuccess() {
         return actualNum % 2 == expectedNum;
     }
+
+    // 判断是否在指定塔中进行竞猜
+    public boolean isCompatible(Tower tower) {
+        for (SampleModel<Item> model : tower.getItemSampler().getModels()) {
+            if (model.getItem().equals(titleItem)) return true;
+        }
+        return false;
+    }
 }

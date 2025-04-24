@@ -60,6 +60,7 @@ public class ItemData {
     public static Item COIN;
     // 送花小狗
     public static Item REGULAR_GIFT;
+    public static Item REGULAR_GIFT_21;
     // 赠送金蘑菇
     public static Item REGULAR_COIN;
     // 金蘑菇
@@ -268,7 +269,19 @@ public class ItemData {
         basicGift.setNumSampler(basicGiftNS);
         items.add(basicGift);
         advancedTowerItemSampler.addModel(new SampleModel<>(basicGift, 1500));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(basicGift, 1500));
+
+        Sampler<Integer> basicGift2NS = new Sampler<>();
+        basicGift2NS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
+        basicGift2NS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 50, 10);
+        Item basicGift2 = new Item("虹猫玩偶", ItemType.GIFT, IconKey.BASIC_GIFT_2, StorageKey.BASIC_GIFT_2_NUM);
+        basicGift2.setHighlightColor(GColor.BASIC_QUALITY);
+        basicGift2.setValue(30);
+        basicGift2.setExchangeable(true);
+        basicGift2.setExchangeCost(1);
+        basicGift2.setGuessable(true);
+        basicGift2.setNumSampler(basicGift2NS);
+        items.add(basicGift2);
+        advancedTower2ItemSampler.addModel(new SampleModel<>(basicGift2, 1500));
 
         Sampler<Integer> regularGiftNS = new Sampler<>();
         regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 1000);
@@ -284,7 +297,21 @@ public class ItemData {
         regularGift.setNumSampler(regularGiftNS);
         items.add(regularGift);
         advancedTowerItemSampler.addModel(new SampleModel<>(regularGift, 2000));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(regularGift, 2000));
+
+        Sampler<Integer> regularGift21NS = new Sampler<>();
+        regularGift21NS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 1000);
+        regularGift21NS.addModelsLinearWeights(ListUtil.ofRange(4, 10), 50, 10);
+        Item regularGift21 = new Item("麒麟", ItemType.GIFT, IconKey.REGULAR_GIFT_21, StorageKey.REGULAR_GIFT_21_NUM);
+        REGULAR_GIFT_21 = regularGift21;
+        regularGift21.setHighlightColor(GColor.BASIC_QUALITY);
+        regularGift21.setValue(300);
+        regularGift21.setGiftPoints(48);
+        regularGift21.setExchangeable(true);
+        regularGift21.setExchangeCost(5);
+        regularGift21.setGuessable(true);
+        regularGift21.setNumSampler(regularGift21NS);
+        items.add(regularGift21);
+        advancedTower2ItemSampler.addModel(new SampleModel<>(regularGift21, 2000));
 
         Sampler<Integer> regularCoinNS = new Sampler<>();
         regularCoinNS.addModel(new SampleModel<>(333, 60));
@@ -779,7 +806,7 @@ public class ItemData {
         Sampler<Integer> advancedGift21NS = new Sampler<>();
         advancedGift21NS.addModel(new SampleModel<>(1, 2000));
         advancedGift21NS.addModelsLinearWeights(ListUtil.ofRange(2, 3), 5, 1);
-        Item advancedGift21 = new Item("天下为笼", ItemType.GIFT, IconKey.ADVANCED_GIFT_21, StorageKey.ADVANCED_GIFT_21_NUM);
+        Item advancedGift21 = new Item("天地为笼", ItemType.GIFT, IconKey.ADVANCED_GIFT_21, StorageKey.ADVANCED_GIFT_21_NUM);
         advancedGift21.setHighlightColor(GColor.ULTIMATE_QUALITY);
         advancedGift21.setNumSampler(advancedGift21NS);
         regularTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift21, 5));
@@ -1300,7 +1327,7 @@ public class ItemData {
         bb29Gift.setGiftPoints(640);
         bb2SubItemSampler.addModel(new SampleModel<>(bb29Gift, 150));
 
-        Item bb210Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB28_GIFT, StorageKey.RB28_GIFT_NUM);
+        Item bb210Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB29_GIFT, StorageKey.RB29_GIFT_NUM);
         bb210Gift.setValue(100000);
         bb210Gift.setGiftPoints(16000);
         bb2SubItemSampler.addModel(new SampleModel<>(bb210Gift, 1));
@@ -1387,26 +1414,35 @@ public class ItemData {
         items.add(rb24Gift);
         rb2SubItemSampler.addModel(new SampleModel<>(rb24Gift, 500));
 
-        Item rb25Gift = new Item("游艇", ItemType.GIFT, IconKey.RB5_GIFT, StorageKey.RB5_GIFT_NUM);
+        Item rb25Gift = new Item("莎丽", ItemType.GIFT, IconKey.RB25_GIFT, StorageKey.RB25_GIFT_NUM);
         rb25Gift.setValue(20000);
         rb25Gift.setGiftPoints(3200);
+        items.add(rb25Gift);
         rb2SubItemSampler.addModel(new SampleModel<>(rb25Gift, 300));
 
-        Item rb26Gift = new Item("钻石手表", ItemType.GIFT, IconKey.RB6_GIFT, StorageKey.RB6_GIFT_NUM);
+        Item rb26Gift = new Item("逗逗", ItemType.GIFT, IconKey.RB26_GIFT, StorageKey.RB26_GIFT_NUM);
         rb26Gift.setValue(20000);
         rb26Gift.setGiftPoints(3200);
+        items.add(rb26Gift);
         rb2SubItemSampler.addModel(new SampleModel<>(rb26Gift, 300));
 
-        Item rb27Gift = new Item("水晶竖琴", ItemType.GIFT, IconKey.RB7_GIFT, StorageKey.RB7_GIFT_NUM);
-        rb27Gift.setValue(30000);
-        rb27Gift.setGiftPoints(4800);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb27Gift, 200));
+        Item rb27Gift = new Item("跳跳", ItemType.GIFT, IconKey.RB27_GIFT, StorageKey.RB27_GIFT_NUM);
+        rb27Gift.setValue(20000);
+        rb27Gift.setGiftPoints(3200);
+        items.add(rb27Gift);
+        rb2SubItemSampler.addModel(new SampleModel<>(rb27Gift, 300));
 
-        Item rb28Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB28_GIFT, StorageKey.RB28_GIFT_NUM);
-        rb28Gift.setValue(100000);
-        rb28Gift.setGiftPoints(16000);
+        Item rb28Gift = new Item("达达", ItemType.GIFT, IconKey.RB28_GIFT, StorageKey.RB28_GIFT_NUM);
+        rb28Gift.setValue(30000);
+        rb28Gift.setGiftPoints(4800);
         items.add(rb28Gift);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb28Gift, 180));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb28Gift, 200));
+
+        Item rb29Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB29_GIFT, StorageKey.RB29_GIFT_NUM);
+        rb29Gift.setValue(100000);
+        rb29Gift.setGiftPoints(16000);
+        items.add(rb29Gift);
+        rb2SubItemSampler.addModel(new SampleModel<>(rb29Gift, 180));
     }
 
     private static void initABSubItemSampler() {
@@ -1468,21 +1504,27 @@ public class ItemData {
         ab23Gift.setBoxRegular(true);
         ab2SubItemSampler.addModel(new SampleModel<>(ab23Gift, 3000));
 
-        Item ab24Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB28_GIFT, StorageKey.RB28_GIFT_NUM);
+        Item ab24Gift = new Item("七剑合璧", ItemType.GIFT, IconKey.RB29_GIFT, StorageKey.RB29_GIFT_NUM);
         ab24Gift.setValue(100000);
         ab24Gift.setGiftPoints(16000);
         ab2SubItemSampler.addModel(new SampleModel<>(ab24Gift, 500));
 
-        Item ab25Gift = new Item("七侠团聚", ItemType.GIFT, IconKey.AB25_GIFT, StorageKey.AB25_GIFT_NUM);
-        ab25Gift.setValue(300000);
-        ab25Gift.setGiftPoints(48000);
-        items.add(ab25Gift);
-        ab2SubItemSampler.addModel(new SampleModel<>(ab25Gift, 100));
+        Item ab25Gift = new Item("魔灵古堡", ItemType.GIFT, IconKey.DB5_GIFT, StorageKey.DB5_GIFT_NUM);
+        ab25Gift.setValue(188888);
+        ab25Gift.setGiftPoints(30000);
+        ab2SubItemSampler.addModel(new SampleModel<>(ab25Gift, 200));
 
-        Item ab26Gift = new Item("招福舞狮", ItemType.GIFT, IconKey.AB6_GIFT, StorageKey.AB6_GIFT_NUM);
-        ab26Gift.setValue(50000);
-        ab26Gift.setGiftPoints(8000);
-        ab2SubItemSampler.addModel(new SampleModel<>(ab26Gift, 500));
+        Item ab26Gift = new Item("父爱如山", ItemType.GIFT, IconKey.AB26_GIFT, StorageKey.AB26_GIFT_NUM);
+        ab26Gift.setValue(188888);
+        ab26Gift.setGiftPoints(30000);
+        items.add(ab26Gift);
+        ab2SubItemSampler.addModel(new SampleModel<>(ab26Gift, 200));
+
+        Item ab27Gift = new Item("七侠团聚", ItemType.GIFT, IconKey.AB27_GIFT, StorageKey.AB27_GIFT_NUM);
+        ab27Gift.setValue(300000);
+        ab27Gift.setGiftPoints(48000);
+        items.add(ab27Gift);
+        ab2SubItemSampler.addModel(new SampleModel<>(ab27Gift, 100));
     }
 
     private static void initDBSubItemSampler() {
@@ -1530,7 +1572,7 @@ public class ItemData {
         db22Gift.setBoxRegular(true);
         db2SubItemSampler.addModel(new SampleModel<>(db22Gift, 3000));
 
-        Item db23Gift = new Item("七侠团聚", ItemType.GIFT, IconKey.AB25_GIFT, StorageKey.AB25_GIFT_NUM);
+        Item db23Gift = new Item("七侠团聚", ItemType.GIFT, IconKey.AB27_GIFT, StorageKey.AB27_GIFT_NUM);
         db23Gift.setValue(300000);
         db23Gift.setGiftPoints(48000);
         db2SubItemSampler.addModel(new SampleModel<>(db23Gift, 600));

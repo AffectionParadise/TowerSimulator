@@ -62,8 +62,10 @@ public enum IconKey {
     COIN_THUMB("CoinThumb"),
     // 30 礼物
     BASIC_GIFT("BasicGift"),
+    BASIC_GIFT_2("BasicGift2"),
     // 300 礼物
     REGULAR_GIFT("RegularGift"),
+    REGULAR_GIFT_21("RegularGift21"),
     // 10k 礼物
     REGULAR_GIFT_2("RegularGift2"),
     // 一塔牌子
@@ -167,10 +169,14 @@ public enum IconKey {
     RB4_GIFT("rb4Gift"),
     RB24_GIFT("rb24Gift"),
     RB5_GIFT("rb5Gift"),
+    RB25_GIFT("rb25Gift"),
     RB6_GIFT("rb6Gift"),
+    RB26_GIFT("rb26Gift"),
     RB7_GIFT("rb7Gift"),
+    RB27_GIFT("rb27Gift"),
     RB8_GIFT("rb8Gift"),
     RB28_GIFT("rb28Gift"),
+    RB29_GIFT("rb29Gift"),
 
     // 全屏子物品
     AB1_GIFT("ab1Gift"),
@@ -179,6 +185,8 @@ public enum IconKey {
     AB5_GIFT("ab5Gift"),
     AB25_GIFT("ab25Gift"),
     AB6_GIFT("ab6Gift"),
+    AB26_GIFT("ab26Gift"),
+    AB27_GIFT("ab27Gift"),
 
     // 辉煌子物品
     DB1_GIFT("db1Gift"),

@@ -58,6 +58,7 @@ public class CheatDialog extends GDialog {
                     DataStorage.add(StorageKey.ADVANCED_COIN_NUM, num);
                     break;
                 case "amti":
+                    ui.autoMoveTimer.setInitialDelay(num);
                     ui.autoMoveTimer.setDelay(num);
                     break;
                 case "vstep":

@@ -67,4 +67,9 @@ public class Tower {
     public boolean isEmpty() {
         return blocks[0][0] == null || blocks[r - 1][c - 1].isMe();
     }
+
+    // 判断是否可以触发事件
+    public boolean isTriggerable() {
+        return eventSampler != null;
+    }
 }

@@ -61,9 +61,13 @@ public class TowerData {
         towers = new LinkedList<>();
 
         REGULAR_TREASURE.setDesc("1000% 超高倍率关卡开启！");
+        REGULAR_TREASURE_2.setDesc("1000% 超高倍率关卡开启！");
         ADVANCED_TREASURE.setDesc("2000% 超高倍率关卡开启！");
+        ADVANCED_TREASURE_2.setDesc("2000% 超高倍率关卡开启！");
         DELUXE_TREASURE.setDesc("5000% 超高倍率关卡开启！");
+        DELUXE_TREASURE_2.setDesc("5000% 超高倍率关卡开启！");
         ULTIMATE_TREASURE.setDesc("25000% 超高倍率关卡开启！");
+        ULTIMATE_TREASURE_2.setDesc("25000% 超高倍率关卡开启！");
         MR_TREASURE.setDesc("超多蘑菇的金库开启！");
 
         ADVANCED_TOWER.setEventSampler(EventData.eventSampler);

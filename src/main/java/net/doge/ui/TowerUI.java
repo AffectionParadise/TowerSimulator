@@ -29,7 +29,7 @@ public class TowerUI extends JFrame {
     public boolean silent;
     public Event currEvent = EventData.NOTHING;
     private Bonus currBonus;
-    private Tower lastAdvancedTower;
+    private Tower eventTriggeredTower;
     private Quiz quiz = ActivityData.quiz;
 
     public Timer autoMoveTimer;
@@ -162,7 +162,7 @@ public class TowerUI extends JFrame {
         TowerData.currTower = tower;
         stepPlusBtn.setVisible(tower.isPurchasable());
         // 保持翻倍事件
-        if (EventData.isBonusTrigger(currEvent) && TowerData.isAdvancedTower(tower)) {
+        if (EventData.isBonusTrigger(currEvent) && eventTriggeredTower == tower) {
             updateBonusStepLeft();
         } else bonusLabel.setText(tower.getTitle());
         mainPanel.removeAll();
@@ -245,7 +245,7 @@ public class TowerUI extends JFrame {
         currEvent = EventData.NOTHING;
         tower.setVisible(false);
         if (TowerData.currTower != tower) return;
-        generateBlocks(lastAdvancedTower, false);
+        generateBlocks(eventTriggeredTower, false);
     }
 
     // 移动函数
@@ -274,8 +274,10 @@ public class TowerUI extends JFrame {
                 // 通关次数增加
                 DataStorage.add(StorageKey.ADVANCED_TOWER_CLEARED, 1);
                 // 判断竞猜
-                if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
-                else if (quiz.isStatus(QuizStatus.PROGRESSING)) quiz.setStatus(QuizStatus.OVER);
+                if (quiz.isCompatible(tower)) {
+                    if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
+                    else if (quiz.isStatus(QuizStatus.PROGRESSING)) quiz.setStatus(QuizStatus.OVER);
+                }
             } else if (TowerData.isDeluxeTower(tower)) {
                 DataStorage.add(StorageKey.DELUXE_TOWER_CLEARED, 1);
             }
@@ -284,14 +286,14 @@ public class TowerUI extends JFrame {
             else generateBlocks(tower, true);
         }
         // 判断事件
-        else if (TowerData.isAdvancedTower(tower) && EventData.isNothing(currEvent)) {
+        else if (tower.isTriggerable() && EventData.isNothing(currEvent)) {
             Sampler<Event> eventSampler = tower.getEventSampler();
             Event event = eventSampler.lottery().getItem();
             // 无
             if (EventData.isNothing(event)) return;
             // 触发密藏
             if (EventData.isTreasure(event)) {
-                lastAdvancedTower = tower;
+                eventTriggeredTower = tower;
                 currEvent = event;
                 Tower t = event.getTower();
                 t.setVisible(true);
@@ -306,6 +308,7 @@ public class TowerUI extends JFrame {
                 if (silent) return;
                 BonusDialog bonusDialog = new BonusDialog(this);
                 if (!bonusDialog.isConfirmed()) return;
+                eventTriggeredTower = tower;
                 currBonus = bonusDialog.getSelectedBonus();
                 currBonus.reset();
                 updateBonusStepLeft();
@@ -339,7 +342,7 @@ public class TowerUI extends JFrame {
             }
             // 计算倍率
             int rate = 1;
-            if (TowerData.isAdvancedTower(tower) && EventData.isBonusTrigger(currEvent)) {
+            if (EventData.isBonusTrigger(currEvent) && eventTriggeredTower == tower) {
                 rate = currBonus.getRateSampler().lottery().getItem();
                 currBonus.consume();
                 updateBonusStepLeft(block, rate);
@@ -376,7 +379,7 @@ public class TowerUI extends JFrame {
                 if (account.getVipStepLeft() <= 0) {
                     Vip vip = account.getVip();
                     // 恢复物品概率
-                    ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
+                    tower.getItemSampler().addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
                     account.setVip(null);
                     account.setVipStepLeft(0);
                     updateBlockStyle();
