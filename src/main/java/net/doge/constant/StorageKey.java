@@ -141,6 +141,7 @@ public enum StorageKey {
     // 辉煌子物品数量
     DB1_GIFT_NUM("DB1GiftNum"),
     DB2_GIFT_NUM("DB2GiftNum"),
+    DB22_GIFT_NUM("DB22GiftNum"),
     DB4_GIFT_NUM("DB4GiftNum"),
     DB5_GIFT_NUM("DB5GiftNum");
 

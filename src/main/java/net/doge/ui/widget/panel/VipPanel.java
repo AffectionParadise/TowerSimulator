@@ -99,6 +99,7 @@ public class VipPanel extends GPanel {
                 account.setVip(vip);
                 // 增加物品权重
                 ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
+                ItemData.advancedTower2ItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
                 ui.updateBlockStyle();
             }
             // 剩余步数增加

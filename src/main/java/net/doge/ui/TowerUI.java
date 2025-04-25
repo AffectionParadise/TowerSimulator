@@ -51,7 +51,7 @@ public class TowerUI extends JFrame {
     public void init() {
         DataManager.loadData(this);
 
-        generateBlocks(TowerData.ADVANCED_TOWER, true);
+        generateBlocks(TowerData.ADVANCED_TOWER_2, true);
 
         // 关闭时保存游戏数据
         addWindowListener(new WindowAdapter() {
@@ -305,11 +305,12 @@ public class TowerUI extends JFrame {
             }
             // 触发礼物翻倍
             else if (EventData.isBonusTrigger(event)) {
-                if (silent) return;
-                BonusDialog bonusDialog = new BonusDialog(this);
-                if (!bonusDialog.isConfirmed()) return;
+                if (!silent) {
+                    BonusDialog bonusDialog = new BonusDialog(this);
+                    if (!bonusDialog.isConfirmed()) return;
+                    currBonus = bonusDialog.getSelectedBonus();
+                } else currBonus = BonusData.BONUS2;
                 eventTriggeredTower = tower;
-                currBonus = bonusDialog.getSelectedBonus();
                 currBonus.reset();
                 updateBonusStepLeft();
                 tower.setStepCost(currBonus.getStepCost());
@@ -378,8 +379,9 @@ public class TowerUI extends JFrame {
                 account.consumeVip();
                 if (account.getVipStepLeft() <= 0) {
                     Vip vip = account.getVip();
-                    // 恢复物品概率
-                    tower.getItemSampler().addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
+                    // 恢复物品权重
+                    ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
+                    ItemData.advancedTower2ItemSampler.addWeight(vip.getSourceItem(), -vip.getWeightIncrement());
                     account.setVip(null);
                     account.setVipStepLeft(0);
                     updateBlockStyle();

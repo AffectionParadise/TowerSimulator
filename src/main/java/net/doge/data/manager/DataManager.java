@@ -29,8 +29,8 @@ public class DataManager {
         // 增加物品权重
         if (AccountData.account.isVip()) {
             Vip vip = AccountData.account.getVip();
-            // 增加物品权重
             ItemData.advancedTowerItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
+            ItemData.advancedTower2ItemSampler.addWeight(vip.getSourceItem(), vip.getWeightIncrement());
         }
         // 礼物库存
         JSONObject dataStorageJson = data.getJSONObject("DataStorage");

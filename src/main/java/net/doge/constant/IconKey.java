@@ -191,6 +191,7 @@ public enum IconKey {
     // 辉煌子物品
     DB1_GIFT("db1Gift"),
     DB2_GIFT("db2Gift"),
+    DB22_GIFT("db22Gift"),
     DB4_GIFT("db4Gift"),
     DB5_GIFT("db5Gift");
 

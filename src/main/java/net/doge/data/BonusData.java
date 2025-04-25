@@ -16,6 +16,8 @@ public class BonusData {
     // 翻倍
     public static List<Bonus> bonuses = new LinkedList<>();
 
+    public static Bonus BONUS2;
+
     static {
         initData();
     }
@@ -28,7 +30,7 @@ public class BonusData {
         sampler = new Sampler<>();
         sampler.addModelsLinearWeights(ListUtil.ofRange(5, 16), 10000, 10);
         sampler.addModel(new SampleModel<>(100, 1));
-        bonuses.add(new Bonus(IconKey.BONUS2, 5, 100, sampler, ItemData.ADVANCED_STEP, 10, 30));
+        bonuses.add(BONUS2 = new Bonus(IconKey.BONUS2, 5, 100, sampler, ItemData.ADVANCED_STEP, 10, 30));
 
         sampler = new Sampler<>();
         sampler.addModelsLinearWeights(ListUtil.ofRange(1, 5), 2000, 10);
