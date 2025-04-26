@@ -6,7 +6,7 @@ import net.doge.model.GiftRecord;
 import java.util.LinkedList;
 
 public class GiftRecordStorage {
-    private static final int MAX_SIZE = 50;
+    private static final int MAX_SIZE = 100;
     @Getter
     private static LinkedList<GiftRecord> storage = new LinkedList<>();
 

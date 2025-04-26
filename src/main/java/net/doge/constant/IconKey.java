@@ -177,6 +177,7 @@ public enum IconKey {
     RB8_GIFT("rb8Gift"),
     RB28_GIFT("rb28Gift"),
     RB29_GIFT("rb29Gift"),
+    RB210_GIFT("rb210Gift"),
 
     // 全屏子物品
     AB1_GIFT("ab1Gift"),
@@ -187,6 +188,7 @@ public enum IconKey {
     AB6_GIFT("ab6Gift"),
     AB26_GIFT("ab26Gift"),
     AB27_GIFT("ab27Gift"),
+    AB28_GIFT("ab28Gift"),
 
     // 辉煌子物品
     DB1_GIFT("db1Gift"),

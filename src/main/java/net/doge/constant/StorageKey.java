@@ -127,6 +127,7 @@ public enum StorageKey {
     RB8_GIFT_NUM("RB8GiftNum"),
     RB28_GIFT_NUM("RB28GiftNum"),
     RB29_GIFT_NUM("RB29GiftNum"),
+    RB210_GIFT_NUM("RB210GiftNum"),
 
     // 全屏子物品数量
     AB1_GIFT_NUM("AB1GiftNum"),
@@ -137,6 +138,7 @@ public enum StorageKey {
     AB6_GIFT_NUM("AB6GiftNum"),
     AB26_GIFT_NUM("AB26GiftNum"),
     AB27_GIFT_NUM("AB27GiftNum"),
+    AB28_GIFT_NUM("AB28GiftNum"),
 
     // 辉煌子物品数量
     DB1_GIFT_NUM("DB1GiftNum"),
