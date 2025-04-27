@@ -1,7 +1,7 @@
 package net.doge.constant;
 
 /**
- * 竞猜类型
+ * 竞猜状态
  */
 public enum QuizStatus {
     // 空闲

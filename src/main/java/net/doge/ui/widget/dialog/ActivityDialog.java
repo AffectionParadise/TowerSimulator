@@ -17,23 +17,12 @@ public class ActivityDialog extends GDialog {
     }
 
     public void init() {
-        tabbedPane.addTab(null, new QuizPanel(ui, this));
-        tabbedPane.addTab(null, new TrickPanel(ui));
-        tabbedPane.addTab(null, new StepConsumptionRewardPanel(ui));
-        tabbedPane.addTab(null, new GiftExpRewardPanel(ui));
-        tabbedPane.addTab(null, new VipPanel(ui, this));
-        tabbedPane.addTab(null, new AdvancedStepExpRewardPanel(ui));
-        tabbedPane.addTab(null, new AdvancedTowerClearRewardPanel(ui));
-        tabbedPane.addTab(null, new DeluxeTowerClearRewardPanel(ui));
+        Component[] cs = {new TusslePanel(ui, this), new QuizPanel(ui, this), new TrickPanel(ui), new StepConsumptionRewardPanel(ui), new GiftExpRewardPanel(ui),
+                new VipPanel(ui, this), new AdvancedStepExpRewardPanel(ui), new AdvancedTowerClearRewardPanel(ui), new DeluxeTowerClearRewardPanel(ui)};
+        for (Component c : cs) tabbedPane.addTab(null, c);
 
-        tabbedPane.setTabComponentAt(0, createTabPanel("走塔竞猜"));
-        tabbedPane.setTabComponentAt(1, createTabPanel("盲盒福利"));
-        tabbedPane.setTabComponentAt(2, createTabPanel("走塔返利"));
-        tabbedPane.setTabComponentAt(3, createTabPanel("送礼通行证"));
-        tabbedPane.setTabComponentAt(4, createTabPanel("会员特权"));
-        tabbedPane.setTabComponentAt(5, createTabPanel("走塔通行证"));
-        tabbedPane.setTabComponentAt(6, createTabPanel("三塔赏金令"));
-        tabbedPane.setTabComponentAt(7, createTabPanel("金塔赏金令"));
+        String[] ts = {"走塔角逐", "走塔竞猜", "盲盒福利", "走塔返利", "送礼通行证", "会员特权", "走塔通行证", "三塔赏金令", "金塔赏金令"};
+        for (int i = 0, len = ts.length; i < len; i++) tabbedPane.setTabComponentAt(i, createTabPanel(ts[i]));
 
         add(tabbedPane, BorderLayout.CENTER);
 

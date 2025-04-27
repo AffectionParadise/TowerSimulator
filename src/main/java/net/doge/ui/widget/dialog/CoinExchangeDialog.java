@@ -75,7 +75,7 @@ public class CoinExchangeDialog extends GDialog<Item> {
                     if (text.isEmpty()) return;
                     int num = Integer.parseInt(text);
                     int totalCost = num * item.getExchangeCost();
-                    totalCostLabel.setText(String.valueOf(totalCost));
+                    totalCostLabel.setText(String.format("共计花费：%s", totalCost));
                 } catch (NumberFormatException ex) {
                     totalCostLabel.setText(null);
                 }
@@ -103,6 +103,8 @@ public class CoinExchangeDialog extends GDialog<Item> {
         topBox.add(Box.createHorizontalStrut(20));
 
         totalCostLabel.setIcon(IconUtil.getIcon(currency.getIconThumbKey()));
+        totalCostLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        totalCostPanel.add(totalCostLabel);
 
         minusBtn.addActionListener(e -> {
             Item item = list.getSelectedValue();
@@ -149,8 +151,6 @@ public class CoinExchangeDialog extends GDialog<Item> {
             DataStorage.add(item.getStorageKey(), num);
             numTextField.setText("0");
         });
-
-        totalCostPanel.add(totalCostLabel);
 
         controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
         controlPanel.add(minusBtn);

@@ -14,6 +14,7 @@ import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.util.IconUtil;
+import net.doge.util.StrUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -88,7 +89,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
     public void init() {
         for (GiftRecord record : GiftRecordStorage.getStorage()) listModel.addElement(record);
 
-        totalValueLabel.setText(String.format("已送出总价值 %s 的礼物", formatValue(DataStorage.get(StorageKey.TOTAL_VALUE))));
+        totalValueLabel.setText(String.format("已送出总价值 %s 的礼物", StrUtil.formatValue(DataStorage.get(StorageKey.TOTAL_VALUE))));
         totalValueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
 
         list.setLayoutOrientation(JList.VERTICAL);
@@ -111,12 +112,5 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         add(topBox, BorderLayout.NORTH);
 
         setVisible(true);
-    }
-
-    private String formatValue(int value) {
-        if (value < 10000) return String.valueOf(value);
-        else if (value < 1000000) return String.format("%.1fK", (double) value / 1000);
-        else if (value < 1000000000) return String.format("%.1fM", (double) value / 1000000);
-        return String.format("%.1fB", (double) value / 1000000000);
     }
 }
