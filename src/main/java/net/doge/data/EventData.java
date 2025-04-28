@@ -36,21 +36,21 @@ public class EventData {
     }
 
     private static void initData() {
-        eventSampler.addModel(new SampleModel<>(NOTHING, 30000));
-        eventSampler.addModel(new SampleModel<>(BONUS_TRIGGER, 30));
+        eventSampler.addModel(new SampleModel<>(NOTHING, 20000));
+        eventSampler.addModel(new SampleModel<>(BONUS_TRIGGER, 40));
         eventSampler.addModel(new SampleModel<>(REGULAR_TREASURE, 15));
         eventSampler.addModel(new SampleModel<>(ADVANCED_TREASURE, 10));
         eventSampler.addModel(new SampleModel<>(DELUXE_TREASURE, 5));
         eventSampler.addModel(new SampleModel<>(ULTIMATE_TREASURE, 1));
-        eventSampler.addModel(new SampleModel<>(MR_TREASURE, 35));
+        eventSampler.addModel(new SampleModel<>(MR_TREASURE, 20));
 
-        event2Sampler.addModel(new SampleModel<>(NOTHING, 30000));
-        event2Sampler.addModel(new SampleModel<>(BONUS_TRIGGER, 30));
+        event2Sampler.addModel(new SampleModel<>(NOTHING, 20000));
+        event2Sampler.addModel(new SampleModel<>(BONUS_TRIGGER, 40));
         event2Sampler.addModel(new SampleModel<>(REGULAR_TREASURE_2, 15));
         event2Sampler.addModel(new SampleModel<>(ADVANCED_TREASURE_2, 10));
         event2Sampler.addModel(new SampleModel<>(DELUXE_TREASURE_2, 5));
         event2Sampler.addModel(new SampleModel<>(ULTIMATE_TREASURE_2, 1));
-        event2Sampler.addModel(new SampleModel<>(MR_TREASURE, 35));
+        event2Sampler.addModel(new SampleModel<>(MR_TREASURE, 20));
     }
 
     // 判断是否无事件

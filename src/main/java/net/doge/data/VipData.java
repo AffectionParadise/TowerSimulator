@@ -19,8 +19,8 @@ public class VipData {
     }
 
     private static void initData() {
-        vips.add(new Vip("青花瓷会员", IconKey.VIP1, GColor.VIP1_HIGHLIGHT, GColor.VIP1_BRIGHT, "青花瓷至臻福利", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_3, 1, "少量提升", ItemData.ADVANCED_COIN, 68888, 500));
-        vips.add(new Vip("神龙会员", IconKey.VIP2, GColor.VIP2_HIGHLIGHT, GColor.VIP2_BRIGHT, "来自神龙的召唤", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_5, 2, "显著提升", ItemData.ADVANCED_COIN, 128888, 1000));
-        vips.add(new Vip("银河会员", IconKey.VIP3, GColor.VIP3_HIGHLIGHT, GColor.VIP3_BRIGHT, "来自银河的眷顾", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_6, 3, "大幅提升", ItemData.ADVANCED_COIN, 428888, 1000));
+        vips.add(new Vip("青花瓷会员", IconKey.VIP1, GColor.VIP1_HIGHLIGHT, GColor.VIP1_BRIGHT, "青花瓷至臻福利", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_3, 1, "少量提升", ItemData.ADVANCED_COIN, 68888, 1000));
+        vips.add(new Vip("神龙会员", IconKey.VIP2, GColor.VIP2_HIGHLIGHT, GColor.VIP2_BRIGHT, "来自神龙的召唤", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_5, 2, "显著提升", ItemData.ADVANCED_COIN, 128888, 2000));
+        vips.add(new Vip("银河会员", IconKey.VIP3, GColor.VIP3_HIGHLIGHT, GColor.VIP3_BRIGHT, "来自银河的眷顾", ItemData.DELUXE_GIFT_4, ItemData.DELUXE_GIFT_6, 3, "大幅提升", ItemData.ADVANCED_COIN, 428888, 2000));
     }
 }

@@ -49,7 +49,15 @@ public class TusslePanel extends GPanel {
 
     private void updateTussleView() {
         Tussle tussle = TussleData.currTussle;
+
         titleLabel.setText(String.format("%s 内收集累计价值 %s 的礼物", DurationUtil.format(tussle.getDuration()), StrUtil.formatValue(tussle.getTargetValue())));
+
+        int targetValue = tussle.getTargetValue(), currValue = tussle.getCurrValue();
+        progress.setMaximum(targetValue);
+        progress.setValue(currValue);
+        progress.setString(String.format("%s / %s", StrUtil.formatValue(Math.min(currValue, targetValue)), StrUtil.formatValue(targetValue)));
+        progress.setStringPainted(true);
+
         TussleStatus status = tussle.getStatus();
         switch (status) {
             case SPARE:
@@ -59,25 +67,24 @@ public class TusslePanel extends GPanel {
             case PROGRESSING:
                 rewardLabel.setText(String.format("完成后可获得奖励：%s", tussle.getNumReceived()));
                 rewardLabel.setIcon(IconUtil.getIcon(tussle.getItemReceived().getIconThumbKey()));
-                int targetValue = tussle.getTargetValue(), currValue = tussle.getCurrValue();
-                progress.setMaximum(targetValue);
-                progress.setValue(currValue);
-                progress.setString(String.format("%s / %s", StrUtil.formatValue(currValue), StrUtil.formatValue(targetValue)));
-                progress.setStringPainted(true);
                 if (!viewTimer.isRunning()) viewTimer.start();
                 break;
             case OVER:
                 if (tussle.isSuccess()) {
+                    timeLabel.setText("已结束，恭喜达成目标！");
                     rewardLabel.setText(String.format("已完成，请领取奖励：%s", tussle.getNumReceived()));
                     rewardLabel.setIcon(IconUtil.getIcon(tussle.getItemReceived().getIconThumbKey()));
                 } else {
+                    int valueLeft = tussle.getTargetValue() - tussle.getCurrValue();
+                    timeLabel.setText(String.format("已结束，还差累计价值 %s 的礼物获胜", StrUtil.formatValue(valueLeft)));
                     rewardLabel.setText("未完成，请再接再厉");
                     rewardLabel.setIcon(null);
                 }
                 break;
         }
-        timeLabel.setVisible(status == TussleStatus.PROGRESSING);
-        progress.setVisible(status == TussleStatus.PROGRESSING);
+
+        timeLabel.setVisible(status != TussleStatus.SPARE);
+        progress.setVisible(status != TussleStatus.SPARE);
         startBtn.setVisible(status == TussleStatus.SPARE);
         receiveBtn.setVisible(status == TussleStatus.OVER && tussle.isSuccess());
         nextTurnBtn.setVisible(status == TussleStatus.OVER && !tussle.isSuccess());
