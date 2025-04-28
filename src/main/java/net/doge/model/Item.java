@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Data
 @AllArgsConstructor
-public class Item {
+public class Item implements Cloneable{
     // 名称
     private String name;
     // 类型
@@ -71,6 +71,15 @@ public class Item {
     // 是否有数量生成器，若无则默认数量为 1
     public boolean hasNumSampler() {
         return numSampler != null;
+    }
+
+    @Override
+    public Item clone() {
+        try {
+            return (Item) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

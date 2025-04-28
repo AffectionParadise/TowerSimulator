@@ -49,7 +49,7 @@ public class TusslePanel extends GPanel {
 
     private void updateTussleView() {
         Tussle tussle = TussleData.currTussle;
-        titleLabel.setText(String.format("%s 内收集价值 %s 礼物", DurationUtil.format(tussle.getDuration()), StrUtil.formatValue(tussle.getTargetValue())));
+        titleLabel.setText(String.format("%s 内收集累计价值 %s 的礼物", DurationUtil.format(tussle.getDuration()), StrUtil.formatValue(tussle.getTargetValue())));
         TussleStatus status = tussle.getStatus();
         switch (status) {
             case SPARE:
@@ -89,7 +89,7 @@ public class TusslePanel extends GPanel {
         int secondLeft = Math.toIntExact(tussle.getDuration() - (currTs - tussle.getStartTs()) / 1000);
         int valueLeft = tussle.getTargetValue() - tussle.getCurrValue();
         if (secondLeft > 0 && valueLeft > 0)
-            timeLabel.setText(String.format("剩余时间：%s，还需收集价值 %s 的礼物", DurationUtil.format(secondLeft), StrUtil.formatValue(valueLeft)));
+            timeLabel.setText(String.format("剩余时间：%s，还需收集累计价值 %s 的礼物", DurationUtil.format(secondLeft), StrUtil.formatValue(valueLeft)));
         else {
             viewTimer.stop();
             tussle.setStatus(TussleStatus.OVER);

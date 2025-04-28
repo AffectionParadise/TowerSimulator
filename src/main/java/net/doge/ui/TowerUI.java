@@ -374,7 +374,7 @@ public class TowerUI extends JFrame {
             if (blockItem.isSkin()) DataStorage.add(StorageKey.SHOW_EXP, num * blockItem.getShowExp());
             // 角逐
             Tussle tussle = TussleData.currTussle;
-            if (tussle.isProgressing()) tussle.addCurrValue(num * blockItem.getValue());
+            if (tussle.isProgressing() && blockItem.isPresent()) tussle.addCurrValue(num * blockItem.getValue());
             // 背包
             tower.getBackpackStorage().add(key, num);
             if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
