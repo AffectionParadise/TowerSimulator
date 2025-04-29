@@ -41,7 +41,7 @@ public class ShowExchangeDialog extends GDialog<Transaction> {
     private Transaction transaction;
 
     public ShowExchangeDialog(TowerUI ui) {
-        super(ui, false);
+        super(ui);
         this.ui = ui;
         init();
     }

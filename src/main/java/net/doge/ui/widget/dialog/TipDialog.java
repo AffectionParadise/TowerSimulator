@@ -62,7 +62,7 @@ public class TipDialog extends JDialog {
         messageLabel.setText(message);
         globalPanel.setLayout(new BorderLayout());
         globalPanel.setOpaque(false);
-        globalPanel.setBgColor(GColor.DARK_RED.getAwtColor());
+        globalPanel.setBgColor(GColor.DARK_RED);
         globalPanel.add(messageLabel, BorderLayout.CENTER);
 
         setContentPane(globalPanel);

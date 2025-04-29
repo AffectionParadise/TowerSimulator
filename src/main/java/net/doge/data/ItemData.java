@@ -606,9 +606,9 @@ public class ItemData {
         items.add(AB2_GIFT);
 
         AB3_GIFT = new Item("倾世一诺", ItemType.GIFT, IconKey.AB3_GIFT, StorageKey.AB3_GIFT_NUM);
-        AB2_GIFT.setValue(100000);
-        AB2_GIFT.setGiftPoints(16000);
-        items.add(AB2_GIFT);
+        AB3_GIFT.setValue(100000);
+        AB3_GIFT.setGiftPoints(16000);
+        items.add(AB3_GIFT);
 
         AB5_GIFT = new Item("战争女王", ItemType.GIFT, IconKey.AB5_GIFT, StorageKey.AB5_GIFT_NUM);
         AB5_GIFT.setValue(300000);

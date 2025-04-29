@@ -42,7 +42,7 @@ public class GPExchangeDialog extends GDialog<Transaction> {
     private Transaction transaction;
 
     public GPExchangeDialog(TowerUI ui, GiftDialog d) {
-        super(ui, false);
+        super(ui);
         this.d = d;
         this.ui = ui;
         init();

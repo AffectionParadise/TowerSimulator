@@ -83,6 +83,13 @@ public class ItemDetailDialog extends GDialog<Item> {
             detailPanel.add(Box.createVerticalStrut(sh));
             detailPanel.add(exchangeNumLabel);
             detailPanel.add(Box.createVerticalGlue());
+        } else if (item.isSkin()) {
+            tipLabel.setText(String.valueOf(item.getShowExp()));
+            tipLabel.setIcon(IconUtil.getIcon(IconKey.SHOW_EXP_THUMB));
+
+            detailPanel.add(Box.createVerticalGlue());
+            detailPanel.add(tipLabel);
+            detailPanel.add(Box.createVerticalGlue());
         } else {
             tipLabel.setText("游戏内的一种货币");
 

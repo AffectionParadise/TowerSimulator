@@ -108,6 +108,10 @@ public class TowerUI extends JFrame {
                 autoMoveTimer.stop();
                 autoBtn.setText("自动探索");
             } else {
+                if (!silent) {
+                    AutoDetectionDialog autoDetectionDialog = new AutoDetectionDialog(this);
+                    if (!autoDetectionDialog.isConfirmed()) return;
+                }
                 autoMoveTimer.start();
                 autoBtn.setText("取消");
             }

@@ -16,7 +16,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TowerDialog extends GDialog<Tower> {
-    private Box topBox = new Box(BoxLayout.X_AXIS);
     private GPanel bottomPanel = new GPanel();
     private GButton enterBtn = new GButton("进入", GColor.DEEP_GREEN);
     private GButton quitBtn = new GButton("放弃", GColor.DARK_RED);
@@ -81,7 +80,6 @@ public class TowerDialog extends GDialog<Tower> {
 
         setTitle("塔群");
 
-        add(topBox, BorderLayout.NORTH);
         add(bottomPanel, BorderLayout.SOUTH);
 
         setVisible(true);

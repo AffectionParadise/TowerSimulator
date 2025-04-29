@@ -23,27 +23,35 @@ public class GDialog<E> extends JDialog {
     protected GList<E> list = new GList<>(listModel);
     protected GScroller scroller = new GScroller(list);
 
+    protected GPanel cellPanel = new GPanel(new BorderLayout());
+    protected GPanel itemPanel = new GPanel();
+    protected GLabel itemLabel = new GLabel();
+    protected GPanel bottomPanel = new GPanel();
+    protected GLabel bottomLabel = new GLabel();
+
     @Getter
-    private boolean selectable;
+    private boolean gradientPaint;
 
     public GDialog(TowerUI ui) {
-        this(ui, true);
+        this(ui, false);
     }
 
-    public GDialog(TowerUI ui, boolean selectable) {
+    public GDialog(TowerUI ui, boolean gradientPaint) {
         super(ui, true);
         this.ui = ui;
+        this.gradientPaint = gradientPaint;
 
         // 横向滚动时自适应高度
         list.setVisibleRowCount(0);
         list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        list.setEnabled(selectable);
         list.setCellRenderer(createCellRenderer());
         add(scroller, BorderLayout.CENTER);
 
         setSize(1000, 600);
         setResizable(false);
         setLocationRelativeTo(null);
+
+        initCellPanel();
     }
 
     protected DefaultListCellRenderer createCellRenderer() {
@@ -51,28 +59,43 @@ public class GDialog<E> extends JDialog {
     }
 
     protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, boolean isSelected) {
-        return createCellPanel(itemText, itemIconKey, bottomText, null, isSelected);
+        return createCellPanel(itemText, itemIconKey, bottomText, null, null, isSelected);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, GColor bgColor, boolean isSelected) {
+        return createCellPanel(itemText, itemIconKey, bottomText, null, bgColor, isSelected);
     }
 
     protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, IconKey bottomIconKey, boolean isSelected) {
-        GPanel cellPanel = new GPanel(new BorderLayout());
+        return createCellPanel(itemText, itemIconKey, bottomText, bottomIconKey, null, isSelected);
+    }
 
-        GPanel itemPanel = new GPanel();
-        GLabel itemLabel = new GLabel();
+    private void initCellPanel() {
+        if (gradientPaint) {
+            cellPanel.setOpaque(false);
+            cellPanel.setGradientPaint(true);
+            itemPanel.setOpaque(false);
+            bottomPanel.setOpaque(false);
+        }
+
         itemLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         itemLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
-        itemLabel.setText(itemText);
-        itemLabel.setIcon(IconUtil.getIcon(itemIconKey));
         itemPanel.add(itemLabel);
         cellPanel.add(itemPanel, BorderLayout.CENTER);
 
-        GPanel bottomPanel = new GPanel();
-        GLabel bottomLabel = new GLabel();
         bottomLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-        bottomLabel.setText(bottomText);
-        bottomLabel.setIcon(IconUtil.getIcon(bottomIconKey));
         bottomPanel.add(bottomLabel);
         cellPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, IconKey bottomIconKey, GColor bgColor, boolean isSelected) {
+        cellPanel.setBgColor(bgColor);
+
+        itemLabel.setText(itemText);
+        itemLabel.setIcon(IconUtil.getIcon(itemIconKey));
+
+        bottomLabel.setText(bottomText);
+        bottomLabel.setIcon(IconUtil.getIcon(bottomIconKey));
 
         cellPanel.setBorder(isSelected ? BORDER_SELECTED : EMPTY_BORDER);
 
