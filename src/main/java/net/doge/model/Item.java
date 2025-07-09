@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Data
 @AllArgsConstructor
-public class Item implements Cloneable{
+public class Item implements Cloneable {
     // 名称
     private String name;
     // 类型

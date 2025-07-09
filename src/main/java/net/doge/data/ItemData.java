@@ -198,6 +198,7 @@ public class ItemData {
         initDB2SubItemSampler();
     }
 
+    // 所有物品
     private static void initItem() {
         BASIC_SHARD = new Item("引航碎片", ItemType.CURRENCY, IconKey.BASIC_SHARD, StorageKey.BASIC_SHARD_NUM);
         BASIC_SHARD.setHighlightColor(GColor.BASIC_QUALITY);
@@ -471,6 +472,7 @@ public class ItemData {
         items.add(SKIN4);
     }
 
+    // 盲盒物品
     private static void initBoxSubItem() {
         // 小盒子
         BB4_GIFT = new Item("胡萝卜软糖", ItemType.GIFT, IconKey.BB4_GIFT, StorageKey.BB4_GIFT_NUM);
@@ -763,9 +765,9 @@ public class ItemData {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModelsLinearWeights(ListUtil.ofRange(10, 30), 200, 100);
         coinNS.addModelsLinearWeights(ListUtil.ofRange(31, 40), 50, 10);
-        coinNS.addModel(new SampleModel<>(66, 50));
-        coinNS.addModel(new SampleModel<>(99, 30));
-        coinNS.addModel(new SampleModel<>(199, 10));
+        coinNS.addModel(new SampleModel<>(66, 80));
+        coinNS.addModel(new SampleModel<>(99, 50));
+        coinNS.addModel(new SampleModel<>(199, 20));
         Item coin = COIN.clone();
         coin.setNumSampler(coinNS);
         advancedTowerItemSampler.addModel(new SampleModel<>(coin, 2000));
