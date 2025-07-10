@@ -219,6 +219,7 @@ public class ItemData {
         BASIC_STEP = new Item("一塔牌子", ItemType.CURRENCY, IconKey.BASIC_STEP, StorageKey.BASIC_STEP_NUM);
         BASIC_STEP.setIconThumbKey(IconKey.BASIC_STEP_THUMB);
         BASIC_STEP.setHighlightColor(GColor.BASIC_QUALITY);
+        BASIC_STEP.setPreferential(true);
         items.add(BASIC_STEP);
 
         COIN = new Item("金币", ItemType.CURRENCY, IconKey.COIN, StorageKey.COIN_NUM);
@@ -291,16 +292,19 @@ public class ItemData {
         ADVANCED_STEP.setIconThumbKey(IconKey.ADVANCED_STEP_THUMB);
         ADVANCED_STEP.setHighlightColor(GColor.ADVANCED_QUALITY);
         ADVANCED_STEP.setGuessable(true);
+        ADVANCED_STEP.setPreferential(true);
         items.add(ADVANCED_STEP);
 
         DELUXE_STEP = new Item("金塔牌子", ItemType.CURRENCY, IconKey.DELUXE_STEP, StorageKey.DELUXE_STEP_NUM);
         DELUXE_STEP.setIconThumbKey(IconKey.DELUXE_STEP_THUMB);
         DELUXE_STEP.setHighlightColor(GColor.DELUXE_QUALITY);
+        DELUXE_STEP.setPreferential(true);
         items.add(DELUXE_STEP);
 
         ADVANCED_COIN = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
         ADVANCED_COIN.setIconThumbKey(IconKey.ADVANCED_COIN_THUMB);
         ADVANCED_COIN.setHighlightColor(GColor.DELUXE_QUALITY);
+        ADVANCED_COIN.setPreferential(true);
         items.add(ADVANCED_COIN);
 
         BASIC_BOX = new Item("木兰小盒子", ItemType.BOX, IconKey.BASIC_BOX, StorageKey.BASIC_BOX_NUM);
@@ -330,6 +334,7 @@ public class ItemData {
         REGULAR_BOX.setExchangeCost(120);
         REGULAR_BOX.setGuessable(true);
         REGULAR_BOX.setGiftExp(150);
+        REGULAR_BOX.setPreferential(true);
         REGULAR_BOX.setSubItemSampler(rbSubItemSampler);
         items.add(REGULAR_BOX);
 
@@ -340,6 +345,7 @@ public class ItemData {
         REGULAR_BOX_2.setExchangeCost(120);
         REGULAR_BOX_2.setGuessable(true);
         REGULAR_BOX_2.setGiftExp(150);
+        REGULAR_BOX_2.setPreferential(true);
         REGULAR_BOX_2.setSubItemSampler(rb2SubItemSampler);
         items.add(REGULAR_BOX_2);
 
@@ -350,6 +356,7 @@ public class ItemData {
         ADVANCED_BOX.setExchangeCost(1500);
         ADVANCED_BOX.setGuessable(true);
         ADVANCED_BOX.setGiftExp(1500);
+        ADVANCED_BOX.setPreferential(true);
         ADVANCED_BOX.setSubItemSampler(abSubItemSampler);
         items.add(ADVANCED_BOX);
 
@@ -360,18 +367,21 @@ public class ItemData {
         ADVANCED_BOX_2.setExchangeCost(1500);
         ADVANCED_BOX_2.setGuessable(true);
         ADVANCED_BOX_2.setGiftExp(1500);
+        ADVANCED_BOX_2.setPreferential(true);
         ADVANCED_BOX_2.setSubItemSampler(ab2SubItemSampler);
         items.add(ADVANCED_BOX_2);
 
         DELUXE_BOX = new Item("木兰辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
         DELUXE_BOX.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX.setValue(300000);
+        DELUXE_BOX.setPreferential(true);
         DELUXE_BOX.setSubItemSampler(dbSubItemSampler);
         items.add(DELUXE_BOX);
 
         DELUXE_BOX_2 = new Item("宏梦辉煌", ItemType.BOX, IconKey.DELUXE_BOX_2, StorageKey.DELUXE_BOX_2_NUM);
         DELUXE_BOX_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX_2.setValue(300000);
+        DELUXE_BOX_2.setPreferential(true);
         DELUXE_BOX_2.setSubItemSampler(db2SubItemSampler);
         items.add(DELUXE_BOX_2);
 
@@ -379,96 +389,113 @@ public class ItemData {
         ADVANCED_GIFT.setValue(1000000);
         ADVANCED_GIFT.setGiftPoints(160000);
         ADVANCED_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_GIFT.setPreferential(true);
         items.add(ADVANCED_GIFT);
 
         ADVANCED_GIFT_21 = new Item("天地为笼", ItemType.GIFT, IconKey.ADVANCED_GIFT_21, StorageKey.ADVANCED_GIFT_21_NUM);
         ADVANCED_GIFT_21.setValue(1000000);
         ADVANCED_GIFT_21.setGiftPoints(160000);
         ADVANCED_GIFT_21.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_GIFT_21.setPreferential(true);
         items.add(ADVANCED_GIFT_21);
 
         ADVANCED_GIFT_2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
         ADVANCED_GIFT_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ADVANCED_GIFT_2.setValue(500000);
         ADVANCED_GIFT_2.setGiftPoints(80000);
+        ADVANCED_GIFT_2.setPreferential(true);
         items.add(ADVANCED_GIFT_2);
 
         ADVANCED_GIFT_22 = new Item("伞下遨游", ItemType.GIFT, IconKey.ADVANCED_GIFT_22, StorageKey.ADVANCED_GIFT_22_NUM);
         ADVANCED_GIFT_22.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ADVANCED_GIFT_22.setValue(500000);
         ADVANCED_GIFT_22.setGiftPoints(80000);
+        ADVANCED_GIFT_22.setPreferential(true);
         items.add(ADVANCED_GIFT_22);
 
         DELUXE_GIFT = new Item("情定爱琴海", ItemType.GIFT, IconKey.DELUXE_GIFT, StorageKey.DELUXE_GIFT_NUM);
         DELUXE_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT.setValue(1888888);
         DELUXE_GIFT.setGiftPoints(666666);
+        DELUXE_GIFT.setPreferential(true);
         items.add(DELUXE_GIFT);
 
         DELUXE_GIFT_2 = new Item("爱之天使号", ItemType.GIFT, IconKey.DELUXE_GIFT_2, StorageKey.DELUXE_GIFT_2_NUM);
         DELUXE_GIFT_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_2.setValue(1888888);
         DELUXE_GIFT_2.setGiftPoints(566666);
+        DELUXE_GIFT_2.setPreferential(true);
         items.add(DELUXE_GIFT_2);
 
         DELUXE_GIFT_3 = new Item("玫瑰跑车-青花瓷", ItemType.GIFT, IconKey.DELUXE_GIFT_3, StorageKey.DELUXE_GIFT_3_NUM);
         DELUXE_GIFT_3.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_3.setValue(1888888);
         DELUXE_GIFT_3.setGiftPoints(666666);
+        DELUXE_GIFT_3.setPreferential(true);
         items.add(DELUXE_GIFT_3);
 
         DELUXE_GIFT_4 = new Item("玫瑰跑车", ItemType.GIFT, IconKey.DELUXE_GIFT_4, StorageKey.DELUXE_GIFT_4_NUM);
         DELUXE_GIFT_4.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_4.setValue(1888888);
         DELUXE_GIFT_4.setGiftPoints(299999);
+        DELUXE_GIFT_4.setPreferential(true);
         items.add(DELUXE_GIFT_4);
 
         DELUXE_GIFT_5 = new Item("玫瑰跑车-神龙", ItemType.GIFT, IconKey.DELUXE_GIFT_5, StorageKey.DELUXE_GIFT_5_NUM);
         DELUXE_GIFT_5.setValue(1888888);
         DELUXE_GIFT_5.setGiftPoints(666666);
+        DELUXE_GIFT_5.setPreferential(true);
         items.add(DELUXE_GIFT_5);
 
         DELUXE_GIFT_6 = new Item("玫瑰跑车-银河", ItemType.GIFT, IconKey.DELUXE_GIFT_6, StorageKey.DELUXE_GIFT_6_NUM);
         DELUXE_GIFT_6.setValue(5200000);
         DELUXE_GIFT_6.setGiftPoints(1688888);
         DELUXE_GIFT_6.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        DELUXE_GIFT_6.setPreferential(true);
         items.add(DELUXE_GIFT_6);
 
         ULTIMATE_GIFT = new Item("起源·应龙", ItemType.GIFT, IconKey.ULTIMATE_GIFT, StorageKey.ULTIMATE_GIFT_NUM);
         ULTIMATE_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ULTIMATE_GIFT.setValue(2888888);
         ULTIMATE_GIFT.setGiftPoints(888888);
+        ULTIMATE_GIFT.setPreferential(true);
         items.add(ULTIMATE_GIFT);
 
         ULTIMATE_GIFT_2 = new Item("起源·黑洞", ItemType.GIFT, IconKey.ULTIMATE_GIFT_2, StorageKey.ULTIMATE_GIFT_2_NUM);
         ULTIMATE_GIFT_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ULTIMATE_GIFT_2.setValue(2888888);
         ULTIMATE_GIFT_2.setGiftPoints(888888);
+        ULTIMATE_GIFT_2.setPreferential(true);
         items.add(ULTIMATE_GIFT_2);
 
         TICKET = new Item("嘉年华孢子兑换券", ItemType.SKIN, IconKey.TICKET, StorageKey.TICKET);
         TICKET.setHighlightColor(GColor.ULTIMATE_QUALITY);
         TICKET.setShowExp(16888);
+        TICKET.setPreferential(true);
         items.add(TICKET);
 
         SKIN1 = new Item("好吃的骨头", ItemType.SKIN, IconKey.SKIN1, StorageKey.SKIN1_NUM);
         SKIN1.setHighlightColor(GColor.ULTIMATE_QUALITY);
         SKIN1.setShowExp(6666);
+        SKIN1.setPreferential(true);
         items.add(SKIN1);
 
         SKIN2 = new Item("丘比特", ItemType.SKIN, IconKey.SKIN2, StorageKey.SKIN2_NUM);
         SKIN2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         SKIN2.setShowExp(8888);
+        SKIN2.setPreferential(true);
         items.add(SKIN2);
 
         SKIN3 = new Item("王子", ItemType.SKIN, IconKey.SKIN3, StorageKey.SKIN3_NUM);
         SKIN3.setHighlightColor(GColor.ULTIMATE_QUALITY);
         SKIN3.setShowExp(3333);
+        SKIN3.setPreferential(true);
         items.add(SKIN3);
 
         SKIN4 = new Item("公主", ItemType.SKIN, IconKey.SKIN4, StorageKey.SKIN4_NUM);
         SKIN4.setHighlightColor(GColor.ULTIMATE_QUALITY);
         SKIN4.setShowExp(3333);
+        SKIN4.setPreferential(true);
         items.add(SKIN4);
     }
 
@@ -765,8 +792,8 @@ public class ItemData {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModelsLinearWeights(ListUtil.ofRange(10, 30), 200, 100);
         coinNS.addModelsLinearWeights(ListUtil.ofRange(31, 40), 50, 10);
-        coinNS.addModel(new SampleModel<>(66, 80));
-        coinNS.addModel(new SampleModel<>(99, 50));
+        coinNS.addModel(new SampleModel<>(66, 60));
+        coinNS.addModel(new SampleModel<>(99, 40));
         coinNS.addModel(new SampleModel<>(199, 20));
         Item coin = COIN.clone();
         coin.setNumSampler(coinNS);

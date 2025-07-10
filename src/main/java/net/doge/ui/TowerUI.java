@@ -68,14 +68,29 @@ public class TowerUI extends JFrame {
 
         // 自动探索
         autoMoveTimer = new Timer(300, e -> {
-            for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
-                for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
-                    TowerBlock block = TowerData.currTower.blocks[i][j];
-                    if (!block.isActive() || block.isEmpty()) continue;
-                    move(TowerData.currTower.x, TowerData.currTower.y, i, j);
-                    return;
-                }
+//            for (int i = 0, r = TowerData.currTower.r; i < r; i++) {
+//                for (int j = 0, c = TowerData.currTower.c; j < c; j++) {
+//                    TowerBlock block = TowerData.currTower.blocks[i][j];
+//                    if (!block.isActive() || block.isEmpty()) continue;
+//                    move(TowerData.currTower.x, TowerData.currTower.y, i, j);
+//                    return;
+//                }
+//            }
+
+
+            int wx = -1, wy = -1;
+            // 搜索其他优先拾取的物品
+            int[] p = findPreferential();
+            wx = p[0];
+            wy = p[1];
+            // 选取离终点最近的激活点
+            Tower tower = TowerData.currTower;
+            if (wx < 0 || wy < 0) {
+                p = findNearestExplorable(tower.r - 1, tower.c - 1);
+                wx = p[0];
+                wy = p[1];
             }
+            move(tower.x, tower.y, wx, wy);
         });
 
         // 作弊
@@ -453,6 +468,40 @@ public class TowerUI extends JFrame {
         return false;
     }
 
+    // 找到离某点最近的可探索点
+    private int[] findNearestExplorable(int x, int y) {
+        Tower tower = TowerData.currTower;
+        // 越界
+        if (x < 0 || x >= tower.r || y < 0 || y >= tower.c) return null;
+        // 起点可探索
+        if (tower.blocks[x][y].isActive()) return new int[]{x, y};
+
+        boolean[][] visited = new boolean[tower.r][tower.c];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{x, y});
+        visited[x][y] = true;
+
+        // 四个移动方向：上下左右
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            for (int[] dir : directions) {
+                int nx = current[0] + dir[0];
+                int ny = current[1] + dir[1];
+                // 检查新坐标是否合法且未被访问
+                if (nx >= 0 && nx < tower.r && ny >= 0 && ny < tower.c && !visited[nx][ny]) {
+                    TowerBlock block = tower.blocks[nx][ny];
+                    if (block.isInvisible()) {
+                        visited[nx][ny] = true;
+                        queue.offer(new int[]{nx, ny});
+                    } else if (block.isActive()) return new int[]{nx, ny};
+                }
+            }
+        }
+        return new int[]{x, y};
+    }
+
     // 生成障碍物
     public void generateObstacles(int sx, int sy, int dx, int dy) {
         List<int[]> available = new LinkedList<>();
@@ -518,6 +567,22 @@ public class TowerUI extends JFrame {
             }
         }
         return count;
+    }
+
+    // 找到优先拾取点
+    public int[] findPreferential() {
+        Tower tower = TowerData.currTower;
+        for (int i = 0, r = tower.r; i < r; i++) {
+            for (int j = 0, c = tower.c; j < c; j++) {
+                TowerBlock block = tower.blocks[i][j];
+                if (!block.isActive() || block.isEmpty()) continue;
+                Item targetItem = block.getItem();
+                // 该物品不被优先拾取，跳过
+                if (!targetItem.isPreferential()) continue;
+                return new int[]{i, j};
+            }
+        }
+        return new int[]{-1, -1};
     }
 
     // 更新地图样式
