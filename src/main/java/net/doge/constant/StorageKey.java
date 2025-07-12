@@ -74,6 +74,8 @@ public enum StorageKey {
     // 500k 数量
     ADVANCED_GIFT_2_NUM("AdvancedGift2Num"),
     ADVANCED_GIFT_22_NUM("AdvancedGift22Num"),
+    // 1.6m 数量
+    ADVANCED_GIFT_23_NUM("AdvancedGift23Num"),
     // 情定爱琴海数量
     DELUXE_GIFT_NUM("DeluxeGiftNum"),
     // 爱之天使号数量

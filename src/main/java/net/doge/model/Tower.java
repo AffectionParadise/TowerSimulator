@@ -32,18 +32,18 @@ public class Tower {
     // 背包数据
     private BackpackStorage backpackStorage = new BackpackStorage();
     // 行数
-    public int r = 8;
+    public final int r = 8;
     // 列数
-    public int c = 16;
+    public final int c = 16;
     // 格子
-    public TowerBlock[][] blocks = new TowerBlock[r][c];
+    public final TowerBlock[][] blocks = new TowerBlock[r][c];
     // 坐标
     public int x;
     public int y;
     // 最小障碍数量
-    public int minObstacles = 5;
+    public final int minObstacles = r * c / 4;
     // 最大障碍数量
-    public int maxObstacles = 30;
+    public final int maxObstacles = r * c / 2;
     // 强调颜色
     private GColor highlightColor;
     // 浅颜色

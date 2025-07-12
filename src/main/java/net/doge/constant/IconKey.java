@@ -124,6 +124,8 @@ public enum IconKey {
     // 500k
     ADVANCED_GIFT_2("AdvancedGift2"),
     ADVANCED_GIFT_22("AdvancedGift22"),
+    // 1.6m
+    ADVANCED_GIFT_23("AdvancedGift23"),
     // 情定爱琴海
     DELUXE_GIFT("DeluxeGift"),
     // 爱之天使号

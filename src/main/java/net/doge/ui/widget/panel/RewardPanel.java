@@ -55,6 +55,7 @@ public class RewardPanel extends GPanel {
         // 横向滚动时自适应高度
         list.setVisibleRowCount(0);
         list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        list.setFixedCellWidth(180);
         list.setCellRenderer(createCellRenderer());
         list.addMouseListener(new MouseAdapter() {
             @Override

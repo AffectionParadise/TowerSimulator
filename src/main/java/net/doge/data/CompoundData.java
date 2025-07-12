@@ -137,8 +137,8 @@ public class CompoundData {
         regularBoxSampler.addModel(new SampleModel<>(deluxeBox, 20));
         regularBox2Sampler.addModel(new SampleModel<>(deluxeBox2, 20));
 
-        regularBoxSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 5));
-        regularBox2Sampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 5));
+        regularBoxSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
+        regularBox2Sampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
 
         compounds.add(new Compound(ItemData.REGULAR_BOX, 5, regularBoxSampler));
         compounds.add(new Compound(ItemData.REGULAR_BOX_2, 5, regularBox2Sampler));

@@ -102,6 +102,7 @@ public class ItemData {
     public static Item ADVANCED_GIFT_21;
     public static Item ADVANCED_GIFT_2;
     public static Item ADVANCED_GIFT_22;
+    public static Item ADVANCED_GIFT_23;
     // 情定爱琴海
     public static Item DELUXE_GIFT;
     // 爱之天使号
@@ -412,6 +413,13 @@ public class ItemData {
         ADVANCED_GIFT_22.setGiftPoints(80000);
         ADVANCED_GIFT_22.setPreferential(true);
         items.add(ADVANCED_GIFT_22);
+
+        ADVANCED_GIFT_23 = new Item("棋逢对手", ItemType.GIFT, IconKey.ADVANCED_GIFT_23, StorageKey.ADVANCED_GIFT_23_NUM);
+        ADVANCED_GIFT_23.setValue(1688888);
+        ADVANCED_GIFT_23.setGiftPoints(248888);
+        ADVANCED_GIFT_23.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_GIFT_23.setPreferential(true);
+        items.add(ADVANCED_GIFT_23);
 
         DELUXE_GIFT = new Item("情定爱琴海", ItemType.GIFT, IconKey.DELUXE_GIFT, StorageKey.DELUXE_GIFT_NUM);
         DELUXE_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -734,7 +742,9 @@ public class ItemData {
 
         basicTowerItemSampler.addModel(new SampleModel<>(BASIC_STEP, 100));
 
-        basicTowerItemSampler.addModel(new SampleModel<>(REGULAR_STEP, 10));
+        Item regularStep = REGULAR_STEP.clone();
+        regularStep.setPreferential(true);
+        basicTowerItemSampler.addModel(new SampleModel<>(regularStep, 10));
     }
 
     // 二塔物品
@@ -780,7 +790,9 @@ public class ItemData {
         commonShard.setNumSampler(commonShardNS);
         regularTowerItemSampler.addModel(new SampleModel<>(commonShard, 1500));
 
-        regularTowerItemSampler.addModel(new SampleModel<>(REGULAR_GIFT_2, 100));
+        Item regularGift2 = REGULAR_GIFT_2.clone();
+        regularGift2.setPreferential(true);
+        regularTowerItemSampler.addModel(new SampleModel<>(regularGift2, 100));
 
         regularTowerItemSampler.addModel(new SampleModel<>(DELUXE_STEP, 10));
 
@@ -792,13 +804,21 @@ public class ItemData {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModelsLinearWeights(ListUtil.ofRange(10, 30), 200, 100);
         coinNS.addModelsLinearWeights(ListUtil.ofRange(31, 40), 50, 10);
-        coinNS.addModel(new SampleModel<>(66, 60));
-        coinNS.addModel(new SampleModel<>(99, 40));
-        coinNS.addModel(new SampleModel<>(199, 20));
+        coinNS.addModel(new SampleModel<>(66, 30));
         Item coin = COIN.clone();
         coin.setNumSampler(coinNS);
         advancedTowerItemSampler.addModel(new SampleModel<>(coin, 2000));
         advancedTower2ItemSampler.addModel(new SampleModel<>(coin, 2000));
+
+        Sampler<Integer> largeCoinNS = new Sampler<>();
+        largeCoinNS.addModel(new SampleModel<>(99, 200));
+        largeCoinNS.addModel(new SampleModel<>(199, 10));
+        Item largeCoin = COIN.clone();
+        largeCoin.setHighlightColor(GColor.DELUXE_QUALITY);
+        largeCoin.setPreferential(true);
+        largeCoin.setNumSampler(largeCoinNS);
+        advancedTowerItemSampler.addModel(new SampleModel<>(largeCoin, 100));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(largeCoin, 100));
 
         Sampler<Integer> basicGiftNS = new Sampler<>();
         basicGiftNS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
@@ -945,6 +965,13 @@ public class ItemData {
         advancedGift22.setNumSampler(advancedGift22NS);
         advancedTower2ItemSampler.addModel(new SampleModel<>(advancedGift22, 8));
 
+        Sampler<Integer> advancedGift23NS = new Sampler<>();
+        advancedGift23NS.addModel(new SampleModel<>(1, 2000));
+        advancedGift23NS.addModel(new SampleModel<>(2, 2));
+        Item advancedGift23 = ADVANCED_GIFT_23.clone();
+        advancedGift23.setNumSampler(advancedGiftNS);
+        advancedTower2ItemSampler.addModel(new SampleModel<>(advancedGift23, 3));
+
         advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 2));
         advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 2));
 
@@ -981,12 +1008,19 @@ public class ItemData {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModel(new SampleModel<>(99, 400));
         coinNS.addModel(new SampleModel<>(199, 500));
-        coinNS.addModel(new SampleModel<>(899, 300));
-        coinNS.addModel(new SampleModel<>(999, 200));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
         coin.setNumSampler(coinNS);
         deluxeTowerItemSampler.addModel(new SampleModel<>(coin, 2000));
+
+        Sampler<Integer> largeCoinNS = new Sampler<>();
+        largeCoinNS.addModel(new SampleModel<>(899, 300));
+        largeCoinNS.addModel(new SampleModel<>(999, 200));
+        Item largeCoin = COIN.clone();
+        largeCoin.setHighlightColor(GColor.DELUXE_QUALITY);
+        largeCoin.setPreferential(true);
+        largeCoin.setNumSampler(largeCoinNS);
+        deluxeTowerItemSampler.addModel(new SampleModel<>(largeCoin, 1000));
 
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 2000, 1000);
@@ -1054,6 +1088,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(699, 2));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
+        coin.setPreferential(true);
         coin.setNumSampler(coinNS);
         regularTreasureItemSampler.addModel(new SampleModel<>(coin, 2000));
         regularTreasure2ItemSampler.addModel(new SampleModel<>(coin, 2000));
@@ -1138,6 +1173,13 @@ public class ItemData {
         advancedGift22.setNumSampler(advancedGift22NS);
         regularTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift22, 10));
 
+        Sampler<Integer> advancedGift23NS = new Sampler<>();
+        advancedGift23NS.addModel(new SampleModel<>(1, 2000));
+        advancedGift23NS.addModel(new SampleModel<>(2, 2));
+        Item advancedGift23 = ADVANCED_GIFT_23.clone();
+        advancedGift23.setNumSampler(advancedGiftNS);
+        regularTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 3));
+
         regularTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
         regularTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
     }
@@ -1150,6 +1192,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(699, 50));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
+        coin.setPreferential(true);
         coin.setNumSampler(coinNS);
         advancedTreasureItemSampler.addModel(new SampleModel<>(coin, 2000));
         advancedTreasure2ItemSampler.addModel(new SampleModel<>(coin, 2000));
@@ -1235,6 +1278,13 @@ public class ItemData {
         advancedGift22.setNumSampler(advancedGift22NS);
         advancedTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift22, 16));
 
+        Sampler<Integer> advancedGift23NS = new Sampler<>();
+        advancedGift23NS.addModel(new SampleModel<>(1, 2000));
+        advancedGift23NS.addModel(new SampleModel<>(2, 4));
+        Item advancedGift23 = ADVANCED_GIFT_23.clone();
+        advancedGift23.setNumSampler(advancedGiftNS);
+        advancedTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 5));
+
         advancedTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
         advancedTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
     }
@@ -1247,6 +1297,7 @@ public class ItemData {
         coinNS.addModel(new SampleModel<>(699, 100));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
+        coin.setPreferential(true);
         coin.setNumSampler(coinNS);
         deluxeTreasureItemSampler.addModel(new SampleModel<>(coin, 2000));
         deluxeTreasure2ItemSampler.addModel(new SampleModel<>(coin, 2000));
@@ -1329,6 +1380,13 @@ public class ItemData {
         Item advancedGift22 = ADVANCED_GIFT_22.clone();
         advancedGift22.setNumSampler(advancedGift22NS);
         deluxeTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift22, 20));
+
+        Sampler<Integer> advancedGift23NS = new Sampler<>();
+        advancedGift23NS.addModel(new SampleModel<>(1, 2000));
+        advancedGift23NS.addModel(new SampleModel<>(2, 6));
+        Item advancedGift23 = ADVANCED_GIFT_23.clone();
+        advancedGift23.setNumSampler(advancedGiftNS);
+        deluxeTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 8));
 
         deluxeTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 3));
         deluxeTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 3));
@@ -1424,6 +1482,13 @@ public class ItemData {
         advancedGift22.setNumSampler(advancedGift22NS);
         ultimateTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift22, 1200));
 
+        Sampler<Integer> advancedGift23NS = new Sampler<>();
+        advancedGift23NS.addModel(new SampleModel<>(1, 980));
+        advancedGift23NS.addModel(new SampleModel<>(2, 20));
+        Item advancedGift23 = ADVANCED_GIFT_23.clone();
+        advancedGift23.setNumSampler(advancedGiftNS);
+        ultimateTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 300));
+
         ultimateTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 200));
         ultimateTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 200));
 
@@ -1447,13 +1512,18 @@ public class ItemData {
     private static void initMRTreasureItemSampler() {
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModelsLinearWeights(ListUtil.ofRange(98, 398), 200, 100);
-        advancedCoinNS.addModel(new SampleModel<>(1888, 180));
-        advancedCoinNS.addModel(new SampleModel<>(6666, 120));
-        advancedCoinNS.addModel(new SampleModel<>(9999, 60));
-        advancedCoinNS.addModel(new SampleModel<>(99999, 5));
         Item advancedCoin = ADVANCED_COIN.clone();
         advancedCoin.setNumSampler(advancedCoinNS);
         mrTreasureItemSampler.addModel(new SampleModel<>(advancedCoin, 2000));
+
+        Sampler<Integer> largeAdvancedCoinNS = new Sampler<>();
+        largeAdvancedCoinNS.addModel(new SampleModel<>(1888, 1000));
+        largeAdvancedCoinNS.addModel(new SampleModel<>(6666, 200));
+        largeAdvancedCoinNS.addModel(new SampleModel<>(9999, 60));
+        largeAdvancedCoinNS.addModel(new SampleModel<>(99999, 1));
+        Item largeAdvancedCoin = ADVANCED_COIN.clone();
+        largeAdvancedCoin.setNumSampler(largeAdvancedCoinNS);
+        mrTreasureItemSampler.addModel(new SampleModel<>(largeAdvancedCoin, 50));
     }
 
     private static void initBBSubItemSampler() {
