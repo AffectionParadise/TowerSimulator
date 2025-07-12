@@ -30,6 +30,14 @@ public class RewardPanel extends GPanel {
     protected GPanel titlePanel = new GPanel();
     protected GLabel titleLabel = new GLabel();
 
+    protected GPanel cellPanel = new GPanel();
+    protected GPanel itemPanel = new GPanel();
+    protected GLabel itemLabel = new GLabel();
+    protected GPanel censusPanel = new GPanel();
+    protected GLabel censusLabel = new GLabel();
+    protected GPanel bottomPanel = new GPanel();
+    protected GLabel bottomLabel = new GLabel();
+
     public RewardPanel(TowerUI ui, List<Reward> rewards, String title) {
         this.ui = ui;
         init(rewards, title);
@@ -41,6 +49,8 @@ public class RewardPanel extends GPanel {
         }
         titleLabel.setText(title);
         titlePanel.add(titleLabel);
+
+        initCellPanel();
 
         // 横向滚动时自适应高度
         list.setVisibleRowCount(0);
@@ -62,6 +72,22 @@ public class RewardPanel extends GPanel {
         add(scroller, BorderLayout.CENTER);
     }
 
+    private void initCellPanel() {
+        cellPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        cellPanel.setLayout(new BoxLayout(cellPanel, BoxLayout.Y_AXIS));
+
+        itemLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+        itemLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        itemPanel.add(itemLabel);
+        cellPanel.add(itemPanel);
+
+        censusPanel.add(censusLabel);
+        cellPanel.add(censusPanel);
+
+        bottomPanel.add(bottomLabel);
+        cellPanel.add(bottomPanel);
+    }
+
     protected DefaultListCellRenderer createCellRenderer() {
         return new DefaultListCellRenderer() {
             @Override
@@ -70,35 +96,17 @@ public class RewardPanel extends GPanel {
                 Item itemReceived = reward.getItemReceived();
                 Item itemRequired = reward.getItemRequired();
 
-                GPanel cellPanel = new GPanel();
-                cellPanel.setLayout(new BoxLayout(cellPanel, BoxLayout.Y_AXIS));
-
-                GPanel itemPanel = new GPanel();
-                GLabel itemLabel = new GLabel();
-                itemLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-                itemLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
                 itemLabel.setText(String.valueOf(reward.getNumReceived()));
                 itemLabel.setIcon(IconUtil.getIcon(itemReceived.getIconKey()));
-                itemPanel.add(itemLabel);
-                cellPanel.add(itemPanel);
 
-                GPanel censusPanel = new GPanel();
-                GLabel censusLabel = new GLabel();
                 int sn = DataStorage.get(itemRequired.getStorageKey());
                 int numRequired = reward.getNumRequired();
                 censusLabel.setForeground(reward.getStatusColor().getAwtColor());
                 censusLabel.setText(String.format("%s / %s", Math.min(sn, numRequired), numRequired));
-                censusPanel.add(censusLabel);
-                cellPanel.add(censusPanel);
 
-                GPanel bottomPanel = new GPanel();
-                GLabel bottomLabel = new GLabel();
                 bottomLabel.setForeground(reward.getStatusColor().getAwtColor());
                 bottomLabel.setText(reward.getStatusText());
-                bottomPanel.add(bottomLabel);
-                cellPanel.add(bottomPanel);
 
-                cellPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 cellPanel.setBorder(isSelected ? BORDER_SELECTED : EMPTY_BORDER);
 
                 return cellPanel;

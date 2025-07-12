@@ -2,8 +2,8 @@ package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
 import net.doge.data.AccountData;
-import net.doge.data.storage.DataStorage;
 import net.doge.data.NobleData;
+import net.doge.data.storage.DataStorage;
 import net.doge.model.Account;
 import net.doge.model.Noble;
 import net.doge.ui.TowerUI;
@@ -40,11 +40,13 @@ public class AccountDetailDialog extends GDialog {
 
         headLabel.setText(account.getName());
         headLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
-        nobleLabel.setForeground(noble.getHighlightColor().getAwtColor());
+        headLabel.setForeground(account.isVip() ? account.getVip().getHighlightColor().getAwtColor() : null);
         headLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         headLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
         headPanel.setLayout(new GridLayout(1, 1));
         headPanel.add(headLabel);
+
+        nobleLabel.setForeground(noble.getHighlightColor().getAwtColor());
 
         idLabel.setText(String.format("账号：%s", account.getId()));
         idPanel.add(idLabel);

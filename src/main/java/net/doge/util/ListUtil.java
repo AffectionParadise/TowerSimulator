@@ -1,7 +1,5 @@
 package net.doge.util;
 
-import java.awt.*;
-import java.io.FileInputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,9 +9,10 @@ import java.util.List;
  * @Date 2020/12/15
  */
 public class ListUtil {
-    public static List<Integer> ofRange(int min, int max) {
+    public static List<Integer> ofRange(int start, int end) {
         LinkedList<Integer> list = new LinkedList<>();
-        for (int i = min; i <= max; i++) list.add(i);
+        if (start < end) for (int i = start; i <= end; i++) list.add(i);
+        else for (int i = start; i >= end; i--) list.add(i);
         return list;
     }
 }

@@ -33,6 +33,7 @@ public class TowerUI extends JFrame {
     private Quiz quiz = ActivityData.quiz;
 
     public Timer autoMoveTimer;
+//    public boolean instantMotion;
 
     private GPanel mainPanel = new GPanel();
     private GButton accountBtn = new GButton("账号", GColor.DARK_PURPLE);
@@ -77,20 +78,23 @@ public class TowerUI extends JFrame {
 //                }
 //            }
 
-
-            int wx = -1, wy = -1;
-            // 搜索其他优先拾取的物品
-            int[] p = findPreferential();
-            wx = p[0];
-            wy = p[1];
-            // 选取离终点最近的激活点
-            Tower tower = TowerData.currTower;
-            if (wx < 0 || wy < 0) {
-                p = findNearestExplorable(tower.r - 1, tower.c - 1);
+//            int t = 1;
+//            if (instantMotion && autoMoveTimer.getDelay() == 0) t = 10000;
+//            for (int i = 0; i < t; i++) {
+                int wx = -1, wy = -1;
+                // 搜索其他优先拾取的物品
+                int[] p = findPreferential();
                 wx = p[0];
                 wy = p[1];
-            }
-            move(tower.x, tower.y, wx, wy);
+                // 选取离终点最近的激活点
+                Tower tower = TowerData.currTower;
+                if (wx < 0 || wy < 0) {
+                    p = findNearestExplorable(tower.r - 1, tower.c - 1);
+                    wx = p[0];
+                    wy = p[1];
+                }
+                move(tower.x, tower.y, wx, wy);
+//            }
         });
 
         // 作弊

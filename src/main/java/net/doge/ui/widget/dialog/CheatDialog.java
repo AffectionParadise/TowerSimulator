@@ -67,6 +67,9 @@ public class CheatDialog extends GDialog {
                 case "sil":
                     ui.silent = num != 0;
                     break;
+//                case "im":
+//                    ui.instantMotion = num != 0;
+//                    break;
             }
             dispose();
         });

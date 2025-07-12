@@ -54,22 +54,6 @@ public class GDialog<E> extends JDialog {
         initCellPanel();
     }
 
-    protected DefaultListCellRenderer createCellRenderer() {
-        return null;
-    }
-
-    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, boolean isSelected) {
-        return createCellPanel(itemText, itemIconKey, bottomText, null, null, isSelected);
-    }
-
-    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, GColor bgColor, boolean isSelected) {
-        return createCellPanel(itemText, itemIconKey, bottomText, null, bgColor, isSelected);
-    }
-
-    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, IconKey bottomIconKey, boolean isSelected) {
-        return createCellPanel(itemText, itemIconKey, bottomText, bottomIconKey, null, isSelected);
-    }
-
     private void initCellPanel() {
         if (gradientPaint) {
             cellPanel.setOpaque(false);
@@ -88,11 +72,33 @@ public class GDialog<E> extends JDialog {
         cellPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, IconKey bottomIconKey, GColor bgColor, boolean isSelected) {
+    protected DefaultListCellRenderer createCellRenderer() {
+        return null;
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, boolean isSelected) {
+        return createCellPanel(itemText, itemIconKey, null, bottomText, null, null, isSelected);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, GColor itemTextForeColor, String bottomText, boolean isSelected) {
+        return createCellPanel(itemText, itemIconKey, itemTextForeColor, bottomText, null, null, isSelected);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, GColor bgColor, boolean isSelected) {
+        return createCellPanel(itemText, itemIconKey, null, bottomText, null, bgColor, isSelected);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, String bottomText, IconKey bottomIconKey, boolean isSelected) {
+        return createCellPanel(itemText, itemIconKey, null, bottomText, bottomIconKey, null, isSelected);
+    }
+
+    protected GPanel createCellPanel(String itemText, IconKey itemIconKey, GColor itemTextForeColor,
+                                     String bottomText, IconKey bottomIconKey, GColor bgColor, boolean isSelected) {
         cellPanel.setBgColor(bgColor);
 
         itemLabel.setText(itemText);
         itemLabel.setIcon(IconUtil.getIcon(itemIconKey));
+        if (itemTextForeColor != null) itemLabel.setForeground(itemTextForeColor.getAwtColor());
 
         bottomLabel.setText(bottomText);
         bottomLabel.setIcon(IconUtil.getIcon(bottomIconKey));
