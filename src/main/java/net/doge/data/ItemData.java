@@ -115,6 +115,8 @@ public class ItemData {
     public static Item DELUXE_GIFT_5;
     // 玫瑰跑车-银河
     public static Item DELUXE_GIFT_6;
+    // 玫瑰跑车-玄凤
+    public static Item DELUXE_GIFT_7;
     // 起源·应龙
     public static Item ULTIMATE_GIFT;
     // 起源·黑洞
@@ -415,8 +417,8 @@ public class ItemData {
         items.add(ADVANCED_GIFT_22);
 
         ADVANCED_GIFT_23 = new Item("棋逢对手", ItemType.GIFT, IconKey.ADVANCED_GIFT_23, StorageKey.ADVANCED_GIFT_23_NUM);
-        ADVANCED_GIFT_23.setValue(1688888);
-        ADVANCED_GIFT_23.setGiftPoints(248888);
+        ADVANCED_GIFT_23.setValue(1500000);
+        ADVANCED_GIFT_23.setGiftPoints(240000);
         ADVANCED_GIFT_23.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ADVANCED_GIFT_23.setPreferential(true);
         items.add(ADVANCED_GIFT_23);
@@ -452,6 +454,7 @@ public class ItemData {
         DELUXE_GIFT_5 = new Item("玫瑰跑车-神龙", ItemType.GIFT, IconKey.DELUXE_GIFT_5, StorageKey.DELUXE_GIFT_5_NUM);
         DELUXE_GIFT_5.setValue(1888888);
         DELUXE_GIFT_5.setGiftPoints(666666);
+        DELUXE_GIFT_5.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_5.setPreferential(true);
         items.add(DELUXE_GIFT_5);
 
@@ -461,6 +464,13 @@ public class ItemData {
         DELUXE_GIFT_6.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_6.setPreferential(true);
         items.add(DELUXE_GIFT_6);
+
+        DELUXE_GIFT_7 = new Item("玫瑰跑车-玄凤", ItemType.GIFT, IconKey.DELUXE_GIFT_7, StorageKey.DELUXE_GIFT_7_NUM);
+        DELUXE_GIFT_7.setValue(1888888);
+        DELUXE_GIFT_7.setGiftPoints(666666);
+        DELUXE_GIFT_7.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        DELUXE_GIFT_7.setPreferential(true);
+        items.add(DELUXE_GIFT_7);
 
         ULTIMATE_GIFT = new Item("起源·应龙", ItemType.GIFT, IconKey.ULTIMATE_GIFT, StorageKey.ULTIMATE_GIFT_NUM);
         ULTIMATE_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -1022,56 +1032,65 @@ public class ItemData {
         largeCoin.setNumSampler(largeCoinNS);
         deluxeTowerItemSampler.addModel(new SampleModel<>(largeCoin, 1000));
 
+        Sampler<Integer> regularGiftNS = new Sampler<>();
+        regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
+        regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 200, 100);
+        Item regularGift = REGULAR_GIFT.clone();
+        regularGift.setNumSampler(regularGiftNS);
+        deluxeTowerItemSampler.addModel(new SampleModel<>(regularGift, 1000));
+
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 2000, 1000);
         statueNS.addModelsLinearWeights(ListUtil.ofRange(11, 16), 50, 10);
         Item statue = STATUE.clone();
         statue.setNumSampler(statueNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(statue, 1000));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(statue, 1500));
 
         Sampler<Integer> advancedShardNS = new Sampler<>();
         advancedShardNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 2000, 1000);
         advancedShardNS.addModelsLinearWeights(ListUtil.ofRange(11, 16), 50, 10);
         Item advancedShard = ADVANCED_SHARD.clone();
         advancedShard.setNumSampler(advancedShardNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(advancedShard, 800));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(advancedShard, 1500));
 
         Sampler<Integer> commonShardNS = new Sampler<>();
         commonShardNS.addModelsLinearWeights(ListUtil.ofRange(30, 100), 2000, 1000);
         commonShardNS.addModelsLinearWeights(ListUtil.ofRange(101, 200), 50, 10);
         Item commonShard = COMMON_SHARD.clone();
         commonShard.setNumSampler(commonShardNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(commonShard, 800));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(commonShard, 1500));
 
         Sampler<Integer> basicBoxNS = new Sampler<>();
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 1000);
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(4, 10), 50, 10);
         Item basicBox = BASIC_BOX.clone();
         basicBox.setNumSampler(basicBoxNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(basicBox, 1000));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(basicBox, 1500));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModel(new SampleModel<>(1, 2000));
         regularBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 50, 1);
         Item regularBox = REGULAR_BOX.clone();
         regularBox.setNumSampler(regularBoxNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(regularBox, 200));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(regularBox, 400));
 
         Sampler<Integer> regularGift2NS = new Sampler<>();
         regularGift2NS.addModel(new SampleModel<>(1, 2000));
         regularGift2NS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 50, 1);
         Item regularGift2 = REGULAR_GIFT_2.clone();
         regularGift2.setNumSampler(regularGift2NS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(regularGift2, 500));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(regularGift2, 1000));
 
         Sampler<Integer> advancedBoxNS = new Sampler<>();
         advancedBoxNS.addModel(new SampleModel<>(1, 2000));
         advancedBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 30, 1);
         Item advancedBox = ADVANCED_BOX.clone();
         advancedBox.setNumSampler(advancedBoxNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(advancedBox, 20));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(advancedBox, 50));
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
+
+        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_7, 2));
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_6, 1));
 

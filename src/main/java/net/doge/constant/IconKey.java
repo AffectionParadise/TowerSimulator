@@ -124,7 +124,7 @@ public enum IconKey {
     // 500k
     ADVANCED_GIFT_2("AdvancedGift2"),
     ADVANCED_GIFT_22("AdvancedGift22"),
-    // 1.6m
+    // 1.5m
     ADVANCED_GIFT_23("AdvancedGift23"),
     // 情定爱琴海
     DELUXE_GIFT("DeluxeGift"),
@@ -138,6 +138,8 @@ public enum IconKey {
     DELUXE_GIFT_5("DeluxeGift5"),
     // 玫瑰跑车-银河
     DELUXE_GIFT_6("DeluxeGift6"),
+    // 玫瑰跑车-玄凤
+    DELUXE_GIFT_7("DeluxeGift7"),
     // 起源·应龙
     ULTIMATE_GIFT("UltimateGift"),
     // 起源·黑洞

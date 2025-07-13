@@ -42,6 +42,7 @@ public class GColor {
     public static final GColor VIP3_BRIGHT = new GColor(211, 168, 248);
     public static final GColor VIP3_HIGHLIGHT = new GColor(143, 18, 253);
 
+    // 礼物品质
     public static final GColor BASIC_QUALITY = new GColor(133, 236, 105);
     public static final GColor REGULAR_QUALITY = new GColor(117, 211, 222);
     public static final GColor ADVANCED_QUALITY = new GColor(239, 140, 253);

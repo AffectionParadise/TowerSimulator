@@ -74,7 +74,7 @@ public enum StorageKey {
     // 500k 数量
     ADVANCED_GIFT_2_NUM("AdvancedGift2Num"),
     ADVANCED_GIFT_22_NUM("AdvancedGift22Num"),
-    // 1.6m 数量
+    // 1.5m 数量
     ADVANCED_GIFT_23_NUM("AdvancedGift23Num"),
     // 情定爱琴海数量
     DELUXE_GIFT_NUM("DeluxeGiftNum"),
@@ -88,6 +88,8 @@ public enum StorageKey {
     DELUXE_GIFT_5_NUM("DeluxeGift5Num"),
     // 玫瑰跑车-银河数量
     DELUXE_GIFT_6_NUM("DeluxeGift6Num"),
+    // 玫瑰跑车-玄凤数量
+    DELUXE_GIFT_7_NUM("DeluxeGift7Num"),
     // 起源·应龙数量
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
     // 起源·黑洞数量
