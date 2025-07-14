@@ -26,6 +26,13 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
     private Box topBox = new Box(BoxLayout.X_AXIS);
     private GLabel totalValueLabel = new GLabel();
 
+    private Box recordBox = new Box(BoxLayout.X_AXIS);
+    private GLabel accountLabel = new GLabel();
+    private GLabel descLabel = new GLabel();
+    private Component hs = Box.createHorizontalStrut(20);
+    private GButton detailBtn = new GButton("详情", GColor.DEEP_GREEN);
+    private GLabel valueLabel = new GLabel();
+
     public GiftRecordDialog(TowerUI ui) {
         super(ui);
         init();
@@ -42,18 +49,31 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         };
     }
 
-    private Box createGiftRecordBox(GiftRecord record) {
-        Box recordBox = new Box(BoxLayout.X_AXIS);
+    private void initGiftRecordBox() {
         Account account = AccountData.account;
-        GLabel accountLabel = new GLabel();
+
         accountLabel.setForeground(account.getTextColor().getAwtColor());
         accountLabel.setText(account.getName());
         accountLabel.setIcon(IconUtil.getIcon(account.getAvatar()));
         recordBox.add(accountLabel);
 
-        GLabel descLabel = new GLabel();
         descLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         recordBox.add(descLabel);
+
+        recordBox.add(hs);
+
+//        detailBtn.addActionListener(e -> new GiftRecordDetailDialog(ui, record));
+        recordBox.add(detailBtn);
+
+        recordBox.add(Box.createHorizontalGlue());
+
+        valueLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        recordBox.add(valueLabel);
+
+        recordBox.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+    }
+
+    private Box createGiftRecordBox(GiftRecord record) {
         Item itemPresented = record.getItemPresented();
         List<GiftResult> results = record.getResults();
         if (results != null) {
@@ -61,27 +81,23 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
                 GiftResult result = results.get(0);
                 descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), result.getNum(), result.getItem().getName()));
                 descLabel.setIcon(IconUtil.getIcon(result.getItem().getIconKey()));
+                hs.setVisible(false);
+                detailBtn.setVisible(false);
             } else {
                 descLabel.setText(String.format("赠送了 %s 个%s", record.getNumPresented(), itemPresented.getName()));
                 descLabel.setIcon(IconUtil.getIcon(itemPresented.getIconKey()));
-                recordBox.add(Box.createHorizontalStrut(20));
-                GButton detailBtn = new GButton("详情", GColor.DEEP_GREEN);
-                detailBtn.addActionListener(e -> new GiftRecordDetailDialog(ui, record));
-                recordBox.add(detailBtn);
+                hs.setVisible(true);
+                detailBtn.setVisible(true);
             }
         } else {
             descLabel.setText(String.format("赠送了 %s 个%s", record.getNumPresented(), itemPresented.getName()));
             descLabel.setIcon(IconUtil.getIcon(itemPresented.getIconKey()));
+            hs.setVisible(false);
+            detailBtn.setVisible(false);
         }
 
-        recordBox.add(Box.createHorizontalGlue());
-
-        GLabel valueLabel = new GLabel();
         valueLabel.setText(String.valueOf(record.getTotalValue()));
         valueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
-        recordBox.add(valueLabel);
-
-        recordBox.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         return recordBox;
     }
@@ -91,6 +107,8 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
 
         totalValueLabel.setText(String.format("已送出总价值 %s 的礼物", StrUtil.formatValue(DataStorage.get(StorageKey.TOTAL_VALUE))));
         totalValueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
+
+        initGiftRecordBox();
 
         list.setLayoutOrientation(JList.VERTICAL);
         list.addMouseListener(new MouseAdapter() {
