@@ -36,7 +36,7 @@ public class EventData {
     }
 
     private static void initData() {
-        eventSampler.addModel(new SampleModel<>(NOTHING, 20000));
+        eventSampler.addModel(new SampleModel<>(NOTHING, 30000));
         eventSampler.addModel(new SampleModel<>(BONUS_TRIGGER, 40));
         eventSampler.addModel(new SampleModel<>(REGULAR_TREASURE, 15));
         eventSampler.addModel(new SampleModel<>(ADVANCED_TREASURE, 10));
@@ -44,7 +44,7 @@ public class EventData {
         eventSampler.addModel(new SampleModel<>(ULTIMATE_TREASURE, 1));
         eventSampler.addModel(new SampleModel<>(MR_TREASURE, 20));
 
-        event2Sampler.addModel(new SampleModel<>(NOTHING, 20000));
+        event2Sampler.addModel(new SampleModel<>(NOTHING, 30000));
         event2Sampler.addModel(new SampleModel<>(BONUS_TRIGGER, 40));
         event2Sampler.addModel(new SampleModel<>(REGULAR_TREASURE_2, 15));
         event2Sampler.addModel(new SampleModel<>(ADVANCED_TREASURE_2, 10));
