@@ -144,6 +144,8 @@ public enum IconKey {
     ULTIMATE_GIFT("UltimateGift"),
     // 起源·黑洞
     ULTIMATE_GIFT_2("UltimateGift2"),
+    // 起源·银河
+    ULTIMATE_GIFT_3("UltimateGift3"),
     // 嘉年华孢子兑换券
     TICKET("Ticket"),
     // 好吃的骨头

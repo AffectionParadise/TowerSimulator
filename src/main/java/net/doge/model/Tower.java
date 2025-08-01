@@ -41,21 +41,23 @@ public class Tower {
     public int x;
     public int y;
     // 最小障碍数量
-    public final int minObstacles = r * c / 4;
+    public int minObstacles;
     // 最大障碍数量
-    public final int maxObstacles = r * c / 2;
+    public int maxObstacles;
     // 强调颜色
     private GColor highlightColor;
     // 浅颜色
     private GColor brightColor;
 
-    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, Sampler<Item> itemSampler,
+    public Tower(String name, String title, IconKey iconKey, Item stepItem, int stepCost, float minObsRatio, float maxObsRatio, Sampler<Item> itemSampler,
                  boolean purchasable, boolean visible, boolean optional, GColor highlightColor, GColor brightColor) {
         this.name = name;
         this.title = title;
         this.iconKey = iconKey;
         this.stepItem = stepItem;
         this.stepCost = stepCost;
+        this.minObstacles = (int) (r * c * minObsRatio);
+        this.maxObstacles = (int) (r * c * maxObsRatio);
         this.itemSampler = itemSampler;
         this.purchasable = purchasable;
         this.visible = visible;

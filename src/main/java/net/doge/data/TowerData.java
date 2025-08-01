@@ -16,42 +16,42 @@ public class TowerData {
     public static Tower currTower;
 
     // 一塔
-    public static final Tower BASIC_TOWER = new Tower("一塔", "", IconKey.BASIC_TOWER, ItemData.BASIC_STEP, 1, ItemData.basicTowerItemSampler,
-            true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
+    public static final Tower BASIC_TOWER = new Tower("一塔", "", IconKey.BASIC_TOWER, ItemData.BASIC_STEP, 1, 0.25f, 0.5f,
+            ItemData.basicTowerItemSampler, true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
     // 二塔
-    public static final Tower REGULAR_TOWER = new Tower("二塔", "", IconKey.REGULAR_TOWER, ItemData.REGULAR_STEP, 1, ItemData.regularTowerItemSampler,
-            true, true, false, GColor.REGULAR_TOWER_HIGHLIGHT, GColor.REGULAR_TOWER_BRIGHT);
+    public static final Tower REGULAR_TOWER = new Tower("二塔", "", IconKey.REGULAR_TOWER, ItemData.REGULAR_STEP, 1, 0.25f, 0.5f,
+            ItemData.regularTowerItemSampler, true, true, false, GColor.REGULAR_TOWER_HIGHLIGHT, GColor.REGULAR_TOWER_BRIGHT);
     // 三塔
-    public static final Tower ADVANCED_TOWER = new Tower("三塔", "", IconKey.ADVANCED_TOWER, ItemData.ADVANCED_STEP, 1, ItemData.advancedTowerItemSampler,
-            true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
-    public static final Tower ADVANCED_TOWER_2 = new Tower("张家界", "", IconKey.ADVANCED_TOWER_2, ItemData.ADVANCED_STEP, 1, ItemData.advancedTower2ItemSampler,
-            true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
+    public static final Tower ADVANCED_TOWER = new Tower("三塔", "", IconKey.ADVANCED_TOWER, ItemData.ADVANCED_STEP, 1, 0.25f, 0.5f,
+            ItemData.advancedTowerItemSampler, true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
+    public static final Tower ADVANCED_TOWER_2 = new Tower("张家界", "", IconKey.ADVANCED_TOWER_2, ItemData.ADVANCED_STEP, 1, 0.25f, 0.5f,
+            ItemData.advancedTower2ItemSampler, true, true, false, GColor.ADVANCED_TOWER_HIGHLIGHT, GColor.ADVANCED_TOWER_BRIGHT);
     // 金塔
-    public static final Tower DELUXE_TOWER = new Tower("金塔", "", IconKey.DELUXE_TOWER, ItemData.DELUXE_STEP, 1, ItemData.deluxeTowerItemSampler,
-            false, true, false, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower DELUXE_TOWER = new Tower("金塔", "", IconKey.DELUXE_TOWER, ItemData.DELUXE_STEP, 1, 0.25f, 0.5f,
+            ItemData.deluxeTowerItemSampler, false, true, false, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 中级密藏
-    public static final Tower REGULAR_TREASURE = new Tower("中级密藏", "中级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 2, ItemData.regularTreasureItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
-    public static final Tower REGULAR_TREASURE_2 = new Tower("中级密藏", "中级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 2, ItemData.regularTreasure2ItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower REGULAR_TREASURE = new Tower("中级密藏", "中级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 2, 0.4f, 0.6f,
+            ItemData.regularTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower REGULAR_TREASURE_2 = new Tower("中级密藏", "中级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 2, 0.4f, 0.6f,
+            ItemData.regularTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 高级密藏
-    public static final Tower ADVANCED_TREASURE = new Tower("高级密藏", "高级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 5, ItemData.advancedTreasureItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
-    public static final Tower ADVANCED_TREASURE_2 = new Tower("高级密藏", "高级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 5, ItemData.advancedTreasure2ItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower ADVANCED_TREASURE = new Tower("高级密藏", "高级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 5, 0.4f, 0.6f,
+            ItemData.advancedTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower ADVANCED_TREASURE_2 = new Tower("高级密藏", "高级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 5, 0.4f, 0.6f,
+            ItemData.advancedTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 超级密藏
-    public static final Tower DELUXE_TREASURE = new Tower("超级密藏", "超级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 10, ItemData.deluxeTreasureItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
-    public static final Tower DELUXE_TREASURE_2 = new Tower("超级密藏", "超级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 10, ItemData.deluxeTreasure2ItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower DELUXE_TREASURE = new Tower("超级密藏", "超级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 10, 0.4f, 0.6f,
+            ItemData.deluxeTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower DELUXE_TREASURE_2 = new Tower("超级密藏", "超级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 10, 0.4f, 0.6f,
+            ItemData.deluxeTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 究极密藏
-    public static final Tower ULTIMATE_TREASURE = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, ItemData.ultimateTreasureItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
-    public static final Tower ULTIMATE_TREASURE_2 = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, ItemData.ultimateTreasure2ItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower ULTIMATE_TREASURE = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, 0.5f, 0.6f,
+            ItemData.ultimateTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower ULTIMATE_TREASURE_2 = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, 0.5f, 0.6f,
+            ItemData.ultimateTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 蘑菇金库
-    public static final Tower MR_TREASURE = new Tower("蘑菇金库", "蘑菇金库", IconKey.MR_TREASURE, ItemData.ADVANCED_STEP, 1, ItemData.mrTreasureItemSampler,
-            true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    public static final Tower MR_TREASURE = new Tower("蘑菇金库", "蘑菇金库", IconKey.MR_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+            ItemData.mrTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
 
     static {
         initData();

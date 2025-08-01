@@ -94,6 +94,8 @@ public enum StorageKey {
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
     // 起源·黑洞数量
     ULTIMATE_GIFT_2_NUM("UltimateGift2Num"),
+    // 起源·银河数量
+    ULTIMATE_GIFT_3_NUM("UltimateGift3Num"),
     // 嘉年华孢子兑换券数量
     TICKET("Ticket"),
     // 好吃的骨头数量

@@ -121,6 +121,8 @@ public class ItemData {
     public static Item ULTIMATE_GIFT;
     // 起源·黑洞
     public static Item ULTIMATE_GIFT_2;
+    // 起源·银河
+    public static Item ULTIMATE_GIFT_3;
     // 兑换券
     public static Item TICKET;
     // 皮肤
@@ -485,6 +487,13 @@ public class ItemData {
         ULTIMATE_GIFT_2.setGiftPoints(888888);
         ULTIMATE_GIFT_2.setPreferential(true);
         items.add(ULTIMATE_GIFT_2);
+
+        ULTIMATE_GIFT_3 = new Item("起源·银河", ItemType.GIFT, IconKey.ULTIMATE_GIFT_3, StorageKey.ULTIMATE_GIFT_3_NUM);
+        ULTIMATE_GIFT_3.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ULTIMATE_GIFT_3.setValue(2888888);
+        ULTIMATE_GIFT_3.setGiftPoints(888888);
+        ULTIMATE_GIFT_3.setPreferential(true);
+        items.add(ULTIMATE_GIFT_3);
 
         TICKET = new Item("嘉年华孢子兑换券", ItemType.SKIN, IconKey.TICKET, StorageKey.TICKET);
         TICKET.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -896,28 +905,28 @@ public class ItemData {
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(4, 10), 50, 10);
         Item basicBox = BASIC_BOX.clone();
         basicBox.setNumSampler(basicBoxNS);
-        advancedTowerItemSampler.addModel(new SampleModel<>(basicBox, 800));
+        advancedTowerItemSampler.addModel(new SampleModel<>(basicBox, 600));
 
         Sampler<Integer> basicBox2NS = new Sampler<>();
         basicBox2NS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 1000);
         basicBox2NS.addModelsLinearWeights(ListUtil.ofRange(4, 10), 50, 10);
         Item basicBox2 = BASIC_BOX_2.clone();
         basicBox2.setNumSampler(basicBox2NS);
-        advancedTower2ItemSampler.addModel(new SampleModel<>(basicBox2, 800));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(basicBox2, 600));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModel(new SampleModel<>(1, 2000));
         regularBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 50, 1);
         Item regularBox = REGULAR_BOX.clone();
         regularBox.setNumSampler(regularBoxNS);
-        advancedTowerItemSampler.addModel(new SampleModel<>(regularBox, 200));
+        advancedTowerItemSampler.addModel(new SampleModel<>(regularBox, 100));
 
         Sampler<Integer> regularBox2NS = new Sampler<>();
         regularBox2NS.addModel(new SampleModel<>(1, 2000));
         regularBox2NS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 50, 1);
         Item regularBox2 = REGULAR_BOX_2.clone();
         regularBox2.setNumSampler(regularBox2NS);
-        advancedTower2ItemSampler.addModel(new SampleModel<>(regularBox2, 200));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(regularBox2, 100));
 
         Sampler<Integer> advancedBoxNS = new Sampler<>();
         advancedBoxNS.addModel(new SampleModel<>(1, 2000));
@@ -996,6 +1005,9 @@ public class ItemData {
 
         advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
         advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
+
+        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
 
         advancedTowerItemSampler.addModel(new SampleModel<>(TICKET, 1));
         advancedTower2ItemSampler.addModel(new SampleModel<>(TICKET, 1));
@@ -1097,6 +1109,8 @@ public class ItemData {
         deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 2));
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
+
+        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
     }
 
     // 中级密藏物品
@@ -1522,6 +1536,9 @@ public class ItemData {
 
         ultimateTreasureItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 100));
         ultimateTreasure2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 100));
+
+        ultimateTreasureItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 100));
+        ultimateTreasure2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 100));
 
         ultimateTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_6, 30));
         ultimateTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_6, 30));
