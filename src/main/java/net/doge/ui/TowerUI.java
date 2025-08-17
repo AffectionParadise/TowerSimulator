@@ -601,13 +601,14 @@ public class TowerUI extends JFrame {
     }
 
     // 全局字体抗锯齿，必须在初始化 UIManager 之前调用！
-    private static void enableAntiAliasing() {
+    private static void initGraphicsConfig() {
         System.setProperty("awt.useSystemAAFontSettings", "on");
         System.setProperty("swing.aatext", "true");
+        System.setProperty("sun.java2d.uiScale", "1.0");
     }
 
     public static void main(String[] args) {
-        enableAntiAliasing();
+        initGraphicsConfig();
         new TowerUI().init();
     }
 }

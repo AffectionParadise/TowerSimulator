@@ -991,23 +991,23 @@ public class ItemData {
         advancedGift23.setNumSampler(advancedGiftNS);
         advancedTower2ItemSampler.addModel(new SampleModel<>(advancedGift23, 3));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 1));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_2, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_2, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_2, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_2, 1));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 1));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 1));
 
-        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
-        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
+        advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 1));
 
         advancedTowerItemSampler.addModel(new SampleModel<>(TICKET, 1));
         advancedTower2ItemSampler.addModel(new SampleModel<>(TICKET, 1));
@@ -1100,25 +1100,25 @@ public class ItemData {
         advancedBox.setNumSampler(advancedBoxNS);
         deluxeTowerItemSampler.addModel(new SampleModel<>(advancedBox, 50));
 
-        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
 
-        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_7, 2));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_7, 1));
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_6, 1));
 
-        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 2));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
 
-        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 2));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_2, 1));
 
-        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 2));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 1));
     }
 
     // 中级密藏物品
     private static void initRegularTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
         coinNS.addModel(new SampleModel<>(199, 200));
-        coinNS.addModel(new SampleModel<>(399, 20));
-        coinNS.addModel(new SampleModel<>(699, 2));
+        coinNS.addModel(new SampleModel<>(399, 50));
+        coinNS.addModel(new SampleModel<>(699, 10));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
         coin.setPreferential(true);
@@ -1127,16 +1127,16 @@ public class ItemData {
         regularTreasure2ItemSampler.addModel(new SampleModel<>(coin, 2000));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
-        regularBoxNS.addModel(new SampleModel<>(1, 100));
-        regularBoxNS.addModel(new SampleModel<>(2, 80));
+        regularBoxNS.addModel(new SampleModel<>(1, 200));
+        regularBoxNS.addModel(new SampleModel<>(2, 160));
         regularBoxNS.addModel(new SampleModel<>(4, 10));
         Item regularBox = REGULAR_BOX.clone();
         regularBox.setNumSampler(regularBoxNS);
         regularTreasureItemSampler.addModel(new SampleModel<>(regularBox, 2000));
 
         Sampler<Integer> regularBox2NS = new Sampler<>();
-        regularBox2NS.addModel(new SampleModel<>(1, 100));
-        regularBox2NS.addModel(new SampleModel<>(2, 80));
+        regularBox2NS.addModel(new SampleModel<>(1, 200));
+        regularBox2NS.addModel(new SampleModel<>(2, 160));
         regularBox2NS.addModel(new SampleModel<>(4, 10));
         Item regularBox2 = REGULAR_BOX_2.clone();
         regularBox2.setNumSampler(regularBox2NS);
@@ -1220,9 +1220,9 @@ public class ItemData {
     // 高级密藏物品
     private static void initAdvancedTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
-        coinNS.addModel(new SampleModel<>(199, 20));
-        coinNS.addModel(new SampleModel<>(399, 200));
-        coinNS.addModel(new SampleModel<>(699, 50));
+        coinNS.addModel(new SampleModel<>(199, 200));
+        coinNS.addModel(new SampleModel<>(399, 150));
+        coinNS.addModel(new SampleModel<>(699, 100));
         Item coin = COIN.clone();
         coin.setHighlightColor(GColor.DELUXE_QUALITY);
         coin.setPreferential(true);
@@ -1233,7 +1233,7 @@ public class ItemData {
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModel(new SampleModel<>(2, 200));
         regularBoxNS.addModel(new SampleModel<>(4, 150));
-        regularBoxNS.addModel(new SampleModel<>(8, 20));
+        regularBoxNS.addModel(new SampleModel<>(8, 10));
         Item regularBox = REGULAR_BOX.clone();
         regularBox.setNumSampler(regularBoxNS);
         advancedTreasureItemSampler.addModel(new SampleModel<>(regularBox, 2000));
@@ -1241,7 +1241,7 @@ public class ItemData {
         Sampler<Integer> regularBox2NS = new Sampler<>();
         regularBox2NS.addModel(new SampleModel<>(2, 200));
         regularBox2NS.addModel(new SampleModel<>(4, 150));
-        regularBox2NS.addModel(new SampleModel<>(8, 20));
+        regularBox2NS.addModel(new SampleModel<>(8, 10));
         Item regularBox2 = REGULAR_BOX_2.clone();
         regularBox2.setNumSampler(regularBox2NS);
         advancedTreasure2ItemSampler.addModel(new SampleModel<>(regularBox2, 2000));
@@ -1318,14 +1318,14 @@ public class ItemData {
         advancedGift23.setNumSampler(advancedGiftNS);
         advancedTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 5));
 
-        advancedTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
-        advancedTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 2));
+        advancedTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
+        advancedTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
     }
 
     // 超级密藏物品
     private static void initDeluxeTreasureItemSampler() {
         Sampler<Integer> coinNS = new Sampler<>();
-        coinNS.addModel(new SampleModel<>(199, 20));
+        coinNS.addModel(new SampleModel<>(199, 150));
         coinNS.addModel(new SampleModel<>(399, 200));
         coinNS.addModel(new SampleModel<>(699, 100));
         Item coin = COIN.clone();
@@ -1337,14 +1337,14 @@ public class ItemData {
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModel(new SampleModel<>(4, 200));
-        regularBoxNS.addModel(new SampleModel<>(8, 40));
+        regularBoxNS.addModel(new SampleModel<>(8, 20));
         Item regularBox = REGULAR_BOX.clone();
         regularBox.setNumSampler(regularBoxNS);
         deluxeTreasureItemSampler.addModel(new SampleModel<>(regularBox, 2000));
 
         Sampler<Integer> regularBox2NS = new Sampler<>();
         regularBox2NS.addModel(new SampleModel<>(4, 200));
-        regularBox2NS.addModel(new SampleModel<>(8, 40));
+        regularBox2NS.addModel(new SampleModel<>(8, 20));
         Item regularBox2 = REGULAR_BOX_2.clone();
         regularBox2.setNumSampler(regularBox2NS);
         deluxeTreasure2ItemSampler.addModel(new SampleModel<>(regularBox2, 2000));
@@ -1421,8 +1421,8 @@ public class ItemData {
         advancedGift23.setNumSampler(advancedGiftNS);
         deluxeTreasure2ItemSampler.addModel(new SampleModel<>(advancedGift23, 8));
 
-        deluxeTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 3));
-        deluxeTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 3));
+        deluxeTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
+        deluxeTreasure2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_3, 1));
     }
 
     // 究级密藏物品

@@ -47,7 +47,7 @@ public class GDialog<E> extends JDialog {
         list.setCellRenderer(createCellRenderer());
         add(scroller, BorderLayout.CENTER);
 
-        setSize(1000, 600);
+        setSize(1200, 800);
         setResizable(false);
         setLocationRelativeTo(null);
 

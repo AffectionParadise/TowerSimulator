@@ -13,8 +13,10 @@ import net.doge.ui.TowerUI;
 import net.doge.ui.widget.button.GButton;
 import net.doge.ui.widget.color.GColor;
 import net.doge.ui.widget.label.GLabel;
+import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
 import net.doge.util.StrUtil;
+import net.doge.util.TimeUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +33,10 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
     private GLabel descLabel = new GLabel();
     private Component hs = Box.createHorizontalStrut(20);
     private GButton detailBtn = new GButton("详情", GColor.DEEP_GREEN);
+    private Box valueBox = new Box(BoxLayout.Y_AXIS);
+    private GPanel timePanel = new GPanel();
+    private GLabel timeLabel = new GLabel();
+    private GPanel valuePanel = new GPanel();
     private GLabel valueLabel = new GLabel();
 
     public GiftRecordDialog(TowerUI ui) {
@@ -67,8 +73,20 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
 
         recordBox.add(Box.createHorizontalGlue());
 
+        FlowLayout fl = new FlowLayout(FlowLayout.RIGHT);
+        timePanel.setOpaque(false);
+        timePanel.setLayout(fl);
+        timePanel.add(timeLabel);
+
         valueLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-        recordBox.add(valueLabel);
+        valuePanel.setOpaque(false);
+        valuePanel.setLayout(fl);
+        valuePanel.add(valueLabel);
+
+        valueBox.add(timePanel);
+        valueBox.add(valuePanel);
+
+        recordBox.add(valueBox);
 
         recordBox.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
@@ -96,7 +114,8 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
             detailBtn.setVisible(false);
         }
 
-        valueLabel.setText(String.valueOf(record.getTotalValue()));
+        timeLabel.setText(TimeUtil.msToPhrase(record.getTimestamp()));
+        valueLabel.setText(String.format("价值：%s", record.getTotalValue()));
         valueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
 
         return recordBox;

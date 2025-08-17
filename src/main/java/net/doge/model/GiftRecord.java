@@ -16,6 +16,8 @@ public class GiftRecord {
     private List<GiftResult> results;
     // 总价值
     private int totalValue;
+    // 时间戳
+    private long timestamp;
 
     // 是否为单种礼物
     public boolean isOneKind() {
