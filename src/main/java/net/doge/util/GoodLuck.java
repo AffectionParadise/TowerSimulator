@@ -10,12 +10,15 @@ import java.util.List;
  */
 public class GoodLuck {
     public static void main(String[] args) {
-        Integer[] g = {1, 2, 3, 4};
-//        Integer[] g = {1, 2, 3};
+//        Integer[] g = {1, 2, 3, 4};
+        Integer[] g = {1, 2};
         List<Integer> list = Arrays.asList(g);
 
-        for (int j = 1, t = 10; j <= t; j++) {
+        MersenneTwister rnd = new MersenneTwister();
+        for (int j = 1, t = 1; j <= t; j++) {
             shuffle(list);
+//            if(list.get(2) == rnd.nextInt(3)+1) System.out.print("中 ");
+//            else System.out.print("补 ");
             System.out.printf("第 %s 个：", j);
             for (int i = 0, s = list.size() - 1; i < s; i++) System.out.print(list.get(i) + " ");
             System.out.println();

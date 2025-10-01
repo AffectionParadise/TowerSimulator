@@ -25,6 +25,8 @@ public enum IconKey {
     VIP2("Vip2"),
     // 银河会员
     VIP3("Vip3"),
+    // NEW
+    NEW("New"),
 
     // 终点
     DESTINATION("Destination"),
@@ -140,6 +142,10 @@ public enum IconKey {
     DELUXE_GIFT_6("DeluxeGift6"),
     // 玫瑰跑车-玄凤
     DELUXE_GIFT_7("DeluxeGift7"),
+    // 玫瑰跑车-天狼
+    DELUXE_GIFT_8("DeluxeGift8"),
+    // 玫瑰跑车-金乌
+    DELUXE_GIFT_9("DeluxeGift9"),
     // 起源·应龙
     ULTIMATE_GIFT("UltimateGift"),
     // 起源·黑洞

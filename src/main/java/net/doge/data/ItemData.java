@@ -117,6 +117,10 @@ public class ItemData {
     public static Item DELUXE_GIFT_6;
     // 玫瑰跑车-玄凤
     public static Item DELUXE_GIFT_7;
+    // 玫瑰跑车-天狼
+    public static Item DELUXE_GIFT_8;
+    // 玫瑰跑车-金乌
+    public static Item DELUXE_GIFT_9;
     // 起源·应龙
     public static Item ULTIMATE_GIFT;
     // 起源·黑洞
@@ -473,6 +477,20 @@ public class ItemData {
         DELUXE_GIFT_7.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_GIFT_7.setPreferential(true);
         items.add(DELUXE_GIFT_7);
+
+        DELUXE_GIFT_8 = new Item("玫瑰跑车-天狼", ItemType.GIFT, IconKey.DELUXE_GIFT_8, StorageKey.DELUXE_GIFT_8_NUM);
+        DELUXE_GIFT_8.setValue(1888888);
+        DELUXE_GIFT_8.setGiftPoints(666666);
+        DELUXE_GIFT_8.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        DELUXE_GIFT_8.setPreferential(true);
+        items.add(DELUXE_GIFT_8);
+
+        DELUXE_GIFT_9 = new Item("玫瑰跑车-金乌", ItemType.GIFT, IconKey.DELUXE_GIFT_9, StorageKey.DELUXE_GIFT_9_NUM);
+        DELUXE_GIFT_9.setValue(1888888);
+        DELUXE_GIFT_9.setGiftPoints(666666);
+        DELUXE_GIFT_9.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        DELUXE_GIFT_9.setPreferential(true);
+        items.add(DELUXE_GIFT_9);
 
         ULTIMATE_GIFT = new Item("起源·应龙", ItemType.GIFT, IconKey.ULTIMATE_GIFT, StorageKey.ULTIMATE_GIFT_NUM);
         ULTIMATE_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -1104,6 +1122,10 @@ public class ItemData {
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_7, 1));
 
+        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_8, 1));
+
+        deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_9, 1));
+
         deluxeTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_6, 1));
 
         deluxeTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
@@ -1563,171 +1585,171 @@ public class ItemData {
     }
 
     private static void initBBSubItemSampler() {
-        bbSubItemSampler.addModel(new SampleModel<>(RB1_GIFT, 80));
-        bbSubItemSampler.addModel(new SampleModel<>(RB2_GIFT, 80));
-        bbSubItemSampler.addModel(new SampleModel<>(RB3_GIFT, 80));
+        bbSubItemSampler.addModel(new SampleModel<>(RB1_GIFT, 33));
+        bbSubItemSampler.addModel(new SampleModel<>(RB2_GIFT, 33));
+        bbSubItemSampler.addModel(new SampleModel<>(RB3_GIFT, 33));
 
         Item bb4Gift = BB4_GIFT.clone();
         bb4Gift.setBoxRegular(true);
-        bbSubItemSampler.addModel(new SampleModel<>(bb4Gift, 3000));
+        bbSubItemSampler.addModel(new SampleModel<>(bb4Gift, 2400));
 
         Item bb5Gift = BB5_GIFT.clone();
         bb5Gift.setBoxRegular(true);
-        bbSubItemSampler.addModel(new SampleModel<>(bb5Gift, 3000));
+        bbSubItemSampler.addModel(new SampleModel<>(bb5Gift, 2400));
 
         Item bb6Gift = BB6_GIFT.clone();
         bb6Gift.setBoxRegular(true);
-        bbSubItemSampler.addModel(new SampleModel<>(bb6Gift, 3000));
+        bbSubItemSampler.addModel(new SampleModel<>(bb6Gift, 2200));
 
         Item bb7Gift = BB7_GIFT.clone();
         bb7Gift.setBoxRegular(true);
-        bbSubItemSampler.addModel(new SampleModel<>(bb7Gift, 3000));
+        bbSubItemSampler.addModel(new SampleModel<>(bb7Gift, 2200));
 
-        bbSubItemSampler.addModel(new SampleModel<>(BB8_GIFT, 300));
+        bbSubItemSampler.addModel(new SampleModel<>(BB8_GIFT, 550));
         bbSubItemSampler.addModel(new SampleModel<>(BB9_GIFT, 150));
         bbSubItemSampler.addModel(new SampleModel<>(RB8_GIFT, 1));
     }
 
     private static void initBB2SubItemSampler() {
-        bb2SubItemSampler.addModel(new SampleModel<>(RB21_GIFT, 100));
-        bb2SubItemSampler.addModel(new SampleModel<>(RB22_GIFT, 100));
-        bb2SubItemSampler.addModel(new SampleModel<>(RB23_GIFT, 100));
-        bb2SubItemSampler.addModel(new SampleModel<>(RB24_GIFT, 17));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB21_GIFT, 33));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB22_GIFT, 33));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB23_GIFT, 33));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB24_GIFT, 16));
 
         Item bb25Gift = BB4_GIFT.clone();
         bb25Gift.setBoxRegular(true);
-        bb2SubItemSampler.addModel(new SampleModel<>(bb25Gift, 3000));
+        bb2SubItemSampler.addModel(new SampleModel<>(bb25Gift, 2400));
 
         Item bb26Gift = BB5_GIFT.clone();
         bb26Gift.setBoxRegular(true);
-        bb2SubItemSampler.addModel(new SampleModel<>(bb26Gift, 3000));
+        bb2SubItemSampler.addModel(new SampleModel<>(bb26Gift, 2400));
 
         Item bb27Gift = BB6_GIFT.clone();
         bb27Gift.setBoxRegular(true);
-        bb2SubItemSampler.addModel(new SampleModel<>(bb27Gift, 3000));
+        bb2SubItemSampler.addModel(new SampleModel<>(bb27Gift, 2200));
 
         Item bb28Gift = BB7_GIFT.clone();
         bb28Gift.setBoxRegular(true);
-        bb2SubItemSampler.addModel(new SampleModel<>(bb28Gift, 3000));
+        bb2SubItemSampler.addModel(new SampleModel<>(bb28Gift, 2200));
 
-        bb2SubItemSampler.addModel(new SampleModel<>(BB8_GIFT, 300));
+        bb2SubItemSampler.addModel(new SampleModel<>(BB8_GIFT, 550));
         bb2SubItemSampler.addModel(new SampleModel<>(BB9_GIFT, 150));
-        bb2SubItemSampler.addModel(new SampleModel<>(RB29_GIFT, 4));
-        bb2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 2));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB29_GIFT, 2));
+        bb2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 1));
     }
 
     private static void initRBSubItemSampler() {
         Item rb1Gift = RB1_GIFT.clone();
         rb1Gift.setBoxRegular(true);
-        rbSubItemSampler.addModel(new SampleModel<>(rb1Gift, 3000));
+        rbSubItemSampler.addModel(new SampleModel<>(rb1Gift, 28));
 
         Item rb2Gift = RB2_GIFT.clone();
         rb2Gift.setBoxRegular(true);
-        rbSubItemSampler.addModel(new SampleModel<>(rb2Gift, 3000));
+        rbSubItemSampler.addModel(new SampleModel<>(rb2Gift, 28));
 
         Item rb3Gift = RB3_GIFT.clone();
         rb3Gift.setBoxRegular(true);
-        rbSubItemSampler.addModel(new SampleModel<>(rb3Gift, 3000));
+        rbSubItemSampler.addModel(new SampleModel<>(rb3Gift, 28));
 
-        rbSubItemSampler.addModel(new SampleModel<>(RB4_GIFT, 500));
-        rbSubItemSampler.addModel(new SampleModel<>(RB5_GIFT, 300));
-        rbSubItemSampler.addModel(new SampleModel<>(RB6_GIFT, 300));
-        rbSubItemSampler.addModel(new SampleModel<>(RB7_GIFT, 200));
-        rbSubItemSampler.addModel(new SampleModel<>(RB8_GIFT, 180));
+        rbSubItemSampler.addModel(new SampleModel<>(RB4_GIFT, 5));
+        rbSubItemSampler.addModel(new SampleModel<>(RB5_GIFT, 3));
+        rbSubItemSampler.addModel(new SampleModel<>(RB6_GIFT, 3));
+        rbSubItemSampler.addModel(new SampleModel<>(RB7_GIFT, 3));
+        rbSubItemSampler.addModel(new SampleModel<>(RB8_GIFT, 2));
     }
 
     private static void initRB2SubItemSampler() {
         Item rb21Gift = RB21_GIFT.clone();
         rb21Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb21Gift, 3000));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb21Gift, 28));
 
         Item rb22Gift = RB22_GIFT.clone();
         rb22Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb22Gift, 3000));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb22Gift, 28));
 
         Item rb23Gift = RB23_GIFT.clone();
         rb23Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb23Gift, 3000));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb23Gift, 28));
 
-        rb2SubItemSampler.addModel(new SampleModel<>(RB24_GIFT, 500));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB25_GIFT, 300));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB26_GIFT, 300));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB27_GIFT, 250));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB28_GIFT, 250));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB29_GIFT, 200));
-        rb2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 200));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB24_GIFT, 5));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB25_GIFT, 3));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB26_GIFT, 3));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB27_GIFT, 3));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB28_GIFT, 3));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB29_GIFT, 3));
+        rb2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 2));
     }
 
     private static void initABSubItemSampler() {
         Item ab1Gift = AB1_GIFT.clone();
         ab1Gift.setBoxRegular(true);
-        abSubItemSampler.addModel(new SampleModel<>(ab1Gift, 3000));
+        abSubItemSampler.addModel(new SampleModel<>(ab1Gift, 28));
 
         Item ab2Gift = AB2_GIFT.clone();
         ab2Gift.setBoxRegular(true);
-        abSubItemSampler.addModel(new SampleModel<>(ab2Gift, 3000));
+        abSubItemSampler.addModel(new SampleModel<>(ab2Gift, 28));
 
         Item ab3Gift = AB3_GIFT.clone();
         ab3Gift.setBoxRegular(true);
-        abSubItemSampler.addModel(new SampleModel<>(ab3Gift, 3000));
+        abSubItemSampler.addModel(new SampleModel<>(ab3Gift, 28));
 
-        abSubItemSampler.addModel(new SampleModel<>(RB8_GIFT, 500));
-        abSubItemSampler.addModel(new SampleModel<>(AB5_GIFT, 100));
-        abSubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 500));
+        abSubItemSampler.addModel(new SampleModel<>(RB8_GIFT, 4));
+        abSubItemSampler.addModel(new SampleModel<>(AB5_GIFT, 2));
+        abSubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 10));
     }
 
     private static void initAB2SubItemSampler() {
         Item ab21Gift = AB1_GIFT.clone();
         ab21Gift.setBoxRegular(true);
-        ab2SubItemSampler.addModel(new SampleModel<>(ab21Gift, 3000));
+        ab2SubItemSampler.addModel(new SampleModel<>(ab21Gift, 28));
 
         Item ab22Gift = AB2_GIFT.clone();
         ab22Gift.setBoxRegular(true);
-        ab2SubItemSampler.addModel(new SampleModel<>(ab22Gift, 3000));
+        ab2SubItemSampler.addModel(new SampleModel<>(ab22Gift, 28));
 
         Item ab23Gift = AB3_GIFT.clone();
         ab23Gift.setBoxRegular(true);
-        ab2SubItemSampler.addModel(new SampleModel<>(ab23Gift, 3000));
+        ab2SubItemSampler.addModel(new SampleModel<>(ab23Gift, 28));
 
-        ab2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 500));
+        ab2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 4));
 
-        ab2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 220));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB26_GIFT, 220));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 100));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 100));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 3));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB26_GIFT, 3));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 2));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 2));
     }
 
     private static void initDBSubItemSampler() {
-        dbSubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 200));
+        dbSubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 5));
 
         Item db2Gift = DB2_GIFT.clone();
         db2Gift.setBoxRegular(true);
-        dbSubItemSampler.addModel(new SampleModel<>(db2Gift, 3000));
+        dbSubItemSampler.addModel(new SampleModel<>(db2Gift, 35));
 
-        dbSubItemSampler.addModel(new SampleModel<>(AB5_GIFT, 600));
+        dbSubItemSampler.addModel(new SampleModel<>(AB5_GIFT, 10));
 
         Item db4Gift = DB4_GIFT.clone();
         db4Gift.setBoxRegular(true);
-        dbSubItemSampler.addModel(new SampleModel<>(db4Gift, 3000));
+        dbSubItemSampler.addModel(new SampleModel<>(db4Gift, 35));
 
-        dbSubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 600));
+        dbSubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 15));
     }
 
     private static void initDB2SubItemSampler() {
-        db2SubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 200));
-        db2SubItemSampler.addModel(new SampleModel<>(DB22_GIFT, 220));
+        db2SubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 5));
+        db2SubItemSampler.addModel(new SampleModel<>(DB22_GIFT, 5));
 
         Item db23Gift = DB2_GIFT.clone();
         db23Gift.setBoxRegular(true);
-        db2SubItemSampler.addModel(new SampleModel<>(db23Gift, 3000));
+        db2SubItemSampler.addModel(new SampleModel<>(db23Gift, 35));
 
-        db2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 650));
+        db2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 10));
 
         Item db25Gift = DB4_GIFT.clone();
         db25Gift.setBoxRegular(true);
-        db2SubItemSampler.addModel(new SampleModel<>(db25Gift, 3000));
+        db2SubItemSampler.addModel(new SampleModel<>(db25Gift, 35));
 
-        db2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 650));
-        db2SubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 600));
+        db2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 10));
+        db2SubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 15));
     }
 }

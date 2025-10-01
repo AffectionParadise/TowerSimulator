@@ -22,6 +22,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class GiftRecordDialog extends GDialog<GiftRecord> {
@@ -33,6 +35,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
     private GLabel descLabel = new GLabel();
     private Component hs = Box.createHorizontalStrut(20);
     private GButton detailBtn = new GButton("详情", GColor.DEEP_GREEN);
+    private GLabel newLabel = new GLabel();
     private Box valueBox = new Box(BoxLayout.Y_AXIS);
     private GPanel timePanel = new GPanel();
     private GLabel timeLabel = new GLabel();
@@ -73,6 +76,9 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
 
         recordBox.add(Box.createHorizontalGlue());
 
+        newLabel.setIcon(IconUtil.getIcon(IconKey.NEW));
+        recordBox.add(newLabel);
+
         FlowLayout fl = new FlowLayout(FlowLayout.RIGHT);
         timePanel.setOpaque(false);
         timePanel.setLayout(fl);
@@ -83,6 +89,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         valuePanel.setLayout(fl);
         valuePanel.add(valueLabel);
 
+        valueBox.setPreferredSize(new Dimension(1, 1));
         valueBox.add(timePanel);
         valueBox.add(valuePanel);
 
@@ -113,7 +120,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
             hs.setVisible(false);
             detailBtn.setVisible(false);
         }
-
+        newLabel.setVisible(record.isNew());
         timeLabel.setText(TimeUtil.msToPhrase(record.getTimestamp()));
         valueLabel.setText(String.format("价值：%s", record.getTotalValue()));
         valueLabel.setIcon(IconUtil.getIcon(IconKey.ADVANCED_COIN_THUMB));
@@ -147,6 +154,14 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         topBox.add(Box.createHorizontalGlue());
 
         add(topBox, BorderLayout.NORTH);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // 关闭窗口后，所有礼物记录不再是新
+                for (GiftRecord record : GiftRecordStorage.getStorage()) record.setNew(false);
+            }
+        });
 
         setVisible(true);
     }

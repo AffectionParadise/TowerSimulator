@@ -90,6 +90,10 @@ public enum StorageKey {
     DELUXE_GIFT_6_NUM("DeluxeGift6Num"),
     // 玫瑰跑车-玄凤数量
     DELUXE_GIFT_7_NUM("DeluxeGift7Num"),
+    // 玫瑰跑车-天狼数量
+    DELUXE_GIFT_8_NUM("DeluxeGift8Num"),
+    // 玫瑰跑车-金乌数量
+    DELUXE_GIFT_9_NUM("DeluxeGift9Num"),
     // 起源·应龙数量
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
     // 起源·黑洞数量

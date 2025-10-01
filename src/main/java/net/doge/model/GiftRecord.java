@@ -16,6 +16,8 @@ public class GiftRecord {
     private List<GiftResult> results;
     // 总价值
     private int totalValue;
+    // 新
+    private boolean isNew;
     // 时间戳
     private long timestamp;
 

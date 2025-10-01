@@ -75,7 +75,7 @@ public class GiftResultDialog extends GDialog<GiftResult> {
         DataStorage.add(StorageKey.TOTAL_VALUE, totalValue);
         DataStorage.add(StorageKey.GIFT_EXP, num * item.getGiftExp());
         // 礼物记录
-        GiftRecord record = new GiftRecord(item, num, results, totalValue, System.currentTimeMillis());
+        GiftRecord record = new GiftRecord(item, num, results, totalValue, true, System.currentTimeMillis());
         GiftRecordStorage.add(record);
         // 判断盲盒福利
         TrickData.currTrick.accept(record);
