@@ -13,7 +13,7 @@ public class GoodLuck {
 //        Integer[] g = {1, 2, 3, 4};
         // 1234 单双 3下 063
         // 单双 1234 3下 111
-        Integer[] g = {1, 2, 3, 4};
+        Integer[] g = {1, 2};
         List<Integer> list = Arrays.asList(g);
 
         for (int j = 1, t = 1; j <= t; j++) {

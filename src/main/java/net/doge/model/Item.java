@@ -38,6 +38,10 @@ public class Item implements Cloneable {
     private boolean guessable;
     // 是否属于盒子中的常见礼物
     private boolean boxRegular;
+    // 是否为隐藏礼物
+    private boolean isMystery;
+    // 是否为碎片礼物
+    private boolean isFragment;
     // 是否优先拾取
     private boolean preferential;
     // 礼物经验

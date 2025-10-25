@@ -85,6 +85,12 @@ public class ItemData {
     public static Item ADVANCED_STEP;
     // 金塔牌子
     public static Item DELUXE_STEP;
+    // 魔盒
+    public static Item MAGIC_BOX;
+    // 钥匙
+    public static Item REGULAR_KEY;
+    public static Item ADVANCED_KEY;
+    public static Item DELUXE_KEY;
     // 小盒子
     public static Item BASIC_BOX;
     public static Item BASIC_BOX_2;
@@ -309,6 +315,27 @@ public class ItemData {
         DELUXE_STEP.setHighlightColor(GColor.DELUXE_QUALITY);
         DELUXE_STEP.setPreferential(true);
         items.add(DELUXE_STEP);
+
+        MAGIC_BOX = new Item("应龙珍宝魔盒", ItemType.CURRENCY, IconKey.MAGIC_BOX, StorageKey.MAGIC_BOX_NUM);
+        MAGIC_BOX.setIconThumbKey(IconKey.MAGIC_BOX_THUMB);
+        MAGIC_BOX.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        MAGIC_BOX.setPreferential(true);
+        items.add(MAGIC_BOX);
+
+        REGULAR_KEY = new Item("应龙传说钥匙", ItemType.CURRENCY, IconKey.REGULAR_KEY, StorageKey.REGULAR_KEY_NUM);
+        REGULAR_KEY.setHighlightColor(GColor.ADVANCED_QUALITY);
+        REGULAR_KEY.setPreferential(true);
+        items.add(REGULAR_KEY);
+
+        ADVANCED_KEY = new Item("应龙至臻钥匙", ItemType.CURRENCY, IconKey.ADVANCED_KEY, StorageKey.ADVANCED_KEY_NUM);
+        ADVANCED_KEY.setHighlightColor(GColor.DELUXE_QUALITY);
+        ADVANCED_KEY.setPreferential(true);
+        items.add(ADVANCED_KEY);
+
+        DELUXE_KEY = new Item("应龙辉煌钥匙", ItemType.CURRENCY, IconKey.DELUXE_KEY, StorageKey.DELUXE_KEY_NUM);
+        DELUXE_KEY.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        DELUXE_KEY.setPreferential(true);
+        items.add(DELUXE_KEY);
 
         ADVANCED_COIN = new Item("金蘑菇", ItemType.CURRENCY, IconKey.ADVANCED_COIN, StorageKey.ADVANCED_COIN_NUM);
         ADVANCED_COIN.setIconThumbKey(IconKey.ADVANCED_COIN_THUMB);
@@ -596,21 +623,25 @@ public class ItemData {
         RB4_GIFT = new Item("金丝雀爱巢", ItemType.GIFT, IconKey.RB4_GIFT, StorageKey.RB4_GIFT_NUM);
         RB4_GIFT.setValue(10000);
         RB4_GIFT.setGiftPoints(1600);
+        RB4_GIFT.setMystery(true);
         items.add(RB4_GIFT);
 
         RB5_GIFT = new Item("游艇", ItemType.GIFT, IconKey.RB5_GIFT, StorageKey.RB5_GIFT_NUM);
         RB5_GIFT.setValue(20000);
         RB5_GIFT.setGiftPoints(3200);
+        RB5_GIFT.setFragment(true);
         items.add(RB5_GIFT);
 
         RB6_GIFT = new Item("钻石手表", ItemType.GIFT, IconKey.RB6_GIFT, StorageKey.RB6_GIFT_NUM);
         RB6_GIFT.setValue(20000);
         RB6_GIFT.setGiftPoints(3200);
+        RB6_GIFT.setFragment(true);
         items.add(RB6_GIFT);
 
         RB7_GIFT = new Item("水晶竖琴", ItemType.GIFT, IconKey.RB7_GIFT, StorageKey.RB7_GIFT_NUM);
         RB7_GIFT.setValue(30000);
         RB7_GIFT.setGiftPoints(4800);
+        RB7_GIFT.setFragment(true);
         items.add(RB7_GIFT);
 
         RB8_GIFT = new Item("理想国", ItemType.GIFT, IconKey.RB8_GIFT, StorageKey.RB8_GIFT_NUM);
@@ -909,6 +940,18 @@ public class ItemData {
 
         advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_STEP, 30));
         advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_STEP, 30));
+
+        advancedTowerItemSampler.addModel(new SampleModel<>(MAGIC_BOX, 5));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(MAGIC_BOX, 5));
+
+        advancedTowerItemSampler.addModel(new SampleModel<>(REGULAR_KEY, 60));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(REGULAR_KEY, 60));
+
+        advancedTowerItemSampler.addModel(new SampleModel<>(ADVANCED_KEY, 20));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(ADVANCED_KEY, 20));
+
+        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_KEY, 3));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_KEY, 3));
 
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModel(new SampleModel<>(9999, 990));

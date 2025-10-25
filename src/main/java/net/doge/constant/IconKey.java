@@ -86,6 +86,13 @@ public enum IconKey {
     GATHERED_STEP_THUMB("GatheredStepThumb"),
     // 金塔牌子
     DELUXE_STEP("DeluxeStep"),
+    // 魔盒
+    MAGIC_BOX("MagicBox"),
+    MAGIC_BOX_THUMB("MagicBoxThumb"),
+    // 钥匙
+    REGULAR_KEY("RegularKey"),
+    ADVANCED_KEY("AdvancedKey"),
+    DELUXE_KEY("DeluxeKey"),
     // 金塔牌子(缩略图)
     DELUXE_STEP_THUMB("DeluxeStepThumb"),
     // 赠送金蘑菇

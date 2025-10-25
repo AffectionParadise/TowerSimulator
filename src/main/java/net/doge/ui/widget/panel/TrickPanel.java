@@ -70,6 +70,7 @@ public class TrickPanel extends GPanel {
                     }
                 }
             } else {
+                choicePanel.removeAll();
                 tipLabel.setText(String.format("完成后可获得奖励：%s", trick.getNumRewarded()));
             }
             receiveBtn.setText("未达成");

@@ -7,8 +7,6 @@ import net.doge.constant.TussleStatus;
 public class Tussle {
     // 总时间(s)
     private int duration;
-    // 剩余时间(s)
-    private int timeLeft;
     // 开始时的时间戳
     private long startTs;
     // 状态

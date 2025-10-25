@@ -32,6 +32,12 @@ public enum StorageKey {
     GATHERED_STEP_NUM("GatheredStepNum"),
     // 金塔牌子数量
     DELUXE_STEP_NUM("DeluxeStepNum"),
+    // 魔盒数量
+    MAGIC_BOX_NUM("MagicBoxNum"),
+    // 钥匙数量
+    REGULAR_KEY_NUM("RegularKeyNum"),
+    ADVANCED_KEY_NUM("AdvancedKeyNum"),
+    DELUXE_KEY_NUM("DeluxeKeyNum"),
     // 币数量
     COIN_NUM("CoinNum"),
     // 30 礼物数量

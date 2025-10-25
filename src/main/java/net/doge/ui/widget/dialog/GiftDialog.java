@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 public class GiftDialog extends GDialog<Item> {
     private GPanel topPanel = new GPanel();
     private GButton compoundBtn = new GButton("礼物合成", GColor.DARK_ORANGE);
+    private GButton magixBoxBtn = new GButton("魔盒", GColor.DARK_PURPLE);
     private GButton giftStorageBtn = new GButton("赠送礼物", GColor.DARK_RED);
     private GLabel giftPointsLabel = new GLabel();
     private GButton gpExchangeBtn = new GButton("积分兑换", GColor.DEEP_GREEN);
@@ -63,6 +64,7 @@ public class GiftDialog extends GDialog<Item> {
         }
 
         compoundBtn.addActionListener(e -> new CompoundDialog(ui));
+        magixBoxBtn.addActionListener(e -> new MagicBoxDialog(ui));
         giftStorageBtn.addActionListener(e -> new GiftPresentDialog(ui, this));
         giftPointsLabel.setIcon(IconUtil.getIcon(IconKey.GIFT_POINTS));
         gpExchangeBtn.addActionListener(e -> new GPExchangeDialog(ui, this));
@@ -72,6 +74,8 @@ public class GiftDialog extends GDialog<Item> {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
         int sw = 20;
         topPanel.add(compoundBtn);
+        topPanel.add(Box.createHorizontalStrut(sw));
+        topPanel.add(magixBoxBtn);
         topPanel.add(Box.createHorizontalGlue());
         topPanel.add(giftStorageBtn);
         topPanel.add(Box.createHorizontalStrut(sw));
