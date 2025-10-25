@@ -142,6 +142,7 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
             public void mouseReleased(MouseEvent e) {
                 GiftRecord record = list.getSelectedValue();
                 if (record == null || record.isOneKind()) return;
+                record.setNew(false);
                 new GiftRecordDetailDialog(ui, record);
             }
         });

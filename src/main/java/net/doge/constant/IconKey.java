@@ -116,14 +116,17 @@ public enum IconKey {
     // 小盒子
     BASIC_BOX("BasicBox"),
     BASIC_BOX_2("BasicBox2"),
+    BASIC_BOX_C("BasicBoxC"),
     // 大盒子
     REGULAR_BOX("RegularBox"),
     REGULAR_BOX_2("RegularBox2"),
+    REGULAR_BOX_C("RegularBoxC"),
     // 大礼物宝盒
     RANDOM_GIFT_GROUP("RandomGiftGroup"),
     // 全屏
     ADVANCED_BOX("AdvancedBox"),
     ADVANCED_BOX_2("AdvancedBox2"),
+    ADVANCED_BOX_C("AdvancedBoxC"),
     // 辉煌
     DELUXE_BOX("DeluxeBox"),
     DELUXE_BOX_2("DeluxeBox2"),
@@ -181,12 +184,16 @@ public enum IconKey {
     // 大盒子子物品
     RB1_GIFT("rb1Gift"),
     RB21_GIFT("rb21Gift"),
+    RBC1_GIFT("rbc1Gift"),
     RB2_GIFT("rb2Gift"),
     RB22_GIFT("rb22Gift"),
+    RBC2_GIFT("rbc2Gift"),
     RB3_GIFT("rb3Gift"),
     RB23_GIFT("rb23Gift"),
+    RBC3_GIFT("rbc3Gift"),
     RB4_GIFT("rb4Gift"),
     RB24_GIFT("rb24Gift"),
+    RBC4_GIFT("rbc4Gift"),
     RB5_GIFT("rb5Gift"),
     RB25_GIFT("rb25Gift"),
     RB6_GIFT("rb6Gift"),
@@ -195,6 +202,7 @@ public enum IconKey {
     RB27_GIFT("rb27Gift"),
     RB8_GIFT("rb8Gift"),
     RB28_GIFT("rb28Gift"),
+    RBC8_GIFT("rbc8Gift"),
     RB29_GIFT("rb29Gift"),
     RB210_GIFT("rb210Gift"),
 
@@ -204,6 +212,7 @@ public enum IconKey {
     AB3_GIFT("ab3Gift"),
     AB5_GIFT("ab5Gift"),
     AB25_GIFT("ab25Gift"),
+    ABC5_GIFT("abc5Gift"),
     AB6_GIFT("ab6Gift"),
     AB26_GIFT("ab26Gift"),
     AB27_GIFT("ab27Gift"),

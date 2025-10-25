@@ -65,6 +65,9 @@ public class Trick {
             case SAME3_BELOW:
                 accepted = isSameNBelow(results, 3);
                 break;
+            case NONE_1:
+                accepted = isNone(results, 1);
+                break;
             case SUB_111:
                 accepted = isSub(results, Arrays.asList(1, 1, 1));
                 break;
@@ -183,6 +186,14 @@ public class Trick {
         Collections.sort(nums);
         Collections.sort(numsExpected);
         return nums.equals(numsExpected);
+    }
+
+    // 判断是否不含某个数字
+    private boolean isNone(List<GiftResult> results, int n) {
+        for (GiftResult result : results) {
+            if (result.getNum() == n) return false;
+        }
+        return true;
     }
 
     // 判断是否含某个数字序列(无序)

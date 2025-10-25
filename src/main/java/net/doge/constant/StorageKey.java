@@ -65,12 +65,15 @@ public enum StorageKey {
     // 小盒子数量
     BASIC_BOX_NUM("basicBoxNum"),
     BASIC_BOX_2_NUM("basicBox2Num"),
+    BASIC_BOX_C_NUM("basicBoxCNum"),
     // 大盒子数量
     REGULAR_BOX_NUM("RegularBoxNum"),
     REGULAR_BOX_2_NUM("RegularBox2Num"),
+    REGULAR_BOX_C_NUM("RegularBoxCNum"),
     // 全屏数量
     ADVANCED_BOX_NUM("AdvancedBoxNum"),
     ADVANCED_BOX_2_NUM("AdvancedBox2Num"),
+    ADVANCED_BOX_C_NUM("AdvancedBoxCNum"),
     // 辉煌数量
     DELUXE_BOX_NUM("DeluxeBoxNum"),
     DELUXE_BOX_2_NUM("DeluxeBox2Num"),
@@ -128,12 +131,16 @@ public enum StorageKey {
     // 大盒子子物品数量
     RB1_GIFT_NUM("RB1GiftNum"),
     RB21_GIFT_NUM("RB21GiftNum"),
+    RBC1_GIFT_NUM("RBC1GiftNum"),
     RB2_GIFT_NUM("RB2GiftNum"),
     RB22_GIFT_NUM("RB22GiftNum"),
+    RBC2_GIFT_NUM("RBC2GiftNum"),
     RB3_GIFT_NUM("RB3GiftNum"),
     RB23_GIFT_NUM("RB23GiftNum"),
+    RBC3_GIFT_NUM("RBC3GiftNum"),
     RB4_GIFT_NUM("RB4GiftNum"),
     RB24_GIFT_NUM("RB24GiftNum"),
+    RBC4_GIFT_NUM("RBC4GiftNum"),
     RB5_GIFT_NUM("RB5GiftNum"),
     RB25_GIFT_NUM("RB25GiftNum"),
     RB6_GIFT_NUM("RB6GiftNum"),
@@ -142,6 +149,7 @@ public enum StorageKey {
     RB27_GIFT_NUM("RB27GiftNum"),
     RB8_GIFT_NUM("RB8GiftNum"),
     RB28_GIFT_NUM("RB28GiftNum"),
+    RBC8_GIFT_NUM("RBC8GiftNum"),
     RB29_GIFT_NUM("RB29GiftNum"),
     RB210_GIFT_NUM("RB210GiftNum"),
 
@@ -151,6 +159,7 @@ public enum StorageKey {
     AB3_GIFT_NUM("AB3GiftNum"),
     AB5_GIFT_NUM("AB5GiftNum"),
     AB25_GIFT_NUM("AB25GiftNum"),
+    ABC5_GIFT_NUM("ABC5GiftNum"),
     AB6_GIFT_NUM("AB6GiftNum"),
     AB26_GIFT_NUM("AB26GiftNum"),
     AB27_GIFT_NUM("AB27GiftNum"),
