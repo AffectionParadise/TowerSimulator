@@ -7,6 +7,7 @@ import net.doge.constant.ItemType;
 import net.doge.constant.StorageKey;
 import net.doge.ui.widget.color.GColor;
 
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -36,10 +37,12 @@ public class Item implements Cloneable {
     private int exchangeCost;
     // 是否可竞猜
     private boolean guessable;
+    // 是否为多爆盒子
+    private boolean packedBox;
     // 是否属于盒子中的常见礼物
     private boolean boxRegular;
     // 是否为隐藏礼物
-    private boolean isMystery;
+    private boolean mysterious;
     // 是否为碎片礼物
     private boolean isFragment;
     // 是否优先拾取
@@ -51,6 +54,8 @@ public class Item implements Cloneable {
     private Sampler<Integer> numSampler;
     // 子物品生成器
     private Sampler<Item> subItemSampler;
+    // 多爆物品生成器列表
+    private List<Sampler<Item>> extraSubItemSamplers;
 
     public Item(String name, ItemType type, IconKey iconKey, StorageKey storageKey) {
         this.name = name;

@@ -62,6 +62,9 @@ public class Trick {
             case SAME3:
                 accepted = isSameN(results, 3);
                 break;
+            case SAME4:
+                accepted = isSameN(results, 4);
+                break;
             case SAME3_BELOW:
                 accepted = isSameNBelow(results, 3);
                 break;
@@ -198,11 +201,12 @@ public class Trick {
 
     // 判断是否含某个数字序列(无序)
     private boolean isSub(List<GiftResult> results, List<Integer> numsExpected) {
-        List<Integer> nums = new LinkedList<>();
-        for (GiftResult result : results) nums.add(result.getNum());
         HashMap<Integer, Integer> freqMap = new HashMap<>();
         // 统计每个数字出现次数
-        for (Integer num : nums) freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        for (GiftResult result : results) {
+            int num = result.getNum();
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
         // 消耗子序列中数字次数
         for (Integer num : numsExpected) {
             Integer count = freqMap.getOrDefault(num, 0);
@@ -223,7 +227,7 @@ public class Trick {
     // 判断是否含隐藏
     private boolean isWithMystery(List<GiftResult> results) {
         for (GiftResult result : results) {
-            if (result.getItem().isMystery()) return true;
+            if (result.getItem().isMysterious()) return true;
         }
         return false;
     }

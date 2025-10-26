@@ -46,6 +46,7 @@ public enum StorageKey {
     // 300 礼物数量
     REGULAR_GIFT_NUM("RegularGiftNum"),
     REGULAR_GIFT_21_NUM("RegularGift21Num"),
+    REGULAR_GIFT_M_NUM("RegularGiftMNum"),
     // 10k 礼物数量
     REGULAR_GIFT_2_NUM("RegularGift2Num"),
     // 赠送金蘑菇数量
@@ -66,20 +67,25 @@ public enum StorageKey {
     BASIC_BOX_NUM("basicBoxNum"),
     BASIC_BOX_2_NUM("basicBox2Num"),
     BASIC_BOX_C_NUM("basicBoxCNum"),
+    BASIC_BOX_M_NUM("basicBoxMNum"),
     // 大盒子数量
     REGULAR_BOX_NUM("RegularBoxNum"),
     REGULAR_BOX_2_NUM("RegularBox2Num"),
     REGULAR_BOX_C_NUM("RegularBoxCNum"),
+    REGULAR_BOX_M_NUM("RegularBoxMNum"),
     // 全屏数量
     ADVANCED_BOX_NUM("AdvancedBoxNum"),
     ADVANCED_BOX_2_NUM("AdvancedBox2Num"),
     ADVANCED_BOX_C_NUM("AdvancedBoxCNum"),
+    ADVANCED_BOX_M_NUM("AdvancedBoxMNum"),
     // 辉煌数量
     DELUXE_BOX_NUM("DeluxeBoxNum"),
     DELUXE_BOX_2_NUM("DeluxeBox2Num"),
     // 1m 数量
     ADVANCED_GIFT_NUM("AdvancedGiftNum"),
     ADVANCED_GIFT_21_NUM("AdvancedGift21Num"),
+    ADVANCED_GIFT_C_NUM("AdvancedGiftCNum"),
+    ADVANCED_GIFT_M_NUM("AdvancedGiftMNum"),
     // 500k 数量
     ADVANCED_GIFT_2_NUM("AdvancedGift2Num"),
     ADVANCED_GIFT_22_NUM("AdvancedGift22Num"),
@@ -132,15 +138,19 @@ public enum StorageKey {
     RB1_GIFT_NUM("RB1GiftNum"),
     RB21_GIFT_NUM("RB21GiftNum"),
     RBC1_GIFT_NUM("RBC1GiftNum"),
+    RBM1_GIFT_NUM("RBM1GiftNum"),
     RB2_GIFT_NUM("RB2GiftNum"),
     RB22_GIFT_NUM("RB22GiftNum"),
     RBC2_GIFT_NUM("RBC2GiftNum"),
+    RBM2_GIFT_NUM("RBM2GiftNum"),
     RB3_GIFT_NUM("RB3GiftNum"),
     RB23_GIFT_NUM("RB23GiftNum"),
     RBC3_GIFT_NUM("RBC3GiftNum"),
+    RBM3_GIFT_NUM("RBM3GiftNum"),
     RB4_GIFT_NUM("RB4GiftNum"),
     RB24_GIFT_NUM("RB24GiftNum"),
     RBC4_GIFT_NUM("RBC4GiftNum"),
+    RBM4_GIFT_NUM("RBM4GiftNum"),
     RB5_GIFT_NUM("RB5GiftNum"),
     RB25_GIFT_NUM("RB25GiftNum"),
     RB6_GIFT_NUM("RB6GiftNum"),
@@ -150,6 +160,7 @@ public enum StorageKey {
     RB8_GIFT_NUM("RB8GiftNum"),
     RB28_GIFT_NUM("RB28GiftNum"),
     RBC8_GIFT_NUM("RBC8GiftNum"),
+    RBM8_GIFT_NUM("RBM8GiftNum"),
     RB29_GIFT_NUM("RB29GiftNum"),
     RB210_GIFT_NUM("RB210GiftNum"),
 
@@ -162,7 +173,9 @@ public enum StorageKey {
     ABC5_GIFT_NUM("ABC5GiftNum"),
     AB6_GIFT_NUM("AB6GiftNum"),
     AB26_GIFT_NUM("AB26GiftNum"),
+    ABM6_GIFT_NUM("ABM6GiftNum"),
     AB27_GIFT_NUM("AB27GiftNum"),
+    ABM7_GIFT_NUM("ABM7GiftNum"),
     AB28_GIFT_NUM("AB28GiftNum"),
 
     // 辉煌子物品数量

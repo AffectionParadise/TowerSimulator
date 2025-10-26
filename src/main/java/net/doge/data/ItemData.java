@@ -39,6 +39,8 @@ public class ItemData {
     public static Sampler<Item> ultimateTreasure2ItemSampler = new Sampler<>();
     // 星座密藏物品生成器
     public static Sampler<Item> constellationTreasureItemSampler = new Sampler<>();
+    // 古堡密藏物品生成器
+    public static Sampler<Item> castleTreasureItemSampler = new Sampler<>();
     // 蘑菇金库物品生成器
     public static Sampler<Item> mrTreasureItemSampler = new Sampler<>();
 
@@ -46,14 +48,20 @@ public class ItemData {
     private static Sampler<Item> bbSubItemSampler = new Sampler<>();
     private static Sampler<Item> bb2SubItemSampler = new Sampler<>();
     private static Sampler<Item> bbcSubItemSampler = new Sampler<>();
+    private static Sampler<Item> bbmSubItemSampler = new Sampler<>();
+    private static List<Sampler<Item>> bbmExtraSubItemSamplers= new LinkedList<>();
     // 大盒子子物品生成器
     private static Sampler<Item> rbSubItemSampler = new Sampler<>();
     private static Sampler<Item> rb2SubItemSampler = new Sampler<>();
     private static Sampler<Item> rbcSubItemSampler = new Sampler<>();
+    private static Sampler<Item> rbmSubItemSampler = new Sampler<>();
+    private static List<Sampler<Item>> rbmExtraSubItemSamplers= new LinkedList<>();
     // 全屏子物品生成器
     private static Sampler<Item> abSubItemSampler = new Sampler<>();
     private static Sampler<Item> ab2SubItemSampler = new Sampler<>();
     private static Sampler<Item> abcSubItemSampler = new Sampler<>();
+    private static Sampler<Item> abmSubItemSampler = new Sampler<>();
+    private static List<Sampler<Item>> abmExtraSubItemSamplers = new LinkedList<>();
     // 辉煌子物品生成器
     private static Sampler<Item> dbSubItemSampler = new Sampler<>();
     private static Sampler<Item> db2SubItemSampler = new Sampler<>();
@@ -74,6 +82,7 @@ public class ItemData {
     // 300 礼物
     public static Item REGULAR_GIFT;
     public static Item REGULAR_GIFT_21;
+    public static Item REGULAR_GIFT_M;
     // 10k 小件
     public static Item REGULAR_GIFT_2;
     // 赠送金蘑菇
@@ -100,20 +109,25 @@ public class ItemData {
     public static Item BASIC_BOX;
     public static Item BASIC_BOX_2;
     public static Item BASIC_BOX_C;
+    public static Item BASIC_BOX_M;
     // 大盒子
     public static Item REGULAR_BOX;
     public static Item REGULAR_BOX_2;
     public static Item REGULAR_BOX_C;
+    public static Item REGULAR_BOX_M;
     // 全屏
     public static Item ADVANCED_BOX;
     public static Item ADVANCED_BOX_2;
     public static Item ADVANCED_BOX_C;
+    public static Item ADVANCED_BOX_M;
     // 辉煌
     public static Item DELUXE_BOX;
     public static Item DELUXE_BOX_2;
     // 大件
     public static Item ADVANCED_GIFT;
     public static Item ADVANCED_GIFT_21;
+    public static Item ADVANCED_GIFT_C;
+    public static Item ADVANCED_GIFT_M;
     public static Item ADVANCED_GIFT_2;
     public static Item ADVANCED_GIFT_22;
     public static Item ADVANCED_GIFT_23;
@@ -165,6 +179,7 @@ public class ItemData {
     public static Item RB6_GIFT;
     public static Item RB7_GIFT;
     public static Item RB8_GIFT;
+
     public static Item RB21_GIFT;
     public static Item RB22_GIFT;
     public static Item RB23_GIFT;
@@ -175,22 +190,34 @@ public class ItemData {
     public static Item RB28_GIFT;
     public static Item RB29_GIFT;
     public static Item RB210_GIFT;
+
     public static Item RBC1_GIFT;
     public static Item RBC2_GIFT;
     public static Item RBC3_GIFT;
     public static Item RBC4_GIFT;
     public static Item RBC8_GIFT;
+
+    public static Item RBM1_GIFT;
+    public static Item RBM2_GIFT;
+    public static Item RBM3_GIFT;
+    public static Item RBM4_GIFT;
+    public static Item RBM8_GIFT;
     // 全屏子物品
     public static Item AB1_GIFT;
     public static Item AB2_GIFT;
     public static Item AB3_GIFT;
     public static Item AB5_GIFT;
     public static Item AB6_GIFT;
+
     public static Item AB25_GIFT;
     public static Item AB26_GIFT;
     public static Item AB27_GIFT;
     public static Item AB28_GIFT;
+
     public static Item ABC5_GIFT;
+
+    public static Item ABM6_GIFT;
+    public static Item ABM7_GIFT;
     // 辉煌子物品
     public static Item DB1_GIFT;
     public static Item DB2_GIFT;
@@ -216,17 +243,21 @@ public class ItemData {
         initDeluxeTreasureItemSampler();
         initUltimateTreasureItemSampler();
         initConstellationTreasureItemSampler();
+        initCastleTreasureItemSampler();
         initMRTreasureItemSampler();
 
         initBBSubItemSampler();
         initBB2SubItemSampler();
         initBBCSubItemSampler();
+        initBBMSubItemSampler();
         initRBSubItemSampler();
         initRB2SubItemSampler();
         initRBCSubItemSampler();
+        initRBMSubItemSampler();
         initABSubItemSampler();
         initAB2SubItemSampler();
         initABCSubItemSampler();
+        initABMSubItemSampler();
         initDBSubItemSampler();
         initDB2SubItemSampler();
     }
@@ -295,6 +326,14 @@ public class ItemData {
         REGULAR_GIFT_21.setExchangeCost(5);
         REGULAR_GIFT_21.setGuessable(true);
         items.add(REGULAR_GIFT_21);
+
+        REGULAR_GIFT_M = new Item("南瓜黑猫", ItemType.GIFT, IconKey.REGULAR_GIFT_M, StorageKey.REGULAR_GIFT_M_NUM);
+        REGULAR_GIFT_M.setHighlightColor(GColor.BASIC_QUALITY);
+        REGULAR_GIFT_M.setValue(300);
+        REGULAR_GIFT_M.setGiftPoints(48);
+        REGULAR_GIFT_M.setExchangeable(true);
+        REGULAR_GIFT_M.setExchangeCost(5);
+        items.add(REGULAR_GIFT_M);
 
         REGULAR_COIN = new Item("赠送金蘑菇", ItemType.CURRENCY, IconKey.REGULAR_COIN, StorageKey.REGULAR_COIN_NUM);
         REGULAR_COIN.setIconThumbKey(IconKey.REGULAR_COIN_THUMB);
@@ -390,6 +429,18 @@ public class ItemData {
         BASIC_BOX_C.setSubItemSampler(bbcSubItemSampler);
         items.add(BASIC_BOX_C);
 
+        BASIC_BOX_M = new Item("古堡小盒子", ItemType.BOX, IconKey.BASIC_BOX_M, StorageKey.BASIC_BOX_M_NUM);
+        BASIC_BOX_M.setHighlightColor(GColor.REGULAR_QUALITY);
+        // 多爆盒子
+        BASIC_BOX_M.setPackedBox(true);
+        BASIC_BOX_M.setValue(1000);
+        BASIC_BOX_M.setExchangeable(true);
+        BASIC_BOX_M.setExchangeCost(15);
+        BASIC_BOX_M.setGiftExp(20);
+        BASIC_BOX_M.setSubItemSampler(bbmSubItemSampler);
+        BASIC_BOX_M.setExtraSubItemSamplers(bbmExtraSubItemSamplers);
+        items.add(BASIC_BOX_M);
+
         REGULAR_BOX = new Item("木兰大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);
         REGULAR_BOX.setHighlightColor(GColor.DELUXE_QUALITY);
         REGULAR_BOX.setValue(10000);
@@ -421,6 +472,19 @@ public class ItemData {
         REGULAR_BOX_C.setPreferential(true);
         REGULAR_BOX_C.setSubItemSampler(rbcSubItemSampler);
         items.add(REGULAR_BOX_C);
+
+        REGULAR_BOX_M = new Item("古堡大盒子", ItemType.BOX, IconKey.REGULAR_BOX_M, StorageKey.REGULAR_BOX_M_NUM);
+        REGULAR_BOX_M.setHighlightColor(GColor.DELUXE_QUALITY);
+        // 多爆盒子
+        REGULAR_BOX_M.setPackedBox(true);
+        REGULAR_BOX_M.setValue(10000);
+        REGULAR_BOX_M.setExchangeable(true);
+        REGULAR_BOX_M.setExchangeCost(120);
+        REGULAR_BOX_M.setGiftExp(150);
+        REGULAR_BOX_M.setPreferential(true);
+        REGULAR_BOX_M.setSubItemSampler(rbmSubItemSampler);
+        REGULAR_BOX_M.setExtraSubItemSamplers(rbmExtraSubItemSamplers);
+        items.add(REGULAR_BOX_M);
 
         ADVANCED_BOX = new Item("木兰全屏", ItemType.BOX, IconKey.ADVANCED_BOX, StorageKey.ADVANCED_BOX_NUM);
         ADVANCED_BOX.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -454,6 +518,19 @@ public class ItemData {
         ADVANCED_BOX_C.setSubItemSampler(abcSubItemSampler);
         items.add(ADVANCED_BOX_C);
 
+        ADVANCED_BOX_M = new Item("古堡全屏", ItemType.BOX, IconKey.ADVANCED_BOX_M, StorageKey.ADVANCED_BOX_M_NUM);
+        // 多爆盒子
+        ADVANCED_BOX_M.setPackedBox(true);
+        ADVANCED_BOX_M.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_BOX_M.setValue(100000);
+        ADVANCED_BOX_M.setExchangeable(true);
+        ADVANCED_BOX_M.setExchangeCost(1500);
+        ADVANCED_BOX_M.setGiftExp(1500);
+        ADVANCED_BOX_M.setPreferential(true);
+        ADVANCED_BOX_M.setSubItemSampler(abmSubItemSampler);
+        ADVANCED_BOX_M.setExtraSubItemSamplers(abmExtraSubItemSamplers);
+        items.add(ADVANCED_BOX_M);
+
         DELUXE_BOX = new Item("木兰辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
         DELUXE_BOX.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX.setValue(300000);
@@ -481,6 +558,20 @@ public class ItemData {
         ADVANCED_GIFT_21.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ADVANCED_GIFT_21.setPreferential(true);
         items.add(ADVANCED_GIFT_21);
+
+        ADVANCED_GIFT_C = new Item("圣辉使徒", ItemType.GIFT, IconKey.ADVANCED_GIFT_C, StorageKey.ADVANCED_GIFT_C_NUM);
+        ADVANCED_GIFT_C.setValue(1000000);
+        ADVANCED_GIFT_C.setGiftPoints(160000);
+        ADVANCED_GIFT_C.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_GIFT_C.setPreferential(true);
+        items.add(ADVANCED_GIFT_C);
+
+        ADVANCED_GIFT_M = new Item("大漠灵狐", ItemType.GIFT, IconKey.ADVANCED_GIFT_M, StorageKey.ADVANCED_GIFT_M_NUM);
+        ADVANCED_GIFT_M.setValue(1000000);
+        ADVANCED_GIFT_M.setGiftPoints(160000);
+        ADVANCED_GIFT_M.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ADVANCED_GIFT_M.setPreferential(true);
+        items.add(ADVANCED_GIFT_M);
 
         ADVANCED_GIFT_2 = new Item("白炽龙裔", ItemType.GIFT, IconKey.ADVANCED_GIFT_2, StorageKey.ADVANCED_GIFT_2_NUM);
         ADVANCED_GIFT_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
@@ -770,6 +861,31 @@ public class ItemData {
         RBC8_GIFT.setGiftPoints(16000);
         items.add(RBC8_GIFT);
 
+        RBM1_GIFT = new Item("尊贵南瓜爵", ItemType.GIFT, IconKey.RBM1_GIFT, StorageKey.RBM1_GIFT_NUM);
+        RBM1_GIFT.setValue(10000);
+        RBM1_GIFT.setGiftPoints(1600);
+        items.add(RBM1_GIFT);
+
+        RBM2_GIFT = new Item("南瓜鬼骑士", ItemType.GIFT, IconKey.RBM2_GIFT, StorageKey.RBM2_GIFT_NUM);
+        RBM2_GIFT.setValue(10000);
+        RBM2_GIFT.setGiftPoints(1600);
+        items.add(RBM2_GIFT);
+
+        RBM3_GIFT = new Item("南瓜捣蛋鬼", ItemType.GIFT, IconKey.RBM3_GIFT, StorageKey.RBM3_GIFT_NUM);
+        RBM3_GIFT.setValue(10000);
+        RBM3_GIFT.setGiftPoints(1600);
+        items.add(RBM3_GIFT);
+
+        RBM4_GIFT = new Item("净灵南瓜巫", ItemType.GIFT, IconKey.RBM4_GIFT, StorageKey.RBM4_GIFT_NUM);
+        RBM4_GIFT.setValue(10000);
+        RBM4_GIFT.setGiftPoints(1600);
+        items.add(RBM4_GIFT);
+
+        RBM8_GIFT = new Item("梦魇之灾", ItemType.GIFT, IconKey.RBM8_GIFT, StorageKey.RBM8_GIFT_NUM);
+        RBM8_GIFT.setValue(100000);
+        RBM8_GIFT.setGiftPoints(16000);
+        items.add(RBM8_GIFT);
+
         // 全屏
         AB1_GIFT = new Item("陪你去看流星雨", ItemType.GIFT, IconKey.AB1_GIFT, StorageKey.AB1_GIFT_NUM);
         AB1_GIFT.setValue(100000);
@@ -822,6 +938,18 @@ public class ItemData {
         ABC5_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
         ABC5_GIFT.setPreferential(true);
         items.add(ABC5_GIFT);
+
+        ABM6_GIFT = new Item("塞北夜游", ItemType.GIFT, IconKey.ABM6_GIFT, StorageKey.ABM6_GIFT_NUM);
+        ABM6_GIFT.setValue(300000);
+        ABM6_GIFT.setGiftPoints(48000);
+        items.add(ABM6_GIFT);
+
+        ABM7_GIFT = new Item("丝绸之路", ItemType.GIFT, IconKey.ABM7_GIFT, StorageKey.ABM7_GIFT_NUM);
+        ABM7_GIFT.setValue(500000);
+        ABM7_GIFT.setGiftPoints(80000);
+        ABM7_GIFT.setHighlightColor(GColor.ULTIMATE_QUALITY);
+        ABM7_GIFT.setPreferential(true);
+        items.add(ABM7_GIFT);
 
         // 辉煌
         DB1_GIFT = new Item("命乾无极", ItemType.GIFT, IconKey.DB1_GIFT, StorageKey.DB1_GIFT_NUM);
@@ -1735,7 +1863,79 @@ public class ItemData {
         abc5Gift.setNumSampler(abc5GiftNS);
         constellationTreasureItemSampler.addModel(new SampleModel<>(abc5Gift, 10));
 
+        Sampler<Integer> advancedGiftCNS = new Sampler<>();
+        advancedGiftCNS.addModel(new SampleModel<>(1, 2000));
+        advancedGiftCNS.addModelsLinearWeights(ListUtil.ofRange(2, 3), 10, 1);
+        Item advancedGiftC = ADVANCED_GIFT_C.clone();
+        advancedGiftC.setNumSampler(advancedGiftCNS);
+        constellationTreasureItemSampler.addModel(new SampleModel<>(advancedGiftC, 5));
+
         constellationTreasureItemSampler.addModel(new SampleModel<>(DELUXE_GIFT, 1));
+    }
+
+    // 古堡密藏物品
+    private static void initCastleTreasureItemSampler() {
+        Sampler<Integer> coinNS = new Sampler<>();
+        coinNS.addModel(new SampleModel<>(199, 200));
+        coinNS.addModel(new SampleModel<>(399, 50));
+        coinNS.addModel(new SampleModel<>(699, 10));
+        Item coin = COIN.clone();
+        coin.setHighlightColor(GColor.DELUXE_QUALITY);
+        coin.setPreferential(true);
+        coin.setNumSampler(coinNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(coin, 1600));
+
+        Sampler<Integer> regularGiftMNS = new Sampler<>();
+        regularGiftMNS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
+        regularGiftMNS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 800, 100);
+        Item regularGiftM = REGULAR_GIFT_M.clone();
+        regularGiftM.setNumSampler(regularGiftMNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(regularGiftM, 2000));
+
+        Sampler<Integer> basicBoxMNS = new Sampler<>();
+        basicBoxMNS.addModelsLinearWeights(ListUtil.ofRange(3, 6), 2000, 1000);
+        basicBoxMNS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 200, 10);
+        Item basicBoxM = BASIC_BOX_M.clone();
+        basicBoxM.setNumSampler(basicBoxMNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(basicBoxM, 1800));
+
+        Sampler<Integer> regularBoxMNS = new Sampler<>();
+        regularBoxMNS.addModel(new SampleModel<>(1, 200));
+        regularBoxMNS.addModel(new SampleModel<>(2, 160));
+        regularBoxMNS.addModel(new SampleModel<>(4, 10));
+        Item regularBoxM = REGULAR_BOX_M.clone();
+        regularBoxM.setNumSampler(regularBoxMNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(regularBoxM, 1600));
+
+        Sampler<Integer> advancedCoinNS = new Sampler<>();
+        advancedCoinNS.addModel(new SampleModel<>(1888, 980));
+        advancedCoinNS.addModel(new SampleModel<>(6666, 20));
+        Item advancedCoin = ADVANCED_COIN.clone();
+        advancedCoin.setNumSampler(advancedCoinNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(advancedCoin, 40));
+
+        Sampler<Integer> advancedBoxMNS = new Sampler<>();
+        advancedBoxMNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 2000, 200);
+        advancedBoxMNS.addModelsLinearWeights(ListUtil.ofRange(4, 10), 30, 1);
+        Item advancedBoxM = ADVANCED_BOX_M.clone();
+        advancedBoxM.setNumSampler(advancedBoxMNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(advancedBoxM, 200));
+
+        Sampler<Integer> abm7GiftNS = new Sampler<>();
+        abm7GiftNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 2000, 100);
+        abm7GiftNS.addModelsLinearWeights(ListUtil.ofRange(3, 5), 20, 1);
+        Item abm7Gift = ABM7_GIFT.clone();
+        abm7Gift.setNumSampler(abm7GiftNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(abm7Gift, 10));
+
+        Sampler<Integer> advancedGiftMNS = new Sampler<>();
+        advancedGiftMNS.addModel(new SampleModel<>(1, 2000));
+        advancedGiftMNS.addModelsLinearWeights(ListUtil.ofRange(2, 3), 10, 1);
+        Item advancedGiftM = ADVANCED_GIFT_M.clone();
+        advancedGiftM.setNumSampler(advancedGiftMNS);
+        castleTreasureItemSampler.addModel(new SampleModel<>(advancedGiftM, 5));
+
+        castleTreasureItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT_3, 1));
     }
 
     // 蘑菇金库物品
@@ -1837,6 +2037,21 @@ public class ItemData {
         bbcSubItemSampler.addModel(new SampleModel<>(RBC8_GIFT, 1));
     }
 
+    private static void initBBMSubItemSampler() {
+        bbmSubItemSampler.addModel(new SampleModel<>(REGULAR_GIFT_M, 100));
+
+        List<SampleModel<Item>> models = new LinkedList<>();
+        models.add(new SampleModel<>(RBM1_GIFT, 0.15));
+        models.add(new SampleModel<>(RBM2_GIFT, 0.15));
+        models.add(new SampleModel<>(RBM3_GIFT, 0.15));
+        models.add(new SampleModel<>(RBM4_GIFT, 0.15));
+        models.add(new SampleModel<>(RBM8_GIFT, 0.01));
+        models.add(new SampleModel<>(BB4_GIFT, 60));
+        models.add(new SampleModel<>(BB6_GIFT, 30));
+        models.add(new SampleModel<>(BB9_GIFT, 5));
+        bbmExtraSubItemSamplers.addAll(createPackedSubItemSamplers(models));
+    }
+
     // 大盒子物品
     private static void initRBSubItemSampler() {
         Item rb1Gift = RB1_GIFT.clone();
@@ -1852,7 +2067,7 @@ public class ItemData {
         rbSubItemSampler.addModel(new SampleModel<>(rb3Gift, 28));
 
         Item rb4Gift = RB4_GIFT.clone();
-        rb4Gift.setMystery(true);
+        rb4Gift.setMysterious(true);
         rbSubItemSampler.addModel(new SampleModel<>(rb4Gift, 5));
 
         rbSubItemSampler.addModel(new SampleModel<>(RB5_GIFT, 3));
@@ -1897,13 +2112,38 @@ public class ItemData {
         rbcSubItemSampler.addModel(new SampleModel<>(rbc3Gift, 28));
 
         Item rbc4Gift = RBC4_GIFT.clone();
-        rbc4Gift.setMystery(true);
+        rbc4Gift.setMysterious(true);
         rbcSubItemSampler.addModel(new SampleModel<>(rbc4Gift, 5));
 
         rbcSubItemSampler.addModel(new SampleModel<>(RB5_GIFT, 3));
         rbcSubItemSampler.addModel(new SampleModel<>(RB6_GIFT, 3));
         rbcSubItemSampler.addModel(new SampleModel<>(RB7_GIFT, 3));
         rbcSubItemSampler.addModel(new SampleModel<>(RBC8_GIFT, 2));
+    }
+
+    private static void initRBMSubItemSampler() {
+        Item rbm1Gift = RBM1_GIFT.clone();
+        rbm1Gift.setBoxRegular(true);
+        rbmSubItemSampler.addModel(new SampleModel<>(rbm1Gift, 25));
+
+        Item rbm2Gift = RBM2_GIFT.clone();
+        rbm2Gift.setBoxRegular(true);
+        rbmSubItemSampler.addModel(new SampleModel<>(rbm2Gift, 25));
+
+        Item rbm3Gift = RBM3_GIFT.clone();
+        rbm3Gift.setBoxRegular(true);
+        rbmSubItemSampler.addModel(new SampleModel<>(rbm3Gift, 25));
+
+        Item rbm4Gift = RBM4_GIFT.clone();
+        rbm4Gift.setBoxRegular(true);
+        rbmSubItemSampler.addModel(new SampleModel<>(rbm4Gift, 25));
+
+        List<SampleModel<Item>> models = new LinkedList<>();
+        models.add(new SampleModel<>(RB5_GIFT, 3));
+        models.add(new SampleModel<>(RB6_GIFT, 4));
+        models.add(new SampleModel<>(RB7_GIFT, 3));
+        models.add(new SampleModel<>(RBM8_GIFT, 1));
+        rbmExtraSubItemSamplers.addAll(createPackedSubItemSamplers(models));
     }
 
     // 全屏子物品
@@ -1965,6 +2205,19 @@ public class ItemData {
         abcSubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 10));
     }
 
+    private static void initABMSubItemSampler() {
+        abmSubItemSampler.addModel(new SampleModel<>(RBM8_GIFT, 90));
+        abmSubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 10));
+
+        List<SampleModel<Item>> models = new LinkedList<>();
+        models.add(new SampleModel<>(AB1_GIFT, 4));
+        models.add(new SampleModel<>(AB2_GIFT, 4));
+        models.add(new SampleModel<>(AB3_GIFT, 3));
+        models.add(new SampleModel<>(ABM6_GIFT, 3));
+        models.add(new SampleModel<>(ABM7_GIFT, 1));
+        abmExtraSubItemSamplers.addAll(createPackedSubItemSamplers(models));
+    }
+
     // 辉煌子物品
     private static void initDBSubItemSampler() {
         dbSubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 5));
@@ -1999,5 +2252,18 @@ public class ItemData {
         db2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 10));
         db2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 15));
         db2SubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 15));
+    }
+
+    // 构造多爆物品生成器
+    private static List<Sampler<Item>> createPackedSubItemSamplers(List<SampleModel<Item>> models) {
+        List<Sampler<Item>> subItemSamplers = new LinkedList<>();
+        for (SampleModel<Item> model : models) {
+            Sampler<Item> sampler = new Sampler<>();
+            double w = model.getWeight();
+            sampler.addModel(new SampleModel<>(null, 100 - w));
+            sampler.addModel(model);
+            subItemSamplers.add(sampler);
+        }
+        return subItemSamplers;
     }
 }

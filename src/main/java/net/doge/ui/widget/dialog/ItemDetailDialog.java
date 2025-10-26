@@ -54,15 +54,22 @@ public class ItemDetailDialog extends GDialog<Item> {
         int sh = 30;
         if (item.isBox()) {
             item.getSubItemSampler().getModels().forEach(model -> listModel.addElement(model.getItem()));
-
-            tipLabel.setText("开启该盲盒有机会送出以下礼物：");
+            // 多爆盒子物品
+            if (item.isPackedBox()) {
+                item.getExtraSubItemSamplers().forEach(sampler -> {
+                    sampler.getModels().forEach(model -> {
+                        if (!model.isEmpty()) listModel.addElement(model.getItem());
+                    });
+                });
+                tipLabel.setText("开启该盲盒有机会送出以下礼物，每次有机会获得多个礼物：");
+            } else tipLabel.setText("开启该盲盒有机会送出以下礼物：");
 
             tipPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
             tipPanel.add(tipLabel);
 
             detailPanel.add(Box.createVerticalGlue());
             detailPanel.add(tipPanel);
-            detailPanel.add(Box.createVerticalStrut(sh));
+            detailPanel.add(Box.createVerticalGlue());
             detailPanel.add(scroller);
             detailPanel.add(Box.createVerticalGlue());
         } else if (item.isPresent()) {

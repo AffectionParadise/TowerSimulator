@@ -50,8 +50,11 @@ public class TowerData {
     public static final Tower ULTIMATE_TREASURE_2 = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, 0.5f, 0.6f,
             ItemData.ultimateTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 星座密藏
-    public static final Tower CONSTELLATION_TREASURE = new Tower("星辰藏宝图", "星辰藏宝图", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+    public static final Tower CONSTELLATION_TREASURE = new Tower("星辰藏宝图", "星辰藏宝图", IconKey.CONSTELLATION_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
             ItemData.constellationTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    // 古堡密藏
+    public static final Tower CASTLE_TREASURE = new Tower("万圣古堡", "万圣古堡", IconKey.CASTLE_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+            ItemData.castleTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 蘑菇金库
     public static final Tower MR_TREASURE = new Tower("蘑菇金库", "蘑菇金库", IconKey.MR_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
             ItemData.mrTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
@@ -72,6 +75,7 @@ public class TowerData {
         ULTIMATE_TREASURE.setDesc("25000% 超高倍率关卡开启！");
         ULTIMATE_TREASURE_2.setDesc("25000% 超高倍率关卡开启！");
         CONSTELLATION_TREASURE.setDesc("星辰藏宝图开启！");
+        CASTLE_TREASURE.setDesc("万圣古堡开启！");
         MR_TREASURE.setDesc("超多蘑菇的金库开启！");
 
         ADVANCED_TOWER.setEventSampler(EventData.eventSampler);
@@ -91,6 +95,7 @@ public class TowerData {
         towers.add(ULTIMATE_TREASURE);
         towers.add(ULTIMATE_TREASURE_2);
         towers.add(CONSTELLATION_TREASURE);
+        towers.add(CASTLE_TREASURE);
         towers.add(MR_TREASURE);
 
         currTower = ADVANCED_TOWER;
@@ -115,6 +120,7 @@ public class TowerData {
                 || tower == ULTIMATE_TREASURE
                 || tower == ULTIMATE_TREASURE_2
                 || tower == CONSTELLATION_TREASURE
+                || tower == CASTLE_TREASURE
                 || tower == MR_TREASURE;
     }
 }

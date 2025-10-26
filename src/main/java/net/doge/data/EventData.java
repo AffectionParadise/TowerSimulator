@@ -30,6 +30,8 @@ public class EventData {
     public static final Event ULTIMATE_TREASURE_2 = new Event(TowerData.ULTIMATE_TREASURE_2);
     // 星座密藏
     public static final Event CONSTELLATION_TREASURE = new Event(TowerData.CONSTELLATION_TREASURE);
+    // 古堡密藏
+    public static final Event CASTLE_TREASURE = new Event(TowerData.CASTLE_TREASURE);
     // 蘑菇塔
     public static final Event MR_TREASURE = new Event(TowerData.MR_TREASURE);
 
@@ -45,6 +47,7 @@ public class EventData {
         eventSampler.addModel(new SampleModel<>(DELUXE_TREASURE, 5));
         eventSampler.addModel(new SampleModel<>(ULTIMATE_TREASURE, 1));
         eventSampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 15));
+        eventSampler.addModel(new SampleModel<>(CASTLE_TREASURE, 15));
         eventSampler.addModel(new SampleModel<>(MR_TREASURE, 20));
 
         event2Sampler.addModel(new SampleModel<>(NOTHING, 30000));
@@ -54,6 +57,7 @@ public class EventData {
         event2Sampler.addModel(new SampleModel<>(DELUXE_TREASURE_2, 5));
         event2Sampler.addModel(new SampleModel<>(ULTIMATE_TREASURE_2, 1));
         event2Sampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 15));
+        event2Sampler.addModel(new SampleModel<>(CASTLE_TREASURE, 15));
         event2Sampler.addModel(new SampleModel<>(MR_TREASURE, 20));
     }
 
@@ -78,6 +82,7 @@ public class EventData {
                 || event == ULTIMATE_TREASURE
                 || event == ULTIMATE_TREASURE_2
                 || event == CONSTELLATION_TREASURE
+                || event == CASTLE_TREASURE
                 || event == MR_TREASURE;
     }
 }

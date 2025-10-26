@@ -14,4 +14,8 @@ public class SampleModel<I> {
     public void addWeight(double amount) {
         weight += amount;
     }
+
+    public boolean isEmpty() {
+        return item == null;
+    }
 }

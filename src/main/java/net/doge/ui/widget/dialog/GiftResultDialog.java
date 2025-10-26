@@ -1,12 +1,13 @@
 package net.doge.ui.widget.dialog;
 
 import net.doge.constant.StorageKey;
-import net.doge.data.storage.DataStorage;
-import net.doge.data.storage.GiftRecordStorage;
-import net.doge.data.storage.GiftCensusStorage;
 import net.doge.data.TrickData;
+import net.doge.data.storage.DataStorage;
+import net.doge.data.storage.GiftCensusStorage;
+import net.doge.data.storage.GiftRecordStorage;
 import net.doge.model.*;
 import net.doge.ui.TowerUI;
+import net.doge.util.MapUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +49,18 @@ public class GiftResultDialog extends GDialog<GiftResult> {
         if (item.isBox()) {
             Sampler<Item> subItemSampler = item.getSubItemSampler();
             Map<SampleModel<Item>, Integer> res = subItemSampler.lotteryMap(num);
+            // 多爆盒子
+            if (item.isPackedBox()) {
+                List<Sampler<Item>> extraSubItemSamplers = item.getExtraSubItemSamplers();
+                for (Sampler<Item> extraSubItemSampler : extraSubItemSamplers) {
+                    Map<SampleModel<Item>, Integer> subRes = extraSubItemSampler.lotteryMap(num);
+                    res.putAll(subRes);
+                }
+                // 多爆盒子移除抽取到的空物品
+                res.keySet().removeIf(SampleModel::isEmpty);
+            }
+            // 打乱抽取物品的顺序，增大序列随机性
+            MapUtil.shuffle(res);
             results = new LinkedList<>();
             for (Map.Entry<SampleModel<Item>, Integer> entry : res.entrySet()) {
                 Item k = entry.getKey().getItem();
