@@ -126,11 +126,15 @@ public class Trick {
                 accepted = results.size() == 4;
                 break;
             case NONE_63:
+            case NONE_93:
             case NONE_52:
+            case NONE_82:
                 accepted = isAllBoxRegular(results);
                 break;
             case SPECIAL_63:
+            case SPECIAL_93:
             case SPECIAL_52:
+            case SPECIAL_82:
                 accepted = !isAllBoxRegular(results);
                 break;
             case CHOICE_21:

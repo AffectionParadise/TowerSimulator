@@ -63,17 +63,17 @@ public class GiftResultDialog extends GDialog<GiftResult> {
             MapUtil.shuffle(res);
             results = new LinkedList<>();
             for (Map.Entry<SampleModel<Item>, Integer> entry : res.entrySet()) {
-                Item k = entry.getKey().getItem();
+                Item it = entry.getKey().getItem();
                 Integer v = entry.getValue();
 
-                GiftCensusStorage.add(k.getStorageKey(), v);
-                totalValue += v * k.getValue();
-                totalGiftPoints += v * k.getGiftPoints();
+                GiftCensusStorage.add(it.getStorageKey(), v);
+                totalValue += v * it.getValue();
+                totalGiftPoints += v * it.getGiftPoints();
 
-                GiftResult result = new GiftResult(k, v);
+                GiftResult result = new GiftResult(it, v);
                 results.add(result);
                 listModel.addElement(result);
-                d.addItemNonRepetitive(k);
+                d.addItemNonRepetitive(it);
             }
         } else {
             GiftCensusStorage.add(item.getStorageKey(), num);
