@@ -13,10 +13,10 @@ public class GoodLuck {
 //        Integer[] g = {1, 2, 3, 4};
         // 1234 单双 3下 063
         // 单双 1234 3下 111
-        Integer[] g = {1, 2};
+        Integer[] g = {1, 2, 3};
         List<Integer> list = Arrays.asList(g);
 
-        for (int j = 1, t = 1; j <= t; j++) {
+        for (int j = 1, t = 3; j <= t; j++) {
             shuffle(list);
 //            if(list.get(2) == rnd.nextInt(3)+1) System.out.print("中 ");
 //            else System.out.print("补 ");
@@ -26,13 +26,13 @@ public class GoodLuck {
         }
     }
 
-    // 使用Fisher-Yates算法打乱列表
+    // 使用 Fisher-Yates 算法打乱列表
     public static <T> void shuffle(List<T> list) {
         MersenneTwister rnd = new MersenneTwister();
         for (int i = list.size() - 1; i > 0; i--) {
             // 生成[0, i]范围内的随机索引
             int j = rnd.nextInt(i + 1);
-            // 交换当前位置 i 和随机位置j的元素
+            // 交换当前位置 i 和随机位置 j 的元素
             T temp = list.get(i);
             list.set(i, list.get(j));
             list.set(j, temp);

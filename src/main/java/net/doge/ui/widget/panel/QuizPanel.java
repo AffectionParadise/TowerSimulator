@@ -55,9 +55,11 @@ public class QuizPanel extends GPanel {
     }
 
     private void updateQuizView() {
+        Item titleItem = quiz.getTitleItem();
+        titleLabel.setIcon(IconUtil.getIcon(titleItem.getIconKey()));
         switch (quiz.getStatus()) {
             case SPARE:
-                titleLabel.setText(String.format(quiz.getTitle(), quiz.getPrefixText(), quiz.getTitleItem().getName(), "?"));
+                titleLabel.setText(String.format(quiz.getTitle(), quiz.getPrefixText(), titleItem.getName(), "?"));
                 tipLabel.setText(String.format("投入%s，竞猜成功即可获得双倍奖励", quiz.getChipItem().getName()));
                 tipLabel.setIcon(null);
                 break;

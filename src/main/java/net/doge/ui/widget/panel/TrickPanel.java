@@ -43,6 +43,7 @@ public class TrickPanel extends GPanel {
     private void updateTrickView() {
         Trick trick = TrickData.currTrick;
         titleLabel.setText(trick.getTitle());
+        titleLabel.setIcon(IconUtil.getIcon(trick.getItemExpected().getIconKey()));
         tipLabel.setIcon(IconUtil.getIcon(trick.getItemRewarded().getIconThumbKey()));
         boolean accepted = trick.isAccepted();
         if (accepted) {

@@ -53,10 +53,12 @@ public class Sampler<I> {
 
     // 抽取 n 次，返回奖品哈希表
     public Map<SampleModel<I>, Integer> lotteryMap(int times) {
-        List<SampleModel<I>> res = lottery(times);
         // 使用 LinkedHashMap 保持插入顺序
         Map<SampleModel<I>, Integer> resMap = new LinkedHashMap<>();
-        res.forEach(m -> resMap.put(m, resMap.getOrDefault(m, 0) + 1));
+        for (int i = 0; i < times; i++) {
+            SampleModel<I> m = lottery();
+            resMap.put(m, resMap.getOrDefault(m, 0) + 1);
+        }
         return resMap;
     }
 

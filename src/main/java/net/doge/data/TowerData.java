@@ -55,6 +55,9 @@ public class TowerData {
     // 古堡密藏
     public static final Tower CASTLE_TREASURE = new Tower("万圣古堡", "万圣古堡", IconKey.CASTLE_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
             ItemData.castleTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
+    // 嘉年密藏
+    public static final Tower CARNIVAL_TREASURE = new Tower("嘉年城邦", "嘉年城邦", IconKey.CARNIVAL_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+            ItemData.carnivalTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 蘑菇金库
     public static final Tower MR_TREASURE = new Tower("蘑菇金库", "蘑菇金库", IconKey.MR_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
             ItemData.mrTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
@@ -76,6 +79,7 @@ public class TowerData {
         ULTIMATE_TREASURE_2.setDesc("25000% 超高倍率关卡开启！");
         CONSTELLATION_TREASURE.setDesc("星辰藏宝图开启！");
         CASTLE_TREASURE.setDesc("万圣古堡开启！");
+        CARNIVAL_TREASURE.setDesc("嘉年城邦开启！");
         MR_TREASURE.setDesc("超多蘑菇的金库开启！");
 
         ADVANCED_TOWER.setEventSampler(EventData.eventSampler);
@@ -96,6 +100,7 @@ public class TowerData {
         towers.add(ULTIMATE_TREASURE_2);
         towers.add(CONSTELLATION_TREASURE);
         towers.add(CASTLE_TREASURE);
+        towers.add(CARNIVAL_TREASURE);
         towers.add(MR_TREASURE);
 
         currTower = ADVANCED_TOWER;
@@ -121,6 +126,7 @@ public class TowerData {
                 || tower == ULTIMATE_TREASURE_2
                 || tower == CONSTELLATION_TREASURE
                 || tower == CASTLE_TREASURE
+                || tower == CARNIVAL_TREASURE
                 || tower == MR_TREASURE;
     }
 }

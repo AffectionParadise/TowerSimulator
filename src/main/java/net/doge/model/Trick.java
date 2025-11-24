@@ -40,8 +40,8 @@ public class Trick {
         if (accepted) return;
         Item itemPresented = record.getItemPresented();
         int numPresented = record.getNumPresented();
-        List<GiftResult> results = record.getResults();
         if (!itemPresented.equals(itemExpected) || numPresented != numExpected) return;
+        List<GiftResult> results = record.getResults();
         boolean accepted = false;
         switch (type) {
             case SAME2:
