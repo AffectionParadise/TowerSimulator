@@ -14,6 +14,7 @@ import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.list.GList;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.ui.widget.scroller.GScroller;
+import net.doge.ui.widget.textfield.NumTextField;
 import net.doge.util.IconUtil;
 
 import javax.swing.*;
@@ -37,6 +38,10 @@ public class MagicBoxDialog extends GDialog<Compound> {
     private GPanel globalPanel = new GPanel();
     private GPanel centerPanel = new GPanel();
     private GPanel bottomPanel = new GPanel();
+    private GButton maxBtn = new GButton("最大", GColor.DARK_RED);
+    private GButton minusBtn = new GButton("-", GColor.DEEP_GREEN);
+    private NumTextField numTextField = new NumTextField("1");
+    private GButton plusBtn = new GButton("+", GColor.DEEP_GREEN);
     private GButton compundBtn = new GButton("开启", GColor.DEEP_GREEN);
 
     private GPanel infoCellPanel = new GPanel(new BorderLayout());
@@ -113,27 +118,56 @@ public class MagicBoxDialog extends GDialog<Compound> {
         centerPanel.add(scroller);
         centerPanel.add(infoPanel);
 
+        maxBtn.addActionListener(e -> {
+            Compound compound = list.getSelectedValue();
+            if (compound == null) return;
+            int itemRequiredNum = DataStorage.get(compound.getItemRequired().getStorageKey());
+            int magicBoxNum = DataStorage.get(ItemData.MAGIC_BOX.getStorageKey());
+            numTextField.setText(String.valueOf(Math.min(itemRequiredNum, magicBoxNum)));
+        });
+        minusBtn.addActionListener(e -> {
+            String text = numTextField.getText();
+            int num = 2;
+            if (!text.isEmpty()) num = Integer.parseInt(text);
+            numTextField.setText(String.valueOf(num - 1));
+        });
+        plusBtn.addActionListener(e -> {
+            String text = numTextField.getText();
+            int num = 0;
+            if (!text.isEmpty()) num = Integer.parseInt(text);
+            numTextField.setText(String.valueOf(num + 1));
+        });
         compundBtn.addActionListener(e -> {
             Compound compound = list.getSelectedValue();
             if (compound == null) return;
+            String text = numTextField.getText();
+            if (text.isEmpty()) return;
+            int num = Integer.parseInt(text);
+            if (num < 1) return;
             Item itemRequired = compound.getItemRequired();
-            if (!compound.isSatisfied()) {
+            // 检查钥匙数量
+            if (compound.getNumRequired() * num > DataStorage.get(itemRequired.getStorageKey())) {
                 new TipDialog(this, String.format("%s不足", itemRequired.getName()));
                 return;
             }
             // 检查魔盒数量
             int magicBoxNum = DataStorage.get(ItemData.MAGIC_BOX.getStorageKey());
-            if (magicBoxNum < 1) {
+            if (magicBoxNum < num) {
                 new TipDialog(this, String.format("%s不足", ItemData.MAGIC_BOX.getName()));
                 return;
             }
             // 扣除钥匙和魔盒
-            DataStorage.add(itemRequired.getStorageKey(), -compound.getNumRequired());
-            updateMagicBoxAmountView(-1);
+            DataStorage.add(itemRequired.getStorageKey(), -compound.getNumRequired() * num);
+            updateMagicBoxAmountView(-num);
             // 生成
-            new MagicBoxResultDialog(ui, this, compound);
+            if (num == 1) new MagicBoxResultDialog(ui, this, compound);
+            else new MagicBoxMultiResultDialog(ui, this, compound, num);
         });
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        bottomPanel.add(maxBtn);
+        bottomPanel.add(minusBtn);
+        bottomPanel.add(numTextField);
+        bottomPanel.add(plusBtn);
         bottomPanel.add(compundBtn);
 
         globalPanel.setLayout(new BorderLayout());
@@ -176,5 +210,6 @@ public class MagicBoxDialog extends GDialog<Compound> {
     private void updateMagicBoxAmountView(int amount) {
         DataStorage.add(ItemData.MAGIC_BOX.getStorageKey(), amount);
         topLabel.setText(String.format("已拥有：%s", DataStorage.get(ItemData.MAGIC_BOX.getStorageKey())));
+        list.repaint();
     }
 }

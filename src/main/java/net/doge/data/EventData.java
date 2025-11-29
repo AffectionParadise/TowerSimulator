@@ -48,9 +48,9 @@ public class EventData {
         eventSampler.addModel(new SampleModel<>(ADVANCED_TREASURE, 10));
         eventSampler.addModel(new SampleModel<>(DELUXE_TREASURE, 5));
         eventSampler.addModel(new SampleModel<>(ULTIMATE_TREASURE, 1));
-        eventSampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 15));
-        eventSampler.addModel(new SampleModel<>(CASTLE_TREASURE, 15));
-        eventSampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 15));
+        eventSampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 20));
+        eventSampler.addModel(new SampleModel<>(CASTLE_TREASURE, 20));
+        eventSampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 20));
         eventSampler.addModel(new SampleModel<>(MR_TREASURE, 20));
 
         event2Sampler.addModel(new SampleModel<>(NOTHING, 30000));
@@ -59,9 +59,9 @@ public class EventData {
         event2Sampler.addModel(new SampleModel<>(ADVANCED_TREASURE_2, 10));
         event2Sampler.addModel(new SampleModel<>(DELUXE_TREASURE_2, 5));
         event2Sampler.addModel(new SampleModel<>(ULTIMATE_TREASURE_2, 1));
-        event2Sampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 15));
-        event2Sampler.addModel(new SampleModel<>(CASTLE_TREASURE, 15));
-        event2Sampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 15));
+        event2Sampler.addModel(new SampleModel<>(CONSTELLATION_TREASURE, 20));
+        event2Sampler.addModel(new SampleModel<>(CASTLE_TREASURE, 20));
+        event2Sampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 20));
         event2Sampler.addModel(new SampleModel<>(MR_TREASURE, 20));
     }
 

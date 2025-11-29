@@ -104,7 +104,8 @@ public class GiftRecordDialog extends GDialog<GiftRecord> {
         if (results != null) {
             if (results.size() == 1) {
                 GiftResult result = results.get(0);
-                descLabel.setText(String.format("使用%s赠送了 %s 个珍贵礼物：%s", itemPresented.getName(), result.getNum(), result.getItem().getName()));
+                Item item = result.getItem();
+                descLabel.setText(String.format("使用%s赠送了 %s 个%s礼物：%s", itemPresented.getName(), result.getNum(), item.isMysterious() ? "隐藏" : "珍贵", item.getName()));
                 descLabel.setIcon(IconUtil.getIcon(result.getItem().getIconKey()));
                 hs.setVisible(false);
                 detailBtn.setVisible(false);

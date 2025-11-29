@@ -356,6 +356,7 @@ public class ItemData {
         REGULAR_GIFT_M.setHighlightColor(GColor.BASIC_QUALITY);
         REGULAR_GIFT_M.setValue(300);
         REGULAR_GIFT_M.setGiftPoints(48);
+        REGULAR_GIFT_M.setPreferential(true);
         REGULAR_GIFT_M.setExchangeable(true);
         REGULAR_GIFT_M.setExchangeCost(5);
         items.add(REGULAR_GIFT_M);
@@ -451,6 +452,7 @@ public class ItemData {
         BASIC_BOX_C.setExchangeable(true);
         BASIC_BOX_C.setExchangeCost(15);
         BASIC_BOX_C.setGiftExp(20);
+        BASIC_BOX_C.setPreferential(true);
         BASIC_BOX_C.setSubItemSampler(bbcSubItemSampler);
         items.add(BASIC_BOX_C);
 
@@ -462,6 +464,7 @@ public class ItemData {
         BASIC_BOX_M.setExchangeable(true);
         BASIC_BOX_M.setExchangeCost(15);
         BASIC_BOX_M.setGiftExp(20);
+        BASIC_BOX_M.setPreferential(true);
         BASIC_BOX_M.setSubItemSampler(bbmSubItemSampler);
         BASIC_BOX_M.setExtraSubItemSamplers(bbmExtraSubItemSamplers);
         items.add(BASIC_BOX_M);
@@ -472,7 +475,8 @@ public class ItemData {
         BASIC_BOX_S.setExchangeable(true);
         BASIC_BOX_S.setExchangeCost(15);
         BASIC_BOX_S.setGiftExp(20);
-        BASIC_BOX_S.setSubItemSampler(bbcSubItemSampler);
+        BASIC_BOX_S.setPreferential(true);
+        BASIC_BOX_S.setSubItemSampler(bbsSubItemSampler);
         items.add(BASIC_BOX_S);
 
         REGULAR_BOX = new Item("木兰大盒子", ItemType.BOX, IconKey.REGULAR_BOX, StorageKey.REGULAR_BOX_NUM);

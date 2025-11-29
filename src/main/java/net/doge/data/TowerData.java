@@ -50,13 +50,13 @@ public class TowerData {
     public static final Tower ULTIMATE_TREASURE_2 = new Tower("究级密藏", "究级密藏", IconKey.TREASURE, ItemData.ADVANCED_STEP, 1, 0.5f, 0.6f,
             ItemData.ultimateTreasure2ItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 星座密藏
-    public static final Tower CONSTELLATION_TREASURE = new Tower("星辰藏宝图", "星辰藏宝图", IconKey.CONSTELLATION_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+    public static final Tower CONSTELLATION_TREASURE = new Tower("星辰藏宝图", "星辰藏宝图", IconKey.CONSTELLATION_TREASURE, ItemData.ADVANCED_STEP, 1, 0.3f, 0.5f,
             ItemData.constellationTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 古堡密藏
-    public static final Tower CASTLE_TREASURE = new Tower("万圣古堡", "万圣古堡", IconKey.CASTLE_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+    public static final Tower CASTLE_TREASURE = new Tower("万圣古堡", "万圣古堡", IconKey.CASTLE_TREASURE, ItemData.ADVANCED_STEP, 1, 0.3f, 0.5f,
             ItemData.castleTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 嘉年密藏
-    public static final Tower CARNIVAL_TREASURE = new Tower("嘉年城邦", "嘉年城邦", IconKey.CARNIVAL_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
+    public static final Tower CARNIVAL_TREASURE = new Tower("嘉年城邦", "嘉年城邦", IconKey.CARNIVAL_TREASURE, ItemData.ADVANCED_STEP, 1, 0.3f, 0.5f,
             ItemData.carnivalTreasureItemSampler, true, false, true, GColor.TREASURE_TOWER_HIGHLIGHT, GColor.TREASURE_TOWER_BRIGHT);
     // 蘑菇金库
     public static final Tower MR_TREASURE = new Tower("蘑菇金库", "蘑菇金库", IconKey.MR_TREASURE, ItemData.ADVANCED_STEP, 1, 0.4f, 0.6f,
