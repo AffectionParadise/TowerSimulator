@@ -16,7 +16,7 @@ public class GoodLuck {
         Integer[] g = {1, 2, 3};
         List<Integer> list = Arrays.asList(g);
 
-        for (int j = 1, t = 10; j <= t; j++) {
+        for (int j = 1, t = 4; j <= t; j++) {
             shuffle(list);
 //            if(list.get(2) == rnd.nextInt(3)+1) System.out.print("中 ");
 //            else System.out.print("补 ");

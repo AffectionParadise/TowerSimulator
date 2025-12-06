@@ -592,6 +592,9 @@ public class ItemData {
         DELUXE_BOX = new Item("木兰辉煌", ItemType.BOX, IconKey.DELUXE_BOX, StorageKey.DELUXE_BOX_NUM);
         DELUXE_BOX.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX.setValue(300000);
+        DELUXE_BOX.setExchangeable(true);
+        DELUXE_BOX.setExchangeCost(4500);
+        DELUXE_BOX.setGiftExp(4500);
         DELUXE_BOX.setPreferential(true);
         DELUXE_BOX.setSubItemSampler(dbSubItemSampler);
         items.add(DELUXE_BOX);
@@ -599,6 +602,9 @@ public class ItemData {
         DELUXE_BOX_2 = new Item("宏梦辉煌", ItemType.BOX, IconKey.DELUXE_BOX_2, StorageKey.DELUXE_BOX_2_NUM);
         DELUXE_BOX_2.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX_2.setValue(300000);
+        DELUXE_BOX_2.setExchangeable(true);
+        DELUXE_BOX_2.setExchangeCost(4500);
+        DELUXE_BOX_2.setGiftExp(4500);
         DELUXE_BOX_2.setPreferential(true);
         DELUXE_BOX_2.setSubItemSampler(db2SubItemSampler);
         items.add(DELUXE_BOX_2);
@@ -606,6 +612,9 @@ public class ItemData {
         DELUXE_BOX_S = new Item("嘉年辉煌", ItemType.BOX, IconKey.DELUXE_BOX_S, StorageKey.DELUXE_BOX_S_NUM);
         DELUXE_BOX_S.setHighlightColor(GColor.ULTIMATE_QUALITY);
         DELUXE_BOX_S.setValue(300000);
+        DELUXE_BOX_S.setExchangeable(true);
+        DELUXE_BOX_S.setExchangeCost(4500);
+        DELUXE_BOX_S.setGiftExp(4500);
         DELUXE_BOX_S.setPreferential(true);
         DELUXE_BOX_S.setSubItemSampler(dbsSubItemSampler);
         items.add(DELUXE_BOX_S);

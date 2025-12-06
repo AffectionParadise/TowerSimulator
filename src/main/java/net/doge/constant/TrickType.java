@@ -84,7 +84,11 @@ public enum TrickType {
     // 三选一
     CHOICE_31("三选一"),
     // 四选一
-    CHOICE_41("四选一");
+    CHOICE_41("四选一"),
+    // 多爆
+    PACKED("多爆"),
+    // 无多爆
+    NOT_PACKED("无多爆");
 
     private final String name;
 

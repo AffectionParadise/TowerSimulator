@@ -142,6 +142,12 @@ public class Trick {
             case CHOICE_41:
                 accepted = results.get(0).getItem().equals(itemChosen);
                 break;
+            case PACKED:
+                accepted = isPacked(results, numPresented);
+                break;
+            case NOT_PACKED:
+                accepted = !isPacked(results, numPresented);
+                break;
         }
         this.accepted = accepted;
     }
@@ -265,5 +271,12 @@ public class Trick {
         List<Integer> values = new LinkedList<>();
         for (GiftResult result : results) values.add(result.getItem().getValue());
         return values.size() == new HashSet<>(values).size();
+    }
+
+    // 判断是否多爆
+    private boolean isPacked(List<GiftResult> results, int numPresented) {
+        int num = 0;
+        for (GiftResult result : results) num += result.getNum();
+        return num > numPresented;
     }
 }
