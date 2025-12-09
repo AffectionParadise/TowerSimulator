@@ -57,6 +57,8 @@ public enum TrickType {
     DIFF3_10K_WM(" 3 不同 10K 含隐藏"),
     // 3 不同 100K
     DIFF3_100K(" 3 不同 100K"),
+    // 2 不同价值
+    DIFF2_VALUE(" 2 不同价值"),
     // 3 不同价值
     DIFF3_VALUE(" 3 不同价值"),
     // 4 不同价值
@@ -88,7 +90,15 @@ public enum TrickType {
     // 多爆
     PACKED("多爆"),
     // 无多爆
-    NOT_PACKED("无多爆");
+    NOT_PACKED("无多爆"),
+    // 双胞胎 6/3
+    SAME2_63(" 6/3 双胞胎"),
+    // 双胞胎 5/2
+    SAME2_93(" 9/3 双胞胎"),
+    // 双胞胎 5/2
+    SAME2_52(" 5/2 双胞胎"),
+    // 双胞胎 8/2
+    SAME2_82(" 8/2 双胞胎");
 
     private final String name;
 

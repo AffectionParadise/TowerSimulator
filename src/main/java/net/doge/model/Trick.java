@@ -116,6 +116,9 @@ public class Trick {
             case DIFF3_100K:
                 accepted = results.size() == 3 && isAllValue(results, 100000);
                 break;
+            case DIFF2_VALUE:
+                accepted = results.size() == 2 && isDiffValue(results);
+                break;
             case DIFF3_VALUE:
                 accepted = results.size() == 3 && isDiffValue(results);
                 break;
@@ -135,7 +138,13 @@ public class Trick {
             case SPECIAL_93:
             case SPECIAL_52:
             case SPECIAL_82:
-                accepted = !isAllBoxRegular(results);
+                accepted = isAllNotBoxRegular(results);
+                break;
+            case SAME2_63:
+            case SAME2_93:
+            case SAME2_52:
+            case SAME2_82:
+                accepted = isSameN(results, 2) && isAllNotBoxRegular(results);
                 break;
             case CHOICE_21:
             case CHOICE_31:
@@ -250,10 +259,18 @@ public class Trick {
         return true;
     }
 
-    // 判断 06/3 05/2
+    // 判断 06/3 05/2 08/2
     private boolean isAllBoxRegular(List<GiftResult> results) {
         for (GiftResult result : results) {
             if (!result.getItem().isBoxRegular()) return false;
+        }
+        return true;
+    }
+
+    // 判断是否全部 6/3 5/2 8/2
+    private boolean isAllNotBoxRegular(List<GiftResult> results) {
+        for (GiftResult result : results) {
+            if (result.getItem().isBoxRegular()) return false;
         }
         return true;
     }

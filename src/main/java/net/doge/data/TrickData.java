@@ -103,6 +103,7 @@ public class TrickData {
     public static final Trick BASIC_BOX_S_CHOICE_41 = new Trick(TrickType.CHOICE_41, ItemData.BASIC_BOX_S, 1, ItemData.ADVANCED_STEP, 2);
     // 大盒子
     public static final Trick REGULAR_BOX_SAME2 = new Trick(TrickType.SAME2, ItemData.REGULAR_BOX, 2, ItemData.ADVANCED_STEP, 8);
+    public static final Trick REGULAR_BOX_DIFF2_VALUE = new Trick(TrickType.DIFF2_VALUE, ItemData.REGULAR_BOX, 2, ItemData.ADVANCED_STEP, 12);
     public static final Trick REGULAR_BOX_SAME3 = new Trick(TrickType.SAME3, ItemData.REGULAR_BOX, 3, ItemData.ADVANCED_STEP, 24);
     public static final Trick REGULAR_BOX_SAME4 = new Trick(TrickType.SAME4, ItemData.REGULAR_BOX, 4, ItemData.MAGIC_BOX, 5);
     public static final Trick REGULAR_BOX_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.REGULAR_BOX, 6, ItemData.ADVANCED_STEP, 8);
@@ -128,6 +129,7 @@ public class TrickData {
     public static final Trick REGULAR_BOX_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.REGULAR_BOX, 1, ItemData.ADVANCED_STEP, 3);
 
     public static final Trick REGULAR_BOX_2_SAME2 = new Trick(TrickType.SAME2, ItemData.REGULAR_BOX_2, 2, ItemData.ADVANCED_STEP, 8);
+    public static final Trick REGULAR_BOX_2_DIFF2_VALUE = new Trick(TrickType.DIFF2_VALUE, ItemData.REGULAR_BOX_2, 2, ItemData.ADVANCED_STEP, 12);
     public static final Trick REGULAR_BOX_2_SAME3 = new Trick(TrickType.SAME3, ItemData.REGULAR_BOX_2, 3, ItemData.ADVANCED_STEP, 24);
     public static final Trick REGULAR_BOX_2_SAME4 = new Trick(TrickType.SAME4, ItemData.REGULAR_BOX_2, 4, ItemData.MAGIC_BOX, 5);
     public static final Trick REGULAR_BOX_2_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.REGULAR_BOX_2, 6, ItemData.ADVANCED_STEP, 8);
@@ -152,6 +154,7 @@ public class TrickData {
     public static final Trick REGULAR_BOX_2_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.REGULAR_BOX_2, 1, ItemData.ADVANCED_STEP, 3);
 
     public static final Trick REGULAR_BOX_C_SAME2 = new Trick(TrickType.SAME2, ItemData.REGULAR_BOX_C, 2, ItemData.ADVANCED_STEP, 10);
+    public static final Trick REGULAR_BOX_C_DIFF2_VALUE = new Trick(TrickType.DIFF2_VALUE, ItemData.REGULAR_BOX_C, 2, ItemData.ADVANCED_STEP, 16);
     public static final Trick REGULAR_BOX_C_SAME3 = new Trick(TrickType.SAME3, ItemData.REGULAR_BOX_C, 3, ItemData.ADVANCED_STEP, 28);
     public static final Trick REGULAR_BOX_C_SAME4 = new Trick(TrickType.SAME4, ItemData.REGULAR_BOX_C, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick REGULAR_BOX_C_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.REGULAR_BOX_C, 6, ItemData.ADVANCED_STEP, 10);
@@ -195,6 +198,7 @@ public class TrickData {
     public static final Trick REGULAR_BOX_M_DIFF4 = new Trick(TrickType.DIFF4, ItemData.REGULAR_BOX_M, 4, ItemData.ADVANCED_STEP, 28);
 
     public static final Trick REGULAR_BOX_S_SAME2 = new Trick(TrickType.SAME2, ItemData.REGULAR_BOX_S, 2, ItemData.ADVANCED_STEP, 10);
+    public static final Trick REGULAR_BOX_S_DIFF2_VALUE = new Trick(TrickType.DIFF2_VALUE, ItemData.REGULAR_BOX_S, 2, ItemData.ADVANCED_STEP, 16);
     public static final Trick REGULAR_BOX_S_SAME3 = new Trick(TrickType.SAME3, ItemData.REGULAR_BOX_S, 3, ItemData.ADVANCED_STEP, 28);
     public static final Trick REGULAR_BOX_S_SAME4 = new Trick(TrickType.SAME4, ItemData.REGULAR_BOX_S, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick REGULAR_BOX_S_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.REGULAR_BOX_S, 6, ItemData.ADVANCED_STEP, 10);
@@ -233,33 +237,37 @@ public class TrickData {
     public static final Trick ADVANCED_BOX_SAME7 = new Trick(TrickType.SAME7, ItemData.ADVANCED_BOX, 10, ItemData.MAGIC_BOX, 20);
     public static final Trick ADVANCED_BOX_OOE = new Trick(TrickType.OOE, ItemData.ADVANCED_BOX, 10, ItemData.MAGIC_BOX, 8);
     public static final Trick ADVANCED_BOX_063 = new Trick(TrickType.NONE_63, ItemData.ADVANCED_BOX, 10, ItemData.MAGIC_BOX, 12);
+    public static final Trick ADVANCED_BOX_SAME2_63 = new Trick(TrickType.SAME2_63, ItemData.ADVANCED_BOX, 2, ItemData.MAGIC_BOX, 24);
     public static final Trick ADVANCED_BOX_EXTREME_300K = new Trick(TrickType.EXTREME_300K, ItemData.ADVANCED_BOX, 10, ItemData.ADVANCED_STEP, 32);
     public static final Trick ADVANCED_BOX_DIFF3 = new Trick(TrickType.DIFF3, ItemData.ADVANCED_BOX, 3, ItemData.ADVANCED_STEP, 16);
     public static final Trick ADVANCED_BOX_DIFF3_100K = new Trick(TrickType.DIFF3_100K, ItemData.ADVANCED_BOX, 3, ItemData.ADVANCED_STEP, 20);
+    public static final Trick ADVANCED_BOX_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.ADVANCED_BOX, 3, ItemData.MAGIC_BOX, 48);
     public static final Trick ADVANCED_BOX_DIFF4 = new Trick(TrickType.DIFF4, ItemData.ADVANCED_BOX, 4, ItemData.MAGIC_BOX, 5);
     public static final Trick ADVANCED_BOX_SPECIAL_63 = new Trick(TrickType.SPECIAL_63, ItemData.ADVANCED_BOX, 1, ItemData.ADVANCED_STEP, 12);
     public static final Trick ADVANCED_BOX_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.ADVANCED_BOX, 1, ItemData.ADVANCED_STEP, 8);
 
-    public static final Trick ADVANCED_BOX_2_SAME2 = new Trick(TrickType.SAME2, ItemData.ADVANCED_BOX_2, 2, ItemData.ADVANCED_STEP, 16);
-    public static final Trick ADVANCED_BOX_2_SAME3 = new Trick(TrickType.SAME3, ItemData.ADVANCED_BOX_2, 3, ItemData.MAGIC_BOX, 3);
-    public static final Trick ADVANCED_BOX_2_SAME4 = new Trick(TrickType.SAME4, ItemData.ADVANCED_BOX_2, 4, ItemData.MAGIC_BOX, 8);
-    public static final Trick ADVANCED_BOX_2_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.ADVANCED_BOX_2, 6, ItemData.ADVANCED_STEP, 18);
-    public static final Trick ADVANCED_BOX_2_DISORDER_1234 = new Trick(TrickType.DISORDER_1234, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 28);
-    public static final Trick ADVANCED_BOX_2_DISORDER_222_33_15 = new Trick(TrickType.DISORDER_222_33_15, ItemData.ADVANCED_BOX_2, 6, ItemData.MAGIC_BOX, 10);
+    public static final Trick ADVANCED_BOX_2_SAME2 = new Trick(TrickType.SAME2, ItemData.ADVANCED_BOX_2, 2, ItemData.ADVANCED_STEP, 18);
+    public static final Trick ADVANCED_BOX_2_SAME3 = new Trick(TrickType.SAME3, ItemData.ADVANCED_BOX_2, 3, ItemData.MAGIC_BOX, 5);
+    public static final Trick ADVANCED_BOX_2_SAME4 = new Trick(TrickType.SAME4, ItemData.ADVANCED_BOX_2, 4, ItemData.MAGIC_BOX, 12);
+    public static final Trick ADVANCED_BOX_2_DISORDER_123 = new Trick(TrickType.DISORDER_123, ItemData.ADVANCED_BOX_2, 6, ItemData.ADVANCED_STEP, 20);
+    public static final Trick ADVANCED_BOX_2_DISORDER_1234 = new Trick(TrickType.DISORDER_1234, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 32);
+    public static final Trick ADVANCED_BOX_2_DISORDER_222_33_15 = new Trick(TrickType.DISORDER_222_33_15, ItemData.ADVANCED_BOX_2, 6, ItemData.MAGIC_BOX, 12);
     public static final Trick ADVANCED_BOX_2_SAME3_BELOW = new Trick(TrickType.SAME3_BELOW, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 32);
-    public static final Trick ADVANCED_BOX_2_NONE_1 = new Trick(TrickType.NONE_1, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 6);
+    public static final Trick ADVANCED_BOX_2_NONE_1 = new Trick(TrickType.NONE_1, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 8);
     public static final Trick ADVANCED_BOX_2_SUB_111 = new Trick(TrickType.SUB_111, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 6);
-    public static final Trick ADVANCED_BOX_2_SAME5 = new Trick(TrickType.SAME5, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 28);
-    public static final Trick ADVANCED_BOX_2_SAME6 = new Trick(TrickType.SAME6, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 48);
-    public static final Trick ADVANCED_BOX_2_SAME7 = new Trick(TrickType.SAME7, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 20);
-    public static final Trick ADVANCED_BOX_2_OOE = new Trick(TrickType.OOE, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 8);
-    public static final Trick ADVANCED_BOX_2_093 = new Trick(TrickType.NONE_93, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 12);
+    public static final Trick ADVANCED_BOX_2_SAME5 = new Trick(TrickType.SAME5, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 32);
+    public static final Trick ADVANCED_BOX_2_SAME6 = new Trick(TrickType.SAME6, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 60);
+    public static final Trick ADVANCED_BOX_2_SAME7 = new Trick(TrickType.SAME7, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 26);
+    public static final Trick ADVANCED_BOX_2_OOE = new Trick(TrickType.OOE, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 10);
+    public static final Trick ADVANCED_BOX_2_093 = new Trick(TrickType.NONE_93, ItemData.ADVANCED_BOX_2, 10, ItemData.MAGIC_BOX, 16);
+    public static final Trick ADVANCED_BOX_2_SAME2_93 = new Trick(TrickType.SAME2_93, ItemData.ADVANCED_BOX_2, 2, ItemData.MAGIC_BOX, 30);
     public static final Trick ADVANCED_BOX_2_EXTREME_300K = new Trick(TrickType.EXTREME_300K, ItemData.ADVANCED_BOX_2, 10, ItemData.ADVANCED_STEP, 32);
     public static final Trick ADVANCED_BOX_2_DIFF3 = new Trick(TrickType.DIFF3, ItemData.ADVANCED_BOX_2, 3, ItemData.ADVANCED_STEP, 16);
-    public static final Trick ADVANCED_BOX_2_DIFF3_100K = new Trick(TrickType.DIFF3_100K, ItemData.ADVANCED_BOX_2, 3, ItemData.ADVANCED_STEP, 20);
+    public static final Trick ADVANCED_BOX_2_DIFF3_100K = new Trick(TrickType.DIFF3_100K, ItemData.ADVANCED_BOX_2, 3, ItemData.ADVANCED_STEP, 24);
+    public static final Trick ADVANCED_BOX_2_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.ADVANCED_BOX_2, 3, ItemData.MAGIC_BOX, 48);
     public static final Trick ADVANCED_BOX_2_DIFF4 = new Trick(TrickType.DIFF4, ItemData.ADVANCED_BOX_2, 4, ItemData.MAGIC_BOX, 5);
     public static final Trick ADVANCED_BOX_2_SPECIAL_93 = new Trick(TrickType.SPECIAL_93, ItemData.ADVANCED_BOX_2, 1, ItemData.ADVANCED_STEP, 12);
-    public static final Trick ADVANCED_BOX_2_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.ADVANCED_BOX_2, 1, ItemData.ADVANCED_STEP, 8);
+    public static final Trick ADVANCED_BOX_2_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.ADVANCED_BOX_2, 1, ItemData.ADVANCED_STEP, 10);
 
     public static final Trick ADVANCED_BOX_M_PACKED = new Trick(TrickType.PACKED, ItemData.ADVANCED_BOX_M, 1, ItemData.ADVANCED_STEP, 36);
     public static final Trick ADVANCED_BOX_M_NONE_1 = new Trick(TrickType.NONE_1, ItemData.ADVANCED_BOX_M, 10, ItemData.MAGIC_BOX, 6);
@@ -282,9 +290,11 @@ public class TrickData {
     public static final Trick ADVANCED_BOX_C_SAME7 = new Trick(TrickType.SAME7, ItemData.ADVANCED_BOX_C, 10, ItemData.MAGIC_BOX, 24);
     public static final Trick ADVANCED_BOX_C_OOE = new Trick(TrickType.OOE, ItemData.ADVANCED_BOX_C, 10, ItemData.MAGIC_BOX, 10);
     public static final Trick ADVANCED_BOX_C_063 = new Trick(TrickType.NONE_63, ItemData.ADVANCED_BOX_C, 10, ItemData.MAGIC_BOX, 16);
+    public static final Trick ADVANCED_BOX_C_SAME2_63 = new Trick(TrickType.SAME2_63, ItemData.ADVANCED_BOX_C, 2, ItemData.MAGIC_BOX, 32);
     public static final Trick ADVANCED_BOX_C_EXTREME_500K = new Trick(TrickType.EXTREME_500K, ItemData.ADVANCED_BOX_C, 10, ItemData.ADVANCED_STEP, 36);
     public static final Trick ADVANCED_BOX_C_DIFF3 = new Trick(TrickType.DIFF3, ItemData.ADVANCED_BOX_C, 3, ItemData.ADVANCED_STEP, 18);
     public static final Trick ADVANCED_BOX_C_DIFF3_100K = new Trick(TrickType.DIFF3_100K, ItemData.ADVANCED_BOX_C, 3, ItemData.ADVANCED_STEP, 24);
+    public static final Trick ADVANCED_BOX_C_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.ADVANCED_BOX_C, 3, ItemData.MAGIC_BOX, 60);
     public static final Trick ADVANCED_BOX_C_DIFF4 = new Trick(TrickType.DIFF4, ItemData.ADVANCED_BOX_C, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick ADVANCED_BOX_C_SPECIAL_63 = new Trick(TrickType.SPECIAL_63, ItemData.ADVANCED_BOX_C, 1, ItemData.ADVANCED_STEP, 16);
     public static final Trick ADVANCED_BOX_C_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.ADVANCED_BOX_C, 1, ItemData.ADVANCED_STEP, 10);
@@ -303,9 +313,11 @@ public class TrickData {
     public static final Trick ADVANCED_BOX_S_SAME7 = new Trick(TrickType.SAME7, ItemData.ADVANCED_BOX_S, 10, ItemData.MAGIC_BOX, 24);
     public static final Trick ADVANCED_BOX_S_OOE = new Trick(TrickType.OOE, ItemData.ADVANCED_BOX_S, 10, ItemData.MAGIC_BOX, 10);
     public static final Trick ADVANCED_BOX_S_063 = new Trick(TrickType.NONE_63, ItemData.ADVANCED_BOX_S, 10, ItemData.MAGIC_BOX, 16);
+    public static final Trick ADVANCED_BOX_S_SAME2_63 = new Trick(TrickType.SAME2_63, ItemData.ADVANCED_BOX_S, 2, ItemData.MAGIC_BOX, 32);
     public static final Trick ADVANCED_BOX_S_EXTREME_300K = new Trick(TrickType.EXTREME_300K, ItemData.ADVANCED_BOX_S, 10, ItemData.ADVANCED_STEP, 36);
     public static final Trick ADVANCED_BOX_S_DIFF3 = new Trick(TrickType.DIFF3, ItemData.ADVANCED_BOX_S, 3, ItemData.ADVANCED_STEP, 18);
     public static final Trick ADVANCED_BOX_S_DIFF3_100K = new Trick(TrickType.DIFF3_100K, ItemData.ADVANCED_BOX_S, 3, ItemData.ADVANCED_STEP, 24);
+    public static final Trick ADVANCED_BOX_S_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.ADVANCED_BOX_S, 3, ItemData.MAGIC_BOX, 60);
     public static final Trick ADVANCED_BOX_S_DIFF4 = new Trick(TrickType.DIFF4, ItemData.ADVANCED_BOX_S, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick ADVANCED_BOX_S_SPECIAL_63 = new Trick(TrickType.SPECIAL_63, ItemData.ADVANCED_BOX_S, 1, ItemData.ADVANCED_STEP, 16);
     public static final Trick ADVANCED_BOX_S_CHOICE_31 = new Trick(TrickType.CHOICE_31, ItemData.ADVANCED_BOX_S, 1, ItemData.ADVANCED_STEP, 10);
@@ -324,8 +336,10 @@ public class TrickData {
     public static final Trick DELUXE_BOX_SAME7 = new Trick(TrickType.SAME7, ItemData.DELUXE_BOX, 10, ItemData.MAGIC_BOX, 20);
     public static final Trick DELUXE_BOX_OOE = new Trick(TrickType.OOE, ItemData.DELUXE_BOX, 10, ItemData.MAGIC_BOX, 10);
     public static final Trick DELUXE_BOX_052 = new Trick(TrickType.NONE_52, ItemData.DELUXE_BOX, 10, ItemData.MAGIC_BOX, 48);
+    public static final Trick DELUXE_BOX_SAME2_52 = new Trick(TrickType.SAME2_52, ItemData.DELUXE_BOX, 2, ItemData.MAGIC_BOX, 48);
     public static final Trick DELUXE_BOX_EXTREME_500K = new Trick(TrickType.EXTREME_500K, ItemData.DELUXE_BOX, 10, ItemData.ADVANCED_STEP, 38);
     public static final Trick DELUXE_BOX_DIFF3 = new Trick(TrickType.DIFF3, ItemData.DELUXE_BOX, 3, ItemData.ADVANCED_STEP, 28);
+    public static final Trick DELUXE_BOX_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.DELUXE_BOX, 3, ItemData.MAGIC_BOX, 60);
     public static final Trick DELUXE_BOX_DIFF4 = new Trick(TrickType.DIFF4, ItemData.DELUXE_BOX, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick DELUXE_BOX_SPECIAL_52 = new Trick(TrickType.SPECIAL_52, ItemData.DELUXE_BOX, 1, ItemData.ADVANCED_STEP, 16);
     public static final Trick DELUXE_BOX_CHOICE_21 = new Trick(TrickType.CHOICE_21, ItemData.DELUXE_BOX, 1, ItemData.ADVANCED_STEP, 8);
@@ -343,9 +357,11 @@ public class TrickData {
     public static final Trick DELUXE_BOX_2_SAME6 = new Trick(TrickType.SAME6, ItemData.DELUXE_BOX_2, 10, ItemData.ADVANCED_STEP, 48);
     public static final Trick DELUXE_BOX_2_SAME7 = new Trick(TrickType.SAME7, ItemData.DELUXE_BOX_2, 10, ItemData.MAGIC_BOX, 20);
     public static final Trick DELUXE_BOX_2_OOE = new Trick(TrickType.OOE, ItemData.DELUXE_BOX_2, 10, ItemData.MAGIC_BOX, 10);
-    public static final Trick DELUXE_BOX_2_082 = new Trick(TrickType.NONE_82, ItemData.DELUXE_BOX_2, 10, ItemData.MAGIC_BOX, 60);
+    public static final Trick DELUXE_BOX_2_082 = new Trick(TrickType.NONE_82, ItemData.DELUXE_BOX_2, 10, ItemData.MAGIC_BOX, 88);
+    public static final Trick DELUXE_BOX_2_SAME2_82 = new Trick(TrickType.SAME2_82, ItemData.DELUXE_BOX_2, 2, ItemData.MAGIC_BOX, 60);
     public static final Trick DELUXE_BOX_2_EXTREME_500K = new Trick(TrickType.EXTREME_500K, ItemData.DELUXE_BOX_2, 10, ItemData.ADVANCED_STEP, 38);
     public static final Trick DELUXE_BOX_2_DIFF3 = new Trick(TrickType.DIFF3, ItemData.DELUXE_BOX_2, 3, ItemData.ADVANCED_STEP, 28);
+    public static final Trick DELUXE_BOX_2_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.DELUXE_BOX_2, 3, ItemData.MAGIC_BOX, 66);
     public static final Trick DELUXE_BOX_2_DIFF4 = new Trick(TrickType.DIFF4, ItemData.DELUXE_BOX_2, 4, ItemData.MAGIC_BOX, 8);
     public static final Trick DELUXE_BOX_2_SPECIAL_82 = new Trick(TrickType.SPECIAL_82, ItemData.DELUXE_BOX_2, 1, ItemData.ADVANCED_STEP, 16);
     public static final Trick DELUXE_BOX_2_CHOICE_21 = new Trick(TrickType.CHOICE_21, ItemData.DELUXE_BOX_2, 1, ItemData.ADVANCED_STEP, 8);
@@ -364,8 +380,10 @@ public class TrickData {
     public static final Trick DELUXE_BOX_S_SAME7 = new Trick(TrickType.SAME7, ItemData.DELUXE_BOX_S, 10, ItemData.MAGIC_BOX, 26);
     public static final Trick DELUXE_BOX_S_OOE = new Trick(TrickType.OOE, ItemData.DELUXE_BOX_S, 10, ItemData.MAGIC_BOX, 12);
     public static final Trick DELUXE_BOX_S_052 = new Trick(TrickType.NONE_52, ItemData.DELUXE_BOX_S, 10, ItemData.MAGIC_BOX, 60);
+    public static final Trick DELUXE_BOX_S_SAME2_52 = new Trick(TrickType.SAME2_52, ItemData.DELUXE_BOX_S, 2, ItemData.MAGIC_BOX, 60);
     public static final Trick DELUXE_BOX_S_EXTREME_500K = new Trick(TrickType.EXTREME_500K, ItemData.DELUXE_BOX_S, 10, ItemData.ADVANCED_STEP, 46);
     public static final Trick DELUXE_BOX_S_DIFF3 = new Trick(TrickType.DIFF3, ItemData.DELUXE_BOX_S, 3, ItemData.ADVANCED_STEP, 36);
+    public static final Trick DELUXE_BOX_S_DIFF3_VALUE = new Trick(TrickType.DIFF3_VALUE, ItemData.DELUXE_BOX_S, 3, ItemData.MAGIC_BOX, 88);
     public static final Trick DELUXE_BOX_S_DIFF4 = new Trick(TrickType.DIFF4, ItemData.DELUXE_BOX_S, 4, ItemData.MAGIC_BOX, 12);
     public static final Trick DELUXE_BOX_S_SPECIAL_52 = new Trick(TrickType.SPECIAL_52, ItemData.DELUXE_BOX_S, 1, ItemData.ADVANCED_STEP, 20);
     public static final Trick DELUXE_BOX_S_CHOICE_21 = new Trick(TrickType.CHOICE_21, ItemData.DELUXE_BOX_S, 1, ItemData.ADVANCED_STEP, 12);
@@ -471,6 +489,7 @@ public class TrickData {
 
         // 大盒子
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_SAME2, 200));
+        trickSampler.addModel(new SampleModel<>(REGULAR_BOX_DIFF2_VALUE, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_SAME3, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_SAME4, 150));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_DISORDER_123, 200));
@@ -496,6 +515,7 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_CHOICE_31, 200));
 
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_SAME2, 200));
+        trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_DIFF2_VALUE, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_SAME3, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_SAME4, 150));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_DISORDER_123, 200));
@@ -520,6 +540,7 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_2_CHOICE_31, 200));
 
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_C_SAME2, 200));
+        trickSampler.addModel(new SampleModel<>(REGULAR_BOX_C_DIFF2_VALUE, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_C_SAME3, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_C_SAME4, 150));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_C_DISORDER_123, 200));
@@ -563,6 +584,7 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_M_DIFF4, 150));
 
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_S_SAME2, 200));
+        trickSampler.addModel(new SampleModel<>(REGULAR_BOX_S_DIFF2_VALUE, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_S_SAME3, 200));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_S_SAME4, 150));
         trickSampler.addModel(new SampleModel<>(REGULAR_BOX_S_DISORDER_123, 200));
@@ -604,8 +626,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_EXTREME_300K, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_DIFF3, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_DIFF3_100K, 200));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_063, 80));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_SAME2_63, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_SPECIAL_63, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_CHOICE_31, 200));
 
@@ -625,8 +649,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_EXTREME_300K, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_DIFF3, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_DIFF3_100K, 200));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_093, 80));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_SAME2_93, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_SPECIAL_93, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_2_CHOICE_31, 200));
 
@@ -646,8 +672,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_EXTREME_500K, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_DIFF3, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_DIFF3_100K, 200));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_063, 80));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_SAME2_63, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_SPECIAL_63, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_C_CHOICE_31, 200));
 
@@ -674,8 +702,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_EXTREME_300K, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_DIFF3, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_DIFF3_100K, 200));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_063, 80));
+        trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_SAME2_63, 40));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_SPECIAL_63, 200));
         trickSampler.addModel(new SampleModel<>(ADVANCED_BOX_S_CHOICE_31, 200));
 
@@ -694,8 +724,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_SAME7, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_OOE, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_052, 40));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_SAME2_52, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_EXTREME_500K, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_DIFF3, 200));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_SPECIAL_52, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_CHOICE_21, 200));
@@ -714,8 +746,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_SAME7, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_OOE, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_082, 40));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_SAME2_82, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_EXTREME_500K, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_DIFF3, 200));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_SPECIAL_82, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_2_CHOICE_21, 200));
@@ -734,8 +768,10 @@ public class TrickData {
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_SAME7, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_OOE, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_052, 40));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_SAME2_52, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_EXTREME_500K, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_DIFF3, 200));
+        trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_DIFF3_VALUE, 40));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_DIFF4, 80));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_SPECIAL_52, 200));
         trickSampler.addModel(new SampleModel<>(DELUXE_BOX_S_CHOICE_21, 200));

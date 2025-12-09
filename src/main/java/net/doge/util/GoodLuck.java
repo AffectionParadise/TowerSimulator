@@ -10,13 +10,14 @@ import java.util.List;
  */
 public class GoodLuck {
     public static void main(String[] args) {
-//        Integer[] g = {1, 2, 3, 4};
-        // 1234 单双 3下 063
         // 单双 1234 3下 111
-        Integer[] g = {1, 2, 3};
+        // 31 63
+        // 21 52
+        Integer[] g = {1, 2, 3, 4};
+//        Integer[] g = {1, 2};
         List<Integer> list = Arrays.asList(g);
 
-        for (int j = 1, t = 4; j <= t; j++) {
+        for (int j = 1, t = 1; j <= t; j++) {
             shuffle(list);
 //            if(list.get(2) == rnd.nextInt(3)+1) System.out.print("中 ");
 //            else System.out.print("补 ");
