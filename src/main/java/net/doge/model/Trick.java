@@ -36,11 +36,11 @@ public class Trick {
         return String.format("送出 %s 个%s，出现%s", numExpected, itemExpected.getName(), type.getName());
     }
 
-    public void accept(GiftRecord record) {
-        if (accepted) return;
+    public boolean accept(GiftRecord record) {
+        if (accepted) return false;
         Item itemPresented = record.getItemPresented();
         int numPresented = record.getNumPresented();
-        if (!itemPresented.equals(itemExpected) || numPresented != numExpected) return;
+        if (!itemPresented.equals(itemExpected) || numPresented != numExpected) return false;
         List<GiftResult> results = record.getResults();
         boolean accepted = false;
         switch (type) {
@@ -83,6 +83,18 @@ public class Trick {
             case SAME7:
                 accepted = isSameN(results, 7);
                 break;
+            case SAME7_BELOW:
+                accepted = isSameNBelow(results, 7);
+                break;
+            case SAME8:
+                accepted = isSameN(results, 8);
+                break;
+            case SAME9:
+                accepted = isSameN(results, 9);
+                break;
+            case SAME10:
+                accepted = isSameN(results, 10);
+                break;
             case OOE:
                 accepted = isOOE(results, 1) || isOOE(results, 0);
                 break;
@@ -100,6 +112,9 @@ public class Trick {
                 break;
             case EXTREME_500K:
                 accepted = isExtreme(results, 500000);
+                break;
+            case DIFF2_1K:
+                accepted = results.size() == 2 && isAllValue(results, 1000);
                 break;
             case DIFF3:
                 accepted = results.size() == 3;
@@ -159,6 +174,7 @@ public class Trick {
                 break;
         }
         this.accepted = accepted;
+        return accepted;
     }
 
     // 重置

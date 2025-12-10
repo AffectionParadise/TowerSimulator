@@ -36,8 +36,13 @@ public class Tussle {
         return status == TussleStatus.PROGRESSING;
     }
 
+    // 是否超时
+    public boolean isTimeout() {
+        return duration < (System.currentTimeMillis() - startTs) / 1000;
+    }
+
     // 是否达标
-    public boolean isSuccess() {
+    public boolean isSucceeded() {
         return currValue >= targetValue;
     }
 

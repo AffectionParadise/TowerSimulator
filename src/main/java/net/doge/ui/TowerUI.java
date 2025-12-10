@@ -81,19 +81,19 @@ public class TowerUI extends JFrame {
 //            int t = 1;
 //            if (instantMotion && autoMoveTimer.getDelay() == 0) t = 10000;
 //            for (int i = 0; i < t; i++) {
-                int wx = -1, wy = -1;
-                // 搜索其他优先拾取的物品
-                int[] p = findPreferential();
+            int wx = -1, wy = -1;
+            // 搜索其他优先拾取的物品
+            int[] p = findPreferential();
+            wx = p[0];
+            wy = p[1];
+            // 选取离终点最近的激活点
+            Tower tower = TowerData.currTower;
+            if (wx < 0 || wy < 0) {
+                p = findNearestExplorable(tower.r - 1, tower.c - 1);
                 wx = p[0];
                 wy = p[1];
-                // 选取离终点最近的激活点
-                Tower tower = TowerData.currTower;
-                if (wx < 0 || wy < 0) {
-                    p = findNearestExplorable(tower.r - 1, tower.c - 1);
-                    wx = p[0];
-                    wy = p[1];
-                }
-                move(tower.x, tower.y, wx, wy);
+            }
+            move(tower.x, tower.y, wx, wy);
 //            }
         });
 
@@ -299,7 +299,10 @@ public class TowerUI extends JFrame {
                 // 判断竞猜
                 if (quiz.isCompatible(tower)) {
                     if (quiz.isStatus(QuizStatus.WAITING)) quiz.setStatus(QuizStatus.PROGRESSING);
-                    else if (quiz.isStatus(QuizStatus.PROGRESSING)) quiz.setStatus(QuizStatus.OVER);
+                    else if (quiz.isStatus(QuizStatus.PROGRESSING)) {
+                        quiz.setStatus(QuizStatus.OVER);
+                        new TipDialog(this, "有新的走塔竞猜结果", GColor.LIGHT_BLUE);
+                    }
                 }
             } else if (TowerData.isDeluxeTower(tower)) {
                 DataStorage.add(StorageKey.DELUXE_TOWER_CLEARED, 1);
@@ -397,7 +400,11 @@ public class TowerUI extends JFrame {
             if (blockItem.isSkin()) DataStorage.add(StorageKey.SHOW_EXP, num * blockItem.getShowExp());
             // 角逐
             Tussle tussle = TussleData.currTussle;
-            if (tussle.isProgressing()) tussle.addCurrValue(num * blockItem.getValue());
+            if (tussle.isProgressing()) {
+                tussle.addCurrValue(num * blockItem.getValue());
+                if (tussle.isSucceeded() && !tussle.isTimeout())
+                    new TipDialog(this, "有新的走塔角逐任务完成", GColor.DARK_PURPLE);
+            }
             // 背包
             tower.getBackpackStorage().add(key, num);
             if (blockItem.equals(stepItem)) updateItemAmountAndView(stepItem, 0);
@@ -412,6 +419,7 @@ public class TowerUI extends JFrame {
                     account.setVip(null);
                     account.setVipStepLeft(0);
                     updateBlockStyle();
+                    new TipDialog(this, "会员特权已结束", GColor.LIGHT_BLUE);
                 }
             }
         }

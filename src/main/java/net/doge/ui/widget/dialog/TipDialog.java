@@ -20,30 +20,41 @@ public class TipDialog extends JDialog {
     private String message;
     private GPanel globalPanel = new GPanel();
     private GLabel messageLabel = new GLabel(message);
+    private GColor bgColor;
 
     private Timer showTimer;
     private Timer closeTimer;
 
 
     public TipDialog(Frame frame, String message) {
-        this(frame, message, 1000);
+        this(frame, message, 1000, GColor.DARK_RED);
     }
 
-    public TipDialog(Dialog dialog, String message) {
-        this(dialog, message, 1000);
+    public TipDialog(Frame frame, String message, GColor bgColor) {
+        this(frame, message, 1000, bgColor);
     }
 
-    public TipDialog(Frame frame, String message, int ms) {
+    public TipDialog(Frame frame, String message, int ms, GColor bgColor) {
         super(frame, false);
         this.message = message;
         this.ms = ms;
+        this.bgColor = bgColor;
         init();
     }
 
-    public TipDialog(Dialog dialog, String message, int ms) {
+    public TipDialog(Dialog dialog, String message) {
+        this(dialog, message, 1000, GColor.DARK_RED);
+    }
+
+    public TipDialog(Dialog dialog, String message, GColor bgColor) {
+        this(dialog, message, 1000, bgColor);
+    }
+
+    public TipDialog(Dialog dialog, String message, int ms, GColor bgColor) {
         super(dialog, false);
         this.message = message;
         this.ms = ms;
+        this.bgColor = bgColor;
         init();
     }
 
@@ -62,7 +73,7 @@ public class TipDialog extends JDialog {
         messageLabel.setText(message);
         globalPanel.setLayout(new BorderLayout());
         globalPanel.setOpaque(false);
-        globalPanel.setBgColor(GColor.DARK_RED);
+        globalPanel.setBgColor(bgColor);
         globalPanel.add(messageLabel, BorderLayout.CENTER);
 
         setContentPane(globalPanel);

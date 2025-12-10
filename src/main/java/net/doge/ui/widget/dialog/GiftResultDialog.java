@@ -7,6 +7,7 @@ import net.doge.data.storage.GiftCensusStorage;
 import net.doge.data.storage.GiftRecordStorage;
 import net.doge.model.*;
 import net.doge.ui.TowerUI;
+import net.doge.ui.widget.color.GColor;
 import net.doge.util.MapUtil;
 
 import javax.swing.*;
@@ -91,7 +92,8 @@ public class GiftResultDialog extends GDialog<GiftResult> {
         GiftRecord record = new GiftRecord(item, num, results, totalValue, true, System.currentTimeMillis());
         GiftRecordStorage.add(record);
         // 判断盲盒福利
-        TrickData.currTrick.accept(record);
+        boolean done = TrickData.currTrick.accept(record);
+        if (done) new TipDialog(this, "有新的盲盒福利任务完成", GColor.DARK_PURPLE);
 
         setTitle("恭喜你，送出以下礼物");
 

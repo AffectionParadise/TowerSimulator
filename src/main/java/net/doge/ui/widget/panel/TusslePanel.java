@@ -70,7 +70,7 @@ public class TusslePanel extends GPanel {
                 if (!viewTimer.isRunning()) viewTimer.start();
                 break;
             case OVER:
-                if (tussle.isSuccess()) {
+                if (tussle.isSucceeded()) {
                     timeLabel.setText("已结束，恭喜达成目标！");
                     rewardLabel.setText(String.format("已完成，请领取奖励：%s", tussle.getNumReceived()));
                     rewardLabel.setIcon(IconUtil.getIcon(tussle.getItemReceived().getIconThumbKey()));
@@ -86,8 +86,8 @@ public class TusslePanel extends GPanel {
         timeLabel.setVisible(status != TussleStatus.SPARE);
         progress.setVisible(status != TussleStatus.SPARE);
         startBtn.setVisible(status == TussleStatus.SPARE);
-        receiveBtn.setVisible(status == TussleStatus.OVER && tussle.isSuccess());
-        nextTurnBtn.setVisible(status == TussleStatus.OVER && !tussle.isSuccess());
+        receiveBtn.setVisible(status == TussleStatus.OVER && tussle.isSucceeded());
+        nextTurnBtn.setVisible(status == TussleStatus.OVER && !tussle.isSucceeded());
     }
 
     private void updateTimeView() {
