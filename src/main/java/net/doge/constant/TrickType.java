@@ -49,6 +49,8 @@ public enum TrickType {
     ALL10K("全十"),
     // 爆 10K
     EXTREME_10K("爆 10K"),
+    // 0 大
+    NO_100K(" 0 大"),
     // 爆大
     EXTREME_100K("爆大"),
     // 爆 300K
@@ -75,6 +77,10 @@ public enum TrickType {
     DIFF4_VALUE(" 4 不同价值"),
     // 4 不同
     DIFF4(" 4 不同"),
+    // 5 不同
+    DIFF5(" 5 不同"),
+    // 6 不同
+    DIFF6(" 6 不同"),
     // 06/3
     NONE_63("无 6/3"),
     // 09/3

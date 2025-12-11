@@ -104,6 +104,9 @@ public class Trick {
             case EXTREME_10K:
                 accepted = isExtreme(results, 10000);
                 break;
+            case NO_100K:
+                accepted = !isExtreme(results, 100000);
+                break;
             case EXTREME_100K:
                 accepted = isExtreme(results, 100000);
                 break;
@@ -142,6 +145,12 @@ public class Trick {
                 break;
             case DIFF4:
                 accepted = results.size() == 4;
+                break;
+            case DIFF5:
+                accepted = results.size() == 5;
+                break;
+            case DIFF6:
+                accepted = results.size() == 6;
                 break;
             case NONE_63:
             case NONE_93:
