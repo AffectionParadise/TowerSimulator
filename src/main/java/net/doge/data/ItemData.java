@@ -1434,7 +1434,7 @@ public class ItemData {
         regularGiftNS.addModelsLinearWeights(ListUtil.ofRange(7, 10), 200, 100);
         Item regularGift = REGULAR_GIFT.clone();
         regularGift.setNumSampler(regularGiftNS);
-        deluxeTowerItemSampler.addModel(new SampleModel<>(regularGift, 1000));
+        deluxeTowerItemSampler.addModel(new SampleModel<>(regularGift, 1200));
 
         Sampler<Integer> statueNS = new Sampler<>();
         statueNS.addModelsLinearWeights(ListUtil.ofRange(2, 10), 2000, 1000);
@@ -2288,15 +2288,15 @@ public class ItemData {
     private static void initRB2SubItemSampler() {
         Item rb21Gift = RB21_GIFT.clone();
         rb21Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb21Gift, 28));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb21Gift, 26));
 
         Item rb22Gift = RB22_GIFT.clone();
         rb22Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb22Gift, 28));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb22Gift, 26));
 
         Item rb23Gift = RB23_GIFT.clone();
         rb23Gift.setBoxRegular(true);
-        rb2SubItemSampler.addModel(new SampleModel<>(rb23Gift, 28));
+        rb2SubItemSampler.addModel(new SampleModel<>(rb23Gift, 26));
 
         Item rb24Gift = RB24_GIFT.clone();
         rb24Gift.setMysterious(true);
@@ -2414,11 +2414,11 @@ public class ItemData {
         ab2SubItemSampler.addModel(new SampleModel<>(ab23Gift, 28));
 
         ab2SubItemSampler.addModel(new SampleModel<>(RB210_GIFT, 4));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 3));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB26_GIFT, 3));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 2));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 2));
-        ab2SubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 10));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 2));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB26_GIFT, 2));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 1));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 1));
+        ab2SubItemSampler.addModel(new SampleModel<>(AB6_GIFT, 6));
     }
 
     private static void initABCSubItemSampler() {
@@ -2488,22 +2488,22 @@ public class ItemData {
     }
 
     private static void initDB2SubItemSampler() {
-        db2SubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 5));
-        db2SubItemSampler.addModel(new SampleModel<>(DB22_GIFT, 5));
+        db2SubItemSampler.addModel(new SampleModel<>(DB1_GIFT, 25));
+        db2SubItemSampler.addModel(new SampleModel<>(DB22_GIFT, 25));
 
         Item db23Gift = DB2_GIFT.clone();
         db23Gift.setBoxRegular(true);
-        db2SubItemSampler.addModel(new SampleModel<>(db23Gift, 35));
+        db2SubItemSampler.addModel(new SampleModel<>(db23Gift, 350));
 
-        db2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 10));
+        db2SubItemSampler.addModel(new SampleModel<>(AB27_GIFT, 50));
 
         Item db25Gift = DB4_GIFT.clone();
         db25Gift.setBoxRegular(true);
-        db2SubItemSampler.addModel(new SampleModel<>(db25Gift, 35));
+        db2SubItemSampler.addModel(new SampleModel<>(db25Gift, 350));
 
-        db2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 10));
-        db2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 15));
-        db2SubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 15));
+        db2SubItemSampler.addModel(new SampleModel<>(AB28_GIFT, 50));
+        db2SubItemSampler.addModel(new SampleModel<>(AB25_GIFT, 75));
+        db2SubItemSampler.addModel(new SampleModel<>(DB5_GIFT, 75));
     }
 
     private static void initDBSSubItemSampler() {

@@ -101,20 +101,35 @@ public class Trick {
             case ALL10K:
                 accepted = isAllValue(results, 10000);
                 break;
+            case NO_10K:
+                accepted = notExtreme(results, 10000);
+                break;
             case EXTREME_10K:
-                accepted = isExtreme(results, 10000);
+                accepted = isExtreme(results, 10000, 1);
+                break;
+            case WM:
+                accepted = isWithMystery(results);
                 break;
             case NO_100K:
-                accepted = !isExtreme(results, 100000);
+                accepted = notExtreme(results, 100000);
                 break;
             case EXTREME_100K:
-                accepted = isExtreme(results, 100000);
+                accepted = isExtreme(results, 100000, 1);
+                break;
+            case EXTREME_100K_2:
+                accepted = isExtreme(results, 100000, 2);
+                break;
+            case NO_300K:
+                accepted = notExtreme(results, 300000);
                 break;
             case EXTREME_300K:
-                accepted = isExtreme(results, 300000);
+                accepted = isExtreme(results, 300000, 1);
+                break;
+            case NO_500K:
+                accepted = notExtreme(results, 500000);
                 break;
             case EXTREME_500K:
-                accepted = isExtreme(results, 500000);
+                accepted = isExtreme(results, 500000, 1);
                 break;
             case DIFF2_1K:
                 accepted = results.size() == 2 && isAllValue(results, 1000);
@@ -133,6 +148,9 @@ public class Trick {
                 break;
             case DIFF3_100K:
                 accepted = results.size() == 3 && isAllValue(results, 100000);
+                break;
+            case DIFF3_300K:
+                accepted = results.size() == 3 && isAllValue(results, 300000);
                 break;
             case DIFF2_VALUE:
                 accepted = results.size() == 2 && isDiffValue(results);
@@ -300,12 +318,21 @@ public class Trick {
         return true;
     }
 
-    // 判断是否爆指定价值礼物
-    private boolean isExtreme(List<GiftResult> results, int value) {
+    // 判断是否没爆指定价值礼物
+    private boolean notExtreme(List<GiftResult> results, int value) {
         for (GiftResult result : results) {
-            if (result.getItem().getValue() == value) return true;
+            if (result.getItem().getValue() == value) return false;
         }
-        return false;
+        return true;
+    }
+
+    // 判断是否爆指定价值礼物
+    private boolean isExtreme(List<GiftResult> results, int value, int minNum) {
+        int num = 0;
+        for (GiftResult result : results) {
+            if (result.getItem().getValue() == value) num += result.getNum();
+        }
+        return num >= minNum;
     }
 
     // 判断是否不同价值
