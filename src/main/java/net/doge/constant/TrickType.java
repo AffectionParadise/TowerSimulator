@@ -9,6 +9,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum TrickType {
+    // 一雨一诺
+    A_1P1("一雨一诺"),
+    // 一河一港
+    D_1P1("一河一港"),
     // 双胞胎
     SAME2("双胞胎"),
     // 123

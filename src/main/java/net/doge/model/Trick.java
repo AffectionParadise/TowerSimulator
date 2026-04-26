@@ -3,6 +3,7 @@ package net.doge.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import net.doge.constant.TrickType;
+import net.doge.data.ItemData;
 
 import java.util.*;
 
@@ -44,6 +45,12 @@ public class Trick {
         List<GiftResult> results = record.getResults();
         boolean accepted = false;
         switch (type) {
+            case A_1P1:
+                accepted = hasGift(results, ItemData.AB1_GIFT, ItemData.AB3_GIFT);
+                break;
+            case D_1P1:
+                accepted = hasGift(results, ItemData.DB2_GIFT, ItemData.DB4_GIFT);
+                break;
             case SAME2:
                 accepted = isSameN(results, 2);
                 break;
@@ -218,6 +225,16 @@ public class Trick {
     // 是否已选择
     public boolean isItemChosen() {
         return itemChosen != null;
+    }
+
+    // 判断是否同时包含指定礼物
+    private boolean hasGift(List<GiftResult> results, Item... items) {
+        Set<Item> set = new HashSet<>();
+        for (GiftResult result : results) set.add(result.getItem());
+        for (Item item : items) {
+            if (!set.contains(item)) return false;
+        }
+        return true;
     }
 
     // 判断是否为 n 胞胎及以上

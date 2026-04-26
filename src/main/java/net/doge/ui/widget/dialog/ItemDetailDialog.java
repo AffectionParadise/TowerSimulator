@@ -2,17 +2,21 @@ package net.doge.ui.widget.dialog;
 
 import net.doge.constant.IconKey;
 import net.doge.model.Item;
+import net.doge.model.SampleModel;
+import net.doge.model.Sampler;
 import net.doge.ui.TowerUI;
 import net.doge.ui.widget.label.GLabel;
 import net.doge.ui.widget.panel.GPanel;
 import net.doge.util.IconUtil;
+import net.doge.util.StrUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
-public class ItemDetailDialog extends GDialog<Item> {
+public class ItemDetailDialog extends GDialog<SampleModel<Item>> {
     private GPanel centerPanel = new GPanel();
     private GPanel itemPanel = new GPanel();
     private GLabel itemLabel = new GLabel();
@@ -36,10 +40,28 @@ public class ItemDetailDialog extends GDialog<Item> {
         return new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                Item item = (Item) value;
-                return createCellPanel(item.getName(), item.getIconKey(), "", isSelected);
+                SampleModel<Item> model = (SampleModel<Item>) value;
+                Item it = model.getItem();
+                // 盒子中物品显示概率
+                String bottomText = StrUtil.formatPercentage(model.getWeight() / findBoxItemSampler(it).getWeightSum());
+                return createCellPanel(it.getName(), it.getIconKey(), bottomText, isSelected);
             }
         };
+    }
+
+    // 根据子物品查找盒子物品生成器
+    private Sampler<Item> findBoxItemSampler(Item it) {
+        Sampler<Item> subItemSampler = item.getSubItemSampler();
+        for (SampleModel<Item> sampleModel : subItemSampler.getModels()) {
+            if (it.equals(sampleModel.getItem())) return subItemSampler;
+        }
+        List<Sampler<Item>> extraSubItemSamplers = item.getExtraSubItemSamplers();
+        for (Sampler<Item> extraSubItemSampler : extraSubItemSamplers) {
+            for (SampleModel<Item> sampleModel : extraSubItemSampler.getModels()) {
+                if (it.equals(sampleModel.getItem())) return extraSubItemSampler;
+            }
+        }
+        return null;
     }
 
     public void init() {
@@ -53,12 +75,12 @@ public class ItemDetailDialog extends GDialog<Item> {
 
         int sh = 30;
         if (item.isBox()) {
-            item.getSubItemSampler().getModels().forEach(model -> listModel.addElement(model.getItem()));
+            item.getSubItemSampler().getModels().forEach(model -> listModel.addElement(model));
             // 多爆盒子物品
             if (item.isPackedBox()) {
                 item.getExtraSubItemSamplers().forEach(sampler -> {
                     sampler.getModels().forEach(model -> {
-                        if (!model.isEmpty()) listModel.addElement(model.getItem());
+                        if (!model.isEmpty()) listModel.addElement(model);
                     });
                 });
                 tipLabel.setText("开启该盲盒有机会送出以下礼物，每次有机会获得多个礼物：");
@@ -116,9 +138,9 @@ public class ItemDetailDialog extends GDialog<Item> {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                Item item = list.getSelectedValue();
-                if (item == null || e.getClickCount() != 2) return;
-                new ItemDetailDialog(ui, item);
+                SampleModel<Item> model = list.getSelectedValue();
+                if (model == null || e.getClickCount() != 2) return;
+                new ItemDetailDialog(ui, model.getItem());
             }
         });
 
