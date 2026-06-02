@@ -56,7 +56,9 @@ public class NobleData {
         nobles.add(new Noble("神5", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 77656000));
         nobles.add(new Noble("神6", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 90456000));
         nobles.add(new Noble("神7", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 108456000));
-        nobles.add(new Noble("神8", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 122456000));
+        nobles.add(new Noble("神8", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 126456000));
+        nobles.add(new Noble("神9", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 156456000));
+        nobles.add(new Noble("神10", IconKey.NOBLE7, GColor.NOBLE7_HIGHLIGHT, ItemData.ADVANCED_COIN, 206456000));
     }
 
     public static int find(Noble noble) {

@@ -47,6 +47,8 @@ public enum IconKey {
     CASTLE_TREASURE("CastleTreasure"),
     // 嘉年密藏
     CARNIVAL_TREASURE("CarnivalTreasure"),
+    // 电玩密藏
+    PLAY_TREASURE("PlayTreasure"),
     // 蘑菇金库
     MR_TREASURE("MRTreasure"),
     // 翻倍
@@ -126,12 +128,14 @@ public enum IconKey {
     BASIC_BOX_C("BasicBoxC"),
     BASIC_BOX_M("BasicBoxM"),
     BASIC_BOX_S("BasicBoxS"),
+    BASIC_BOX_P("BasicBoxP"),
     // 大盒子
     REGULAR_BOX("RegularBox"),
     REGULAR_BOX_2("RegularBox2"),
     REGULAR_BOX_C("RegularBoxC"),
     REGULAR_BOX_M("RegularBoxM"),
     REGULAR_BOX_S("RegularBoxS"),
+    REGULAR_BOX_P("RegularBoxP"),
     // 大礼物宝盒
     RANDOM_GIFT_GROUP("RandomGiftGroup"),
     // 全屏
@@ -140,20 +144,24 @@ public enum IconKey {
     ADVANCED_BOX_C("AdvancedBoxC"),
     ADVANCED_BOX_M("AdvancedBoxM"),
     ADVANCED_BOX_S("AdvancedBoxS"),
+    ADVANCED_BOX_P("AdvancedBoxP"),
     // 辉煌
     DELUXE_BOX("DeluxeBox"),
     DELUXE_BOX_2("DeluxeBox2"),
     DELUXE_BOX_S("DeluxeBoxS"),
+    DELUXE_BOX_P("DeluxeBoxP"),
     // 1m
     ADVANCED_GIFT("AdvancedGift"),
     ADVANCED_GIFT_21("AdvancedGift21"),
     ADVANCED_GIFT_C("AdvancedGiftC"),
     ADVANCED_GIFT_M("AdvancedGiftM"),
     ADVANCED_GIFT_S("AdvancedGiftS"),
+    ADVANCED_GIFT_P("AdvancedGiftP"),
     // 500k
     ADVANCED_GIFT_2("AdvancedGift2"),
     ADVANCED_GIFT_22("AdvancedGift22"),
     ADVANCED_GIFT_S2("AdvancedGiftS2"),
+    ADVANCED_GIFT_P2("AdvancedGiftP2"),
     // 1.5m
     ADVANCED_GIFT_23("AdvancedGift23"),
     // 情定爱琴海
@@ -205,21 +213,25 @@ public enum IconKey {
     RBC1_GIFT("rbc1Gift"),
     RBM1_GIFT("rbm1Gift"),
     RBS1_GIFT("rbs1Gift"),
+    RBP1_GIFT("rbp1Gift"),
     RB2_GIFT("rb2Gift"),
     RB22_GIFT("rb22Gift"),
     RBC2_GIFT("rbc2Gift"),
     RBM2_GIFT("rbm2Gift"),
     RBS2_GIFT("rbs2Gift"),
+    RBP2_GIFT("rbp2Gift"),
     RB3_GIFT("rb3Gift"),
     RB23_GIFT("rb23Gift"),
     RBC3_GIFT("rbc3Gift"),
     RBM3_GIFT("rbm3Gift"),
     RBS3_GIFT("rbs3Gift"),
+    RBP3_GIFT("rbp3Gift"),
     RB4_GIFT("rb4Gift"),
     RB24_GIFT("rb24Gift"),
     RBC4_GIFT("rbc4Gift"),
     RBM4_GIFT("rbm4Gift"),
     RBS4_GIFT("rbs4Gift"),
+    RBP4_GIFT("rbp4Gift"),
     RB5_GIFT("rb5Gift"),
     RB25_GIFT("rb25Gift"),
     RB6_GIFT("rb6Gift"),
@@ -231,6 +243,7 @@ public enum IconKey {
     RBC8_GIFT("rbc8Gift"),
     RBM8_GIFT("rbm8Gift"),
     RBS8_GIFT("rbs8Gift"),
+    RBP8_GIFT("rbp8Gift"),
     RB29_GIFT("rb29Gift"),
     RB210_GIFT("rb210Gift"),
 
@@ -242,6 +255,7 @@ public enum IconKey {
     AB25_GIFT("ab25Gift"),
     ABC5_GIFT("abc5Gift"),
     ABS5_GIFT("abs5Gift"),
+    ABP5_GIFT("abp5Gift"),
     AB6_GIFT("ab6Gift"),
     AB26_GIFT("ab26Gift"),
     ABM6_GIFT("abm6Gift"),
