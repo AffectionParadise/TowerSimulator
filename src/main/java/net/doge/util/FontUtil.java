@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 public class FontUtil {
     public static Font getFont(float size) {
         try {
-            FileInputStream in = new FileInputStream("font/MiSans.ttf");
+            FileInputStream in = new FileInputStream("font/MiSans-Bold.ttf");
             Font dynamicFont = Font.createFont(Font.TRUETYPE_FONT, in);
             Font dynamicFontPt = dynamicFont.deriveFont(size);
             in.close();

@@ -49,6 +49,8 @@ public enum IconKey {
     CARNIVAL_TREASURE("CarnivalTreasure"),
     // 电玩密藏
     PLAY_TREASURE("PlayTreasure"),
+    // 沧山密藏
+    WEATHERED_TREASURE("WeatheredTreasure"),
     // 蘑菇金库
     MR_TREASURE("MRTreasure"),
     // 翻倍
@@ -129,6 +131,7 @@ public enum IconKey {
     BASIC_BOX_M("BasicBoxM"),
     BASIC_BOX_S("BasicBoxS"),
     BASIC_BOX_P("BasicBoxP"),
+    BASIC_BOX_W("BasicBoxW"),
     // 大盒子
     REGULAR_BOX("RegularBox"),
     REGULAR_BOX_2("RegularBox2"),
@@ -136,6 +139,7 @@ public enum IconKey {
     REGULAR_BOX_M("RegularBoxM"),
     REGULAR_BOX_S("RegularBoxS"),
     REGULAR_BOX_P("RegularBoxP"),
+    REGULAR_BOX_W("RegularBoxW"),
     // 大礼物宝盒
     RANDOM_GIFT_GROUP("RandomGiftGroup"),
     // 全屏
@@ -145,11 +149,13 @@ public enum IconKey {
     ADVANCED_BOX_M("AdvancedBoxM"),
     ADVANCED_BOX_S("AdvancedBoxS"),
     ADVANCED_BOX_P("AdvancedBoxP"),
+    ADVANCED_BOX_W("AdvancedBoxW"),
     // 辉煌
     DELUXE_BOX("DeluxeBox"),
     DELUXE_BOX_2("DeluxeBox2"),
     DELUXE_BOX_S("DeluxeBoxS"),
     DELUXE_BOX_P("DeluxeBoxP"),
+    DELUXE_BOX_W("DeluxeBoxW"),
     // 1m
     ADVANCED_GIFT("AdvancedGift"),
     ADVANCED_GIFT_21("AdvancedGift21"),
@@ -157,11 +163,13 @@ public enum IconKey {
     ADVANCED_GIFT_M("AdvancedGiftM"),
     ADVANCED_GIFT_S("AdvancedGiftS"),
     ADVANCED_GIFT_P("AdvancedGiftP"),
+    ADVANCED_GIFT_W("AdvancedGiftW"),
     // 500k
     ADVANCED_GIFT_2("AdvancedGift2"),
     ADVANCED_GIFT_22("AdvancedGift22"),
     ADVANCED_GIFT_S2("AdvancedGiftS2"),
     ADVANCED_GIFT_P2("AdvancedGiftP2"),
+    ADVANCED_GIFT_W2("AdvancedGiftW2"),
     // 1.5m
     ADVANCED_GIFT_23("AdvancedGift23"),
     // 情定爱琴海
@@ -182,12 +190,16 @@ public enum IconKey {
     DELUXE_GIFT_8("DeluxeGift8"),
     // 玫瑰跑车-金乌
     DELUXE_GIFT_9("DeluxeGift9"),
+    // 太乙·皆为虚妄
+    DELUXE_GIFT_10("DeluxeGift10"),
     // 起源·应龙
     ULTIMATE_GIFT("UltimateGift"),
     // 起源·黑洞
     ULTIMATE_GIFT_2("UltimateGift2"),
     // 起源·银河
     ULTIMATE_GIFT_3("UltimateGift3"),
+    // 起源·星陨
+    ULTIMATE_GIFT_4("UltimateGift4"),
     // 嘉年华孢子兑换券
     TICKET("Ticket"),
     // 好吃的骨头
@@ -214,36 +226,47 @@ public enum IconKey {
     RBM1_GIFT("rbm1Gift"),
     RBS1_GIFT("rbs1Gift"),
     RBP1_GIFT("rbp1Gift"),
+    RBW1_GIFT("rbw1Gift"),
+
     RB2_GIFT("rb2Gift"),
     RB22_GIFT("rb22Gift"),
     RBC2_GIFT("rbc2Gift"),
     RBM2_GIFT("rbm2Gift"),
     RBS2_GIFT("rbs2Gift"),
     RBP2_GIFT("rbp2Gift"),
+    RBW2_GIFT("rbw2Gift"),
+
     RB3_GIFT("rb3Gift"),
     RB23_GIFT("rb23Gift"),
     RBC3_GIFT("rbc3Gift"),
     RBM3_GIFT("rbm3Gift"),
     RBS3_GIFT("rbs3Gift"),
     RBP3_GIFT("rbp3Gift"),
+    RBW3_GIFT("rbw3Gift"),
+
     RB4_GIFT("rb4Gift"),
     RB24_GIFT("rb24Gift"),
     RBC4_GIFT("rbc4Gift"),
     RBM4_GIFT("rbm4Gift"),
     RBS4_GIFT("rbs4Gift"),
     RBP4_GIFT("rbp4Gift"),
+    RBW4_GIFT("rbw4Gift"),
+
     RB5_GIFT("rb5Gift"),
     RB25_GIFT("rb25Gift"),
     RB6_GIFT("rb6Gift"),
     RB26_GIFT("rb26Gift"),
     RB7_GIFT("rb7Gift"),
     RB27_GIFT("rb27Gift"),
+
     RB8_GIFT("rb8Gift"),
     RB28_GIFT("rb28Gift"),
     RBC8_GIFT("rbc8Gift"),
     RBM8_GIFT("rbm8Gift"),
     RBS8_GIFT("rbs8Gift"),
     RBP8_GIFT("rbp8Gift"),
+    RBW8_GIFT("rbw8Gift"),
+
     RB29_GIFT("rb29Gift"),
     RB210_GIFT("rb210Gift"),
 
@@ -256,6 +279,7 @@ public enum IconKey {
     ABC5_GIFT("abc5Gift"),
     ABS5_GIFT("abs5Gift"),
     ABP5_GIFT("abp5Gift"),
+    ABW5_GIFT("abw5Gift"),
     AB6_GIFT("ab6Gift"),
     AB26_GIFT("ab26Gift"),
     ABM6_GIFT("abm6Gift"),

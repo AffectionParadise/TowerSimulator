@@ -36,6 +36,8 @@ public class EventData {
     public static final Event CARNIVAL_TREASURE = new Event(TowerData.CARNIVAL_TREASURE);
     // 电玩密藏
     public static final Event PLAY_TREASURE = new Event(TowerData.PLAY_TREASURE);
+    // 沧山密藏
+    public static final Event WEATHERED_TREASURE = new Event(TowerData.WEATHERED_TREASURE);
     // 蘑菇塔
     public static final Event MR_TREASURE = new Event(TowerData.MR_TREASURE);
 
@@ -54,6 +56,7 @@ public class EventData {
         eventSampler.addModel(new SampleModel<>(CASTLE_TREASURE, 20));
         eventSampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 20));
         eventSampler.addModel(new SampleModel<>(PLAY_TREASURE, 20));
+        eventSampler.addModel(new SampleModel<>(WEATHERED_TREASURE, 20));
         eventSampler.addModel(new SampleModel<>(MR_TREASURE, 20));
 
         event2Sampler.addModel(new SampleModel<>(NOTHING, 30000));
@@ -66,6 +69,7 @@ public class EventData {
         event2Sampler.addModel(new SampleModel<>(CASTLE_TREASURE, 20));
         event2Sampler.addModel(new SampleModel<>(CARNIVAL_TREASURE, 20));
         event2Sampler.addModel(new SampleModel<>(PLAY_TREASURE, 20));
+        event2Sampler.addModel(new SampleModel<>(WEATHERED_TREASURE, 20));
         event2Sampler.addModel(new SampleModel<>(MR_TREASURE, 20));
     }
 
@@ -93,6 +97,7 @@ public class EventData {
                 || event == CASTLE_TREASURE
                 || event == CARNIVAL_TREASURE
                 || event == PLAY_TREASURE
+                || event == WEATHERED_TREASURE
                 || event == MR_TREASURE;
     }
 }

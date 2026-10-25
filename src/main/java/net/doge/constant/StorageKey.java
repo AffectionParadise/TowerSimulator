@@ -70,6 +70,7 @@ public enum StorageKey {
     BASIC_BOX_M_NUM("basicBoxMNum"),
     BASIC_BOX_S_NUM("basicBoxSNum"),
     BASIC_BOX_P_NUM("basicBoxPNum"),
+    BASIC_BOX_W_NUM("basicBoxWNum"),
     // 大盒子数量
     REGULAR_BOX_NUM("RegularBoxNum"),
     REGULAR_BOX_2_NUM("RegularBox2Num"),
@@ -77,6 +78,7 @@ public enum StorageKey {
     REGULAR_BOX_M_NUM("RegularBoxMNum"),
     REGULAR_BOX_S_NUM("RegularBoxSNum"),
     REGULAR_BOX_P_NUM("RegularBoxPNum"),
+    REGULAR_BOX_W_NUM("RegularBoxWNum"),
     // 全屏数量
     ADVANCED_BOX_NUM("AdvancedBoxNum"),
     ADVANCED_BOX_2_NUM("AdvancedBox2Num"),
@@ -84,11 +86,13 @@ public enum StorageKey {
     ADVANCED_BOX_M_NUM("AdvancedBoxMNum"),
     ADVANCED_BOX_S_NUM("AdvancedBoxSNum"),
     ADVANCED_BOX_P_NUM("AdvancedBoxPNum"),
+    ADVANCED_BOX_W_NUM("AdvancedBoxWNum"),
     // 辉煌数量
     DELUXE_BOX_NUM("DeluxeBoxNum"),
     DELUXE_BOX_2_NUM("DeluxeBox2Num"),
     DELUXE_BOX_S_NUM("DeluxeBoxSNum"),
     DELUXE_BOX_P_NUM("DeluxeBoxPNum"),
+    DELUXE_BOX_W_NUM("DeluxeBoxWNum"),
     // 1m 数量
     ADVANCED_GIFT_NUM("AdvancedGiftNum"),
     ADVANCED_GIFT_21_NUM("AdvancedGift21Num"),
@@ -96,11 +100,13 @@ public enum StorageKey {
     ADVANCED_GIFT_M_NUM("AdvancedGiftMNum"),
     ADVANCED_GIFT_S_NUM("AdvancedGiftSNum"),
     ADVANCED_GIFT_P_NUM("AdvancedGiftPNum"),
+    ADVANCED_GIFT_W_NUM("AdvancedGiftWNum"),
     // 500k 数量
     ADVANCED_GIFT_2_NUM("AdvancedGift2Num"),
     ADVANCED_GIFT_22_NUM("AdvancedGift22Num"),
     ADVANCED_GIFT_S2_NUM("AdvancedGiftS2Num"),
     ADVANCED_GIFT_P2_NUM("AdvancedGiftP2Num"),
+    ADVANCED_GIFT_W2_NUM("AdvancedGiftW2Num"),
     // 1.5m 数量
     ADVANCED_GIFT_23_NUM("AdvancedGift23Num"),
     // 情定爱琴海数量
@@ -121,12 +127,16 @@ public enum StorageKey {
     DELUXE_GIFT_8_NUM("DeluxeGift8Num"),
     // 玫瑰跑车-金乌数量
     DELUXE_GIFT_9_NUM("DeluxeGift9Num"),
+    // 太乙·皆为虚妄数量
+    DELUXE_GIFT_10_NUM("DeluxeGift10Num"),
     // 起源·应龙数量
     ULTIMATE_GIFT_NUM("UltimateGiftNum"),
     // 起源·黑洞数量
     ULTIMATE_GIFT_2_NUM("UltimateGift2Num"),
     // 起源·银河数量
     ULTIMATE_GIFT_3_NUM("UltimateGift3Num"),
+    // 起源·星陨数量
+    ULTIMATE_GIFT_4_NUM("UltimateGift4Num"),
     // 嘉年华孢子兑换券数量
     TICKET("Ticket"),
     // 好吃的骨头数量
@@ -153,36 +163,47 @@ public enum StorageKey {
     RBM1_GIFT_NUM("RBM1GiftNum"),
     RBS1_GIFT_NUM("RBS1GiftNum"),
     RBP1_GIFT_NUM("RBP1GiftNum"),
+    RBW1_GIFT_NUM("RBW1GiftNum"),
+
     RB2_GIFT_NUM("RB2GiftNum"),
     RB22_GIFT_NUM("RB22GiftNum"),
     RBC2_GIFT_NUM("RBC2GiftNum"),
     RBM2_GIFT_NUM("RBM2GiftNum"),
     RBS2_GIFT_NUM("RBS2GiftNum"),
     RBP2_GIFT_NUM("RBP2GiftNum"),
+    RBW2_GIFT_NUM("RBW2GiftNum"),
+
     RB3_GIFT_NUM("RB3GiftNum"),
     RB23_GIFT_NUM("RB23GiftNum"),
     RBC3_GIFT_NUM("RBC3GiftNum"),
     RBM3_GIFT_NUM("RBM3GiftNum"),
     RBS3_GIFT_NUM("RBS3GiftNum"),
     RBP3_GIFT_NUM("RBP3GiftNum"),
+    RBW3_GIFT_NUM("RBW3GiftNum"),
+
     RB4_GIFT_NUM("RB4GiftNum"),
     RB24_GIFT_NUM("RB24GiftNum"),
     RBC4_GIFT_NUM("RBC4GiftNum"),
     RBM4_GIFT_NUM("RBM4GiftNum"),
     RBS4_GIFT_NUM("RBS4GiftNum"),
     RBP4_GIFT_NUM("RBP4GiftNum"),
+    RBW4_GIFT_NUM("RBW4GiftNum"),
+
     RB5_GIFT_NUM("RB5GiftNum"),
     RB25_GIFT_NUM("RB25GiftNum"),
     RB6_GIFT_NUM("RB6GiftNum"),
     RB26_GIFT_NUM("RB26GiftNum"),
     RB7_GIFT_NUM("RB7GiftNum"),
     RB27_GIFT_NUM("RB27GiftNum"),
+
     RB8_GIFT_NUM("RB8GiftNum"),
     RB28_GIFT_NUM("RB28GiftNum"),
     RBC8_GIFT_NUM("RBC8GiftNum"),
     RBM8_GIFT_NUM("RBM8GiftNum"),
     RBS8_GIFT_NUM("RBS8GiftNum"),
     RBP8_GIFT_NUM("RBP8GiftNum"),
+    RBW8_GIFT_NUM("RBW8GiftNum"),
+
     RB29_GIFT_NUM("RB29GiftNum"),
     RB210_GIFT_NUM("RB210GiftNum"),
 
@@ -195,6 +216,7 @@ public enum StorageKey {
     ABC5_GIFT_NUM("ABC5GiftNum"),
     ABS5_GIFT_NUM("ABS5GiftNum"),
     ABP5_GIFT_NUM("ABP5GiftNum"),
+    ABW5_GIFT_NUM("ABW5GiftNum"),
     AB6_GIFT_NUM("AB6GiftNum"),
     AB26_GIFT_NUM("AB26GiftNum"),
     ABM6_GIFT_NUM("ABM6GiftNum"),
