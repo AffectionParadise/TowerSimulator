@@ -13,9 +13,9 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <lombok.version>1.18.38</lombok.version>
-        <fastjson2.version>2.0.58</fastjson2.version>
-        <hutool.version>5.8.39</hutool.version>
+        <lombok.version>1.18.48</lombok.version>
+        <fastjson2.version>2.0.66</fastjson2.version>
+        <hutool.version>5.8.48</hutool.version>
         <commons-math3.version>3.6.1</commons-math3.version>
     </properties>
 

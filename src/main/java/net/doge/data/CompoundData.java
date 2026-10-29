@@ -29,6 +29,7 @@ public class CompoundData {
         Sampler<Item> basicBoxMSampler = new Sampler<>();
         Sampler<Item> basicBoxSSampler = new Sampler<>();
         Sampler<Item> basicBoxPSampler = new Sampler<>();
+        Sampler<Item> basicBoxWSampler = new Sampler<>();
 
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModelsLinearWeights(ListUtil.ofRange(298, 198), 300, 100);
@@ -41,6 +42,7 @@ public class CompoundData {
         basicBoxMSampler.addModel(new SampleModel<>(advancedCoin, 800));
         basicBoxSSampler.addModel(new SampleModel<>(advancedCoin, 800));
         basicBoxPSampler.addModel(new SampleModel<>(advancedCoin, 800));
+        basicBoxWSampler.addModel(new SampleModel<>(advancedCoin, 800));
 
         Sampler<Integer> advancedStepNS = new Sampler<>();
         advancedStepNS.addModelsLinearWeights(ListUtil.ofRange(1, 3), 500, 100);
@@ -52,6 +54,7 @@ public class CompoundData {
         basicBoxMSampler.addModel(new SampleModel<>(advancedStep, 800));
         basicBoxSSampler.addModel(new SampleModel<>(advancedStep, 800));
         basicBoxPSampler.addModel(new SampleModel<>(advancedStep, 800));
+        basicBoxWSampler.addModel(new SampleModel<>(advancedStep, 800));
 
         Sampler<Integer> basicBoxNS = new Sampler<>();
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(9, 5), 200, 50);
@@ -62,18 +65,21 @@ public class CompoundData {
         Item basicBoxM = ItemData.BASIC_BOX_M.clone();
         Item basicBoxS = ItemData.BASIC_BOX_S.clone();
         Item basicBoxP = ItemData.BASIC_BOX_P.clone();
+        Item basicBoxW = ItemData.BASIC_BOX_W.clone();
         basicBox.setNumSampler(basicBoxNS);
         basicBox2.setNumSampler(basicBoxNS);
         basicBoxC.setNumSampler(basicBoxNS);
         basicBoxM.setNumSampler(basicBoxNS);
         basicBoxS.setNumSampler(basicBoxNS);
         basicBoxP.setNumSampler(basicBoxNS);
+        basicBoxW.setNumSampler(basicBoxNS);
         basicBoxSampler.addModel(new SampleModel<>(basicBox, 2000));
         basicBox2Sampler.addModel(new SampleModel<>(basicBox2, 2000));
         basicBoxCSampler.addModel(new SampleModel<>(basicBoxC, 2000));
         basicBoxMSampler.addModel(new SampleModel<>(basicBoxM, 2000));
         basicBoxSSampler.addModel(new SampleModel<>(basicBoxS, 2000));
         basicBoxPSampler.addModel(new SampleModel<>(basicBoxP, 2000));
+        basicBoxWSampler.addModel(new SampleModel<>(basicBoxW, 2000));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 300, 100);
@@ -84,18 +90,21 @@ public class CompoundData {
         Item regularBoxM = ItemData.REGULAR_BOX_M.clone();
         Item regularBoxS = ItemData.REGULAR_BOX_S.clone();
         Item regularBoxP = ItemData.REGULAR_BOX_P.clone();
+        Item regularBoxW = ItemData.REGULAR_BOX_W.clone();
         regularBox.setNumSampler(regularBoxNS);
         regularBox2.setNumSampler(regularBoxNS);
         regularBoxC.setNumSampler(regularBoxNS);
         regularBoxM.setNumSampler(regularBoxNS);
         regularBoxS.setNumSampler(regularBoxNS);
         regularBoxP.setNumSampler(regularBoxNS);
+        regularBoxW.setNumSampler(regularBoxNS);
         basicBoxSampler.addModel(new SampleModel<>(regularBox, 100));
         basicBox2Sampler.addModel(new SampleModel<>(regularBox2, 100));
         basicBoxCSampler.addModel(new SampleModel<>(regularBoxC, 100));
         basicBoxMSampler.addModel(new SampleModel<>(regularBoxM, 100));
         basicBoxSSampler.addModel(new SampleModel<>(regularBoxS, 100));
         basicBoxPSampler.addModel(new SampleModel<>(regularBoxP, 100));
+        basicBoxWSampler.addModel(new SampleModel<>(regularBoxW, 100));
 
         Sampler<Integer> advancedBoxNS = new Sampler<>();
         advancedBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 200, 10);
@@ -105,18 +114,21 @@ public class CompoundData {
         Item advancedBoxM = ItemData.ADVANCED_BOX_M.clone();
         Item advancedBoxS = ItemData.ADVANCED_BOX_S.clone();
         Item advancedBoxP = ItemData.ADVANCED_BOX_P.clone();
+        Item advancedBoxW = ItemData.ADVANCED_BOX_W.clone();
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox2.setNumSampler(advancedBoxNS);
         advancedBoxC.setNumSampler(advancedBoxNS);
         advancedBoxM.setNumSampler(advancedBoxNS);
         advancedBoxS.setNumSampler(advancedBoxNS);
         advancedBoxP.setNumSampler(advancedBoxNS);
+        advancedBoxW.setNumSampler(advancedBoxNS);
         basicBoxSampler.addModel(new SampleModel<>(advancedBox, 10));
         basicBox2Sampler.addModel(new SampleModel<>(advancedBox2, 10));
         basicBoxCSampler.addModel(new SampleModel<>(advancedBoxC, 10));
         basicBoxMSampler.addModel(new SampleModel<>(advancedBoxM, 10));
         basicBoxSSampler.addModel(new SampleModel<>(advancedBoxS, 10));
         basicBoxPSampler.addModel(new SampleModel<>(advancedBoxP, 10));
+        basicBoxWSampler.addModel(new SampleModel<>(advancedBoxW, 10));
 
         basicBoxSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
         basicBox2Sampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
@@ -124,6 +136,7 @@ public class CompoundData {
         basicBoxMSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
         basicBoxSSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
         basicBoxPSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
+        basicBoxWSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 1));
 
         compounds.add(new Compound(ItemData.BASIC_BOX, 10, basicBoxSampler));
         compounds.add(new Compound(ItemData.BASIC_BOX_2, 10, basicBox2Sampler));
@@ -131,6 +144,7 @@ public class CompoundData {
         compounds.add(new Compound(ItemData.BASIC_BOX_M, 10, basicBoxMSampler));
         compounds.add(new Compound(ItemData.BASIC_BOX_S, 10, basicBoxSSampler));
         compounds.add(new Compound(ItemData.BASIC_BOX_P, 10, basicBoxPSampler));
+        compounds.add(new Compound(ItemData.BASIC_BOX_W, 10, basicBoxWSampler));
     }
 
     private static void initRegularBoxCompound() {
@@ -140,6 +154,7 @@ public class CompoundData {
         Sampler<Item> regularBoxMSampler = new Sampler<>();
         Sampler<Item> regularBoxSSampler = new Sampler<>();
         Sampler<Item> regularBoxPSampler = new Sampler<>();
+        Sampler<Item> regularBoxWSampler = new Sampler<>();
 
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModelsLinearWeights(ListUtil.ofRange(1490, 894), 200, 50);
@@ -152,6 +167,7 @@ public class CompoundData {
         regularBoxMSampler.addModel(new SampleModel<>(advancedCoin, 800));
         regularBoxSSampler.addModel(new SampleModel<>(advancedCoin, 800));
         regularBoxPSampler.addModel(new SampleModel<>(advancedCoin, 800));
+        regularBoxWSampler.addModel(new SampleModel<>(advancedCoin, 800));
 
         Sampler<Integer> advancedStepNS = new Sampler<>();
         advancedStepNS.addModelsLinearWeights(ListUtil.ofRange(5, 3), 400, 150);
@@ -164,6 +180,7 @@ public class CompoundData {
         regularBoxMSampler.addModel(new SampleModel<>(advancedStep, 800));
         regularBoxSSampler.addModel(new SampleModel<>(advancedStep, 800));
         regularBoxPSampler.addModel(new SampleModel<>(advancedStep, 800));
+        regularBoxWSampler.addModel(new SampleModel<>(advancedStep, 800));
 
         Sampler<Integer> basicBoxNS = new Sampler<>();
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(50, 30), 200, 50);
@@ -174,18 +191,21 @@ public class CompoundData {
         Item basicBoxM = ItemData.BASIC_BOX_M.clone();
         Item basicBoxS = ItemData.BASIC_BOX_S.clone();
         Item basicBoxP = ItemData.BASIC_BOX_P.clone();
+        Item basicBoxW = ItemData.BASIC_BOX_W.clone();
         basicBox.setNumSampler(basicBoxNS);
         basicBox2.setNumSampler(basicBoxNS);
         basicBoxC.setNumSampler(basicBoxNS);
         basicBoxM.setNumSampler(basicBoxNS);
         basicBoxS.setNumSampler(basicBoxNS);
         basicBoxP.setNumSampler(basicBoxNS);
+        basicBoxW.setNumSampler(basicBoxNS);
         regularBoxSampler.addModel(new SampleModel<>(basicBox, 600));
         regularBox2Sampler.addModel(new SampleModel<>(basicBox2, 600));
         regularBoxCSampler.addModel(new SampleModel<>(basicBoxC, 600));
         regularBoxMSampler.addModel(new SampleModel<>(basicBoxM, 600));
         regularBoxSSampler.addModel(new SampleModel<>(basicBoxS, 600));
         regularBoxPSampler.addModel(new SampleModel<>(basicBoxP, 600));
+        regularBoxWSampler.addModel(new SampleModel<>(basicBoxW, 600));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModelsLinearWeights(ListUtil.ofRange(4, 3), 400, 150);
@@ -196,18 +216,21 @@ public class CompoundData {
         Item regularBoxM = ItemData.REGULAR_BOX_M.clone();
         Item regularBoxS = ItemData.REGULAR_BOX_S.clone();
         Item regularBoxP = ItemData.REGULAR_BOX_P.clone();
+        Item regularBoxW = ItemData.REGULAR_BOX_W.clone();
         regularBox.setNumSampler(regularBoxNS);
         regularBox2.setNumSampler(regularBoxNS);
         regularBoxC.setNumSampler(regularBoxNS);
         regularBoxM.setNumSampler(regularBoxNS);
         regularBoxS.setNumSampler(regularBoxNS);
         regularBoxP.setNumSampler(regularBoxNS);
+        regularBoxW.setNumSampler(regularBoxNS);
         regularBoxSampler.addModel(new SampleModel<>(regularBox, 2000));
         regularBox2Sampler.addModel(new SampleModel<>(regularBox2, 2000));
         regularBoxCSampler.addModel(new SampleModel<>(regularBoxC, 2000));
         regularBoxMSampler.addModel(new SampleModel<>(regularBoxM, 2000));
         regularBoxSSampler.addModel(new SampleModel<>(regularBoxS, 2000));
         regularBoxPSampler.addModel(new SampleModel<>(regularBoxP, 2000));
+        regularBoxWSampler.addModel(new SampleModel<>(regularBoxW, 2000));
 
         Sampler<Integer> advancedBoxNS = new Sampler<>();
         advancedBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 300, 100);
@@ -218,18 +241,21 @@ public class CompoundData {
         Item advancedBoxM = ItemData.ADVANCED_BOX_M.clone();
         Item advancedBoxS = ItemData.ADVANCED_BOX_S.clone();
         Item advancedBoxP = ItemData.ADVANCED_BOX_P.clone();
+        Item advancedBoxW = ItemData.ADVANCED_BOX_W.clone();
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox2.setNumSampler(advancedBoxNS);
         advancedBoxC.setNumSampler(advancedBoxNS);
         advancedBoxM.setNumSampler(advancedBoxNS);
         advancedBoxS.setNumSampler(advancedBoxNS);
         advancedBoxP.setNumSampler(advancedBoxNS);
+        advancedBoxW.setNumSampler(advancedBoxNS);
         regularBoxSampler.addModel(new SampleModel<>(advancedBox, 100));
         regularBox2Sampler.addModel(new SampleModel<>(advancedBox2, 100));
         regularBoxCSampler.addModel(new SampleModel<>(advancedBoxC, 100));
         regularBoxMSampler.addModel(new SampleModel<>(advancedBoxM, 100));
         regularBoxSSampler.addModel(new SampleModel<>(advancedBoxS, 100));
         regularBoxPSampler.addModel(new SampleModel<>(advancedBoxP, 100));
+        regularBoxWSampler.addModel(new SampleModel<>(advancedBoxW, 100));
 
         Sampler<Integer> deluxeBoxNS = new Sampler<>();
         deluxeBoxNS.addModel(new SampleModel<>(1, 990));
@@ -238,14 +264,17 @@ public class CompoundData {
         Item deluxeBox2 = ItemData.DELUXE_BOX_2.clone();
         Item deluxeBoxS = ItemData.DELUXE_BOX_S.clone();
         Item deluxeBoxP = ItemData.DELUXE_BOX_P.clone();
+        Item deluxeBoxW = ItemData.DELUXE_BOX_W.clone();
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox2.setNumSampler(deluxeBoxNS);
         deluxeBoxS.setNumSampler(deluxeBoxNS);
         deluxeBoxP.setNumSampler(deluxeBoxNS);
+        deluxeBoxW.setNumSampler(deluxeBoxNS);
         regularBoxSampler.addModel(new SampleModel<>(deluxeBox, 20));
         regularBox2Sampler.addModel(new SampleModel<>(deluxeBox2, 20));
         regularBoxSSampler.addModel(new SampleModel<>(deluxeBoxS, 20));
         regularBoxPSampler.addModel(new SampleModel<>(deluxeBoxP, 20));
+        regularBoxWSampler.addModel(new SampleModel<>(deluxeBoxW, 20));
 
         regularBoxSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
         regularBox2Sampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
@@ -253,6 +282,7 @@ public class CompoundData {
         regularBoxMSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
         regularBoxSSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
         regularBoxPSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
+        regularBoxWSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 3));
 
         compounds.add(new Compound(ItemData.REGULAR_BOX, 5, regularBoxSampler));
         compounds.add(new Compound(ItemData.REGULAR_BOX_2, 5, regularBox2Sampler));
@@ -260,6 +290,7 @@ public class CompoundData {
         compounds.add(new Compound(ItemData.REGULAR_BOX_M, 5, regularBoxMSampler));
         compounds.add(new Compound(ItemData.REGULAR_BOX_S, 5, regularBoxSSampler));
         compounds.add(new Compound(ItemData.REGULAR_BOX_P, 5, regularBoxPSampler));
+        compounds.add(new Compound(ItemData.REGULAR_BOX_W, 5, regularBoxWSampler));
     }
 
     private static void initAdvancedBoxCompound() {
@@ -269,6 +300,7 @@ public class CompoundData {
         Sampler<Item> advancedBoxMSampler = new Sampler<>();
         Sampler<Item> advancedBoxSSampler = new Sampler<>();
         Sampler<Item> advancedBoxPSampler = new Sampler<>();
+        Sampler<Item> advancedBoxWSampler = new Sampler<>();
 
         Sampler<Integer> advancedCoinNS = new Sampler<>();
         advancedCoinNS.addModelsLinearWeights(ListUtil.ofRange(2980, 1490), 200, 50);
@@ -281,6 +313,7 @@ public class CompoundData {
         advancedBoxMSampler.addModel(new SampleModel<>(advancedCoin, 800));
         advancedBoxSSampler.addModel(new SampleModel<>(advancedCoin, 800));
         advancedBoxPSampler.addModel(new SampleModel<>(advancedCoin, 800));
+        advancedBoxWSampler.addModel(new SampleModel<>(advancedCoin, 800));
 
         Sampler<Integer> advancedStepNS = new Sampler<>();
         advancedStepNS.addModelsLinearWeights(ListUtil.ofRange(10, 5), 400, 150);
@@ -293,6 +326,7 @@ public class CompoundData {
         advancedBoxMSampler.addModel(new SampleModel<>(advancedStep, 800));
         advancedBoxSSampler.addModel(new SampleModel<>(advancedStep, 800));
         advancedBoxPSampler.addModel(new SampleModel<>(advancedStep, 800));
+        advancedBoxWSampler.addModel(new SampleModel<>(advancedStep, 800));
 
         Sampler<Integer> basicBoxNS = new Sampler<>();
         basicBoxNS.addModelsLinearWeights(ListUtil.ofRange(100, 60), 200, 50);
@@ -303,18 +337,21 @@ public class CompoundData {
         Item basicBoxM = ItemData.BASIC_BOX_M.clone();
         Item basicBoxS = ItemData.BASIC_BOX_S.clone();
         Item basicBoxP = ItemData.BASIC_BOX_P.clone();
+        Item basicBoxW = ItemData.BASIC_BOX_W.clone();
         basicBox.setNumSampler(basicBoxNS);
         basicBox2.setNumSampler(basicBoxNS);
         basicBoxC.setNumSampler(basicBoxNS);
         basicBoxM.setNumSampler(basicBoxNS);
         basicBoxS.setNumSampler(basicBoxNS);
         basicBoxP.setNumSampler(basicBoxNS);
+        basicBoxW.setNumSampler(basicBoxNS);
         advancedBoxSampler.addModel(new SampleModel<>(basicBox, 600));
         advancedBox2Sampler.addModel(new SampleModel<>(basicBox2, 600));
         advancedBoxCSampler.addModel(new SampleModel<>(basicBoxC, 600));
         advancedBoxMSampler.addModel(new SampleModel<>(basicBoxM, 600));
         advancedBoxSSampler.addModel(new SampleModel<>(basicBoxS, 600));
         advancedBoxPSampler.addModel(new SampleModel<>(basicBoxP, 600));
+        advancedBoxWSampler.addModel(new SampleModel<>(basicBoxW, 600));
 
         Sampler<Integer> regularBoxNS = new Sampler<>();
         regularBoxNS.addModelsLinearWeights(ListUtil.ofRange(10, 5), 400, 150);
@@ -325,18 +362,21 @@ public class CompoundData {
         Item regularBoxM = ItemData.REGULAR_BOX_M.clone();
         Item regularBoxS = ItemData.REGULAR_BOX_S.clone();
         Item regularBoxP = ItemData.REGULAR_BOX_P.clone();
+        Item regularBoxW = ItemData.REGULAR_BOX_W.clone();
         regularBox.setNumSampler(regularBoxNS);
         regularBox2.setNumSampler(regularBoxNS);
         regularBoxC.setNumSampler(regularBoxNS);
         regularBoxM.setNumSampler(regularBoxNS);
         regularBoxS.setNumSampler(regularBoxNS);
         regularBoxP.setNumSampler(regularBoxNS);
+        regularBoxW.setNumSampler(regularBoxNS);
         advancedBoxSampler.addModel(new SampleModel<>(regularBox, 2000));
         advancedBox2Sampler.addModel(new SampleModel<>(regularBox2, 2000));
         advancedBoxCSampler.addModel(new SampleModel<>(regularBoxC, 2000));
         advancedBoxMSampler.addModel(new SampleModel<>(regularBoxM, 2000));
         advancedBoxSSampler.addModel(new SampleModel<>(regularBoxS, 2000));
         advancedBoxPSampler.addModel(new SampleModel<>(regularBoxP, 2000));
+        advancedBoxWSampler.addModel(new SampleModel<>(regularBoxW, 2000));
 
         Sampler<Integer> advancedBoxNS = new Sampler<>();
         advancedBoxNS.addModelsLinearWeights(ListUtil.ofRange(2, 5), 800, 100);
@@ -347,18 +387,21 @@ public class CompoundData {
         Item advancedBoxM = ItemData.ADVANCED_BOX_M.clone();
         Item advancedBoxS = ItemData.ADVANCED_BOX_S.clone();
         Item advancedBoxP = ItemData.ADVANCED_BOX_P.clone();
+        Item advancedBoxW = ItemData.ADVANCED_BOX_W.clone();
         advancedBox.setNumSampler(advancedBoxNS);
         advancedBox2.setNumSampler(advancedBoxNS);
         advancedBoxC.setNumSampler(advancedBoxNS);
         advancedBoxM.setNumSampler(advancedBoxNS);
         advancedBoxS.setNumSampler(advancedBoxNS);
         advancedBoxP.setNumSampler(advancedBoxNS);
+        advancedBoxW.setNumSampler(advancedBoxNS);
         advancedBoxSampler.addModel(new SampleModel<>(advancedBox, 100));
         advancedBox2Sampler.addModel(new SampleModel<>(advancedBox2, 100));
         advancedBoxCSampler.addModel(new SampleModel<>(advancedBoxC, 100));
         advancedBoxMSampler.addModel(new SampleModel<>(advancedBoxM, 100));
         advancedBoxSSampler.addModel(new SampleModel<>(advancedBoxS, 100));
         advancedBoxPSampler.addModel(new SampleModel<>(advancedBoxP, 100));
+        advancedBoxWSampler.addModel(new SampleModel<>(advancedBoxW, 100));
 
         Sampler<Integer> deluxeBoxNS = new Sampler<>();
         deluxeBoxNS.addModelsLinearWeights(ListUtil.ofRange(1, 2), 800, 100);
@@ -367,14 +410,17 @@ public class CompoundData {
         Item deluxeBox2 = ItemData.DELUXE_BOX_2.clone();
         Item deluxeBoxS = ItemData.DELUXE_BOX_S.clone();
         Item deluxeBoxP = ItemData.DELUXE_BOX_P.clone();
+        Item deluxeBoxW = ItemData.DELUXE_BOX_W.clone();
         deluxeBox.setNumSampler(deluxeBoxNS);
         deluxeBox2.setNumSampler(deluxeBoxNS);
         deluxeBoxS.setNumSampler(deluxeBoxNS);
         deluxeBoxP.setNumSampler(deluxeBoxNS);
+        deluxeBoxW.setNumSampler(deluxeBoxNS);
         advancedBoxSampler.addModel(new SampleModel<>(deluxeBox, 20));
         advancedBox2Sampler.addModel(new SampleModel<>(deluxeBox2, 20));
         advancedBoxSSampler.addModel(new SampleModel<>(deluxeBoxS, 20));
         advancedBoxPSampler.addModel(new SampleModel<>(deluxeBoxP, 20));
+        advancedBoxWSampler.addModel(new SampleModel<>(deluxeBoxW, 20));
 
         Sampler<Integer> advancedGiftNS = new Sampler<>();
         advancedGiftNS.addModel(new SampleModel<>(1, 990));
@@ -385,18 +431,21 @@ public class CompoundData {
         Item advancedGiftM = ItemData.ADVANCED_GIFT_M.clone();
         Item advancedGiftS = ItemData.ADVANCED_GIFT_S.clone();
         Item advancedGiftP = ItemData.ADVANCED_GIFT_P.clone();
+        Item advancedGiftW = ItemData.ADVANCED_GIFT_W.clone();
         advancedGift.setNumSampler(advancedGiftNS);
         advancedGift21.setNumSampler(advancedGiftNS);
         advancedGiftC.setNumSampler(advancedGiftNS);
         advancedGiftM.setNumSampler(advancedGiftNS);
         advancedGiftS.setNumSampler(advancedGiftNS);
         advancedGiftP.setNumSampler(advancedGiftNS);
+        advancedGiftW.setNumSampler(advancedGiftNS);
         advancedBoxSampler.addModel(new SampleModel<>(advancedGift, 10));
         advancedBox2Sampler.addModel(new SampleModel<>(advancedGift21, 10));
         advancedBoxCSampler.addModel(new SampleModel<>(advancedGiftC, 10));
         advancedBoxMSampler.addModel(new SampleModel<>(advancedGiftM, 10));
         advancedBoxSSampler.addModel(new SampleModel<>(advancedGiftS, 10));
         advancedBoxPSampler.addModel(new SampleModel<>(advancedGiftP, 10));
+        advancedBoxWSampler.addModel(new SampleModel<>(advancedGiftW, 10));
 
         advancedBoxSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
         advancedBox2Sampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
@@ -404,6 +453,7 @@ public class CompoundData {
         advancedBoxMSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
         advancedBoxSSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
         advancedBoxPSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
+        advancedBoxWSampler.addModel(new SampleModel<>(ItemData.DELUXE_GIFT_4, 6));
 
         compounds.add(new Compound(ItemData.ADVANCED_BOX, 1, advancedBoxSampler));
         compounds.add(new Compound(ItemData.ADVANCED_BOX_2, 1, advancedBox2Sampler));
@@ -411,5 +461,6 @@ public class CompoundData {
         compounds.add(new Compound(ItemData.ADVANCED_BOX_M, 1, advancedBoxMSampler));
         compounds.add(new Compound(ItemData.ADVANCED_BOX_S, 1, advancedBoxSSampler));
         compounds.add(new Compound(ItemData.ADVANCED_BOX_P, 1, advancedBoxPSampler));
+        compounds.add(new Compound(ItemData.ADVANCED_BOX_W, 1, advancedBoxWSampler));
     }
 }

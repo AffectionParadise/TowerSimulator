@@ -45,164 +45,222 @@ public class Trick {
         List<GiftResult> results = record.getResults();
         boolean accepted = false;
         switch (type) {
+            // 全屏雨诺
             case A_1P1:
                 accepted = hasGift(results, ItemData.AB1_GIFT, ItemData.AB3_GIFT);
                 break;
+            // 辉煌河港
             case D_1P1:
                 accepted = hasGift(results, ItemData.DB2_GIFT, ItemData.DB4_GIFT);
                 break;
+            // 双胞胎
             case SAME2:
                 accepted = isSameN(results, 2);
                 break;
+            // 112 无序
+            case DISORDER_112:
+                accepted = isDisorder(results, Arrays.asList(1, 1, 2));
+                break;
+            // 123 无序
             case DISORDER_123:
                 accepted = isDisorder(results, Arrays.asList(1, 2, 3));
                 break;
+            // 1234 无序
             case DISORDER_1234:
                 accepted = isDisorder(results, Arrays.asList(1, 2, 3, 4));
                 break;
+            // 222/33/15
             case DISORDER_222_33_15:
                 accepted = isDisorder(results, Arrays.asList(2, 2, 2)) || isDisorder(results, Arrays.asList(3, 3)) || isDisorder(results, Arrays.asList(1, 5));
                 break;
+            // 222/33/15 含碎片
             case DISORDER_222_33_15_WF:
                 accepted = (isDisorder(results, Arrays.asList(2, 2, 2)) || isDisorder(results, Arrays.asList(3, 3)) || isDisorder(results, Arrays.asList(1, 5))) && isWithFragment(results);
                 break;
+            // 3 胞胎
             case SAME3:
                 accepted = isSameN(results, 3);
                 break;
+            // 4 胞胎
             case SAME4:
                 accepted = isSameN(results, 4);
                 break;
+            // 3 胞胎及以下
             case SAME3_BELOW:
                 accepted = isSameNBelow(results, 3);
                 break;
+            // 无 1
             case NONE_1:
                 accepted = isNone(results, 1);
                 break;
+            // 111 无序
             case SUB_111:
                 accepted = isSub(results, Arrays.asList(1, 1, 1));
                 break;
+            // 5 胞胎及以上
             case SAME5:
                 accepted = isSameN(results, 5);
                 break;
+            // 6 胞胎及以上
             case SAME6:
                 accepted = isSameN(results, 6);
                 break;
+            // 7 胞胎及以上
             case SAME7:
                 accepted = isSameN(results, 7);
                 break;
+            // 7 胞胎及以下
             case SAME7_BELOW:
                 accepted = isSameNBelow(results, 7);
                 break;
+            // 8 胞胎及以上
             case SAME8:
                 accepted = isSameN(results, 8);
                 break;
+            // 9 胞胎及以上
             case SAME9:
                 accepted = isSameN(results, 9);
                 break;
+            // 10 胞胎及以上
             case SAME10:
                 accepted = isSameN(results, 10);
                 break;
+            // 单双
             case OOE:
                 accepted = isOOE(results, 1) || isOOE(results, 0);
                 break;
+            // 全双
+            case E:
+                accepted = isOOE(results, 0);
+                break;
+            // 全十
             case ALL10K:
                 accepted = isAllValue(results, 10000);
                 break;
+            // 无 10k
             case NO_10K:
                 accepted = notExtreme(results, 10000);
                 break;
+            // 爆 10k
             case EXTREME_10K:
                 accepted = isExtreme(results, 10000, 1);
                 break;
+            // 含隐藏
             case WM:
                 accepted = isWithMystery(results);
                 break;
+            // 0 大
             case NO_100K:
                 accepted = notExtreme(results, 100000);
                 break;
+            // 爆大
             case EXTREME_100K:
                 accepted = isExtreme(results, 100000, 1);
                 break;
+            // 爆 2 大及以上
             case EXTREME_100K_2:
                 accepted = isExtreme(results, 100000, 2);
                 break;
+            // 无 300k
             case NO_300K:
                 accepted = notExtreme(results, 300000);
                 break;
+            // 爆 300k
             case EXTREME_300K:
                 accepted = isExtreme(results, 300000, 1);
                 break;
+            // 无 500k
             case NO_500K:
                 accepted = notExtreme(results, 500000);
                 break;
+            // 爆 500k
             case EXTREME_500K:
                 accepted = isExtreme(results, 500000, 1);
                 break;
+            // 2 不同 10k
             case DIFF2_1K:
                 accepted = results.size() == 2 && isAllValue(results, 1000);
                 break;
+            // 3 不同
             case DIFF3:
                 accepted = results.size() == 3;
                 break;
+            // 3 不同 10k
             case DIFF3_10K:
                 accepted = results.size() == 3 && isAllValue(results, 10000);
                 break;
+            // 3 不同 10k 不含隐藏
             case DIFF3_10K_WOM:
                 accepted = results.size() == 3 && isAllValue(results, 10000) && !isWithMystery(results);
                 break;
+            // 3 不同 10k 含隐藏
             case DIFF3_10K_WM:
                 accepted = results.size() == 3 && isAllValue(results, 10000) && isWithMystery(results);
                 break;
+            // 3 不同 100k
             case DIFF3_100K:
                 accepted = results.size() == 3 && isAllValue(results, 100000);
                 break;
+            // 3 不同 300k
             case DIFF3_300K:
                 accepted = results.size() == 3 && isAllValue(results, 300000);
                 break;
+            // 2 不同价值
             case DIFF2_VALUE:
                 accepted = results.size() == 2 && isDiffValue(results);
                 break;
+            // 3 不同价值
             case DIFF3_VALUE:
                 accepted = results.size() == 3 && isDiffValue(results);
                 break;
+            // 4 不同价值
             case DIFF4_VALUE:
                 accepted = results.size() == 4 && isDiffValue(results);
                 break;
+            // 4 不同
             case DIFF4:
                 accepted = results.size() == 4;
                 break;
+            // 5 不同
             case DIFF5:
                 accepted = results.size() == 5;
                 break;
+            // 6 不同
             case DIFF6:
                 accepted = results.size() == 6;
                 break;
+            // 063/093/052/082
             case NONE_63:
             case NONE_93:
             case NONE_52:
             case NONE_82:
                 accepted = isAllBoxRegular(results);
                 break;
+            // 63/93/52/82
             case SPECIAL_63:
             case SPECIAL_93:
             case SPECIAL_52:
             case SPECIAL_82:
                 accepted = isAllNotBoxRegular(results);
                 break;
+            // 双胞胎 63/93/52/82
             case SAME2_63:
             case SAME2_93:
             case SAME2_52:
             case SAME2_82:
                 accepted = isSameN(results, 2) && isAllNotBoxRegular(results);
                 break;
+            // 二选一/三选一/四选一
             case CHOICE_21:
             case CHOICE_31:
             case CHOICE_41:
                 accepted = results.get(0).getItem().equals(itemChosen);
                 break;
+            // 多爆
             case PACKED:
                 accepted = isPacked(results, numPresented);
                 break;
+            // 无多爆
             case NOT_PACKED:
                 accepted = !isPacked(results, numPresented);
                 break;

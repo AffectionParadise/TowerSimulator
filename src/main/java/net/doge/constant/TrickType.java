@@ -15,6 +15,8 @@ public enum TrickType {
     D_1P1("一河一港"),
     // 双胞胎
     SAME2("双胞胎"),
+    // 112
+    DISORDER_112(" 112 无序"),
     // 123
     DISORDER_123(" 123 无序"),
     // 1234
@@ -49,6 +51,8 @@ public enum TrickType {
     SAME10(" 10 胞胎及以上"),
     // 单双
     OOE("全单或全双"),
+    // 全双
+    E("全双"),
     // 全十
     ALL10K("全十"),
     // 无 10K

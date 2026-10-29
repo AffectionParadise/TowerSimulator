@@ -1626,6 +1626,9 @@ public class ItemData {
         advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 1));
         advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_4, 1));
 
+        advancedTowerItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_10, 1));
+        advancedTower2ItemSampler.addModel(new SampleModel<>(DELUXE_GIFT_10, 1));
+
         advancedTowerItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
         advancedTower2ItemSampler.addModel(new SampleModel<>(ULTIMATE_GIFT, 1));
 
